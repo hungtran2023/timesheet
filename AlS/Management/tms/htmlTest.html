@@ -1,0 +1,250 @@
+<html lang="en">
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
+<meta http-equiv="Content-Language" content="en"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Atlas Industries Timesheet System</title>
+
+<link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="../../bootstrap/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="../../bootstrap/css/bootstrap-datepicker.css" rel="stylesheet" type="text/css">
+<link href="../../css/timesheet.css" rel="stylesheet" >
+<link href="../../css/style.css" rel="stylesheet" type="text/css">    
+<style>
+
+.filterable .filters input[disabled] {
+    background-color: transparent;
+    border: none;
+    cursor: auto;
+    box-shadow: none;
+    padding: 0;
+    height: auto;
+	color: white;
+	font-weight: bold;
+    font-size: 12px;
+    font-family: arial;
+	
+}
+
+</style>
+</head>
+<body data-pinterest-extension-installed="cr1.39.1">
+<table width="95%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tbody>
+  <tr> 
+    <td height="85" valign="top"> 
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tbody>
+        <tr> 
+          <td width="525"><img src="../../templates/template1/images/logo_21.gif" width="428" height="61"></td>
+          <td  class="red" align="right" valign="bottom"><b>Chi Nguyen Tai Uyen</b>&nbsp;Software Developer</td>
+        </tr>
+         </tbody>
+      </table>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" height="24">
+      <tbody>
+        <tr> 
+          <td height="24" width="1" valign="top"><img src="../../templates/template1/images/l-02.gif" width="1" height="24"></td>
+          <td height="24" background="../../templates/template1/images/l-01.gif" valign="top"> 
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tbody>
+              <tr> 
+                <td width="334"><img src="../../templates/template1/images/line-l.gif" width="334" height="24"></td>
+                <td align="right" class="blue"><div align='right'><a href='http://hcmit12/Timesheet/tools/preferences.asp' class='c' onMouseOver='self.status=&quot;Preferences&quot; ; return true;' onMouseout='self.status=&quot;&quot;'>Preferences</a>&nbsp;&nbsp;&nbsp;<img src='../../images/dot.gif' width='5' height='5'>&nbsp;&nbsp;&nbsp;<a href='javascript: void(0);' class='c' onMouseOver='self.status=&quot;Help&quot; ; return true;' onMouseout='self.status=&quot;&quot;'>Help</a>&nbsp;&nbsp;&nbsp;<img src='../../images/dot.gif' width='5' height='5'>&nbsp;&nbsp;&nbsp<a href='http://hcmit12/Timesheet/logout.asp' class='c' onMouseOver='self.status=&quot;Log out&quot; ; return true;' onMouseout='self.status=&quot;&quot;'>Log out</a>&nbsp;&nbsp;&nbsp;</div></td>
+              </tr>
+               </tbody>
+            </table>
+          </td>
+          <td width="1" height="24" valign="top"><img src="../../templates/template1/images/l-02.gif" width="1" height="24"></td>
+        </tr>
+         </tbody>
+      </table>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+       <tbody>
+        <tr> 
+          <td colspan="10" background="../../templates/template1/images/l-03-3a.gif"><img src="../../templates/template1/images/l-03-3a.gif" width="1" height="7"></td>
+        </tr>
+         </tbody>
+      </table>
+    </td>
+  </tr>
+   </tbody>
+</table>
+
+<!-- Menu -->
+<table width="95%" border="0" cellspacing="0" cellpadding="0" height="80%" align="center">
+    <tbody>
+  <tr> 
+    <td width="2px" background="../../templates/template1/images/l-03-3b.gif" bgcolor="#FFE8E8" height="100%">&nbsp;</td>
+    <td width="20%" valign="top" height="100%" class="left-menu"><table width='100%' border='0' cellspacing='0' cellpadding='4'><tr><td colspan='3'>&nbsp;</td></tr><tr><td class='blue' bgcolor='#FFFFFF' colspan='3'><a href='http://hcmit12/Timesheet/tms/timesheet.asp' OnMouseOver = 'self.status=&quot;Fill In Timesheet&quot; ; return true' OnMouseOut = 'self.status = &quot;&quot;'>Complete Timesheet</a></td></tr><tr><td class='blue' bgcolor='#FFFFFF' colspan='3'><a href='http://hcmit12/Timesheet/assignedproject.asp' OnMouseOver = 'self.status=&quot;Assigned Projects&quot; ; return true' OnMouseOut = 'self.status = &quot;&quot;'>Assigned Projects</a></td></tr>
+<tr><td class='blue' bgcolor='#FFFFFF' colspan='3'>Management Console</td></tr>
+<tr><td class='blue' bgcolor='#FFFFFF' width='6%'>&nbsp;</td><td class='blue-normal' bgcolor='#FFFFFF' width='94%' colspan='2'><img src='../../images/dot.gif' width='5' height='5'>&nbsp;<a href='http://hcmit12/Timesheet/management/workinghour/workinghours.asp' class='c' OnMouseOver = "self.status=&quot;Working Hours&quot; ; return true;" OnMouseOut = 'self.status = &quot;&quot;'>Working Hours</a></td></tr>
+<tr><td class='blue' bgcolor='#FFFFFF' width='6%'>&nbsp;</td><td class='blue' bgcolor='#FFFFFF' width='94%' colspan='2'><a href='javascript:selfsubmit("/Timesheet/management/annualleave/defaultRule.asp?choose_menu=AA&fgMenu=1");' OnMouseOver = "self.status=&quot;Timesheets&quot; ; return true;" OnMouseOut = 'self.status = &quot;&quot;'>Timesheets</a></td></tr>
+<tr><td class='blue' bgcolor='#FFFFFF' width='6%'>&nbsp;</td><td class='blue' bgcolor='#FFFFFF' width='94%' colspan='2'><a href='javascript:selfsubmit("/Timesheet/management/annualleave/defaultRule.asp?choose_menu=AB&fgMenu=1");' OnMouseOver = "self.status=&quot;Employees&quot; ; return true;" OnMouseOut = 'self.status = &quot;&quot;'>Employees</a></td></tr>
+<tr><td class='blue' bgcolor='#FFFFFF' width='6%'>&nbsp;</td><td class='blue' bgcolor='#FFFFFF' width='94%' colspan='2'><a href='javascript:selfsubmit("/Timesheet/management/annualleave/defaultRule.asp?choose_menu=AC&fgMenu=1");' OnMouseOver = "self.status=&quot;Projects&quot; ; return true;" OnMouseOut = 'self.status = &quot;&quot;'>Projects</a></td></tr>
+<tr><td class='blue' bgcolor='#FFFFFF' width='6%'>&nbsp;</td><td class='blue' bgcolor='#FFFFFF' width='94%' colspan='2'>Annual Leave</td></tr>
+<tr><td class='blue' bgcolor='#FFFFFF' width='6%'>&nbsp;</td><td class='blue' bgcolor='#FFFFFF' width='6%'>&nbsp;</td><td class='blue-normal' bgcolor='#FFFFFF' width='88%'><img src='../../images/dot.gif' width='5' height='5'>&nbsp;<a href='http://hcmit12/Timesheet/management/annualleave/defaultRule.asp' class='c' OnMouseOver = "self.status=&quot;Annual Leave Rules&quot; ; return true;" OnMouseOut = 'self.status = &quot;&quot;'><font color='#CA0000'>Annual Leave Rules</font></a></td></tr>
+<tr><td class='blue' bgcolor='#FFFFFF' width='6%'>&nbsp;</td><td class='blue' bgcolor='#FFFFFF' width='6%'>&nbsp;</td><td class='blue-normal' bgcolor='#FFFFFF' width='88%'><img src='../../images/dot.gif' width='5' height='5'>&nbsp;<a href='http://hcmit12/Timesheet/management/annualleave/annual_list_staff.asp' class='c' OnMouseOver = "self.status=&quot;Staff Annual Leave Information&quot; ; return true;" OnMouseOut = 'self.status = &quot;&quot;'>Staff Annual Leave Information</a></td></tr>
+<tr><td class='blue' bgcolor='#FFFFFF' width='6%'>&nbsp;</td><td class='blue' bgcolor='#FFFFFF' width='6%'>&nbsp;</td><td class='blue-normal' bgcolor='#FFFFFF' width='88%'><img src='../../images/dot.gif' width='5' height='5'>&nbsp;<a href='http://hcmit12/Timesheet/aisnet/HRAuthorisation/HRAuthorisation' class='c' OnMouseOver = "self.status=&quot;HR Authorisation&quot; ; return true;" OnMouseOut = 'self.status = &quot;&quot;'>HR Authorisation</a></td></tr>
+<tr><td class='blue' bgcolor='#FFFFFF' width='6%'>&nbsp;</td><td class='blue' bgcolor='#FFFFFF' width='6%'>&nbsp;</td><td class='blue-normal' bgcolor='#FFFFFF' width='88%'><img src='../../images/dot.gif' width='5' height='5'>&nbsp;<a href='http://hcmit12/Timesheet/aisnet/Authoriser/Authoriser' class='c' OnMouseOver = "self.status=&quot;Team Calendar&quot; ; return true;" OnMouseOut = 'self.status = &quot;&quot;'>Team Calendar</a></td></tr>
+<tr><td class='blue' bgcolor='#FFFFFF' width='6%'>&nbsp;</td><td class='blue' bgcolor='#FFFFFF' width='6%'>&nbsp;</td><td class='blue-normal' bgcolor='#FFFFFF' width='88%'><img src='../../images/dot.gif' width='5' height='5'>&nbsp;<a href='http://hcmit12/Timesheet/management/annualleave/annual_list_request.asp' class='c' OnMouseOver = "self.status=&quot;List of booking requests&quot; ; return true;" OnMouseOut = 'self.status = &quot;&quot;'>List of booking requests</a></td></tr>
+<tr><td class='blue' bgcolor='#FFFFFF' width='6%'>&nbsp;</td><td class='blue' bgcolor='#FFFFFF' width='6%'>&nbsp;</td><td class='blue-normal' bgcolor='#FFFFFF' width='88%'><img src='../../images/dot.gif' width='5' height='5'>&nbsp;<a href='http://hcmit12/Timesheet/management/annualleave/rpt_list_expiredProcess.asp' class='c' OnMouseOver = "self.status=&quot;Annual Leave Expired Process&quot; ; return true;" OnMouseOut = 'self.status = &quot;&quot;'>Annual Leave Expired Process</a></td></tr>
+<tr><td class='blue' bgcolor='#FFFFFF' width='6%'>&nbsp;</td><td class='blue' bgcolor='#FFFFFF' width='94%' colspan='2'><a href='javascript:selfsubmit("/Timesheet/management/annualleave/defaultRule.asp?choose_menu=AF&fgMenu=1");' OnMouseOver = "self.status=&quot;IT Asset Management&quot; ; return true;" OnMouseOut = 'self.status = &quot;&quot;'>IT Asset Management</a></td></tr>
+<tr><td class='blue' bgcolor='#FFFFFF' width='6%'>&nbsp;</td><td class='blue' bgcolor='#FFFFFF' width='94%' colspan='2'><a href='javascript:selfsubmit("/Timesheet/management/annualleave/defaultRule.asp?choose_menu=AG&fgMenu=1");' OnMouseOver = "self.status=&quot;Contract Staff&quot; ; return true;" OnMouseOut = 'self.status = &quot;&quot;'>Contract Staff</a></td></tr>
+<tr><td class='blue' bgcolor='#FFFFFF' width='6%'>&nbsp;</td><td class='blue' bgcolor='#FFFFFF' width='94%' colspan='2'><a href='javascript:selfsubmit("/Timesheet/management/annualleave/defaultRule.asp?choose_menu=AH&fgMenu=1");' OnMouseOver = "self.status=&quot;Atlas Training&quot; ; return true;" OnMouseOut = 'self.status = &quot;&quot;'>Atlas Training</a></td></tr>
+<tr><td class='blue' bgcolor='#FFFFFF' colspan='3'><a href='javascript:selfsubmit("/Timesheet/management/annualleave/defaultRule.asp?choose_menu=B&fgMenu=1");' OnMouseOver = "self.status=&quot;Reporting&quot; ; return true;" OnMouseOut = 'self.status = &quot;&quot;'>Reporting</a></td></tr>
+<tr><td class='blue' bgcolor='#FFFFFF' colspan='3'><a href='javascript:selfsubmit("/Timesheet/management/annualleave/defaultRule.asp?choose_menu=C&fgMenu=1");' OnMouseOver = "self.status=&quot;Tools&quot; ; return true;" OnMouseOut = 'self.status = &quot;&quot;'>Tools</a></td></tr>
+<tr><td class='blue' bgcolor='#FFFFFF' colspan='3'><a href='http://hcmit12/Timesheet/logout.asp' OnMouseOver = 'self.status=&quot;Log Out&quot; ; return true' OnMouseOut = 'self.status = &quot;&quot;'>Log out</a><SPAN class='red'>&nbsp;CHINTU</span></td></tr></table>
+</td>
+    <td width="1px"  background="../../templates/template1/images/dot-01.gif" bgcolor="#FFE8E8" height="100%"><img src="../../templates/template1/images/dot-01.gif" width="1" height="1"></td>
+    <td width="79%" valign="top">
+<div class="container-fluid" >
+	
+	<div class="row" style="padding:20px 0px 0px 20px;">
+		<h3>Setup Annual Leave Rules</h3> 
+	</div>
+	<form class="form-inline"  id="frmAprove" method="post" >
+	
+	<div class="row panel-heading">
+				
+		<div class="pull-right">
+			<button type="button" class="btn btn-default btn-filter"><span class="glyphicon glyphicon-filter"></span> Filter</button>				
+		</div>
+		
+	</div>
+	<div class="row filterable">
+			
+		<div class="table-responsive">	
+			<div id='idWarning'></div>
+			<table class="table table-hover" id="tblList">
+				<thead  class="thead-inverse tableheaderblue">						
+					<tr class="filters" style="background-color:#8ca0d1">								
+						<th><input type="text" class="form-control blue-normal" placeholder="No." disabled></th>
+						<th><input type="text" class="form-control blue-normal" placeholder="Rate per year" disabled></th>
+						<th><input type="text" class="form-control blue-normal" placeholder="MaxLeaveDue" disabled></th>
+						<th><input type="text" class="form-control blue-normal" placeholder="Note" disabled></th>
+						
+
+					</tr>
+				</thead>					
+				<tbody>		
+<tr bgcolor='#E7EBF5'><td valign='top' class='blue'>&nbsp;1</td><td valign='top' class='blue'>&nbsp;<a class='c' href='javascript:ruleDetail(14);' OnMouseOver = 'self.status=&quot;Update&quot; ; return true' OnMouseOut = 'self.status = &quot;&quot;'>19.00</a></td><td valign='top' class='blue'>23</td><td valign='top' class='blue'>Special case _ Duc Hieu</td></tr><tr bgcolor='#FFF2F2'><td valign='top' class='blue'>&nbsp;2</td><td valign='top' class='blue'>&nbsp;<a class='c' href='javascript:ruleDetail(13);' OnMouseOver = 'self.status=&quot;Update&quot; ; return true' OnMouseOut = 'self.status = &quot;&quot;'>17.00</a></td><td valign='top' class='blue'>21</td><td valign='top' class='blue'>Special case</td></tr><tr bgcolor='#E7EBF5'><td valign='top' class='blue'>&nbsp;3</td><td valign='top' class='blue'>&nbsp;<a class='c' href='javascript:ruleDetail(12);' OnMouseOver = 'self.status=&quot;Update&quot; ; return true' OnMouseOut = 'self.status = &quot;&quot;'>0.00</a></td><td valign='top' class='blue'>0</td><td valign='top' class='blue'>For Tim Clements only</td></tr><tr bgcolor='#FFF2F2'><td valign='top' class='blue'>&nbsp;4</td><td valign='top' class='blue'>&nbsp;<a class='c' href='javascript:ruleDetail(11);' OnMouseOver = 'self.status=&quot;Update&quot; ; return true' OnMouseOut = 'self.status = &quot;&quot;'>13.00</a></td><td valign='top' class='blue'>0</td><td valign='top' class='blue'>For Matt only from Sept 10</td></tr><tr bgcolor='#E7EBF5'><td valign='top' class='blue'>&nbsp;5</td><td valign='top' class='blue'>&nbsp;<a class='c' href='javascript:ruleDetail(10);' OnMouseOver = 'self.status=&quot;Update&quot; ; return true' OnMouseOut = 'self.status = &quot;&quot;'>25.00</a></td><td valign='top' class='blue'>25</td><td valign='top' class='blue'>For expart from 2010</td></tr><tr bgcolor='#FFF2F2'><td valign='top' class='blue'>&nbsp;6</td><td valign='top' class='blue'>&nbsp;<a class='c' href='javascript:ruleDetail(9);' OnMouseOver = 'self.status=&quot;Update&quot; ; return true' OnMouseOut = 'self.status = &quot;&quot;'>20.00</a></td><td valign='top' class='blue'>25</td><td valign='top' class='blue'>For manager from 2010 & specia</td></tr><tr bgcolor='#E7EBF5'><td valign='top' class='blue'>&nbsp;7</td><td valign='top' class='blue'>&nbsp;<a class='c' href='javascript:ruleDetail(8);' OnMouseOver = 'self.status=&quot;Update&quot; ; return true' OnMouseOut = 'self.status = &quot;&quot;'>18.00</a></td><td valign='top' class='blue'>23</td><td valign='top' class='blue'>For senior - apply from 2010</td></tr><tr bgcolor='#FFF2F2'><td valign='top' class='blue'>&nbsp;8</td><td valign='top' class='blue'>&nbsp;<a class='c' href='javascript:ruleDetail(6);' OnMouseOver = 'self.status=&quot;Update&quot; ; return true' OnMouseOut = 'self.status = &quot;&quot;'>16.00</a></td><td valign='top' class='blue'>21</td><td valign='top' class='blue'>For members</td></tr><tr bgcolor='#E7EBF5'><td valign='top' class='blue'>&nbsp;9</td><td valign='top' class='blue'>&nbsp;<a class='c' href='javascript:ruleDetail(5);' OnMouseOver = 'self.status=&quot;Update&quot; ; return true' OnMouseOut = 'self.status = &quot;&quot;'>24.00</a></td><td valign='top' class='blue'>25</td><td valign='top' class='blue'>For special case</td></tr><tr bgcolor='#FFF2F2'><td valign='top' class='blue'>&nbsp;10</td><td valign='top' class='blue'>&nbsp;<a class='c' href='javascript:ruleDetail(2);' OnMouseOver = 'self.status=&quot;Update&quot; ; return true' OnMouseOut = 'self.status = &quot;&quot;'>15.00</a></td><td valign='top' class='blue'>15</td><td valign='top' class='blue'>For Normal staff before 2010</td></tr>				
+				</tbody>
+			</table>	
+					
+		</div>			
+			
+    </div> 
+	</form>	
+</div>
+</td>
+    <td width="2px" background="../../templates/template1/images/l-03-2b.gif" bgcolor="#FFE8E8" height="100%">&nbsp;</td>
+  </tr>
+  </tbody>
+</table>
+<!-- Footer -->
+<table width="95%" border="0" cellspacing="0" cellpadding="0" align="center">
+  <tbody>
+  <tr> 
+    <td background="../../templates/template1/images/dot-01.gif" colspan="3"><img src="../../templates/template1/images/dot-01.gif" width="1" height="1"></td>
+  </tr>
+  <tr> 
+    <td bgcolor="#8CA0D1" width="1"><img src="../../templates/template1/images/l-02.gif" width="1" height="24"></td>
+    <td bgcolor="#8CA0D1" class="blue-normal" align="center"> 
+      Copyright &copy; 2000- @@currentYear Atlas Industries Limited. All Rights Reserved
+    </td>
+    <td bgcolor="#8CA0D1" width="1" align="right"><img src="../../templates/template1/images/l-02.gif" width="1" height="24"></td>
+  </tr>
+  <tr> 
+    <td background="../../templates/template1/images/dot-01.gif" colspan="3"><img src="../../templates/template1/images/dot-01.gif" width="1" height="1"></td>
+  </tr>
+  </tbody>
+</table>
+
+<script type="text/javascript" src="../../js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../../bootstrap/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="../../bootstrap/js/dataTables.bootstrap.min.js"></script>
+<script type="text/javascript" src="../../js/bootstrap-datepicker.js" charset="UTF-8"></script>
+
+<script type="text/javascript" src="../../js/library.js"></script>
+<script src="../../bootstrap/js/bootstrap.min.js"></script>
+
+<script language="javascript">
+<!--
+
+$(document).ready(function() {
+	
+	 $('.btn-filter').click(function(){
+		var $row = $(this).parents('.row').next('.filterable');
+		var $filters = $row.find('.filters input'),
+        $tbody = $row.find('.table tbody');
+       
+	   $row.css( "background-color", "white" );
+	   if ($filters.prop('disabled') == true) {
+            $filters.prop('disabled', false);
+            $filters.first().focus();
+        } else {
+            $filters.val('').prop('disabled', true);
+            $tbody.find('.no-result').remove();
+            $tbody.find('tr').show();
+        }       
+    });
+
+	
+	
+	
+	
+    $('.filterable .filters input').keyup(function(e){
+        /* Ignore tab key */
+        var code = e.keyCode || e.which;
+        if (code == '9') return;
+		
+		/* Useful DOM data and selectors */
+        var $input = $(this),
+        inputContent = $input.val().toLowerCase(),
+		$rowss = $(this).parents('.row'),
+		$panel = $rowss.find('.filterable'),
+		//$panel = $input.parents('.filterable'),
+        column = $panel.find('.filters th').index($input.parents('th')),
+        $table = $panel.find('.table'),
+        $rows = $table.find('tbody tr');
+		alert($rows.length);
+		 /*clear all input */
+		 
+        /* Dirtiest filter function ever ;) */
+        var $filteredRows = $rows.filter(function(){
+             var value = $(this).find('td').eq(column).text().toLowerCase();
+            return value.indexOf(inputContent) === -1;
+        });
+        /* Clean previous no-result if exist */
+        $table.find('tbody .no-result').remove();
+        /* Show all rows, hide filtered ones (never do that outside of a demo ! xD) */
+        $rows.show();
+        $filteredRows.hide();
+        /* Prepend no-result row if all rows are filtered */
+        if ($filteredRows.length === $rows.length) {
+            $table.find('tbody').prepend($('<tr class="no-result text-center"><td colspan="'+ $table.find('.filters th').length +'">No result found</td></tr>'));
+        }
+		
+		var $inputClears=$panel.find('.filters input');		 
+		$inputClears.val('');
+		
+		$input.val(inputContent);
+    });	
+});
+
+
+
+function showalert(message,alerttype) {
+
+    $('#idWarning').append('<div id="alertdiv" class="alert ' +  alerttype + '"><a class="close" data-dismiss="alert">×</a><span>'+message+'</span></div>')
+    setTimeout(function() { // this will automatically close the alert and remove this if the users doesnt close it in 5 secs
+		$("#alertdiv").remove();
+		}, 5000);
+  }
+
+//-->
+</script>
+</body>
+</html>

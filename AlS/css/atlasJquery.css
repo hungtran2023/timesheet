@@ -1,0 +1,19 @@
+﻿.ui-datepicker, .ui-datepicker a
+{  
+	font-size:10px; 
+	} 
+.ui-icon 
+{
+	width: 16px;    
+	height: 16px;    
+	background-image: url(images/ui-icons_222222_256x240.png);}
+	 
+.ui-menu-item
+{  
+	font-size: 8pt;
+    font-family: Arial, Verdana; } 
+.ui-widget
+{
+    font-family: Arial, Verdana;
+    font-size: 10pt; }    
+    

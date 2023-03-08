@@ -1,0 +1,331 @@
+﻿@using System.Data
+@{
+    var data = Model;
+    //  var departmentID = ViewBag.departmentID;
+    //  var type = ViewBag.type;
+
+    //var itemuserchart = ViewData["SelectListUser"] as String;
+    //var itemworkroles = ViewData["SelectListWorkRole"] as String;
+    //var itemteamTypes = ViewData["SelectListTeamType"] as String;
+
+  // Layout = "~/Views/Shared/_LayoutWithMenu.cshtml";
+}
+@*@Styles.Render("~/bundles/jTreeChartCSS")*@
+
+<link href="~/Scripts/JTreeChart/CSS/jHTree.css" rel="stylesheet" />
+
+
+
+<link href="~/Scripts/JTreeChart/Themes/south-street/jquery-ui-1.10.4.custom.css" rel="stylesheet" />
+@*<link href="~/Scripts/datetimepicker/jquery-ui.css" rel="stylesheet" />*@
+<div class="row">
+    <div class="col">
+        <table>
+            <tr style="background-color: white">
+
+                <Td> @Html.DropDownList("department", new SelectList(ViewBag.Department, "Value", "Text", ""), new { @class = "form-control", @style = "margin-bottom: 50px;margin-left: 100px;" })</Td>
+
+ 
+            </tr>
+        </table>
+    </div>
+ 
+</div>
+<div class="col-md-12" id="divdata">
+    <table class="table-condensed">
+
+        @*<td class="filter-form">*@
+        <table class="table-condensed">
+        </table>
+
+        @using (Ajax.BeginForm("LoadChartByDepartment", new AjaxOptions()
+        {
+            InsertionMode = InsertionMode.Replace,
+            UpdateTargetId = "tree"
+        }))
+        {
+
+            <tr>
+                <div id="tree" style="zoom:90%">
+                </div>
+                <input id="hdJsonData" value="@data" type="hidden" />
+
+            </tr>
+
+
+
+        }
+
+    </table>
+</div>
+
+<script src="~/Scripts/JTreeChart/js/jquery-ui-1.10.2.min.js"></script>
+<script src="~/Scripts/JTreeChart/js/jquery-ui-1.10.4.custom.min.js"></script>
+
+<script src="~/Scripts/JTreeChart/js/jquery-ui-1.10.2.js"></script>
+<script src="~/Scripts/JTreeChart/js/jQuery.jHTree.js"></script>
+<script>
+    $(function () {
+        $('#department').change(function () {
+            debugger;
+            var value = $(this).val();          
+            jQuery.ajax({
+                type: "POST",
+                url: './LoadChartByDepartment',
+                data: {
+                    department: value,
+
+
+                },
+                success: function (result) {
+                    debugger;
+                    $("#divdata").html("");
+                    $("#divdata").html(result);
+
+                }
+            });
+        });
+
+        debugger;
+        $("#dialog").dialog({
+            autoOpen: false,
+            modal: true
+        });
+        var myData = $("#hdJsonData").val();
+        if (myData != null && myData !== "") {
+            var jsonparser = JSON.parse(myData);
+            debugger;
+            $("#tree").jHTree({
+               
+                callType: 'obj',
+                structureObj: jsonparser,
+               
+                nodeDropComplete: function (event, data) {
+
+                    $('#tabs').attr('data-value', 3);
+
+
+                }
+            }).on("click", function (e, data) {
+                debugger;
+
+                if (e.target.id !== "") {
+
+                    var id = e.target.id;
+                    var htmlaction = e.target.outerHTML;
+                    var xmlParserResult = loadXMLString(htmlaction.toLowerCase());
+                    var actionName = xmlParserResult.getElementsByTagName("div")[0].getAttribute("name");
+
+
+                    if (actionName == "add") {
+                        ConfirmDialogAdd("Are you sure want to add sub user", id);
+                    }
+                    if (actionName == "edit") {
+
+                        ConfirmDialogEdit("Are you sure want to edit", id);
+                    }
+                }
+            });
+        }
+
+        function loadXMLString(txt) {
+            if (window.DOMParser) {
+                parser = new DOMParser();
+                xmlDoc = parser.parseFromString(txt, "text/xml");
+            }
+            else // code for IE
+            {
+                xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
+                xmlDoc.async = false;
+                xmlDoc.loadXML(txt);
+            }
+            return xmlDoc;
+        }
+
+        function ConfirmDialogAdd(message, id) {
+
+            $(".modal-body").html("");
+            $(".modal-body").html(content);
+            $('<div></div>').appendTo('body')
+                .html('<div><h2>' + message + '?</h2></div>')
+                .dialog({
+                    modal: true,
+                    title: 'Add User Orgaration Chart',
+
+                    zIndex: 10000,
+                    autoOpen: true,
+                    width: 'auto',
+                    resizable: false,
+                    buttons: {
+                        Yes: function () {
+
+                            var url = '/Home/AddUserChart/' + id;
+                            $.ajax({
+                                url: url,
+                                type: 'GET',
+                                beforeSend: function () { show_loader(); },
+                                complete: function () { hide_loader(); },
+                                success: function (data) {
+                                    if (data.Status == false) {
+                                        popup_warning_msg('Message', data.Message);
+                                    } else {
+
+                                        popup_add_sm_chart("Add New Sub Users Chart", data);
+                                    }
+
+                                },
+                                error: function () {
+                                    system_fail_popup();
+                                }
+                            });
+
+
+                            $(this).dialog("close");
+                        },
+                        No: function () {
+                            //$('body').append('<h1>Confirm Dialog Result: <i>No</i></h1>');
+
+                            $(this).dialog("close");
+                        }
+                    },
+                    close: function (event, ui) {
+                        $(this).remove();
+                    }
+                });
+        };
+
+        function ConfirmDialogEdit(message, id) {
+            $('<div></div>').appendTo('body')
+                .html('<div><h2>' + message + '?</h2></div>')
+                .dialog({
+                    modal: true,
+                    title: 'Edit User Orgaration Chart',
+                    zIndex: 10000,
+                    autoOpen: true,
+                    width: 'auto',
+                    resizable: false,
+                    buttons: {
+                        Yes: function () {
+
+                            //$('body').append('<h1>Confirm Dialog Result: <i>Yes</i></h1>');
+                            var url = '/Home/EditUserChart/' + id;
+                            $.ajax({
+                                url: url,
+                                type: 'GET',
+                                beforeSend: function () { show_loader(); },
+                                complete: function () { hide_loader(); },
+                                success: function (data) {
+                                    if (data.Status == false) {
+                                        popup_warning_msg('Message', data.Message);
+                                    } else {
+
+
+                                        popup_sm_chart("Edit new users chart", data);
+                                    }
+
+                                },
+                                error: function () {
+                                    system_fail_popup();
+                                }
+                            });
+
+
+                            $(this).dialog("close");
+                        },
+                        No: function () {
+                            //$('body').append('<h1>Confirm Dialog Result: <i>No</i></h1>');
+
+                            $(this).dialog("close");
+                        }
+                    },
+                    close: function (event, ui) {
+                        $(this).remove();
+                    }
+                });
+        };
+
+        function popup_sm_chart(title, content) {
+
+            $(".modal-body").html("");
+            $(".modal-body").html(content);
+            //  $(".modal-body").html(content);
+            var modalId = 'modal-sm-chart';
+            $('body').append('<div id="' + modalId + '" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">'
+                + '<div class="modal-dialog">'
+                + '<div class="modal-content">'
+                + '<div class="modal-header">'
+                + '<button type="button" class="close" data-dismiss="modal" aria-hidden="true" title="Hit Esc to close">&times;</button>'
+                + '<h4 class="modal-title">' + title + '</h4>'
+                + '</div>'
+                + '<div class="modal-body">'
+                + content
+                + '</div>'
+                + '</div>'
+                + '</div>'
+
+                + '<style>'
+                + '#' + modalId + ' .modal-body { width: auto;overflow-x:auto; }'
+                + '</style>'
+                + '</div>');
+
+            // show modal
+            $('#' + modalId).modal({
+                backdrop: 'static'
+            });
+
+
+            $('#modal-sm-chart').on('hidden.bs.modal', function () {
+
+                $(".modal-body").html("");
+            })
+
+
+        }
+
+        function popup_add_sm_chart(title, content) {
+
+            $(".modal-body-add-chart").html("");
+            $(".modal-body-add-chart").html(content);
+            //  $(".modal-body").html(content);
+            var modalId = 'modal-add-sm-chart';
+            $('body').append('<div id="' + modalId + '" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">'
+                + '<div class="modal-dialog">'
+                + '<div class="modal-content">'
+                + '<div class="modal-header">'
+                + '<button type="button" class="close" data-dismiss="modal" aria-hidden="true" title="Hit Esc to close">&times;</button>'
+                + '<h4 class="modal-title">' + title + '</h4>'
+                + '</div>'
+                + '<div class="modal-body-add-chart">'
+                + content
+                + '</div>'
+                + '</div>'
+                + '</div>'
+
+                + '<style>'
+                + '#' + modalId + ' .modal-body { width: auto;overflow-x:auto; }'
+                + '</style>'
+                + '</div>');
+
+            // show modal
+            $('#' + modalId).modal({
+                backdrop: 'static'
+            });
+
+
+            $('#modal-add-sm-chart').on('hidden.bs.modal', function () {
+
+                $(".modal-body").html("");
+            })
+
+
+        }
+
+    });
+</script>
+
+
+
+
+
+
+

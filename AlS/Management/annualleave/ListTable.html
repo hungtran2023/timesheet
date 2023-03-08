@@ -1,0 +1,568 @@
+	
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<meta http-equiv="X-UA-Compatible" content="IE=edge;chrome=1" />
+
+<head>
+<title>Atlas Information System</title>
+
+<link rel="stylesheet" type="text/css" href="../../jQuery/jquery-ui.css"/>
+<link rel="stylesheet" href="../../timesheet.css"/>
+<link href="../../jQuery/tablestyle.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" language="javascript" src="../../library/menu.js"></script>
+<script type="text/javascript" src="../../library/library.js"></script>
+
+<script type="text/javascript" src="../../jQuery/jquery.min.js"></script>
+<script type="text/javascript" src="../../jQuery/jquery-ui.min.js"></script>
+
+    
+<style type="text/css">
+.ui-widget
+    {
+        font-family: Arial, Verdana;
+        font-size: 10pt;
+    }
+.submit ul
+{
+      padding:0;
+      margin:0;
+}
+
+.submit ul li
+{       
+    display:inline;
+}
+
+.linkbutton
+{    
+    margin-left:2px;
+    padding: 2px 10px 4px 10px;
+    width:75px;
+    height:17px;
+    background-color:#8CA0D1;
+    text-align:center;
+    font-weight: bold;
+    text-decoration:none;
+}
+
+.submit a:hover
+{
+    background-color:#7791D1;
+    color:white;
+}
+ol 
+{
+	margin:0px;
+	padding:10px;
+	width:236px;
+	list-style:none; 
+	background-color:#C0CAE6; 
+}
+
+.highlight { background-color: yellow }
+        
+</style>
+
+<script type="text/javascript">
+    var arrJobtitle=[{'value': 'A.Admin Assistant','id':105},{'value': 'Account Manager','id':59},{'value': 'Accountant','id':43},{'value': 'Admin Officer','id':77},{'value': 'AIS-Senior Officer','id':106},{'value': 'Architect','id':6},{'value': 'Architecture Manager','id':48},{'value': 'Architecture Technician','id':63},{'value': 'Architecture/BIM Manager','id':145},{'value': 'Assistant HR Manager','id':143},{'value': 'BIM Director','id':152},{'value': 'BIM Specialist','id':158},{'value': 'CEO & Founder','id':121},{'value': 'Design Development','id':141},{'value': 'Design Manager','id':139},{'value': 'Director of Architecture','id':75},{'value': 'Director of Engineering','id':149},{'value': 'Driver','id':56},{'value': 'Engineer','id':103},{'value': 'Engineering Manager','id':107},{'value': 'Engineering Technician','id':72},{'value': 'Estimator and Planner','id':83},{'value': 'Finance Manager','id':86},{'value': 'Financial Director','id':26},{'value': 'Group Manager','id':94},{'value': 'Head of IT','id':89},{'value': 'Head of Proposal Generation','id':162},{'value': 'HR & People Development','id':119},{'value': 'IT Co-ordinator','id':154},{'value': 'IT Manager','id':114},{'value': 'IT support','id':109},{'value': 'Marketing Coordinator','id':160},{'value': 'MEP Engineer Manager','id':140},{'value': 'New Bus Development Director','id':151},{'value': 'Office Administrator','id':118},{'value': 'Operations Director','id':144},{'value': 'Resources Manager','id':161},{'value': 'Sales & Marketing Manager','id':129},{'value': 'Senior Accountant','id':110},{'value': 'Senior Administrator','id':142},{'value': 'Senior Administrator & CEO PA','id':157},{'value': 'Senior Architect','id':100},{'value': 'Senior Architecture Technician','id':146},{'value': 'Senior Engineer','id':93},{'value': 'Senior Engineering Technician','id':147},{'value': 'Senior Technician','id':101},{'value': 'Software Developer','id':22},{'value': 'Structure Manager','id':25},{'value': 'Systems Integration Manager','id':137}];
+    var arrDepart=[{'value': 'Account','id':2},{'value': 'Admin','id':3},{'value': 'Architects','id':27},{'value': 'IT','id':1},{'value': 'Management','id':29},{'value': 'Marketing','id':25},{'value': 'Structure Engineering','id':15}];
+    var arrReport=[{'value': 'Anh Doan Tran Hai','id':609},{'value': 'Anh Nguyen Minh','id':432},{'value': 'Caroline Richards','id':1200},{'value': 'Charles Simons','id':1121},{'value': 'Chi Nguyen Tai Uyen','id':252},{'value': 'Dean Marsh','id':1201},{'value': 'Duc Huynh Quan','id':1062},{'value': 'Ha Ho Thien','id':1232},{'value': 'Ha Vo Thi Thanh','id':561},{'value': 'Hanh Nguyen Kim','id':518},{'value': 'Hiep Mac Minh','id':1329},{'value': 'Hung Dinh Ho Tien','id':723},{'value': 'Hung Luong Ngoc','id':595},{'value': 'Jannet Pacheco Ordiz','id':1217},{'value': 'Joe Woolf','id':1151},{'value': 'Linh Vo Ngoc','id':978},{'value': 'Long Lai Nhu','id':1149},{'value': 'Mark Albertella','id':1253},{'value': 'Matthew Paul Haagsma','id':1303},{'value': 'Nghiem Nguyen Dinh Hieu','id':890},{'value': 'Peter Roy Fox','id':1292},{'value': 'Phat Nguyen Van','id':1166},{'value': 'Phu Dang Hong','id':637},{'value': 'Phuong Pham Le Nam','id':1315},{'value': 'Phuong Thai Hoang','id':1302},{'value': 'Quang Khuu Duong','id':581},{'value': 'Quang Tran Van','id':272},{'value': 'Simon Richards','id':1205},{'value': 'Stephen John Read','id':1079},{'value': 'Steven Halliwell','id':1169},{'value': 'Thach Tran Huy','id':530},{'value': 'Thanh Do Nguyet','id':527},{'value': 'Thao Tran Le Ngoc','id':378},{'value': 'Tim Clements','id':1145},{'value': 'Tony Andrew Phersson','id':1372},{'value': 'Tram Nguyen Chau Ngoc','id':877},{'value': 'Trieu Tran Van','id':788},{'value': 'Vernon Almeida','id':1310},{'value': 'Victoria Kim Anh Bateman','id':1234},{'value': 'Vincenzo Di Battista','id':1163}];
+    var arrHeaderClass=["headerSortUp","headerSortDown"];
+
+$(document).ready(function() {
+        
+        $("#1").addClass(arrHeaderClass[0]);
+        
+        //Autocomplete for search fulname
+        $( "#txtsearch" ).autocomplete({
+            source: "../../inc/script.asp",
+            minLength: 2,
+            change:function(event, ui) {
+                if (ui.item==null)
+                {
+                    $('#txtstaffID').val(-1); 
+                 }
+            },
+            select: function(event, ui) { 
+                 $('#txtstaffID').val(ui.item.id);
+            }
+         })
+         //Option
+         $("#filter").toggle();
+         
+         $("#lnkOption").click(function() {
+            if (!($("#filter").is(":hidden"))) {
+                CleanFilterForm(); }         
+                var position = $("#txtsearch").position();   
+            $("#filter").css("left",position.left-430);
+            $("#filter").toggle();
+        });
+        //Searching
+        $("#lnkSearch").click(function() {
+            search();
+              });
+        //Autocomplete for filter
+        $('#txtReportTo').autocomplete({
+            source: arrReport,
+            change:function(event, ui) {
+                if (ui.item==null)
+                    $('#txtReportToID').val(-1); 
+            },
+            select: function(event, ui) { 
+                 $('#txtReportToID').val(ui.item.id); 
+                }
+            });
+        $('#txtDepartment').autocomplete({
+            source: arrDepart,
+            change:function(event, ui) {
+                if (ui.item==null)
+                    $('#txtDepartmentID').val(-1); 
+            },
+            select: function(event, ui) { 
+                 $('#txtDepartmentID').val(ui.item.id); 
+                }
+            });
+        $('#txtJobtitle').autocomplete({
+            source: arrJobtitle,
+            change:function(event, ui) {
+                if (ui.item==null)
+                    $('#txtJobtitleID').val(-1); 
+            },
+            select: function(event, ui) { 
+                 $('#txtJobtitleID').val(ui.item.id); 
+                }
+            });          
+          //For edit user
+          $("#tblList tbody tr").click(function(){
+                getdetail($(this).attr("idValue"));
+          })
+          
+          //For sort
+          $("#tblList thead th").click(function(){
+                sort($(this).attr("id"));
+                
+          })
+    })
+
+function next() {
+var curpage = 1
+var numpage = 3
+	if (curpage < numpage) {
+	
+		curpage=2
+		document.navi.action = "listofemployee.asp?navi=" + curpage;
+		document.navi.target = "_self";
+		document.navi.submit();
+	}
+}
+
+function prev() {
+var curpage = 1
+var numpage = 3
+	if (curpage > 1) {
+		curpage=0
+		document.navi.action = "listofemployee.asp?navi=" + curpage;
+		document.navi.target = "_self";
+		document.navi.submit();
+	}
+}
+
+function go() {
+var curpage = 1
+var numpage = 3
+	var intpage = document.navi.txtpage.value;
+	intpage = parseInt(intpage, 10)
+	if ((intpage > 0) && (intpage <= numpage) && (intpage != curpage)) {
+		document.navi.action = "listofemployee.asp?navi=" + intpage;
+		document.navi.target = "_self";
+		document.navi.submit();		
+	}
+}
+
+function sort(col) {
+    
+    var curSortCol;
+    var curSortType;
+    
+    curSortCol=parseInt(document.navi.txtsortcol.value);    
+    curSortType=parseInt(document.navi.txtsorttype.value);
+    
+    document.navi.txtsortcol.value=col;
+    
+    if (parseInt(col)!=curSortCol)
+    {
+        document.navi.txtsorttype.value=1;
+    }
+    else
+    {
+        document.navi.txtsorttype.value=1;
+        if (curSortType==1)
+            document.navi.txtsorttype.value=2;
+    }
+        
+	document.navi.action = "listofemployee.asp";
+	document.navi.target = "_self";
+	document.navi.submit();
+}
+
+function search() {
+
+	document.navi.action = "listofemployee.asp"
+	document.navi.target = "_self";
+	document.navi.submit();
+}
+
+function onLoad(){
+    if (document.layers) {
+        _loadmenu();
+    }
+}
+
+function getdetail(varid){
+	document.navi.txtuserid.value = varid;
+	
+	document.navi.action = "employeeProfile.asp";
+	document.navi.target = "_self";
+	document.navi.submit();
+}
+
+function addnew(){
+    document.navi.txtuserid.value = -1;
+	document.navi.action = "employeeProfile.asp";
+	document.navi.target = "_self";
+	document.navi.submit();
+}
+
+function CleanFilterForm(){
+	$('#txtDepartment').val("");
+	$('#txtJobtitle').val("");
+	$('#txtReportTo').val("");
+	
+	$('#txtDepartmentID').val("-1");
+	$('#txtJobtitleID').val("-1");
+	$('#txtReportToID').val("-1");
+}
+</script>
+</head>
+
+<body>
+    		<table width="95%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tbody>
+  <tr> 
+    <td height="85" valign="top"> 
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tbody>
+        <tr> 
+          <td width="525"><img src="../../templates/template1/images/logo_21.gif" width="428" height="61"></td>
+          <td  class="red" align="right" valign="bottom"><b>Chi Nguyen Tai Uyen</b>&nbsp;Software Developer</td>
+        </tr>
+         </tbody>
+      </table>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" height="24">
+      <tbody>
+        <tr> 
+          <td height="24" width="1" valign="top"><img src="../../templates/template1/images/l-02.gif" width="1" height="24"></td>
+          <td height="24" background="../../templates/template1/images/l-01.gif" valign="top"> 
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tbody>
+              <tr> 
+                <td width="334"><img src="../../templates/template1/images/line-l.gif" width="334" height="24"></td>
+                <td align="right" class="blue"><div align='right'><a href='http://hcmit12/LeaveManagement/tools/preferences.asp' class='c' onMouseOver='self.status=&quot;Preferences&quot; ; return true;' onMouseout='self.status=&quot;&quot;'>Preferences</a>&nbsp;&nbsp;&nbsp;<img src='../../images/dot.gif' width='5' height='5'>&nbsp;&nbsp;&nbsp;<a href='javascript: void(0);' class='c' onMouseOver='self.status=&quot;Help&quot; ; return true;' onMouseout='self.status=&quot;&quot;'>Help</a>&nbsp;&nbsp;&nbsp;<img src='../../images/dot.gif' width='5' height='5'>&nbsp;&nbsp;&nbsp<a href='http://hcmit12/LeaveManagement/logout.asp' class='c' onMouseOver='self.status=&quot;Log out&quot; ; return true;' onMouseout='self.status=&quot;&quot;'>Log out</a>&nbsp;&nbsp;&nbsp;</div></td>
+              </tr>
+               </tbody>
+            </table>
+          </td>
+          <td width="1" height="24" valign="top"><img src="../../templates/template1/images/l-02.gif" width="1" height="24"></td>
+        </tr>
+         </tbody>
+      </table>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+       <tbody>
+        <tr> 
+          <td colspan="10" background="../../templates/template1/images/l-03-3a.gif"><img src="../../templates/template1/images/l-03-3a.gif" width="1" height="7"></td>
+        </tr>
+         </tbody>
+      </table>
+    </td>
+  </tr>
+   </tbody>
+</table>
+
+<table width="95%" border="0" cellspacing="0" cellpadding="0" height="80%" align="center">
+<tbody>
+  <tr> 
+    <td width="2" background="../../templates/template1/images/l-03-3b.gif" bgcolor="#FFE8E8" height="100%">&nbsp;</td>
+    <td width="168" valign="top" height="100%"><table width='100%' border='0' cellspacing='0' cellpadding='4'><tr><td colspan='3'>&nbsp;</td></tr><tr><td class='blue' bgcolor='#FFFFFF' colspan='3'><a href='http://hcmit12/LeaveManagement/tms/timesheet.asp' OnMouseOver = 'self.status=&quot;Fill In Timesheet&quot; ; return true' OnMouseOut = 'self.status = &quot;&quot;'>Complete Timesheet</a></td></tr><tr><td class='blue' bgcolor='#FFFFFF' colspan='3'><a href='http://hcmit12/LeaveManagement/assignedproject.asp' OnMouseOver = 'self.status=&quot;Assigned Projects&quot; ; return true' OnMouseOut = 'self.status = &quot;&quot;'>Assigned Projects</a></td></tr>
+<tr><td class='blue' bgcolor='#FFFFFF' colspan='3'>Management Console</td></tr>
+<tr><td class='blue' bgcolor='#FFFFFF' width='6%'>&nbsp;</td><td class='blue-normal' bgcolor='#FFFFFF' width='94%' colspan='2'><img src='../../images/dot.gif' width='5' height='5'>&nbsp;<a href='http://hcmit12/LeaveManagement/management/workinghour/workinghours.asp' class='c' OnMouseOver = "self.status=&quot;Working Hours&quot; ; return true;" OnMouseOut = 'self.status = &quot;&quot;'>Working Hours</a></td></tr>
+<tr><td class='blue' bgcolor='#FFFFFF' width='6%'>&nbsp;</td><td class='blue' bgcolor='#FFFFFF' width='94%' colspan='2'><a href='javascript:selfsubmit("/LeaveManagement/management/staff/listofemployee.asp?choose_menu=AA&fgMenu=1");' OnMouseOver = "self.status=&quot;Timesheets&quot; ; return true;" OnMouseOut = 'self.status = &quot;&quot;'>Timesheets</a></td></tr>
+<tr><td class='blue' bgcolor='#FFFFFF' width='6%'>&nbsp;</td><td class='blue' bgcolor='#FFFFFF' width='94%' colspan='2'>Employees</td></tr>
+<tr><td class='blue' bgcolor='#FFFFFF' width='6%'>&nbsp;</td><td class='blue' bgcolor='#FFFFFF' width='6%'>&nbsp;</td><td class='blue-normal' bgcolor='#FFFFFF' width='88%'><img src='../../images/dot.gif' width='5' height='5'>&nbsp;<a href='http://hcmit12/LeaveManagement/management/staff/listofemployee.asp' class='c' OnMouseOver = "self.status=&quot;Employee Details&quot; ; return true;" OnMouseOut = 'self.status = &quot;&quot;'><font color='#CA0000'>Employee Details</font></a></td></tr>
+<tr><td class='blue' bgcolor='#FFFFFF' width='6%'>&nbsp;</td><td class='blue' bgcolor='#FFFFFF' width='6%'>&nbsp;</td><td class='blue-normal' bgcolor='#FFFFFF' width='88%'><img src='../../images/dot.gif' width='5' height='5'>&nbsp;<a href='http://hcmit12/LeaveManagement/management/staff/listofretired.asp' class='c' OnMouseOver = "self.status=&quot;Retired Employees&quot; ; return true;" OnMouseOut = 'self.status = &quot;&quot;'>Retired Employees</a></td></tr>
+<tr><td class='blue' bgcolor='#FFFFFF' width='6%'>&nbsp;</td><td class='blue' bgcolor='#FFFFFF' width='94%' colspan='2'><a href='javascript:selfsubmit("/LeaveManagement/management/staff/listofemployee.asp?choose_menu=AC&fgMenu=1");' OnMouseOver = "self.status=&quot;Projects&quot; ; return true;" OnMouseOut = 'self.status = &quot;&quot;'>Projects</a></td></tr>
+<tr><td class='blue' bgcolor='#FFFFFF' width='6%'>&nbsp;</td><td class='blue' bgcolor='#FFFFFF' width='94%' colspan='2'><a href='javascript:selfsubmit("/LeaveManagement/management/staff/listofemployee.asp?choose_menu=AD&fgMenu=1");' OnMouseOver = "self.status=&quot;Financial&quot; ; return true;" OnMouseOut = 'self.status = &quot;&quot;'>Financial</a></td></tr>
+<tr><td class='blue' bgcolor='#FFFFFF' width='6%'>&nbsp;</td><td class='blue' bgcolor='#FFFFFF' width='94%' colspan='2'><a href='javascript:selfsubmit("/LeaveManagement/management/staff/listofemployee.asp?choose_menu=AE&fgMenu=1");' OnMouseOver = "self.status=&quot;Annual Leave&quot; ; return true;" OnMouseOut = 'self.status = &quot;&quot;'>Annual Leave</a></td></tr>
+<tr><td class='blue' bgcolor='#FFFFFF' width='6%'>&nbsp;</td><td class='blue' bgcolor='#FFFFFF' width='94%' colspan='2'><a href='javascript:selfsubmit("/LeaveManagement/management/staff/listofemployee.asp?choose_menu=AF&fgMenu=1");' OnMouseOver = "self.status=&quot;IT Asset Management&quot; ; return true;" OnMouseOut = 'self.status = &quot;&quot;'>IT Asset Management</a></td></tr>
+<tr><td class='blue' bgcolor='#FFFFFF' width='6%'>&nbsp;</td><td class='blue' bgcolor='#FFFFFF' width='94%' colspan='2'><a href='javascript:selfsubmit("/LeaveManagement/management/staff/listofemployee.asp?choose_menu=AG&fgMenu=1");' OnMouseOver = "self.status=&quot;Contract Staff&quot; ; return true;" OnMouseOut = 'self.status = &quot;&quot;'>Contract Staff</a></td></tr>
+<tr><td class='blue' bgcolor='#FFFFFF' colspan='3'><a href='javascript:selfsubmit("/LeaveManagement/management/staff/listofemployee.asp?choose_menu=B&fgMenu=1");' OnMouseOver = "self.status=&quot;Reporting&quot; ; return true;" OnMouseOut = 'self.status = &quot;&quot;'>Reporting</a></td></tr>
+<tr><td class='blue' bgcolor='#FFFFFF' colspan='3'><a href='javascript:selfsubmit("/LeaveManagement/management/staff/listofemployee.asp?choose_menu=C&fgMenu=1");' OnMouseOver = "self.status=&quot;Tools&quot; ; return true;" OnMouseOut = 'self.status = &quot;&quot;'>Tools</a></td></tr>
+<tr><td class='blue' bgcolor='#FFFFFF' colspan='3'><a href='http://hcmit12/LeaveManagement/logout.asp' OnMouseOver = 'self.status=&quot;Log Out&quot; ; return true' OnMouseOut = 'self.status = &quot;&quot;'>Log out</a><SPAN class='red'>&nbsp;CHINTU</span></td></tr></table>
+</td>
+    <td width="1"  background="../../templates/template1/images/dot-01.gif" bgcolor="#FFE8E8" height="100%"><img src="../../templates/template1/images/dot-01.gif" width="1" height="1"></td>
+    <td width="610" valign="top">
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" height="100%">     
+		    <tbody>     
+			
+          <tr> 
+            <td style="padding:20px 0 0 20px;"> 
+            
+            <form name="navi" id="navi" method="post" action="listofemployee.asp" class="submit"> 
+                <ul>
+
+                    <li><a class="blue" href="javascript:addnew();"  onmouseover="self.status='Add a new employee'; return true;" onmouseout="self.status=''">Add New</a></li>
+            
+                    <li style="padding-left:120px">
+                        <input type="text" id="txtsearch" name="txtsearch" class="blue-normal" size="15" style="width:250px" value=""/>
+                        <input type="hidden" id="txtstaffID" name="txtstaffID" value="" />
+                     </li>
+                    <li class="linkbutton"><a href="#" class="b" id="lnkSearch">Search</a></li>
+                    <li class="linkbutton"><a href="#" class="b" id="lnkOption">Option >></a></li>
+                </ul>
+                <div id="filter" style="position:relative;">
+                    <ol>
+                       <li><label>Job Title
+                            <input type="text" id="txtJobtitle" name="txtJobtitle" style="width:230px" value="" class="blue-normal" /></label>
+                            <input type="hidden" id="txtJobtitleID" name="txtJobtitleID" value="" />
+                            </li>
+                        <li><label for="txtDepartment">Department
+                            <input type="text" id="txtDepartment" name="txtDepartment" style="width:230px" value="" class="blue-normal"/></label>
+                            <input type="hidden" id="txtDepartmentID" name="txtDepartmentID" value="" />
+                            </li>
+                        <li><label for="txtReport">Reports To
+                            <input type="text" id="txtReportTo" name="txtReportTo" style="width:230px" value="" class="blue-normal"/></label>
+                            <input type="hidden" id="txtReportToID" name="txtReportToID" value="" />
+                        </li>
+                    </ol>
+                </div>                         
+                <input type="hidden" name="txtuserid" value=""/>
+                <input type="hidden" name="txtpreviouspage" value="listofemployee.asp"/>  
+                <input type="hidden" name="txtsortcol" value="1"/>
+                <input type="hidden" name="txtsorttype" value="1"/>
+            </form>
+            
+            <div class="title" style="padding:10px; text-align:center;">List of Employees</div>
+            </td>
+          </tr>
+          <tr> 
+            <td height="100%" style="vertical-align:top"> 
+              <table width="100%" border="0" cellspacing="0" cellpadding="0" style="height:600px" >
+                <tr> 
+                  <td bgcolor="#FFFFFF" valign="top"> 
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                      <tr> 
+                        <td bgcolor="#617DC0"> 
+                          <table id="tblList" class="tablesorter">
+                            <thead>
+                                <tr>
+                                    <th scope="col" id="1" width="33%">Full Name</th>
+                                    <th scope="col" id="2" width="33%">Job Title</th>
+                                    <th scope="col" id="3" width="34%">Report To</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <tr  idValue=1416 ><td>An Ho Dinh</td><td>Senior Architecture Technician</td><td>Matthew Paul Haagsma</td></tr>
+<tr class='odd' idValue=1355 ><td>An Le Nguyen Uyen</td><td>Architect</td><td>Long Lai Nhu</td></tr>
+<tr  idValue=1228 ><td>An Trinh Xuan</td><td>Engineer</td><td>Ha Vo Thi Thanh</td></tr>
+<tr class='odd' idValue=609 ><td>Anh Doan Tran Hai</td><td>Architecture Manager</td><td>Dean Marsh</td></tr>
+<tr  idValue=1136 ><td>Anh Hoang Tu</td><td>Senior Architect</td><td>Phu Dang Hong</td></tr>
+<tr class='odd' idValue=1226 ><td>Anh La Thi Quynh</td><td>Architect</td><td>Peter Roy Fox</td></tr>
+<tr  idValue=1067 ><td>Anh Le Hoang</td><td>Senior Engineering Technician</td><td>Quang Tran Van</td></tr>
+<tr class='odd' idValue=1330 ><td>Anh Le Ngoc</td><td>Architect</td><td>Long Lai Nhu</td></tr>
+<tr  idValue=1312 ><td>Anh Ngo Huynh</td><td>Architect</td><td>Trieu Tran Van</td></tr>
+<tr class='odd' idValue=1425 ><td>Anh Nguyen Hoang</td><td>Architect</td><td>Anh Doan Tran Hai</td></tr>
+<tr  idValue=432 ><td>Anh Nguyen Minh</td><td>Group Manager</td><td>Caroline Richards</td></tr>
+<tr class='odd' idValue=1317 ><td>Anh Phan Thi Ngoc</td><td>Architect</td><td>Hung Luong Ngoc</td></tr>
+<tr  idValue=852 ><td>Bach Doan</td><td>Senior Architecture Technician</td><td>Quang Khuu Duong</td></tr>
+<tr class='odd' idValue=1209 ><td>Ban Nguyen Thi Hoa</td><td>Architect</td><td>Anh Doan Tran Hai</td></tr>
+<tr  idValue=1107 ><td>Buu Ha Gia</td><td>Resources Manager</td><td>Joe Woolf</td></tr>
+<tr class='odd' idValue=1072 ><td>Cam Nguyen Ngoc</td><td>Architect</td><td>Hung Dinh Ho Tien</td></tr>
+<tr  idValue=1200 ><td>Caroline Richards</td><td>Operations Director</td><td>Joe Woolf</td></tr>
+<tr class='odd' idValue=1121 ><td>Charles Simons</td><td>Group Manager</td><td>Caroline Richards</td></tr>
+<tr  idValue=792 ><td>Chau Cao Hong</td><td>Senior Architecture Technician</td><td>Quang Khuu Duong</td></tr>
+<tr class='odd' idValue=939 ><td>Chau Le Minh</td><td>Senior Architecture Technician</td><td>Trieu Tran Van</td></tr>
+<tr  idValue=252 ><td>Chi Nguyen Tai Uyen</td><td>Software Developer</td><td>Simon Richards</td></tr>
+<tr class='odd' idValue=589 ><td>Chinh Pham Tuong</td><td>IT Manager</td><td>Linh Vo Ngoc</td></tr>
+<tr  idValue=859 ><td>Cong Do Thanh</td><td>Architecture Technician</td><td>Quang Khuu Duong</td></tr>
+<tr class='odd' idValue=1345 ><td>Cong Duong Van</td><td>Architect</td><td>Phuong Pham Le Nam</td></tr>
+<tr  idValue=847 ><td>Cuong Che Huy</td><td>Senior Engineer</td><td>Quang Tran Van</td></tr>
+<tr class='odd' idValue=1225 ><td>Cuong Le Thanh</td><td>Architecture Technician</td><td>Long Lai Nhu</td></tr>
+<tr  idValue=680 ><td>Cuong Vuong Quoc</td><td>Senior Engineer</td><td>Ha Vo Thi Thanh</td></tr>
+<tr class='odd' idValue=988 ><td>Dai Tran</td><td>IT Co-ordinator</td><td>Linh Vo Ngoc</td></tr>
+<tr  idValue=1178 ><td>Dai Vuu Gia</td><td>Senior Architect</td><td>Tram Nguyen Chau Ngoc</td></tr>
+<tr class='odd' idValue=1326 ><td>Dat La Minh</td><td>Architect</td><td>Long Lai Nhu</td></tr>
+<tr  idValue=1201 ><td>Dean Marsh</td><td>Group Manager</td><td>Caroline Richards</td></tr>
+<tr class='odd' idValue=1213 ><td>Diem Nguyen Thi Ngoc</td><td>Architect</td><td>Ha Ho Thien</td></tr>
+<tr  idValue=1162 ><td>Dieu Nguyen Thi Hue</td><td>Architecture Technician</td><td>Victoria Kim Anh Bateman</td></tr>
+<tr class='odd' idValue=1061 ><td>Dinh Nguyen An</td><td>Senior Architect</td><td>Phuong Pham Le Nam</td></tr>
+<tr  idValue=1062 ><td>Duc Huynh Quan</td><td>Architecture Manager</td><td>Vernon Almeida</td></tr>
+<tr class='odd' idValue=1360 ><td>Duc Nguyen Tien</td><td>Architect</td><td>Hanh Nguyen Kim</td></tr>
+<tr  idValue=1441 ><td>Dung  Bui Ngoc</td><td>Marketing Coordinator</td><td>Steven Halliwell</td></tr>
+<tr class='odd' idValue=1216 ><td>Dung Dinh Thanh</td><td>Architect</td><td>Long Lai Nhu</td></tr>
+<tr  idValue=1389 ><td>Dung Vong Thuc</td><td>Architect</td><td>Phuong Pham Le Nam</td></tr>
+<tr class='odd' idValue=1168 ><td>Duy Nguyen Tuong</td><td>Senior Architect</td><td>Peter Roy Fox</td></tr>
+<tr  idValue=1373 ><td>Giang Dang Truong</td><td>Architect</td><td>Hanh Nguyen Kim</td></tr>
+<tr class='odd' idValue=1340 ><td>Giang Nguyen Thi Chau</td><td>Architect</td><td>Trieu Tran Van</td></tr>
+<tr  idValue=1232 ><td>Ha Ho Thien</td><td>Architecture Manager</td><td>Charles Simons</td></tr>
+<tr class='odd' idValue=1229 ><td>Ha Nguyen Thi Hai</td><td>Architect</td><td>Nghiem Nguyen Dinh Hieu</td></tr>
+<tr  idValue=561 ><td>Ha Vo Thi Thanh</td><td>Structure Manager</td><td>Vincenzo Di Battista</td></tr>
+<tr class='odd' idValue=517 ><td>Hai Pham Anh</td><td>Senior Architect</td><td>Hung Dinh Ho Tien</td></tr>
+<tr  idValue=751 ><td>Hang Nguyen Thi Diem</td><td>Architecture Technician</td><td>Thach Tran Huy</td></tr>
+<tr class='odd' idValue=518 ><td>Hanh Nguyen Kim</td><td>Architecture Manager</td><td>Tony Andrew Phersson</td></tr>
+<tr  idValue=1129 ><td>Hanh Nguyen Ngo Hong</td><td>Architect</td><td>Quang Khuu Duong</td></tr>
+<tr class='odd' idValue=1116 ><td>Hanh Tran Ngoc</td><td>Architecture Technician</td><td>Long Lai Nhu</td></tr>
+<tr  idValue=1028 ><td>Hanh Tran Thi Thu</td><td>Assistant HR Manager</td><td>Tim Clements</td></tr>
+<tr class='odd' idValue=938 ><td>Hien Luong Quang</td><td>Senior Architecture Technician</td><td>Thao Tran Le Ngoc</td></tr>
+<tr  idValue=1142 ><td>Hien Nguyen Thi Minh</td><td>Senior Architect</td><td>Tram Nguyen Chau Ngoc</td></tr>
+<tr class='odd' idValue=1203 ><td>Hien Tran Ngoc</td><td>Engineer</td><td>Quang Tran Van</td></tr>
+<tr  idValue=1329 ><td>Hiep Mac Minh</td><td>Finance Manager</td><td>Joe Woolf</td></tr>
+<tr class='odd' idValue=1108 ><td>Hieu Tran Duc</td><td>Senior Architecture Technician</td><td>Nghiem Nguyen Dinh Hieu</td></tr>
+<tr  idValue=1237 ><td>Hieu Tran Phan</td><td>IT support</td><td>Chi Nguyen Tai Uyen</td></tr>
+<tr class='odd' idValue=207 ><td>Hoa Nguyen To Huynh</td><td>Senior Administrator & CEO PA</td><td>Tim Clements</td></tr>
+<tr  idValue=1346 ><td>Hon Thai Nhu</td><td>Architect</td><td>Phuong Pham Le Nam</td></tr>
+<tr class='odd' idValue=895 ><td>Hong Nguyen Thi Bich</td><td>Architect</td><td>Matthew Paul Haagsma</td></tr>
+<tr  idValue=723 ><td>Hung Dinh Ho Tien</td><td>Architecture Manager</td><td>Anh Nguyen Minh</td></tr>
+<tr class='odd' idValue=595 ><td>Hung Luong Ngoc</td><td>Architecture Manager</td><td>Vernon Almeida</td></tr>
+<tr  idValue=1358 ><td>Hung Nguyen Dinh</td><td>Engineer</td><td>Jannet Pacheco Ordiz</td></tr>
+<tr class='odd' idValue=655 ><td>Hung Nguyen Quang</td><td>Senior Architect</td><td>Quang Khuu Duong</td></tr>
+<tr  idValue=1239 ><td>Hung Tong Le Dinh</td><td>Engineer</td><td>Quang Tran Van</td></tr>
+<tr class='odd' idValue=1337 ><td>Huyen Hoang Thi Thanh</td><td>Architect</td><td>Hanh Nguyen Kim</td></tr>
+<tr  idValue=1217 ><td>Jannet Pacheco Ordiz</td><td>MEP Engineer Manager</td><td>Mark Albertella</td></tr>
+<tr class='odd' idValue=1151 ><td>Joe Woolf</td><td>CEO & Founder</td><td></td></tr>
+<tr  idValue=813 ><td>Kha Nguyen Phi</td><td>Senior Architect</td><td>Matthew Paul Haagsma</td></tr>
+<tr class='odd' idValue=1100 ><td>Khang Dang Nguyen</td><td>Senior Architect</td><td>Phuong Pham Le Nam</td></tr>
+<tr  idValue=1380 ><td>Khang Huynh Tuan</td><td>Architect</td><td>Phu Dang Hong</td></tr>
+<tr class='odd' idValue=704 ><td>Khanh Bui Duy</td><td>Architecture Technician</td><td>Hung Dinh Ho Tien</td></tr>
+<tr  idValue=1311 ><td>Khanh Phan Lam Bao</td><td>Architect</td><td>Quang Khuu Duong</td></tr>
+<tr class='odd' idValue=608 ><td>Khanh Tran Phuong</td><td>Architecture Technician</td><td>Hung Dinh Ho Tien</td></tr>
+<tr  idValue=1098 ><td>Khiem Nguyen</td><td>Senior Architect</td><td>Hung Luong Ngoc</td></tr>
+<tr class='odd' idValue=1111 ><td>Khoa Nguyen Vu Anh</td><td>Architect</td><td>Phu Dang Hong</td></tr>
+<tr  idValue=1412 ><td>Khoa Pham Minh</td><td>Architecture Technician</td><td>Phuong Thai Hoang</td></tr>
+<tr class='odd' idValue=695 ><td>Khoa Tran Minh</td><td>Senior Architect</td><td>Nghiem Nguyen Dinh Hieu</td></tr>
+<tr  idValue=1160 ><td>Khoi Lai Anh</td><td>Architect</td><td>Duc Huynh Quan</td></tr>
+<tr class='odd' idValue=1341 ><td>La Hoang Thi My</td><td>Architect</td><td>Hanh Nguyen Kim</td></tr>
+<tr  idValue=1235 ><td>Lam Nguyen Thi Xuan</td><td>Architect</td><td>Thach Tran Huy</td></tr>
+<tr class='odd' idValue=1388 ><td>Lan Bui Hoang</td><td>Architect</td><td>Long Lai Nhu</td></tr>
+<tr  idValue=1419 ><td>Lan Le Ngoc Phuong</td><td>Admin Officer</td><td></td></tr>
+<tr class='odd' idValue=700 ><td>Liem Lam Thanh</td><td>Architecture Technician</td><td>Quang Khuu Duong</td></tr>
+<tr  idValue=978 ><td>Linh Vo Ngoc</td><td>Head of IT</td><td>Stephen John Read</td></tr>
+<tr class='odd' idValue=1415 ><td>Loc Duong Bao</td><td>Senior Engineer</td><td>Jannet Pacheco Ordiz</td></tr>
+<tr  idValue=1230 ><td>Loc Tong Vinh</td><td>Architect</td><td>Thach Tran Huy</td></tr>
+<tr class='odd' idValue=1149 ><td>Long Lai Nhu</td><td>Architecture Manager</td><td>Tony Andrew Phersson</td></tr>
+<tr  idValue=1348 ><td>Long Pham Duy</td><td>Architect</td><td>Nghiem Nguyen Dinh Hieu</td></tr>
+<tr class='odd' idValue=1403 ><td>Ly Nguyen Thi</td><td>Engineering Technician</td><td>Jannet Pacheco Ordiz</td></tr>
+<tr  idValue=1133 ><td>Mai Nguyen Thi</td><td>Engineer</td><td>Quang Tran Van</td></tr>
+<tr class='odd' idValue=1052 ><td>Managers A1</td><td></td><td></td></tr>
+<tr  idValue=1053 ><td>Managers A2</td><td></td><td></td></tr>
+<tr class='odd' idValue=1082 ><td>Managers BIM</td><td></td><td></td></tr>
+<tr  idValue=1054 ><td>Managers E1</td><td></td><td>Vincenzo Di Battista</td></tr>
+<tr class='odd' idValue=1253 ><td>Mark Albertella</td><td>MEP Engineer Manager</td><td>Vincenzo Di Battista</td></tr>
+<tr  idValue=1303 ><td>Matthew Paul Haagsma</td><td>Architecture Manager</td><td>Tony Andrew Phersson</td></tr>
+<tr class='odd' idValue=1161 ><td>Minh Nguyen Duc</td><td>Senior Architect</td><td>Phu Dang Hong</td></tr>
+<tr  idValue=804 ><td>Minh Nguyen Huu</td><td>Senior Architecture Technician</td><td>Tram Nguyen Chau Ngoc</td></tr>
+<tr class='odd' idValue=1316 ><td>Minh Tran Tuan</td><td>Architecture Technician</td><td>Quang Khuu Duong</td></tr>
+     
+                            </tbody>                       
+                          </table>
+						  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tr> 
+                              <td bgcolor="#FFFFFF" height="20" class="blue-normal">
+                                &nbsp;&nbsp;*Click on each column header to sort the list by alphabetical order.</td>
+                            </tr>
+                          </table>                        
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+			
+          <tr> 
+            <td> 
+			<table width="100%" border="0" cellspacing="0" cellpadding="0" height="20">
+			<tbody>
+			  <tr> 
+			    <td align="right" bgcolor="#E7EBF5"> 
+			      <table width="70%" border="0" cellspacing="1" cellpadding="0" height="20">
+			      <tbody>
+			        <tr class="black-normal"> 
+			          <td align="right" valign="middle" width="37%" class="blue-normal">Page 
+			          </td>
+			          <td align="center" valign="middle" width="13%" class="blue-normal"> 
+			            <input type="text" name="txtpage" class="blue-normal" value="1" size="2" style="width:50">
+			          </td>
+			          <td align="left" valign="middle" width="7%" class="blue-normal">&nbsp;<a href="javascript:go();"  onMouseOver="self.status='Go to page'; return true;" onMouseOut="self.status='';"><font color="#990000">Go</font></a> 
+			          </td>
+			          <td align="right" valign="middle" width="15%" class="blue-normal">Page 1/3&nbsp;&nbsp;</td>
+			          <td valign="middle" align="right" width="28%" class="blue-normal"><a href="javascript:prev();"  
+			          onMouseOver="self.status='Previous page'; return true;" onMouseOut="self.status='';">Previous</a> /
+			          <a href="javascript:next();"  onMouseOver="self.status='Next page'; return true;" onMouseOut="self.status='';"> Next</a>&nbsp;&nbsp;&nbsp;</td>
+			        </tr>
+			        </tbody>
+			      </table>
+			    </td>
+			  </tr>
+			  </tbody>
+			</table>
+	        </td>
+          </tr>
+          </tbody>
+        </table>    
+    </td>
+    <td width="2" background="../../templates/template1/images/l-03-2b.gif" bgcolor="#FFE8E8" height="100%">&nbsp;</td>
+  </tr>
+  </tbody>
+</table>
+<!-- Footer -->
+<table width="95%" border="0" cellspacing="0" cellpadding="0" align="center">
+  <tbody>
+  <tr> 
+    <td background="../../templates/template1/images/dot-01.gif" colspan="3"><img src="../../templates/template1/images/dot-01.gif" width="1" height="1"></td>
+  </tr>
+  <tr> 
+    <td bgcolor="#8CA0D1" width="1"><img src="../../templates/template1/images/l-02.gif" width="1" height="24"></td>
+    <td bgcolor="#8CA0D1" class="blue-normal" width="778"> 
+      <div align="center"> Copyright &copy; 2000-2012 Atlas Industries Limited. 
+        All Rights Reserved</div>
+    </td>
+    <td bgcolor="#8CA0D1" width="1" align="right"><img src="../../templates/template1/images/l-02.gif" width="1" height="24"></td>
+  </tr>
+  <tr> 
+    <td background="../../templates/template1/images/dot-01.gif" colspan="3"><img src="../../templates/template1/images/dot-01.gif" width="1" height="1"></td>
+  </tr>
+  </tbody>
+</table>
+
+
+<script type="text/javascript">
+    var hotkey = 13
+    if (document.layers)
+        document.captureEvents(Event.KEYPRESS)
+    function backhome(e) {
+        if (document.layers) {
+            if (e.which == hotkey)
+                search();
+        }
+        else if (document.all) {
+            if (event.keyCode == hotkey) {
+                event.keyCode = 0;
+                search();
+            }
+        }
+    }
+    document.onkeypress = backhome
+</script>
+</body>
+</html>

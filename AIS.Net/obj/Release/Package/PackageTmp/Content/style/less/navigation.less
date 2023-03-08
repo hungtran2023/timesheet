@@ -1,0 +1,32 @@
+﻿@import "variables.less";
+
+.header{
+    &__menu {
+        float: right;
+        margin-right: 1px;
+
+        a {
+            padding: 1px 7px 1px !important;
+            font-weight: bold;
+            color: @main-color;
+            display: inline-block !important;
+
+            &:hover, &:focus {
+                background-color: initial !important;
+                color: @link-hover;
+            }
+        }
+    }
+
+    &__menu-dot {
+        margin-top: 12px;
+        font-size: 15pt;
+        display: inline-block;
+        line-height: 0;
+        float: left;
+    }
+
+    &__menu-image {
+        margin-top: -1px;
+    }
+}

@@ -1,0 +1,529 @@
+	
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html lang="en">
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
+<meta http-equiv="Content-Language" content="en"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+
+    <title>Atlas Industries Time Sheet System</title>
+   
+     <link href="../../css/bootstrap.min.css" rel="stylesheet" type="text/css">
+     <link href="../../css/timesheet.css" rel="stylesheet" >
+     <link href="../../css/datepicker.css" rel="stylesheet" type="text/css">
+
+     <link href="../../css/atlasJquery.css" rel="stylesheet" type="text/css" />
+    <link href="../../css/style.css" rel="stylesheet" type="text/css">
+    
+    <link href="../../css/bootstrapValidator.min.css" rel="stylesheet" type="text/css" />
+      
+</head>
+<body data-pinterest-extension-installed="cr1.39.1">
+
+<table width="95%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tbody>
+  <tr> 
+    <td height="85" valign="top"> 
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tbody>
+        <tr> 
+          <td width="525"><img src="../../templates/template1/images/logo_21.gif" width="428" height="61"></td>
+          <td  class="red" align="right" valign="bottom"><b>Chi Nguyen Tai Uyen</b>&nbsp;Software Developer</td>
+        </tr>
+         </tbody>
+      </table>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" height="24">
+      <tbody>
+        <tr> 
+          <td height="24" width="1" valign="top"><img src="../../templates/template1/images/l-02.gif" width="1" height="24"></td>
+          <td height="24" background="../../templates/template1/images/l-01.gif" valign="top"> 
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tbody>
+              <tr> 
+                <td width="334"><img src="../../templates/template1/images/line-l.gif" width="334" height="24"></td>
+                <td align="right" class="blue"><div align='right'><a href='http://hcmit12/Leavemanagement/tools/preferences.asp' class='c' onMouseOver='self.status=&quot;Preferences&quot; ; return true;' onMouseout='self.status=&quot;&quot;'>Preferences</a>&nbsp;&nbsp;&nbsp;<img src='../../images/dot.gif' width='5' height='5'>&nbsp;&nbsp;&nbsp;<a href='javascript: void(0);' class='c' onMouseOver='self.status=&quot;Help&quot; ; return true;' onMouseout='self.status=&quot;&quot;'>Help</a>&nbsp;&nbsp;&nbsp;<img src='../../images/dot.gif' width='5' height='5'>&nbsp;&nbsp;&nbsp<a href='http://hcmit12/Leavemanagement/logout.asp' class='c' onMouseOver='self.status=&quot;Log out&quot; ; return true;' onMouseout='self.status=&quot;&quot;'>Log out</a>&nbsp;&nbsp;&nbsp;</div></td>
+              </tr>
+               </tbody>
+            </table>
+          </td>
+          <td width="1" height="24" valign="top"><img src="../../templates/template1/images/l-02.gif" width="1" height="24"></td>
+        </tr>
+         </tbody>
+      </table>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+       <tbody>
+        <tr> 
+          <td colspan="10" background="../../templates/template1/images/l-03-3a.gif"><img src="../../templates/template1/images/l-03-3a.gif" width="1" height="7"></td>
+        </tr>
+         </tbody>
+      </table>
+    </td>
+  </tr>
+   </tbody>
+</table>
+
+<!-- Menu -->
+<table width="95%" border="0" cellspacing="0" cellpadding="0" height="80%" align="center">
+    <tbody>
+  <tr> 
+    <td width="2px" background="../../templates/template1/images/l-03-3b.gif" bgcolor="#FFE8E8" height="100%">&nbsp;</td>
+    <td width="20%" valign="top" height="100%" class="left-menu"><table width='100%' border='0' cellspacing='0' cellpadding='4'><tr><td colspan='3'>&nbsp;</td></tr><tr><td class='blue' bgcolor='#FFFFFF' colspan='3'><a href='http://hcmit12/Leavemanagement/tms/timesheet.asp' OnMouseOver = 'self.status=&quot;Fill In Timesheet&quot; ; return true' OnMouseOut = 'self.status = &quot;&quot;'>Complete Timesheet</a></td></tr><tr><td class='blue' bgcolor='#FFFFFF' colspan='3'><a href='http://hcmit12/Leavemanagement/assignedproject.asp' OnMouseOver = 'self.status=&quot;Assigned Projects&quot; ; return true' OnMouseOut = 'self.status = &quot;&quot;'>Assigned Projects</a></td></tr>
+<tr><td class='blue' bgcolor='#FFFFFF' colspan='3'>Management Console</td></tr>
+<tr><td class='blue' bgcolor='#FFFFFF' width='6%'>&nbsp;</td><td class='blue-normal' bgcolor='#FFFFFF' width='94%' colspan='2'><img src='../../images/dot.gif' width='5' height='5'>&nbsp;<a href='http://hcmit12/Leavemanagement/management/workinghour/workinghours.asp' class='c' OnMouseOver = "self.status=&quot;Working Hours&quot; ; return true;" OnMouseOut = 'self.status = &quot;&quot;'>Working Hours</a></td></tr>
+<tr><td class='blue' bgcolor='#FFFFFF' width='6%'>&nbsp;</td><td class='blue' bgcolor='#FFFFFF' width='94%' colspan='2'><a href='javascript:selfsubmit("/Leavemanagement/management/contractstaff/contractstaffdetail.asp?choose_menu=AA&fgMenu=1");' OnMouseOver = "self.status=&quot;Timesheets&quot; ; return true;" OnMouseOut = 'self.status = &quot;&quot;'>Timesheets</a></td></tr>
+<tr><td class='blue' bgcolor='#FFFFFF' width='6%'>&nbsp;</td><td class='blue' bgcolor='#FFFFFF' width='94%' colspan='2'><a href='javascript:selfsubmit("/Leavemanagement/management/contractstaff/contractstaffdetail.asp?choose_menu=AB&fgMenu=1");' OnMouseOver = "self.status=&quot;Employees&quot; ; return true;" OnMouseOut = 'self.status = &quot;&quot;'>Employees</a></td></tr>
+<tr><td class='blue' bgcolor='#FFFFFF' width='6%'>&nbsp;</td><td class='blue' bgcolor='#FFFFFF' width='94%' colspan='2'><a href='javascript:selfsubmit("/Leavemanagement/management/contractstaff/contractstaffdetail.asp?choose_menu=AC&fgMenu=1");' OnMouseOver = "self.status=&quot;Projects&quot; ; return true;" OnMouseOut = 'self.status = &quot;&quot;'>Projects</a></td></tr>
+<tr><td class='blue' bgcolor='#FFFFFF' width='6%'>&nbsp;</td><td class='blue' bgcolor='#FFFFFF' width='94%' colspan='2'><a href='javascript:selfsubmit("/Leavemanagement/management/contractstaff/contractstaffdetail.asp?choose_menu=AD&fgMenu=1");' OnMouseOver = "self.status=&quot;Financial&quot; ; return true;" OnMouseOut = 'self.status = &quot;&quot;'>Financial</a></td></tr>
+<tr><td class='blue' bgcolor='#FFFFFF' width='6%'>&nbsp;</td><td class='blue' bgcolor='#FFFFFF' width='94%' colspan='2'><a href='javascript:selfsubmit("/Leavemanagement/management/contractstaff/contractstaffdetail.asp?choose_menu=AE&fgMenu=1");' OnMouseOver = "self.status=&quot;Annual Leave&quot; ; return true;" OnMouseOut = 'self.status = &quot;&quot;'>Annual Leave</a></td></tr>
+<tr><td class='blue' bgcolor='#FFFFFF' width='6%'>&nbsp;</td><td class='blue' bgcolor='#FFFFFF' width='94%' colspan='2'><a href='javascript:selfsubmit("/Leavemanagement/management/contractstaff/contractstaffdetail.asp?choose_menu=AF&fgMenu=1");' OnMouseOver = "self.status=&quot;IT Asset Management&quot; ; return true;" OnMouseOut = 'self.status = &quot;&quot;'>IT Asset Management</a></td></tr>
+<tr><td class='blue' bgcolor='#FFFFFF' width='6%'>&nbsp;</td><td class='blue' bgcolor='#FFFFFF' width='94%' colspan='2'>Contract Staff</td></tr>
+<tr><td class='blue' bgcolor='#FFFFFF' width='6%'>&nbsp;</td><td class='blue' bgcolor='#FFFFFF' width='6%'>&nbsp;</td><td class='blue-normal' bgcolor='#FFFFFF' width='88%'><img src='../../images/dot.gif' width='5' height='5'>&nbsp;<a href='http://hcmit12/Leavemanagement/management/contractstaff/listofcontractstaff.asp' class='c' OnMouseOver = "self.status=&quot;Staff Details&quot; ; return true;" OnMouseOut = 'self.status = &quot;&quot;'>Staff Details</a></td></tr>
+<tr><td class='blue' bgcolor='#FFFFFF' width='6%'>&nbsp;</td><td class='blue' bgcolor='#FFFFFF' width='6%'>&nbsp;</td><td class='blue-normal' bgcolor='#FFFFFF' width='88%'><img src='../../images/dot.gif' width='5' height='5'>&nbsp;<a href='http://hcmit12/Leavemanagement/management/contractstaff/TPStaffAssignment.asp' class='c' OnMouseOver = "self.status=&quot;Staff Assigments&quot; ; return true;" OnMouseOut = 'self.status = &quot;&quot;'>Staff Assigments</a></td></tr>
+<tr><td class='blue' bgcolor='#FFFFFF' width='6%'>&nbsp;</td><td class='blue' bgcolor='#FFFFFF' width='6%'>&nbsp;</td><td class='blue-normal' bgcolor='#FFFFFF' width='88%'><img src='../../images/dot.gif' width='5' height='5'>&nbsp;<a href='http://hcmit12/Leavemanagement/management/contractstaff/TPCategories.asp' class='c' OnMouseOver = "self.status=&quot;Contact Staff Categories&quot; ; return true;" OnMouseOut = 'self.status = &quot;&quot;'>Contact Staff Categories</a></td></tr>
+<tr><td class='blue' bgcolor='#FFFFFF' width='6%'>&nbsp;</td><td class='blue' bgcolor='#FFFFFF' width='94%' colspan='2'><a href='javascript:selfsubmit("/Leavemanagement/management/contractstaff/contractstaffdetail.asp?choose_menu=AH&fgMenu=1");' OnMouseOver = "self.status=&quot;Atlas Training&quot; ; return true;" OnMouseOut = 'self.status = &quot;&quot;'>Atlas Training</a></td></tr>
+<tr><td class='blue' bgcolor='#FFFFFF' colspan='3'><a href='javascript:selfsubmit("/Leavemanagement/management/contractstaff/contractstaffdetail.asp?choose_menu=B&fgMenu=1");' OnMouseOver = "self.status=&quot;Reporting&quot; ; return true;" OnMouseOut = 'self.status = &quot;&quot;'>Reporting</a></td></tr>
+<tr><td class='blue' bgcolor='#FFFFFF' colspan='3'><a href='javascript:selfsubmit("/Leavemanagement/management/contractstaff/contractstaffdetail.asp?choose_menu=C&fgMenu=1");' OnMouseOver = "self.status=&quot;Tools&quot; ; return true;" OnMouseOut = 'self.status = &quot;&quot;'>Tools</a></td></tr>
+<tr><td class='blue' bgcolor='#FFFFFF' colspan='3'><a href='http://hcmit12/Leavemanagement/logout.asp' OnMouseOver = 'self.status=&quot;Log Out&quot; ; return true' OnMouseOut = 'self.status = &quot;&quot;'>Log out</a><SPAN class='red'>&nbsp;CHINTU</span></td></tr></table>
+</td>
+    <td width="1px"  background="../../templates/template1/images/dot-01.gif" bgcolor="#FFE8E8" height="100%"><img src="../../templates/template1/images/dot-01.gif" width="1" height="1"></td>
+    <td width="79%" valign="top">
+<!--Content-->			
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tbody>
+    <tr> 
+        <td style="padding:20px 20px 20px 15px;"> 
+			<div > 
+					<a class="blue" href="listofcontractstaff.asp" onMouseOver="self.status='Show the list of employees'; return true;" onMouseOut="self.status=''">Contact Staff</a>
+			</div>
+			<div style="text-align: center;"> 
+					<span class="title"  >Contact Staff Details</span>
+			</div>
+        </td>
+    </tr>
+</tbody>
+</table>
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-sm-12">
+			<ul class="nav nav-tabs">
+				<ul class="nav nav-tabs">
+					<li class="active"><a>Staff Profile</a></li>  
+		                    
+			</ul>
+			</ul>
+		</div>
+	</div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="tab-content employee-details-form">
+                <div class="row">
+                    <div class="col-md-12 col-sm-6 col-xs-12">
+                        <form class="form-horizontal row-border" id="contactForm" method="POST" >
+
+                            <div class="panel panel-default">
+                                <div class="panel-heading clearfix">
+                                    <i class="icon-calendar"></i>
+                                    <h3 class="panel-title">Personal Information</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="col-sm-6">
+										<div class="row">
+											<div class="form-group">
+												<label class="col-md-12">First name</label>
+												<div class="col-md-12">
+													<input type="text" id="txtFirstName" name="txtFirstName" class="form-control" placeholder="Enter first name" value="">
+												</div>
+											</div>												
+											<div class="form-group">
+												<label class="col-md-12">Last name</label>
+												<div class="col-md-12">
+													<input type="text" id="txtLastName" name="txtLastName" class="form-control" placeholder="Enter last name" value="">
+												</div>
+											</div>
+											<div class="form-group">
+												<div class="col-md-12">
+													<div class="col-md-1 no-padding width-auto">
+														<input type="radio" name="radGender" id="radMale" value="1" class="no-padding" >
+													</div>
+													<label class="col-md-3 padding-left5 no-blod" for="radMale">Male</label>
+													<div class="col-md-1 no-padding width-auto">
+														<input type="radio" name="radGender" id="radFemale" value="0"  class="no-padding" checked>
+													</div>
+													<label class="col-md-3 padding-left5 no-blod" for="radFemale">Female</label>
+												</div>
+												 <div id="radGenderMessage" class="col-md-12" style="margin-bottom:0px;"></div>
+											</div>
+											
+											<div class="form-group">
+											<label class="col-md-12">Private Email</label>
+											<div class="col-md-12">
+												<input type="text" id="txtPrivateEmail" name="txtPrivateEmail" class="form-control" value="">
+											</div>
+										</div>	
+											
+                                        </div>
+									</div>                                
+									<div class="col-sm-6">
+										<div class="form-group">
+											<label class="col-md-12">Mobile Phone</label>
+											<div class="col-md-12">
+												<input type="text" id="txtMobile" name="txtMobile" class="form-control" value="">
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-md-12">Bank account</label>
+											<div class="col-md-12">
+												<input type="text" id="txtBankAcc" name="txtBankAcc" class="form-control" value="">
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-md-12">Bank Name</label>
+											<div class="col-md-12">
+												<input type="text" id="txtBankName" name="txtBankName" class="form-control" value="">
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="panel-heading clearfix">
+									<i class="icon-calendar"></i>
+									<h3 class="panel-title">Working Information</h3>
+								</div>
+								<div class="panel-body">
+									<div class="col-sm-6">
+										
+										<div class="form-group">
+											<label class="col-md-12">Company</label>
+											<div class="col-md-12">
+				                                <select class="form-control" name="lstCompany" id="lstCompany">
+				                                    <option value='850'>Engcorp</option><option value='872'>Freelance</option><option value='885'>Karch</option><option value='858'>Kien Lam</option><option value='882'>MV Global</option><option value='762'>NPH</option><option value='761'>Phong Cach Moi</option><option value='772'>Phuoc Loc</option><option value='763'>Sinh Thai Mo</option>
+				                                </select>
+				                            </div>
+										</div>
+										<div class="form-group">
+											<label class="col-md-12">Level</label>
+											<div class="col-md-12">
+				                                <select class="form-control" name="lstTPLevel" id="lstTPLevel">
+				                                    <option value='1'>Advance 1</option><option value='7'>Advance 2</option><option value='6'>Junior 1</option><option value='5'>Junior 2</option><option value='9'>Junior 3</option><option value='10'>Junior 4</option><option value='11'>None</option><option value='4'>Senior 1</option><option value='3'>Senior 2</option><option value='8'>Team  Leader</option>
+				                                </select>
+				                            </div>
+										</div>
+										<div class="form-group">
+											<label class="col-md-12">Department</label>
+											<div class="col-md-12">
+				                                <select class="form-control" name="lstDepartment" id="lstDepartment">
+				                                    <option value='2'>Account                       </option><option value='3'>Admin                         </option><option value='27'>Architects</option><option value='1'>IT               </option><option value='29'>Management</option><option value='25'>Marketing</option><option value='15'>Structure Engineering</option>
+				                                </select>
+				                            </div>											
+										</div>
+										<div class="form-group">
+											<label class="col-md-12">Overtime for</label>
+											<div class="col-md-12">
+				                                <select class="form-control" name="lstTPOverTime" id="lstTPOverTime">
+				                                    <option value='1'>Normal Rate</option><option value='3'>Weekend rate</option>
+				                                </select>
+				                            </div>		
+
+										</div>
+									</div>
+															  
+									<div class="col-sm-6">										
+										<div class="form-group">
+											<label class="col-md-12">Atlas Email ID</label>
+											<div class="col-md-12">
+												<input type="text" id="txtExEmail" name="txtExEmail" class="form-control" value="">
+											</div>
+										</div>		
+										 <div class="form-group">
+				                            <label class="col-md-12">Start Date</label>
+				                            <div class="col-md-12">
+				                                <div class="input-group date">
+				                                    <input type="text"  id="txtStartDate" name="txtStartDate" class="form-control datepicker" placeholder="DD/MM/YYYY"  value="">
+				                                    <span class="input-group-addon">
+				                                        <span class="ic-calendar"></span>
+				                                    </span>
+				                                </div>
+				                            </div>
+				                        </div>
+				                        <div class="form-group">
+				                            <label class="col-md-12">Last Date</label>
+				                            <div class="col-md-12">
+				                                <div class="input-group date">
+				                                    <input type="text"  id="txtLastDate" name="txtLastDate" class="form-control datepicker" placeholder="DD/MM/YYYY"  value="">
+				                                    <span class="input-group-addon">
+				                                        <span class="ic-calendar"></span>
+				                                    </span>
+				                                </div>
+				                            </div>
+				                        </div>
+										<div class="form-group">
+												<label class="col-md-12">Login ID</label>
+												<div class="col-md-12">
+													<input type="text"  id="txtLoginID" name="txtLoginID" class="form-control"  value="">
+												</div>
+										</div>
+										<div class="form-group">
+												<label class="col-md-12">Password</label>
+												<div class="col-md-12">
+													<div class="col-md-10 no-padding">
+					                                
+														<p class="text-muted">Default for new user:blank</p>
+														</div>
+	
+				                            </div>
+				                        </div>
+									</div>
+									<div class="col-sm-12">
+										<div class="form-group">
+											<label class="col-md-12">Note</label>
+											<div class="col-md-12">
+												<textarea id="txtNote" name="txtNote"  cols="30" rows="2" class="form-control"></textarea>
+											</div>
+										</div>
+									</div>	     
+								</div>
+							</div>
+            
+							<div class="col-sm-12">
+								<div class="form-group text-right">
+									
+									<button type="submit" id="btnNext" class="btn btn-primary btnNext">Save & Close</button>
+									<button type="button" id="btnCancel" class="btn btn-default">Cancel</button>
+									<button type="button" id="btnDelete" class="btn btn-primary btn-default">Delete</button>
+								</div>
+							</div>
+							<input type="hidden" name="txtuserid" id="txtuserid" value="-1"/>
+							<input type="hidden" name="txtstatus" value=""/>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>  
+               
+</td>
+    <td width="2px" background="../../templates/template1/images/l-03-2b.gif" bgcolor="#FFE8E8" height="100%">&nbsp;</td>
+  </tr>
+  </tbody>
+</table>
+<!-- Footer -->
+<table width="95%" border="0" cellspacing="0" cellpadding="0" align="center">
+  <tbody>
+  <tr> 
+    <td background="../../templates/template1/images/dot-01.gif" colspan="3"><img src="../../templates/template1/images/dot-01.gif" width="1" height="1"></td>
+  </tr>
+  <tr> 
+    <td bgcolor="#8CA0D1" width="1"><img src="../../templates/template1/images/l-02.gif" width="1" height="24"></td>
+    <td bgcolor="#8CA0D1" class="blue-normal" width="778"> 
+      <div align="center"> Copyright &copy; 2000-2012 Atlas Industries Limited. 
+        All Rights Reserved</div>
+    </td>
+    <td bgcolor="#8CA0D1" width="1" align="right"><img src="../../templates/template1/images/l-02.gif" width="1" height="24"></td>
+  </tr>
+  <tr> 
+    <td background="../../templates/template1/images/dot-01.gif" colspan="3"><img src="../../templates/template1/images/dot-01.gif" width="1" height="1"></td>
+  </tr>
+  </tbody>
+</table>
+
+
+<script type="text/javascript" src="../../js/jquery.min.js"></script>
+<script type="text/javascript" src="../../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../js/library.js"></script>
+<script type="text/javascript" src="../../js/bootstrap-datepicker.js" charset="UTF-8"></script>
+<script type="text/javascript" src="../../js/bootstrap-table.js"></script>
+<script type="text/javascript" src="../../js/js-control.js"></script>
+<script type="text/javascript" src="../../js/formValidation.min.js"></script>
+<script type="text/javascript" src="../../js/framework/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+	FormValidation.Validator.securePassword = {
+                validate: function(validator, $field, options) {
+                    var value = $field.val();
+                    if (value === '') {
+                        return true;
+                    }
+
+                    // Check the password strength
+                    if (value.length < 8) {
+                        return {
+                            valid: false,
+                            message: 'The password must be more than 8 characters long'
+                        };
+                    }
+
+                    // The password doesn't contain any digit
+                    if (value.search(/[0-9]/) < 0) {
+                        return {
+                            valid: false,
+                            message: 'The password must contain at least one digit'
+                        }
+                    }
+                    // The password doesn't contain any digit
+                    if (value.search(/[!@#$%^&*-]/) < 0) {
+                        return {
+                            valid: false,
+                            message: 'The password must contain at least one char in !@#$%^&*-'
+                        }
+                    }                    
+
+                    return true;
+                }
+            };
+
+    $('#txtStartDate').on('changeDate', function(e) {
+            // Revalidate the date field
+            $('#contactForm').formValidation('revalidateField', 'txtStartDate');
+        });
+    $('#txtLastDate').on('changeDate', function(e) {
+        // Revalidate the date field
+        $('#contactForm').formValidation('revalidateField', 'txtLastDate');
+    });
+	
+   $('#contactForm').formValidation({
+       framework: 'bootstrap',
+        button: {
+            selector: '#btnNext',
+            disabled: 'disabled'
+        },
+        icon: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },        
+        fields: {
+            txtFirstName: {
+                validators: {
+                    notEmpty: {
+                        message: 'The First Name is required and cannot be empty'
+                    },
+                    stringLength: {
+                        max: 50,
+                        message: 'The First Name must be less than 50 characters long'
+                    }
+                }
+            },
+            txtLastName: {
+                validators: {
+                    notEmpty: {
+                        message: 'The Last Name is required and cannot be empty'
+                    },
+                    stringLength: {
+                        max: 100,
+                        message: 'The First Name must be less than 100 characters long'
+                    }
+                }
+            },
+            radGender: {
+                err: '#radGenderMessage',
+                validators: {
+                    notEmpty: {
+                        message: 'The gender is required.'
+                    }
+                }
+            },
+            
+            
+            txtPrivateEmail: {
+                    validators: {
+                        regexp: {
+                            regexp: '^[^@\\s]+@([^@\\s]+\\.)+[^@\\s]+$',
+                            message: 'The value is not a valid email address'
+                        }
+                    }
+                },
+            txtStartDate      : {
+                validators: {
+                    notEmpty: {
+                        message: 'The Start Date is required'
+                    },
+                    date: {
+                        format: 'DD/MM/YYYY',
+                        message: 'The Start Date is not a valid'
+                    }
+                }
+            },
+			 txtLastDate:{
+                validators: {
+                     date: {
+                        format: 'DD/MM/YYYY',
+                        message: 'The Last Date is not a valid'
+                    }
+               }       
+                    
+            },
+            txtPassword      : {
+                validators: {
+                    notEmpty: {
+                        message: 'The Password is required'
+                    },
+                    securePassword: {
+                        message: 'The password is not valid'
+                    }
+                    
+                }
+            },
+			txtLoginID: {
+                validators: {
+                    notEmpty: {
+                        message: 'The Atlas LoginID is required and cannot be empty'
+                    },
+                    stringLength: {
+                        max: 50,
+                        message: 'The Atlas LoginID must be less than 50 characters long'
+                    }
+                }
+            }
+        }
+    })
+   .on('success.form.fv', function(e) {
+            var $form        = $(e.target),     // Form instance
+            $statusField = $form.find('[name="txtstatus"]');
+            $statusField.val('submit');           
+   }); //end of validation
+    
+   $("#btnCancel").click( function()
+        {
+            window.location = 'listofcontractstaff.asp';
+        }
+   );
+   
+   $("#btnReset").click( function()
+        {
+               $(this).addClass('hide');
+               $("#btnCancelResetPass").removeClass('hide');
+               $("#passhidden").hide();
+               $("#passinput").removeClass('hide');
+            
+        }
+    );
+    $("#btnCancelResetPass").click( function()
+        {
+            $(this).addClass('hide');
+            $("#btnReset").removeClass('hide');
+            $("#passhidden").show();
+            $("#passinput").addClass('hide');
+            
+        }
+    );
+  
+});
+
+function getTab(varid){
+		
+	document.contactForm.action = "atlasinformation.asp";
+	document.contactForm.target = "_self";
+	document.contactForm.submit();
+}
+
+</script>
+
+</body>
+</html>
+

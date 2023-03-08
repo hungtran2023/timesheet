@@ -1,0 +1,318 @@
+﻿
+@{
+    ViewBag.Title = "Employee Details";
+    //  Layout = "~/Views/Shared/_Layout.cshtml";
+      Layout = "~/Views/Shared/_LayoutWithMenu.cshtml";
+    string hostadresss = HttpContext.Current.Request.Url.Authority;
+}
+
+
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link href="~/Content/style/tablestyle.css" rel="stylesheet" />
+<link href="~/Content/style/jquery.dataTables.min.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.dataTables.min.js"></script>
+
+
+<script src="~/Scripts/bootstrap.js"></script>
+<input type="hidden" value="@ViewBag.PageSize" name="pageSize" id="pageSize" />
+<input type="hidden" id="loginPageUrl" value="@ViewBag.LoginPageUrl" />
+<input type="hidden" id="namelocal" name="namelocal" value="@hostadresss"/>
+
+<form id="frmexample" name="frmexample" method="post">
+    <h3 style="margin-left: 10px; font-weight: normal;color:#003399">List of Employees</h3>
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col">
+                <table>
+                    <tr style="background-color: white">
+                        <td>  <input type="text" class="form-control" id="searchFilter" placeholder="search" name="email" style="width:300px;margin-left:300px;"></td>
+
+                        <Td> @Html.DropDownList("employeeChoose", new SelectList(ViewBag.EmployeeChooseList, "Value", "Text", ""), new { @class = "form-control" })</Td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col">
+
+            </div>
+        </div>
+
+    </div>
+
+    <br />
+    <br />
+
+    <div class="row">
+        <form id="frmList" method="post">
+            <div class="table-responsive">
+                <div class="form-group" style="padding-left:15px">
+                    <button class="btn  btn-default btnNext" id="btnNew" type="button" style="margin-left:20px;">Add New Employee</button>
+                </div>
+
+                <input type="hidden" name="txtuserid" id="txtuserid" value="" />
+                <input type="hidden" name="txtpreviouspage" value="<%=1%>" />
+            </div>
+        </form>
+    </div>
+    <table border="0" cellspacing="0" cellpadding="0" width="100%">
+        <tr>
+            <td bgcolor="#FFFFFF" valign="top">
+                <table class="tablesorter" id="tblEmployees" width="100%">
+                    <thead>
+                        <tr>
+                            <th style="width:5%; text-align:left;">
+                                @Html.Label("PersonID", new { @style = "margin-right: 10px;" })
+                            </th>
+                            <th style="width:15%; text-align:left;">
+                                @Html.Label("Full Name", new { @style = "margin-right: 50px;" })
+                            </th>
+                            <th style="width: 10%; text-align: left;">@Html.Label("Bithday", new { @style = "margin-right: 100px;" })</th>
+                            <th style="width: 10%; text-align: left;">@Html.Label("Start Date", new { @style = "margin-right: 50px;" })</th>
+                            <th style="width: 10%; text-align: left; ">@Html.Label("Jobtitle", new { @style = "margin-right: 100px;" })</th>
+                            <th style="width: 10%; text-align: left; ">@Html.Label("Department", new { @style = "margin-right: 100px;" })</th>
+                            <th style="width: 10%; text-align: left;">@Html.Label("Report To", new { @style = "margin-right: 50px;" })</th>
+                            <th style="width: 10%; text-align: left;">@Html.Label("CSO Level", new { @style = "margin-right: 50px;" })</th>
+                            <th style="width: 10%; text-align: left;">@Html.Label("StaffID", new { @style = "margin-right: 100px;" })</th>
+                            <th style="width: 15%; text-align: left;">@Html.Label("Records", new { @style = "margin-right: 50px;" })</th>
+                        </tr>
+                    </thead>
+                    <tbody style="font-family:Arial,Verdana;font-size:9pt">
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </table>
+</form>
+
+<style>
+
+   
+.navbar-nav {
+    /* float: left; */
+    margin: 0;
+    float:right!important;
+    font-size:10px;
+}
+
+    .title {
+        margin-left: 10px;
+    }
+
+    .pull-left {
+        float: left !important;
+    }
+
+    .dataTables_filter input {
+        height: 30px;
+        width: 200px;
+        /*   border: 2px solid;*/
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin-top: 20px;
+        text-align: left !important;
+    }
+
+    .select input-sm {
+        height: 35px !important;
+    }
+
+    .alignLeft {
+        text-align: left;
+        padding-left: 10px;
+    }
+
+    .searchbox {
+        clear: both;
+        margin-left: 300px !important;
+        display: block;
+        width: 20%;
+        height: 34px;
+        padding: 6px 12px;
+        font-size: 14px;
+        line-height: 1.42857143;
+        color: #555;
+        /*      background-color: #fff;*/
+        background-image: none;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    .alignCenter {
+        text-align: center;
+    }
+
+    /* #tblProjectArchiving_filter{
+            width:100%;
+        }*/
+    .dataTables_filter {
+        display: none;
+    }
+</style>
+@*class='btn btn-primary'*@
+<script language="JavaScript">
+
+   
+    function InnitDataEmployee(pagesizeNumber) {
+   
+
+        $('#tblEmployees > td:nth-child(3) > td:nth-child(4)').css('text-align', 'left');
+
+
+        $("#tblEmployees").DataTable({
+
+            ajax: {
+                url: './GetEmployeeData',
+                type: "Get",
+                datatype: 'json',
+                contentType: 'application/json',
+            },
+
+            "pageLength": pagesizeNumber,
+            "lengthChange": false,
+            "bInfo": false,
+            language: { search: "" },
+
+            "aaSorting": [[1, "asc"]], // Sort by first column descending
+
+
+            "columns": [
+                { "data": "PersonID", "autoWidth": false, "sClass": "alignLeft", 'visible': false },
+                { "data": "Fullname", "autoWidth": false, "sClass": "alignLeft" },
+                { "data": "Birthday", "autoWidth": false, "sClass": "alignLeft" },
+                {
+
+                    "data": "StartDate", "autoWidth": false, "sClass": "alignLeft"
+
+                },
+
+
+                { "data": "JobTitle", "autoWidth": false, "sClass": "alignLeft" },
+                { "data": "Department", "autoWidth": false, "sClass": "alignLeft" },
+                { "data": "ReportTo", "autoWidth": false, "sClass": "alignLeft" },
+                { "data": "CSOLevel", "autoWidth": false, "sClass": "alignLeft" },
+                { "data": "StaffID", "autoWidth": false, "sClass": "alignLeft" },
+                {
+                    "data": "Record",
+                    "render": function (data, type, row, meta) {
+                        if (type === 'display') {
+               /*             data = '<a href="' + data + '">' + '<u>Project Record  <span class="glyphicon">&#xe250;</span></u>' + '</a>';*/
+
+                         data = '<a href="' + data + '">' + '<u>Project Record <span class=\'glyphicon glyphicon-triangle-right\'></u>' + '</a>';
+                        }
+
+                        return data;
+                    }
+                }
+
+
+
+
+            ],
+
+
+
+        });
+
+
+    }
+
+
+    $(document).ready(function () {
+
+      
+       
+        $("#btnNew").click(function () {
+
+            var hostadrress = $("#namelocal").val();
+            var url ="http://"+ hostadrress + "/Timesheet/management/staff/employeeProfile.asp?Id=-1";
+           
+            window.location.href = url;  
+            
+            $("#frmList").submit();
+     
+        });
+        var pagesizeNumber = $("#pageSize").val();
+
+        if (pagesizeNumber == 0) {
+
+            pagesizeNumber = 100;
+        }
+
+        $('#employeeChoose').change(function () {
+
+            var value = $(this).val();
+            jQuery.ajax({
+                type: "POST",
+                url: './ChangeEmployeeStaff',
+                data: { employeeChoose: value },
+                success: function (result) {
+
+                    //Below is basic code for table redraw, i know it will not work as it will look for no search query
+                    if (value != "Archive") {
+
+
+                        var table = $('#tblEmployees').DataTable();
+                        table.clear();
+                        table.column(2).visible(true);
+                        table.rows.add(result.data).draw();
+                    }
+                    else {
+
+
+                        var table = $('#tblEmployees').DataTable();
+                        table.clear();
+                        table.column(2).visible(false);
+                        table.rows.add(result.data).draw();
+
+                    }
+
+                }
+            });
+
+        });
+
+
+        InnitDataEmployee(pagesizeNumber);
+
+        var table = $('#tblEmployees').DataTable();
+        $('#searchFilter').on('keyup', function () {
+            table.search(this.value).draw();
+        });
+        var combox = $("#cobbox");
+
+     
+
+        InitMenu();
+
+        const projectKeysList = [];
+
+        $('#tblEmployees tbody').on('click', 'tr', function () {
+
+         
+            var row = $(this).closest('tr');
+
+            var data = table.row(row).data().PersonID;
+
+            var hostadrress = $("#namelocal").val();
+            var url = "http://" + hostadrress + "/Timesheet/management/staff/employeeProfile.asp?Id=";
+
+            window.location.href = url + data;
+         
+
+        });
+
+
+    });
+
+    function InitMenu() {
+        $("ul[data-menu-toggle=Management-Console]").removeClass("hide");
+        $("a[data-menu-toggle=Management-Console]").addClass("selected-menu");
+        $("ul[data-menu-toggle=Employees]").removeClass("hide");
+        $("a[data-menu-toggle=Employees]").addClass("selected-menu");
+    }
+
+</script>

@@ -1,0 +1,96 @@
+﻿@model AIS.Data.Model.ProjectArchiveModel
+@using (Html.BeginForm("DoArchivingProject", "ProjectArchiving", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @*<div class="form-horizontal">*@
+
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(model => model.ProjectKey)
+    <input type="hidden" name="projectStatus" value="@Model.ProjStatus" />
+    <input type="hidden" name="permission" value="@ViewBag.PermissionUpdate" />
+    <div id="content" style="margin-left:-15px;">
+        <div class="form-group">
+            <div class="col-md-10">
+                <label for="exampleInputEmail1" style="font-size:10pt;font-weight:normal">APK</label>
+            </div>
+
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.ProjectKey, new { @class = "form-control", style = "width:515px;", @readonly = "readonly" })
+            </div>
+
+        </div>
+        <div class="form-group" style="clear:both">
+            <div class="col-md-10">
+                <label for="exampleInputEmail1" style="font-size: 10pt; font-weight: normal">Project name</label>
+            </div>
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.ProjectName, new { @class = "form-control", style = "width:515px;", @readonly = "readonly" })
+            </div>
+        </div>
+        <div class="form-group" style="clear:both">
+            <div class="col-md-10">
+                <label for="exampleInputEmail1" style="font-size: 10pt; font-weight: normal">Server Path</label>
+            </div>
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.ServerPath, new { @class = "form-control", style = "width:515px;", @readonly = "readonly" })
+
+            </div>
+        </div>
+
+        <div class="form-group" style="clear:both">
+            <div class="col-md-10">
+                <label for="exampleInputEmail1" style="font-size: 10pt; font-weight: normal">Note</label>
+            </div>
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Note, new { @class = "form-control", style = "width:515px;height:80px" })
+            </div>
+        </div>
+        <div class="col-md-10">
+            <hr style="color:#808080" width="520px" size="3" align="center" />
+        </div>
+        <div class="modal-footer" style="clear: both; border-top: 1px solid white;padding:unset;margin-left:0px">
+            <div class="col-md-10" style="padding-top:13px;margin-left:102px;">
+                <button type="button" data-dismiss="modal" class="btn" id="btnCancel">Close</button>
+
+                @if (ViewBag.PermissionUpdate)
+                {
+                    <input type="submit" value="Save changes" class="btn btn-primary" />
+                }
+
+                @if (Model.ProjStatus == "Mutipart")
+                {
+                    <button type="button" class="btn btn-danger" id="btnremove">Remove</button>
+                }
+            </div>
+        </div>
+    </div>
+
+    @*</div>*@
+}
+<script>
+    $(document).ready(function () {
+
+        var projectId = $("#ProjectKey").val();
+        var Note = $("#Note").val();
+
+        $("#btnremove").on('click', function (e) {
+            var apkvalue = $("#ProjectKey").val();
+            $.ajax({
+                url: "./RemoveArchivingProject",
+                type: "POST",
+                data: {
+                    ProjectKey: apkvalue,
+                    Note: Note
+                },
+                success: function (response) {
+                    //alert(response);
+                    window.location.reload();
+                },
+                error: function (response) {
+                    // alert(response);
+                }
+            });
+        });
+
+    });
+</script>

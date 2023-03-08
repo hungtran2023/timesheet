@@ -1,0 +1,693 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TMS_CM_ANOnlineModelStoreContainer" CdmEntityContainer="LeaveManagementContext">
+    <EntitySetMapping Name="ATC_Employees">
+      <EntityTypeMapping TypeName="TMS_CM_ANOnlineModel.ATC_Employees">
+        <MappingFragment StoreEntitySet="ATC_Employees">
+          <ScalarProperty Name="JobRoleID" ColumnName="JobRoleID" />
+          <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+          <ScalarProperty Name="JobTitleID" ColumnName="JobTitleID" />
+          <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+          <ScalarProperty Name="ContactTypeID" ColumnName="ContactTypeID" />
+          <ScalarProperty Name="DirectLeaderID" ColumnName="DirectLeaderID" />
+          <ScalarProperty Name="JoinDate" ColumnName="JoinDate" />
+          <ScalarProperty Name="LeaveDate" ColumnName="LeaveDate" />
+          <ScalarProperty Name="fgIndirect" ColumnName="fgIndirect" />
+          <ScalarProperty Name="LeaveDue" ColumnName="LeaveDue" />
+          <ScalarProperty Name="PCName" ColumnName="PCName" />
+          <ScalarProperty Name="ExtPhone" ColumnName="ExtPhone" />
+          <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+          <ScalarProperty Name="CSOLevel" ColumnName="CSOLevel" />
+          <ScalarProperty Name="StaffIDHR" ColumnName="StaffIDHR" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ATC_Timesheet">
+      <EntityTypeMapping TypeName="TMS_CM_ANOnlineModel.ATC_Timesheet">
+        <MappingFragment StoreEntitySet="ATC_Timesheet">
+          <ScalarProperty Name="TDate" ColumnName="TDate" />
+          <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+          <ScalarProperty Name="AssignmentID" ColumnName="AssignmentID" />
+          <ScalarProperty Name="EventID" ColumnName="EventID" />
+          <ScalarProperty Name="Hours" ColumnName="Hours" />
+          <ScalarProperty Name="OverTime" ColumnName="OverTime" />
+          <ScalarProperty Name="OverRate" ColumnName="OverRate" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="OTNight" ColumnName="OTNight" />
+          <ScalarProperty Name="OTNormal" ColumnName="OTNormal" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ATC_Events">
+      <EntityTypeMapping TypeName="TMS_CM_ANOnlineModel.ATC_Events">
+        <MappingFragment StoreEntitySet="ATC_Events">
+          <ScalarProperty Name="EventName" ColumnName="EventName" />
+          <ScalarProperty Name="EventID" ColumnName="EventID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ATC_SalaryStatus">
+      <EntityTypeMapping TypeName="TMS_CM_ANOnlineModel.ATC_SalaryStatus">
+        <MappingFragment StoreEntitySet="ATC_SalaryStatus">
+          <ScalarProperty Name="SalaryNote" ColumnName="SalaryNote" />
+          <ScalarProperty Name="fgNoInsurance" ColumnName="fgNoInsurance" />
+          <ScalarProperty Name="fgProbation" ColumnName="fgProbation" />
+          <ScalarProperty Name="BankDetail" ColumnName="BankDetail" />
+          <ScalarProperty Name="AccountNo" ColumnName="AccountNo" />
+          <ScalarProperty Name="BankID" ColumnName="BankID" />
+          <ScalarProperty Name="fgOverTimePay" ColumnName="fgOverTimePay" />
+          <ScalarProperty Name="CurrencyTax" ColumnName="CurrencyTax" />
+          <ScalarProperty Name="Currency" ColumnName="Currency" />
+          <ScalarProperty Name="SalaryTax" ColumnName="SalaryTax" />
+          <ScalarProperty Name="Salary" ColumnName="Salary" />
+          <ScalarProperty Name="WorkingHourID" ColumnName="WorkingHourID" />
+          <ScalarProperty Name="SalaryDate" ColumnName="SalaryDate" />
+          <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ATC_WorkingHours">
+      <EntityTypeMapping TypeName="TMS_CM_ANOnlineModel.ATC_WorkingHours">
+        <MappingFragment StoreEntitySet="ATC_WorkingHours">
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Hours" ColumnName="Hours" />
+          <ScalarProperty Name="WorkingHourID" ColumnName="WorkingHourID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ATC_Holiday">
+      <EntityTypeMapping TypeName="TMS_CM_ANOnlineModel.ATC_Holiday">
+        <MappingFragment StoreEntitySet="ATC_Holiday">
+          <ScalarProperty Name="ratio" ColumnName="ratio" />
+          <ScalarProperty Name="Holiday" ColumnName="Holiday" />
+          <ScalarProperty Name="dates" ColumnName="dates" />
+          <ScalarProperty Name="sYear" ColumnName="sYear" />
+          <ScalarProperty Name="sMonth" ColumnName="sMonth" />
+          <ScalarProperty Name="sDay" ColumnName="sDay" />
+          <ScalarProperty Name="HolidayID" ColumnName="HolidayID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ATC_Timesheet2000">
+      <EntityTypeMapping TypeName="TMS_CM_ANOnlineModel.ATC_Timesheet2000">
+        <MappingFragment StoreEntitySet="ATC_Timesheet2000">
+          <ScalarProperty Name="OTNormal" ColumnName="OTNormal" />
+          <ScalarProperty Name="OTNight" ColumnName="OTNight" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="OverRate" ColumnName="OverRate" />
+          <ScalarProperty Name="OverTime" ColumnName="OverTime" />
+          <ScalarProperty Name="Hours" ColumnName="Hours" />
+          <ScalarProperty Name="EventID" ColumnName="EventID" />
+          <ScalarProperty Name="AssignmentID" ColumnName="AssignmentID" />
+          <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+          <ScalarProperty Name="TDate" ColumnName="TDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ATC_Timesheet2001">
+      <EntityTypeMapping TypeName="TMS_CM_ANOnlineModel.ATC_Timesheet2001">
+        <MappingFragment StoreEntitySet="ATC_Timesheet2001">
+          <ScalarProperty Name="OTNormal" ColumnName="OTNormal" />
+          <ScalarProperty Name="OTNight" ColumnName="OTNight" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="OverRate" ColumnName="OverRate" />
+          <ScalarProperty Name="OverTime" ColumnName="OverTime" />
+          <ScalarProperty Name="Hours" ColumnName="Hours" />
+          <ScalarProperty Name="EventID" ColumnName="EventID" />
+          <ScalarProperty Name="AssignmentID" ColumnName="AssignmentID" />
+          <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+          <ScalarProperty Name="TDate" ColumnName="TDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ATC_Timesheet2002">
+      <EntityTypeMapping TypeName="TMS_CM_ANOnlineModel.ATC_Timesheet2002">
+        <MappingFragment StoreEntitySet="ATC_Timesheet2002">
+          <ScalarProperty Name="OTNormal" ColumnName="OTNormal" />
+          <ScalarProperty Name="OTNight" ColumnName="OTNight" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="OverRate" ColumnName="OverRate" />
+          <ScalarProperty Name="OverTime" ColumnName="OverTime" />
+          <ScalarProperty Name="Hours" ColumnName="Hours" />
+          <ScalarProperty Name="EventID" ColumnName="EventID" />
+          <ScalarProperty Name="AssignmentID" ColumnName="AssignmentID" />
+          <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+          <ScalarProperty Name="TDate" ColumnName="TDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ATC_Timesheet2003">
+      <EntityTypeMapping TypeName="TMS_CM_ANOnlineModel.ATC_Timesheet2003">
+        <MappingFragment StoreEntitySet="ATC_Timesheet2003">
+          <ScalarProperty Name="OTNormal" ColumnName="OTNormal" />
+          <ScalarProperty Name="OTNight" ColumnName="OTNight" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="OverRate" ColumnName="OverRate" />
+          <ScalarProperty Name="OverTime" ColumnName="OverTime" />
+          <ScalarProperty Name="Hours" ColumnName="Hours" />
+          <ScalarProperty Name="EventID" ColumnName="EventID" />
+          <ScalarProperty Name="AssignmentID" ColumnName="AssignmentID" />
+          <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+          <ScalarProperty Name="TDate" ColumnName="TDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ATC_Timesheet2004">
+      <EntityTypeMapping TypeName="TMS_CM_ANOnlineModel.ATC_Timesheet2004">
+        <MappingFragment StoreEntitySet="ATC_Timesheet2004">
+          <ScalarProperty Name="OTNormal" ColumnName="OTNormal" />
+          <ScalarProperty Name="OTNight" ColumnName="OTNight" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="OverRate" ColumnName="OverRate" />
+          <ScalarProperty Name="OverTime" ColumnName="OverTime" />
+          <ScalarProperty Name="Hours" ColumnName="Hours" />
+          <ScalarProperty Name="EventID" ColumnName="EventID" />
+          <ScalarProperty Name="AssignmentID" ColumnName="AssignmentID" />
+          <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+          <ScalarProperty Name="TDate" ColumnName="TDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ATC_Timesheet2005">
+      <EntityTypeMapping TypeName="TMS_CM_ANOnlineModel.ATC_Timesheet2005">
+        <MappingFragment StoreEntitySet="ATC_Timesheet2005">
+          <ScalarProperty Name="OTNormal" ColumnName="OTNormal" />
+          <ScalarProperty Name="OTNight" ColumnName="OTNight" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="OverRate" ColumnName="OverRate" />
+          <ScalarProperty Name="OverTime" ColumnName="OverTime" />
+          <ScalarProperty Name="Hours" ColumnName="Hours" />
+          <ScalarProperty Name="EventID" ColumnName="EventID" />
+          <ScalarProperty Name="AssignmentID" ColumnName="AssignmentID" />
+          <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+          <ScalarProperty Name="TDate" ColumnName="TDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ATC_Timesheet2006">
+      <EntityTypeMapping TypeName="TMS_CM_ANOnlineModel.ATC_Timesheet2006">
+        <MappingFragment StoreEntitySet="ATC_Timesheet2006">
+          <ScalarProperty Name="OTNormal" ColumnName="OTNormal" />
+          <ScalarProperty Name="OTNight" ColumnName="OTNight" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="OverRate" ColumnName="OverRate" />
+          <ScalarProperty Name="OverTime" ColumnName="OverTime" />
+          <ScalarProperty Name="Hours" ColumnName="Hours" />
+          <ScalarProperty Name="EventID" ColumnName="EventID" />
+          <ScalarProperty Name="AssignmentID" ColumnName="AssignmentID" />
+          <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+          <ScalarProperty Name="TDate" ColumnName="TDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ATC_Timesheet2007">
+      <EntityTypeMapping TypeName="TMS_CM_ANOnlineModel.ATC_Timesheet2007">
+        <MappingFragment StoreEntitySet="ATC_Timesheet2007">
+          <ScalarProperty Name="OTNormal" ColumnName="OTNormal" />
+          <ScalarProperty Name="OTNight" ColumnName="OTNight" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="OverRate" ColumnName="OverRate" />
+          <ScalarProperty Name="OverTime" ColumnName="OverTime" />
+          <ScalarProperty Name="Hours" ColumnName="Hours" />
+          <ScalarProperty Name="EventID" ColumnName="EventID" />
+          <ScalarProperty Name="AssignmentID" ColumnName="AssignmentID" />
+          <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+          <ScalarProperty Name="TDate" ColumnName="TDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ATC_Timesheet2008">
+      <EntityTypeMapping TypeName="TMS_CM_ANOnlineModel.ATC_Timesheet2008">
+        <MappingFragment StoreEntitySet="ATC_Timesheet2008">
+          <ScalarProperty Name="OTNormal" ColumnName="OTNormal" />
+          <ScalarProperty Name="OTNight" ColumnName="OTNight" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="OverRate" ColumnName="OverRate" />
+          <ScalarProperty Name="OverTime" ColumnName="OverTime" />
+          <ScalarProperty Name="Hours" ColumnName="Hours" />
+          <ScalarProperty Name="EventID" ColumnName="EventID" />
+          <ScalarProperty Name="AssignmentID" ColumnName="AssignmentID" />
+          <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+          <ScalarProperty Name="TDate" ColumnName="TDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ATC_Timesheet2009">
+      <EntityTypeMapping TypeName="TMS_CM_ANOnlineModel.ATC_Timesheet2009">
+        <MappingFragment StoreEntitySet="ATC_Timesheet2009">
+          <ScalarProperty Name="OTNormal" ColumnName="OTNormal" />
+          <ScalarProperty Name="OTNight" ColumnName="OTNight" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="OverRate" ColumnName="OverRate" />
+          <ScalarProperty Name="OverTime" ColumnName="OverTime" />
+          <ScalarProperty Name="Hours" ColumnName="Hours" />
+          <ScalarProperty Name="EventID" ColumnName="EventID" />
+          <ScalarProperty Name="AssignmentID" ColumnName="AssignmentID" />
+          <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+          <ScalarProperty Name="TDate" ColumnName="TDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ATC_Timesheet2010">
+      <EntityTypeMapping TypeName="TMS_CM_ANOnlineModel.ATC_Timesheet2010">
+        <MappingFragment StoreEntitySet="ATC_Timesheet2010">
+          <ScalarProperty Name="OTNormal" ColumnName="OTNormal" />
+          <ScalarProperty Name="OTNight" ColumnName="OTNight" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="OverRate" ColumnName="OverRate" />
+          <ScalarProperty Name="OverTime" ColumnName="OverTime" />
+          <ScalarProperty Name="Hours" ColumnName="Hours" />
+          <ScalarProperty Name="EventID" ColumnName="EventID" />
+          <ScalarProperty Name="AssignmentID" ColumnName="AssignmentID" />
+          <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+          <ScalarProperty Name="TDate" ColumnName="TDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ATC_Timesheet2011">
+      <EntityTypeMapping TypeName="TMS_CM_ANOnlineModel.ATC_Timesheet2011">
+        <MappingFragment StoreEntitySet="ATC_Timesheet2011">
+          <ScalarProperty Name="OTNormal" ColumnName="OTNormal" />
+          <ScalarProperty Name="OTNight" ColumnName="OTNight" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="OverRate" ColumnName="OverRate" />
+          <ScalarProperty Name="OverTime" ColumnName="OverTime" />
+          <ScalarProperty Name="Hours" ColumnName="Hours" />
+          <ScalarProperty Name="EventID" ColumnName="EventID" />
+          <ScalarProperty Name="AssignmentID" ColumnName="AssignmentID" />
+          <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+          <ScalarProperty Name="TDate" ColumnName="TDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ATC_Timesheet2012">
+      <EntityTypeMapping TypeName="TMS_CM_ANOnlineModel.ATC_Timesheet2012">
+        <MappingFragment StoreEntitySet="ATC_Timesheet2012">
+          <ScalarProperty Name="OTNormal" ColumnName="OTNormal" />
+          <ScalarProperty Name="OTNight" ColumnName="OTNight" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="OverRate" ColumnName="OverRate" />
+          <ScalarProperty Name="OverTime" ColumnName="OverTime" />
+          <ScalarProperty Name="Hours" ColumnName="Hours" />
+          <ScalarProperty Name="EventID" ColumnName="EventID" />
+          <ScalarProperty Name="AssignmentID" ColumnName="AssignmentID" />
+          <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+          <ScalarProperty Name="TDate" ColumnName="TDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ATC_Timesheet2013">
+      <EntityTypeMapping TypeName="TMS_CM_ANOnlineModel.ATC_Timesheet2013">
+        <MappingFragment StoreEntitySet="ATC_Timesheet2013">
+          <ScalarProperty Name="OTNormal" ColumnName="OTNormal" />
+          <ScalarProperty Name="OTNight" ColumnName="OTNight" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="OverRate" ColumnName="OverRate" />
+          <ScalarProperty Name="OverTime" ColumnName="OverTime" />
+          <ScalarProperty Name="Hours" ColumnName="Hours" />
+          <ScalarProperty Name="EventID" ColumnName="EventID" />
+          <ScalarProperty Name="AssignmentID" ColumnName="AssignmentID" />
+          <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+          <ScalarProperty Name="TDate" ColumnName="TDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ATC_Timesheet2014">
+      <EntityTypeMapping TypeName="TMS_CM_ANOnlineModel.ATC_Timesheet2014">
+        <MappingFragment StoreEntitySet="ATC_Timesheet2014">
+          <ScalarProperty Name="OTNormal" ColumnName="OTNormal" />
+          <ScalarProperty Name="OTNight" ColumnName="OTNight" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="OverRate" ColumnName="OverRate" />
+          <ScalarProperty Name="OverTime" ColumnName="OverTime" />
+          <ScalarProperty Name="Hours" ColumnName="Hours" />
+          <ScalarProperty Name="EventID" ColumnName="EventID" />
+          <ScalarProperty Name="AssignmentID" ColumnName="AssignmentID" />
+          <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+          <ScalarProperty Name="TDate" ColumnName="TDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ATC_Timesheet2015">
+      <EntityTypeMapping TypeName="TMS_CM_ANOnlineModel.ATC_Timesheet2015">
+        <MappingFragment StoreEntitySet="ATC_Timesheet2015">
+          <ScalarProperty Name="OTNormal" ColumnName="OTNormal" />
+          <ScalarProperty Name="OTNight" ColumnName="OTNight" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="OverRate" ColumnName="OverRate" />
+          <ScalarProperty Name="OverTime" ColumnName="OverTime" />
+          <ScalarProperty Name="Hours" ColumnName="Hours" />
+          <ScalarProperty Name="EventID" ColumnName="EventID" />
+          <ScalarProperty Name="AssignmentID" ColumnName="AssignmentID" />
+          <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+          <ScalarProperty Name="TDate" ColumnName="TDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ATC_JobTitle">
+      <EntityTypeMapping TypeName="TMS_CM_ANOnlineModel.ATC_JobTitle">
+        <MappingFragment StoreEntitySet="ATC_JobTitle">
+          <ScalarProperty Name="CostingGroupID" ColumnName="CostingGroupID" />
+          <ScalarProperty Name="fgActivate" ColumnName="fgActivate" />
+          <ScalarProperty Name="TaxType" ColumnName="TaxType" />
+          <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
+          <ScalarProperty Name="JobTitleID" ColumnName="JobTitleID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ATC_Department">
+      <EntityTypeMapping TypeName="TMS_CM_ANOnlineModel.ATC_Department">
+        <MappingFragment StoreEntitySet="ATC_Department">
+          <ScalarProperty Name="fgActivate" ColumnName="fgActivate" />
+          <ScalarProperty Name="DepartmentCode" ColumnName="DepartmentCode" />
+          <ScalarProperty Name="Department" ColumnName="Department" />
+          <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ATC_Functions">
+      <EntityTypeMapping TypeName="TMS_CM_ANOnlineModel.ATC_Functions">
+        <MappingFragment StoreEntitySet="ATC_Functions">
+          <ScalarProperty Name="fgAttribute" ColumnName="fgAttribute" />
+          <ScalarProperty Name="fgUpdateable" ColumnName="fgUpdateable" />
+          <ScalarProperty Name="LevelOrder" ColumnName="LevelOrder" />
+          <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+          <ScalarProperty Name="Form" ColumnName="Form" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="FunctionID" ColumnName="FunctionID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ATC_Group">
+      <EntityTypeMapping TypeName="TMS_CM_ANOnlineModel.ATC_Group">
+        <MappingFragment StoreEntitySet="ATC_Group">
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+          <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ATC_Permissions">
+      <EntityTypeMapping TypeName="TMS_CM_ANOnlineModel.ATC_Permissions">
+        <MappingFragment StoreEntitySet="ATC_Permissions">
+          <ScalarProperty Name="Updateable" ColumnName="Updateable" />
+          <ScalarProperty Name="FunctionID" ColumnName="FunctionID" />
+          <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ATC_Users">
+      <EntityTypeMapping TypeName="TMS_CM_ANOnlineModel.ATC_Users">
+        <MappingFragment StoreEntitySet="ATC_Users">
+          <ScalarProperty Name="fgChangePass" ColumnName="fgChangePass" />
+          <ScalarProperty Name="Photo" ColumnName="Photo" />
+          <ScalarProperty Name="DateRequest" ColumnName="DateRequest" />
+          <ScalarProperty Name="IPRequest" ColumnName="IPRequest" />
+          <ScalarProperty Name="IDPassword" ColumnName="IDPassword" />
+          <ScalarProperty Name="Salt" ColumnName="Salt" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="ATC_UserGroup" TypeName="TMS_CM_ANOnlineModel.ATC_UserGroup" StoreEntitySet="ATC_UserGroup">
+      <EndProperty Name="ATC_Users">
+        <ScalarProperty Name="UserID" ColumnName="UserID" />
+      </EndProperty>
+      <EndProperty Name="ATC_Group">
+        <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <EntitySetMapping Name="ATC_Preferences">
+      <EntityTypeMapping TypeName="TMS_CM_ANOnlineModel.ATC_Preferences">
+        <MappingFragment StoreEntitySet="ATC_Preferences">
+          <ScalarProperty Name="EmpCriteria" ColumnName="EmpCriteria" />
+          <ScalarProperty Name="ProCriteria" ColumnName="ProCriteria" />
+          <ScalarProperty Name="Numofrows" ColumnName="Numofrows" />
+          <ScalarProperty Name="FavoriteUrl" ColumnName="FavoriteUrl" />
+          <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HR_CurrentJobtitle">
+      <EntityTypeMapping TypeName="TMS_CM_ANOnlineModel.HR_CurrentJobtitle">
+        <MappingFragment StoreEntitySet="HR_CurrentJobtitle">
+          <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
+          <ScalarProperty Name="ApplyFrom" ColumnName="ApplyFrom" />
+          <ScalarProperty Name="JobtitleID" ColumnName="JobtitleID" />
+          <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+          <ScalarProperty Name="PromotionID" ColumnName="PromotionID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ATC_Timesheet2016">
+      <EntityTypeMapping TypeName="TMS_CM_ANOnlineModel.ATC_Timesheet2016">
+        <MappingFragment StoreEntitySet="ATC_Timesheet2016">
+          <ScalarProperty Name="OTNormal" ColumnName="OTNormal" />
+          <ScalarProperty Name="OTNight" ColumnName="OTNight" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="OverRate" ColumnName="OverRate" />
+          <ScalarProperty Name="OverTime" ColumnName="OverTime" />
+          <ScalarProperty Name="Hours" ColumnName="Hours" />
+          <ScalarProperty Name="EventID" ColumnName="EventID" />
+          <ScalarProperty Name="AssignmentID" ColumnName="AssignmentID" />
+          <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+          <ScalarProperty Name="TDate" ColumnName="TDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ATC_AbsenceRequests">
+      <EntityTypeMapping TypeName="TMS_CM_ANOnlineModel.ATC_AbsenceRequests">
+        <MappingFragment StoreEntitySet="ATC_AbsenceRequests">
+          <ScalarProperty Name="DateSubmitted" ColumnName="DateSubmitted" />
+          <ScalarProperty Name="HrNote" ColumnName="HrNote" />
+          <ScalarProperty Name="Authoriser2Note" ColumnName="Authoriser2Note" />
+          <ScalarProperty Name="Authoriser1Note" ColumnName="Authoriser1Note" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="isHrApproved" ColumnName="isHrApproved" />
+          <ScalarProperty Name="isAuthoriser2Approved" ColumnName="isAuthoriser2Approved" />
+          <ScalarProperty Name="isAuthoriser1Approved" ColumnName="isAuthoriser1Approved" />
+          <ScalarProperty Name="isAuthorisedByHr" ColumnName="isAuthorisedByHr" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="DateTo" ColumnName="DateTo" />
+          <ScalarProperty Name="DateFrom" ColumnName="DateFrom" />
+          <ScalarProperty Name="Authoriser2_Id" ColumnName="Authoriser2_Id" />
+          <ScalarProperty Name="Authoriser1_Id" ColumnName="Authoriser1_Id" />
+          <ScalarProperty Name="StaffId" ColumnName="StaffId" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ATC_EmailTemplate">
+      <EntityTypeMapping TypeName="TMS_CM_ANOnlineModel.ATC_EmailTemplate">
+        <MappingFragment StoreEntitySet="ATC_EmailTemplate">
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="Subject" ColumnName="Subject" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HR_ReceiveReport">
+      <EntityTypeMapping TypeName="TMS_CM_ANOnlineModel.HR_ReceiveReport">
+        <MappingFragment StoreEntitySet="HR_ReceiveReport">
+          <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HR_Employee">
+      <EntityTypeMapping TypeName="TMS_CM_ANOnlineModel.HR_Employee">
+        <MappingFragment StoreEntitySet="HR_Employee">
+          <ScalarProperty Name="CostingGroupName" ColumnName="CostingGroupName" />
+          <ScalarProperty Name="CardPlaceOfIssue" ColumnName="CardPlaceOfIssue" />
+          <ScalarProperty Name="CardDateOfIssued" ColumnName="CardDateOfIssued" />
+          <ScalarProperty Name="CardNumber" ColumnName="CardNumber" />
+          <ScalarProperty Name="NationalityID" ColumnName="NationalityID" />
+          <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+          <ScalarProperty Name="fgIndirect" ColumnName="fgIndirect" />
+          <ScalarProperty Name="LeaveDate" ColumnName="LeaveDate" />
+          <ScalarProperty Name="JoinDate" ColumnName="JoinDate" />
+          <ScalarProperty Name="Hours" ColumnName="Hours" />
+          <ScalarProperty Name="LastnameLeader" ColumnName="LastnameLeader" />
+          <ScalarProperty Name="FirstNameLeader" ColumnName="FirstNameLeader" />
+          <ScalarProperty Name="Department" ColumnName="Department" />
+          <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
+          <ScalarProperty Name="ExtPhone" ColumnName="ExtPhone" />
+          <ScalarProperty Name="MobilePhone" ColumnName="MobilePhone" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="EmailAddress_Ex" ColumnName="EmailAddress_Ex" />
+          <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="lastname" ColumnName="lastname" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+          <ScalarProperty Name="IDNumber" ColumnName="IDNumber" />
+          <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ATC_PersonalInfo">
+      <EntityTypeMapping TypeName="TMS_CM_ANOnlineModel.ATC_PersonalInfo">
+        <MappingFragment StoreEntitySet="ATC_PersonalInfo">
+          <ScalarProperty Name="fgDelete" ColumnName="fgDelete" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="Website" ColumnName="Website" />
+          <ScalarProperty Name="EmailAddress_Ex" ColumnName="EmailAddress_Ex" />
+          <ScalarProperty Name="EmailLabel" ColumnName="EmailLabel" />
+          <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+          <ScalarProperty Name="Fax" ColumnName="Fax" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="IDNumber" ColumnName="IDNumber" />
+          <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+          <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="UserType" ColumnName="UserType" />
+          <ScalarProperty Name="HomeCountry" ColumnName="HomeCountry" />
+          <ScalarProperty Name="ContactVietnam" ColumnName="ContactVietnam" />
+          <ScalarProperty Name="HomeAddress" ColumnName="HomeAddress" />
+          <ScalarProperty Name="BankAccount2" ColumnName="BankAccount2" />
+          <ScalarProperty Name="BankAccount1" ColumnName="BankAccount1" />
+          <ScalarProperty Name="InsuranceBookNo" ColumnName="InsuranceBookNo" />
+          <ScalarProperty Name="TaxCode" ColumnName="TaxCode" />
+          <ScalarProperty Name="EmergencyContact" ColumnName="EmergencyContact" />
+          <ScalarProperty Name="CurrentAddress" ColumnName="CurrentAddress" />
+          <ScalarProperty Name="PassportExpire" ColumnName="PassportExpire" />
+          <ScalarProperty Name="Passport" ColumnName="Passport" />
+          <ScalarProperty Name="CardPlaceOfIssue" ColumnName="CardPlaceOfIssue" />
+          <ScalarProperty Name="CardDateOfIssued" ColumnName="CardDateOfIssued" />
+          <ScalarProperty Name="CardNumber" ColumnName="CardNumber" />
+          <ScalarProperty Name="MobilePhone" ColumnName="MobilePhone" />
+          <ScalarProperty Name="PrivateEmail" ColumnName="PrivateEmail" />
+          <ScalarProperty Name="NationalityID" ColumnName="NationalityID" />
+          <ScalarProperty Name="MarialStatus" ColumnName="MarialStatus" />
+          <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ATC_Timesheet2017">
+      <EntityTypeMapping TypeName="TMS_CM_ANOnlineModel.ATC_Timesheet2017">
+        <MappingFragment StoreEntitySet="ATC_Timesheet2017">
+          <ScalarProperty Name="OTNormal" ColumnName="OTNormal" />
+          <ScalarProperty Name="OTNight" ColumnName="OTNight" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="OverRate" ColumnName="OverRate" />
+          <ScalarProperty Name="OverTime" ColumnName="OverTime" />
+          <ScalarProperty Name="Hours" ColumnName="Hours" />
+          <ScalarProperty Name="EventID" ColumnName="EventID" />
+          <ScalarProperty Name="AssignmentID" ColumnName="AssignmentID" />
+          <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+          <ScalarProperty Name="TDate" ColumnName="TDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ATC_Timesheet2018">
+      <EntityTypeMapping TypeName="TMS_CM_ANOnlineModel.ATC_Timesheet2018">
+        <MappingFragment StoreEntitySet="ATC_Timesheet2018">
+          <ScalarProperty Name="OTNormal" ColumnName="OTNormal" />
+          <ScalarProperty Name="OTNight" ColumnName="OTNight" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="OverRate" ColumnName="OverRate" />
+          <ScalarProperty Name="OverTime" ColumnName="OverTime" />
+          <ScalarProperty Name="Hours" ColumnName="Hours" />
+          <ScalarProperty Name="EventID" ColumnName="EventID" />
+          <ScalarProperty Name="AssignmentID" ColumnName="AssignmentID" />
+          <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+          <ScalarProperty Name="TDate" ColumnName="TDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ATC_Timesheet2019">
+      <EntityTypeMapping TypeName="TMS_CM_ANOnlineModel.ATC_Timesheet2019">
+        <MappingFragment StoreEntitySet="ATC_Timesheet2019">
+          <ScalarProperty Name="OTNormal" ColumnName="OTNormal" />
+          <ScalarProperty Name="OTNight" ColumnName="OTNight" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="OverRate" ColumnName="OverRate" />
+          <ScalarProperty Name="OverTime" ColumnName="OverTime" />
+          <ScalarProperty Name="Hours" ColumnName="Hours" />
+          <ScalarProperty Name="EventID" ColumnName="EventID" />
+          <ScalarProperty Name="AssignmentID" ColumnName="AssignmentID" />
+          <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+          <ScalarProperty Name="TDate" ColumnName="TDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ATC_Timesheet2020">
+      <EntityTypeMapping TypeName="TMS_CM_ANOnlineModel.ATC_Timesheet2020">
+        <MappingFragment StoreEntitySet="ATC_Timesheet2020">
+          <ScalarProperty Name="OTNormal" ColumnName="OTNormal" />
+          <ScalarProperty Name="OTNight" ColumnName="OTNight" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="OverRate" ColumnName="OverRate" />
+          <ScalarProperty Name="OverTime" ColumnName="OverTime" />
+          <ScalarProperty Name="Hours" ColumnName="Hours" />
+          <ScalarProperty Name="EventID" ColumnName="EventID" />
+          <ScalarProperty Name="AssignmentID" ColumnName="AssignmentID" />
+          <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+          <ScalarProperty Name="TDate" ColumnName="TDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ATC_Timesheet2021">
+      <EntityTypeMapping TypeName="TMS_CM_ANOnlineModel.ATC_Timesheet2021">
+        <MappingFragment StoreEntitySet="ATC_Timesheet2021">
+          <ScalarProperty Name="OTNormal" ColumnName="OTNormal" />
+          <ScalarProperty Name="OTNight" ColumnName="OTNight" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="OverRate" ColumnName="OverRate" />
+          <ScalarProperty Name="OverTime" ColumnName="OverTime" />
+          <ScalarProperty Name="Hours" ColumnName="Hours" />
+          <ScalarProperty Name="EventID" ColumnName="EventID" />
+          <ScalarProperty Name="AssignmentID" ColumnName="AssignmentID" />
+          <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+          <ScalarProperty Name="TDate" ColumnName="TDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ATC_Timesheet2023">
+      <EntityTypeMapping TypeName="TMS_CM_ANOnlineModel.ATC_Timesheet2023">
+        <MappingFragment StoreEntitySet="ATC_Timesheet2023">
+          <ScalarProperty Name="OTNormal" ColumnName="OTNormal" />
+          <ScalarProperty Name="OTNight" ColumnName="OTNight" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="OverRate" ColumnName="OverRate" />
+          <ScalarProperty Name="OverTime" ColumnName="OverTime" />
+          <ScalarProperty Name="Hours" ColumnName="Hours" />
+          <ScalarProperty Name="EventID" ColumnName="EventID" />
+          <ScalarProperty Name="AssignmentID" ColumnName="AssignmentID" />
+          <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+          <ScalarProperty Name="TDate" ColumnName="TDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ATC_ProjectTracking">
+      <EntityTypeMapping TypeName="TMS_CM_ANOnlineModel.ATC_ProjectTracking">
+        <MappingFragment StoreEntitySet="ATC_ProjectTracking">
+          <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+          <ScalarProperty Name="DateTracking" ColumnName="DateTracking" />
+          <ScalarProperty Name="AwardedValue" ColumnName="AwardedValue" />
+          <ScalarProperty Name="ProposalValue" ColumnName="ProposalValue" />
+          <ScalarProperty Name="ProjStatus" ColumnName="ProjStatus" />
+          <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+          <ScalarProperty Name="ProjTrackerID" ColumnName="ProjTrackerID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,55 @@
+﻿@model IEnumerable<AIS.Data.Model.MessageContentModel>
+@{
+    ViewBag.Title = "Index";
+  //  Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_LayoutWithMenu.cshtml";
+}
+
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="height:330px">
+        <tr>
+            <td bgcolor="#FFFFFF" valign="top">
+                <table @*class="tablesorter"*@ id="tblProjectArchivingValue">
+                    <thead>
+                        <tr>
+                            <th style="width: 300px; text-align: left">
+                                @Html.Label("Title")
+                            </th>
+                            <th style="width: 400px; text-align: left">@Html.Label("Description")</th>
+                            <th style="width:50px; text-align:left">@Html.Label("Create Date")</th>
+                            <th style="width: 50px; text-align: left">@Html.Label("Update Date")</th>
+                            <th style="width: 50px; text-align: left">@Html.Label("Status")</th>
+                            <th style="width: 200px; text-align: left">@Html.Label("Action")</th>
+                        </tr>
+        </tr>
+        </thead>
+        <tbody style="font-family:Arial,Verdana;font-size:8pt">
+            @if (Model != null)
+            {
+                foreach (var type in Model)
+                {
+                    <tr style="text-align:left;height:34px">
+                        <td style="padding-left: 10px;"> <a href='@Url.Action("Detail", "MessageContent",new { id = type.id })'>@type.Title</a> </td>
+                        <td style="padding-left: 10px;">@Html.Raw(type.Description)</td>
+                        <td style="padding-left: 10px;">@type.CreateDate.ToShortDateString()</td>
+                        <td style="padding-left: 10px;">@type.UpdateDate.ToShortDateString()</td>
+                        @if (type.IsActive)
+                        {
+                            <td style="padding-left: 10px;"> Đang hoạt động</td>
+                        }
+                        else
+                        {
+                            <td style="padding-left: 10px;"> tạm ngưng</td>
+                        }
+                    <td>
+                        <a href='@Url.Action("Create", "MessageContent")'>Add</a>
+                        <a href='@Url.Action("Delete", "MessageContent",new { id = type.id })'>Delete</a>
+                        <a href='@Url.Action("Edit", "MessageContent",new { id = type.id })'>Edit</a>
+                    </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    </td>
+    </tr>
+    </table>

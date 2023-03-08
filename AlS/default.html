@@ -1,0 +1,178 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Atlas Information System</title>
+<link rel="stylesheet" href="timesheet.css" type="text/css">
+<style type="text/css">
+<!--
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+.style1 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #FFFFFF;
+	font-weight: bold;
+}
+.style2 {font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #FFFFFF; font-weight: bold; }
+
+.a_white{font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #FFFFFF; font-weight: bold; }
+.style3 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #4E5D7C;
+}
+
+-->
+</style>
+
+<script language="javascript" src="library/library.js"></script>
+<script ID="clientEventHandlersJS" language="Javascript">
+<!--
+var ns, ie;
+
+ns = (document.layers)? true:false
+ie = (document.all)? true:false
+
+alert (navigator.appVersion);
+function checkin()
+{
+	if (isempty(window.document.frmlogin.txtusername.value))
+	{
+		alert("Please enter user name.");
+		window.document.frmlogin.txtusername.focus();
+	}
+	else
+	{
+		window.document.frmlogin.action ="initial.asp";
+		window.document.frmlogin.target = "_self";
+		window.document.frmlogin.submit();
+	}
+}
+
+/*function document_onkeypress()
+{
+var keycode = event.keyCode;
+	if (keycode == 13)
+	{
+		event.keyCode = 0;
+		checkin();
+	}
+}*/
+
+function window_onload()
+{
+var strError = "";
+	if (strError == "Invalid password!")
+		window.document.frmlogin.txtpwd.focus();
+	else{
+		window.document.frmlogin.txtusername.focus();}
+}
+//-->
+
+</script>
+
+</head>
+
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td>&nbsp;</td>
+    <td width="954"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td valign="bottom"><table width="100%" border="0" cellspacing="0" cellpadding="3">
+          <tr>
+            <td><img src="images/clock.gif" width="29" height="29" /></td>
+          </tr>
+          <tr>
+            <td class="style3">Dubai</td>
+			            
+				
+          </tr>
+		            <tr>
+            <td class="style3">
+				Sydney
+</td>
+			            
+				
+          </tr>
+		            <tr>
+            <td class="style3">
+				London
+</td>
+			            
+				
+          </tr>
+		            <tr>
+            <td class="style3">
+				HCMC (Saigon)</td>
+			            
+				
+          </tr>
+          
+        </table></td>
+        <td align="right"><img src="images/homepageLogo.jpg" width="243" height="141" /></td>
+      </tr>
+    </table></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td valign="top" background="images/BackgroundLeft.jpg">
+		<form id="frmlogin" name="frmlogin" method="post" action="">
+		<table width="90%" border="0" cellspacing="0" cellpadding="3">
+		<tr>
+		  <td width=10%></td>
+            <td width=90%>&nbsp;</td>
+          </tr>
+          <tr>
+		  <td></td>
+            <td><span class="style1">Login</span></td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+			<td>
+			    <input name="txtusername" type="text" id="txtusername" style="width:80%"/>			</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td class="style2">Password</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td><input name="txtpwd" type="text" id="txtpwd" style="width:80%"/></td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td ><a href="javascript:checkin()" class="a_white">LOGIN</a></td>
+                <td align="right"><a href="tools/retrievepassword.asp" class="a_white"> Forgotten your password </a></td>
+              </tr>
+            </table></td>
+          </tr>
+        </table> 
+		</form></td>
+        <td><img src="images/BackgroundRight.jpg" width="617" height="484" /></td>
+      </tr>
+      <tr>
+        <td><img src="images/t_dot.gif" width="337" height="1" /></td>
+        <td align="right">
+		</td>
+      </tr>
+      <tr>
+        <td><span class="style3"><a href="http://192.168.0.4/staff/" class="style3">Atlas Staff</a> | <a href="\\srvprd1\Quality Manual" class="style3">Atlas Quality Manual</a> | <a href="http://192.168.0.4/atlasintranet/" class="style3">Atlas Intranet</a></span> </td>
+        <td align="right"><img src="images/partnersInDesign.jpg" width="164" height="21" /></td>
+      </tr>
+    </table></td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+</body>
+</html>

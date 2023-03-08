@@ -1,0 +1,129 @@
+﻿@using AIS.Models;
+@model AbsenseRequest
+
+@{
+    ViewBag.Title = "Holidays Booking";
+    var ListOfRequestUrl = Url.Content("~/HolidayBooking/GetRequestList");
+    var AddRequestUrl =  Url.Content("~/HolidayBooking/Add");
+    var UpdateRequestUrl = Url.Content("~/HolidayBooking/Update");
+    var DeleteRequestUrl = Url.Content("~/HolidayBooking/Delete");
+    var TypeOfAbsenceDefault = 4;
+}
+<div class="hide">
+    <input id="directLeaderId" type="hidden" value="@ViewBag.DefaultAuthoriserID">
+    <input id="addRequestUrl" type="hidden" value="@AddRequestUrl" />
+    <input id="updateRequestUrl" type="hidden" value="@UpdateRequestUrl" />
+    <input id="deleteRequestUrl" type="hidden" value="@DeleteRequestUrl" />
+    <input id="loginPageUrl" type="hidden" value="@ViewBag.LoginPageUrl" />
+</div>
+<div class="holiday-booking">
+    <h3 class="col-xs-12 title">Holidays Booking</h3>
+    <div class="holiday-booking__request">
+        <div id="Alert" class="alert alert-dismissable hide" role="alert" >
+          <a href="#" class="close" aria-label="close" title="close">×</a>
+          <strong id="AlertMessageHeader"></strong>
+          <span id="AlertMessage"></span>
+        </div>
+        <form id="request-form" class="form-horizontal" method="post">
+            <div class="for-hidden hide">
+                @Html.HiddenFor(r => r.Id)
+            </div>
+            <div class="form-group">
+                @Html.Label("Full Name", new {@class="col-xs-4 control-label"})
+                <div class="col-xs-8">
+                    <p class="form-control-static">@ViewBag.FullNameOfUser</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-xs-4 control-label">@Html.DisplayNameFor(r => r.AbsenceType)</label>
+                <div class="col-xs-8">
+                    @Html.DropDownListFor(r => r.AbsenceType, new SelectList(ViewBag.AbsenceTypeList, "Value", "Text", @TypeOfAbsenceDefault), new { @class = "form-control input-sm" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-xs-4 control-label">@Html.DisplayNameFor(r => r.StartDate)</label>
+                <div class="col-xs-8">
+                    <div class="col-xs-6 no-padding-left">
+                        <div class="input-group date" id="StartDatePicker">
+                            @Html.TextBoxFor(r => r.StartDate, new { @class = "form-control datepicker", @placeholder = "DD/MM/YYYY", @type = "text" })
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 no-padding">
+                        <label class="col-xs-3 control-label no-padding">@Html.DisplayNameFor(r => r.StartTime)</label>
+                        <div class="col-xs-9 no-padding">
+                            @Html.TextBoxFor(r => r.StartTime, new { @class = "form-control", @type = "text", @Value = "08:00" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-xs-4 control-label">@Html.DisplayNameFor(r => r.EndDate)</label>
+                <div class="col-xs-8">
+                    <div class="col-xs-6 no-padding-left">
+                        <div class="input-group date" id="EndDatePicker">
+                            @Html.TextBoxFor(r => r.EndDate, new { @class = "form-control datepicker", @placeholder = "DD/MM/YYYY", @type = "text" })
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 no-padding">
+                        <label class="col-xs-3 control-label no-padding">@Html.DisplayNameFor(r => r.EndTime)</label>
+                        <div class="col-xs-9 no-padding">
+                            @Html.TextBoxFor(r => r.EndTime, new { @class = "form-control", @type = "text", @Value = "17:00" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-xs-4 control-label">@Html.DisplayNameFor(r => r.FirstAuthoriserId)</label>
+                <div class="col-xs-8">
+                    @Html.DropDownListFor(r => r.FirstAuthoriserId, new SelectList(ViewBag.GetAuthoriserList, "Value", "Text"), new { @class = "form-control input-sm" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-xs-4 control-label">@Html.DisplayNameFor(r => r.SecondAuthoriserId)</label>
+                <div class="col-xs-8">
+                    @Html.DropDownListFor(r => r.SecondAuthoriserId, new SelectList(ViewBag.GetAuthoriserList, "Value", "Text", 0), new { @class = "form-control input-sm" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-xs-4 control-label">Note</label>
+                <div class="col-xs-8">
+                    @Html.TextAreaFor(r => r.Note, new { @class = "form-control", @rows = "4" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-xs-12 text-right button-control">
+                    <button id="cancel-request" class="btn btn-default">Cancel</button>
+                    <button type="submit" id="submit-request" class="btn btn-primary">Submit request</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="holiday-booking__request-list">
+        <div class="table-responsive">
+            <table id="request-list" data-click-to-select="false" data-pagination="true" data-cache="false" data-undefined-text="" data-page-size="@ViewBag.PageSize" data-url="@ListOfRequestUrl">
+                <thead>
+                    <tr>
+                        <th data-field="Category" class="text-left">Category</th>
+                        <th data-field="FirstDay" class="text-left">From Day/Time</th>
+                        <th data-field="LastDay" class="text-left">To Day/Time</th>
+                        <th data-field="Total" class="text-left">Total</th>
+                        <th data-field="Status" class="text-left">Status</th>
+                        <th data-checkbox="true" data-formatter="RemoveFormatter"></th>
+                    </tr>
+                </thead>
+            </table>
+            <div class="request-list__pagination"> Page  <input type="text" class="request-list__pagination--select-page" id="select-page" value="" />  <a class="request-list__pagination--select-page-btn" id="select-page-btn">Go</a> <span class="request-list__pagination--page-data" id="page-data"> </span> <span class="request-list__pagination--action"> <a id="go-previous">Previous</a> / <a id="go-next">Next</a></span> </div>
+        </div>
+        <div class="text-right holiday-booking__request-list--remove"><a class="holiday-booking__remove-btn"><strong>Remove</strong></a></div>
+    </div>
+</div>
+@Scripts.Render("~/bundles/holiday-booking")
+
+
+

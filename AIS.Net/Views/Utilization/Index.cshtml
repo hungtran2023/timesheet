@@ -1,0 +1,274 @@
+﻿@using AIS.Models;
+
+@model AbsenseRequest
+@{
+    ViewBag.Title = "Index";
+    // Layout = "~/Views/Shared/_LayoutWithMenu.cshtml";
+
+    var modelreport = (AIS.Data.Model.UtilisationReport)ViewBag.UtilizationReport;
+}
+
+
+<tr>
+</tr>
+}
+<style>
+    .screenwidth {
+        width: 97%;
+    }
+
+    .rowcontent {
+        padding-left: 45px
+    }
+
+    .filterable .filters input[disabled] {
+        background-color: transparent;
+        border: none;
+        cursor: auto;
+        box-shadow: none;
+        padding: 0;
+        height: auto;
+        color: white;
+        font-weight: bold;
+        font-size: 12px;
+        font-family: arial;
+    }
+
+        .filterable .filters input[disabled]::-webkit-input-placeholder {
+            color: white;
+        }
+
+        .filterable .filters input[disabled]::-moz-placeholder {
+            color: white;
+        }
+
+        .filterable .filters input[disabled]:-ms-input-placeholder {
+            color: white;
+        }
+
+    .table tr {
+        background-color: none !important;
+    }
+
+    table tr {
+        background-color: white !important;
+    }
+</style>
+
+</head>
+
+@*<script src="~/Scripts/bootstrap-datepicker.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>*@
+<div class="container-fluid">
+    <div class="row rowcontent">
+        <h3>Summary of TP Hours</h3>
+        <form id="frmSearch" method="post" action="rpt_sum_tpstaff.asp" style="width: 30%">
+
+
+            <div class="form-group row">
+                <label for="" class="col-sm-2">Group by</label>
+                <div class="col-sm-12">
+                    <div class="col-sm-1 no-padding width-auto">
+                        <input type="radio" name="radGroupBy" id="radStaff" value="1" class="no-padding" checked>
+                    </div>
+
+                    <label class="col-sm-2 padding-left5 no-blod" for="radStaff">By Team</label>
+
+                    <div class="col-sm-1 no-padding width-auto">
+                        <input type="radio" name="radGroupBy" id="radAPK" value="2" class="no-padding" />
+                    </div>
+
+                    <label class="col-sm-2 padding-left5 no-blod" for="radAPK">By CSO Level</label>
+
+                    <div class="col-sm-1 no-padding width-auto">
+                        <input type="radio" name="radGroupBy" id="radCompany" value="3" class="no-padding" />
+                    </div>
+
+                    <label class="col-sm-2 padding-left5 no-blod" for="radCompany">By Jobtitle</label>
+                </div>
+            </div>
+            <div class="form-group row" id="sandbox-container">
+                <div class="col-sm-2"><label>Select</label></div>
+                <div class="col-sm-8">
+                    <div class="input-daterange input-group " id="datepicker">
+                        <span class="input-group-addon">from</span>
+
+                        <div class="input-group date" id="StartDatePicker">
+                            @Html.TextBoxFor(r => r.StartDate, new { @class = "form-control datepicker", @placeholder = "DD/MM/YYYY", @type = "date" })
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                        <span class="input-group-addon">to</span>
+
+                        <div class="input-group date" id="EndDatePicker">
+                            @Html.TextBoxFor(r => r.EndDate, new { @class = "form-control datepicker", @placeholder = "DD/MM/YYYY", @type = "date" })
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-sm-2"><button type="submit" class="btn btn-primary btn-sm" id="btnSearch" style="margin-left:90px;">Submit</button></div>
+            </div>
+
+            <div><span class="help-block" id="error" style="display: none;"></span></div>
+
+        </form>
+        <button id="btnexport" name="btnexport" class="btn btn-primary" style="margin-left:94.5%;margin-bottom:3px;"><i class="glyphicon glyphicon-save"></i></button>
+        <div class="form">
+            <table cellspacing="0" border="0" id="tblTableData" style="background-color:none!important">
+                <colgroup width="25"></colgroup>
+                <colgroup width="80"></colgroup>
+                <colgroup width="90"></colgroup>
+                <colgroup width="200"></colgroup>
+                <colgroup width="100"></colgroup>
+                <colgroup width="110"></colgroup>
+                <colgroup span="2" width="100"></colgroup>
+                <colgroup width="110"></colgroup>
+                <colgroup width="90"></colgroup>
+                <colgroup span="5" width="110"></colgroup>
+                <colgroup width="120"></colgroup>
+                <colgroup width="80"></colgroup>
+                @*<tr>
+
+                    <td align="right" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="right" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="right" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="right" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="right" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="right" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="right" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="right" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="right" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="right" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="right" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="right" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="right" valign=bottom><font color="#000000"><br></font></td>
+
+                </tr>*@
+
+                <tr>
+                    <td height="28" align="right" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="right" valign=bottom><font color="#000000"></font></td>
+                    <td style="border-right: 1px solid #000000" align="right" valign=middle bgcolor="#DEEBF7"><font color="#000000">WEEK</font></td>
+                    <td style="border-left: 1px solid #000000; border-right: 1px solid #000000" align="right" valign=middle bgcolor="#DEEBF7" sdval="6" sdnum="1033;"><font color="#000000"></font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan=6 align="center" valign=middle bgcolor="#FFF2CC"><b><font color="#000000">Project Hours</font></b></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan=4 align="center" valign=middle bgcolor="#FFF2CC"><b><font color="#000000">Non-project hours</font></b></td>
+                  
+                    <td style="border-top: 1px solid #000000; border-left: 1px solid; border-right: 1px solid #000000" rowspan=2 align="right" valign=middle bgcolor="#FFF2CC"> <b><font color="#000000">Available hours</font></b></td>
+                    <td style="border-top: 1px solid #000000; border-left: 1px solid; border-right: 1px solid #000000" rowspan=2 align="center" valign=middle bgcolor="#FFF2CC"><b><font color="#000000">Billable Utilization %</font></b></td>
+                    <td style="border-top: 1px solid #000000; border-left: 1px solid; border-right: 1px solid #000000" rowspan=2 align="center" valign=middle bgcolor="#FFF2CC"><b><font color="#000000">Utilization %</font></b></td>
+                </tr>
+                <tr>
+
+                    <td height="34" align="right" valign=bottom><font color="#000000"><br></font></td>
+                    <td align="right" valign=bottom><font color="#000000"><br></font></td>
+                    <td style="border-left: 1px solid #000000; border-right: 1px solid #000000" align="right" valign=middle bgcolor="#FFF2CC"><font color="#000000">Unit</font></td>
+                    <td style="border-left: 1px solid #000000; border-right: 1px solid #000000" align="right" valign=middle bgcolor="#FFF2CC"><font color="#000000">Group</font></td>
+                    <td style="border-left: 1px solid #000000; border-right: 1px solid #000000" align="right" valign=middle bgcolor="#FFF2CC"><font color="#000000">billable hrs</font></td>
+                    <td style="border-left: 1px solid #000000; border-right: 1px solid #000000" align="right" valign=middle bgcolor="#FFF2CC"><font color="#000000">OT</font></td>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan=3 align="center" valign=middle bgcolor="#FFF2CC"><font color="#000000">non-billable</font></td>
+                    <td style="border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=middle bgcolor="#FFF2CC"><font color="#000000">Total</font></td>
+                    <td style="border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=middle bgcolor="#FFF2CC"><font color="#000000">Atlas project</font></td>
+                    <td style="border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=middle bgcolor="#FFF2CC"><font color="#000000">G&amp;A</font></td>
+                    <td style="border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=middle bgcolor="#FFCCFF"><font color="#000000">Downtime</font></td>
+                    <td style="border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=middle bgcolor="#FFF2CC"><font color="#000000">Total</font></td>
+                </tr>
+                <tr>
+                    <td height="34" align="right" valign=bottom><font color=""><br></font></td>
+                    <td align="right" valign=bottom><font color=""><br></font></td>
+                    <td style="border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="right" valign=middle bgcolor="#FFF2CC"><font color="#000000"><br></font></td>
+                    <td style="border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="right" valign=middle bgcolor="#FFF2CC"><font color="#000000"><br></font></td>
+                    <td style="border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="right" valign=middle bgcolor="#FFF2CC"><font color="#000000"><br></font></td>
+                    <td style="border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="right" valign=middle bgcolor="#FFF2CC"><font color="#000000"><br></font></td>
+                    <td style="border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=middle bgcolor="#FFF2CC"><font color="#000000">Est./Training</font></td>
+                    <td style="border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=middle bgcolor="#FFCCFF"><font color="#000000">Client/BDM Downtime</font></td>
+                    <td style="border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=middle bgcolor="#FFCCFF"><font color="#000000">Project Downtime</font></td>
+                    <td style="border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="right" valign=middle bgcolor="#FFF2CC"><font color="#000000"><br></font></td>
+                    <td style="border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="right" valign=middle bgcolor="#FFF2CC"><font color="#000000"><br></font></td>
+                    <td style="border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="right" valign=middle bgcolor="#FFF2CC"><font color="#000000"><br></font></td>
+                    <td style="border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="right" valign=middle bgcolor="#FFCCFF"><font color="#000000"><br></font></td>
+                    <td style="border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="right" valign=middle bgcolor="#FFF2CC"><font color="#000000"><br></font></td>
+                    <td style="border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="right" valign=middle bgcolor="#FFF2CC"><font color="#FFF2CC"><br></font></td>
+                    <td style="border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=middle bgcolor="#FFF2CC"><font color="#FFF2CC" ><br></font></td>
+                    <td style="border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=middle bgcolor="#FFF2CC"><font color="#FFF2CC"><br></font></td>
+                </tr>
+
+                @foreach (var item in modelreport.ReportGroups)
+                {
+                    <tr>
+                        <td height="24" align="right" valign="bottom"><font color="#000000"><br></font></td>
+                        <td align="right" valign=bottom><font color="#000000"><br></font></td>
+                        <td style="border-bottom: 2px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="right" valign="bottom"><font color="#000000"><br></font></td>
+                        <td style="border-bottom: 2px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign="bottom"><font color="#000000"> @item.GroupName </font></td>
+                        <td style="border-bottom: 2px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="right" valign=bottom sdval="1232" sdnum="1033;0;_(* #,##0_);_(* \(#,##0\);_(* &quot;-&quot;??_);__)"><font color="#000000"> @item.Billablehrs </font></td>
+                        <td style="border-bottom: 2px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="right" valign=bottom sdval="0" sdnum="1033;0;_(* #,##0_);_(* \(#,##0\);_(* &quot;-&quot;??_);__)"><font color="#000000"> @item.OT   </font></td>
+                        <td style="border-bottom: 2px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="right" valign=bottom sdval="0" sdnum="1033;0;_(* #,##0_);_(* \(#,##0\);_(* &quot;-&quot;??_);_()"><font color="#000000"> @item.EstTraining  </font></td>
+                        <td style="border-bottom: 2px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="right" valign=bottom sdval="0" sdnum="1033;0;_(* #,##0_);_(* \(#,##0\);_(* &quot;-&quot;??_);_()"><font color="#000000"> @item.BDMdowntime   </font></td>
+                        <td style="border-bottom: 2px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="right" valign=bottom sdval="36" sdnum="1033;0;_(* #,##0_);_(* \(#,##0\);_(* &quot;-&quot;??_);_()"><font color="#000000"> @item.Projectdowntime </font></td>
+                        <td style="border-bottom: 2px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="right" valign=bottom bgcolor="#C5E0B4" sdval="1268" sdnum="1033;0;_(* #,##0_);_(* \(#,##0\);_(* &quot;-&quot;??_);"><font color="#000000"> @item.TotalProjectHours </font></td>
+                        <td style="border-bottom: 2px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="right" valign=bottom sdval="79" sdnum="1033;0;_(* #,##0_);_(* \(#,##0\);_(* &quot;-&quot;??_);"><font color="#000000"> @item.Atlasproject </font></td>
+                        <td style="border-bottom: 2px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="right" valign=bottom sdval="5" ><font color="#000000"> @item.GA </font></td>
+                        <td style="border-bottom: 2px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="right" valign=bottom sdval="240"><font color="#000000"> @item.Nonprojectdowntime </font></td>
+                        <td style="border-bottom: 2px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="right" valign=bottom bgcolor="#C5E0B4"><font color="#000000">@item.TotalNonprojects </font></td>
+                        <td style="border-bottom: 2px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="right" valign=bottom bgcolor="#C5E0B4" ><font  color="#000000">  @item.Availablehours </font></td>
+                        <td style="border-bottom: 2px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="right"><font color="#000000">@item.BillableUtilization</font></td>
+                        <td style="border-bottom: 2px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="right"><font color="#000000">@item.Utilization</font></td>
+
+                    </tr>
+                }
+
+
+
+
+
+            </table>
+            </div>
+        </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>
+
+    @*@Scripts.Render("~/bundles/holiday-booking")*@
+    @*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>*@
+
+ 
+    <script>
+        $(document).ready(function () {
+            var form = $('.form'),
+                cache_width = form.width(),
+                a4 = [595.28, 841.89]; // for a4 size paper width and height
+
+            $('#btnexport').on('click', function () {
+                debugger;
+            
+                $('table').scrollTop(0);
+                createPDF();
+            });
+
+            function createPDF() {
+                getCanvas().then(function (canvas) {
+                    var
+                        img = canvas.toDataURL("image/png"),
+                        doc = new jsPDF({
+                            unit: 'px',
+                            format: 'a4'
+                        });
+                    doc.addImage(img, 'JPEG', 20, 20);
+                    doc.save('UtilizationReport.pdf');
+                    form.width(cache_width);
+                });
+            }
+            function getCanvas() {
+                form.width((a4[0] * 1.33333) - 80).css('max-width', 'none');
+                return html2canvas(form, {
+                    imageTimeout: 2000,
+                    removeContainer: true
+                });
+            }
+
+
+        });
+    </script>

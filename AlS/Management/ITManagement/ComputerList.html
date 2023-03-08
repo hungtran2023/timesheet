@@ -1,0 +1,472 @@
+	
+
+<html>
+<head>
+<title>Atlas Industries Time Sheet System</title>
+
+<link rel="stylesheet" href="../../timesheet.css">
+
+<script language="javascript" src="../../library/menu.js"></script>
+<script language="javascript" src="../../library/library.js"></script>
+<script>
+<!--
+
+function next() {
+var curpage = 1
+var numpage = 13
+	if (curpage < numpage) {
+	
+		curpage=2
+		document.navi.action = "ComputerList.asp?navi=" + curpage;
+		
+		document.navi.target = "_self";
+		document.navi.submit();
+	}
+}
+
+function prev() {
+var curpage = 1
+var numpage = 13
+	if (curpage > 1) {
+		curpage=0
+		document.navi.action = "ComputerList.asp?navi=" + curpage;
+		
+		document.navi.target = "_self";
+		document.navi.submit();
+	}
+}
+
+function go() {
+var curpage = 1
+var numpage = 13
+	var intpage = document.navi.txtpage.value;
+	intpage = parseInt(intpage, 10)
+	if ((intpage > 0) && (intpage <= numpage) && (intpage != curpage)) {
+		
+		document.navi.action = "ComputerList.asp?navi=" + intpage;
+		
+		document.navi.target = "_self";
+		document.navi.submit();		
+	}
+}
+
+function sort(type) {
+	document.navi.action = "ComputerList.asp?sorttype=" + type; //1: fullname, 2: jobtitle, 3: department
+	document.navi.target = "_self";
+	document.navi.submit();
+}
+
+function search() {
+	var tmp = document.navi.txtsearch.value;
+		tmp = escape(tmp);
+	document.navi.action = "ComputerList.asp?search=" + tmp;
+	document.navi.target = "_self";
+	document.navi.submit();
+	
+}
+
+function getdetail(varid){
+	document.navi.txtID.value = varid;	
+	document.navi.action = "computerdetail.asp?act=EDIT";
+	document.navi.target = "_self";
+	document.navi.submit();
+}
+
+function addnew(){
+
+	document.navi.txtID.value=-1
+	document.navi.action = "computerdetail.asp?act=ADD";
+	document.navi.target = "_self";
+	document.navi.submit();
+}
+
+
+function inatlasnetwork(varid){
+
+	document.navi.txtAtlasPCID.value=varid
+	document.navi.action = "AtlasComputer.asp";
+	document.navi.target = "_self";
+	document.navi.submit();
+}
+
+function GetFilterByStatus(own)
+{
+	document.navi.action = "ComputerList.asp";
+	document.navi.target = "_self";
+	document.navi.submit();
+}
+-->
+</script>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" >
+<form name="navi" method="post">
+    		<table width="95%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tbody>
+  <tr> 
+    <td height="85" valign="top"> 
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tbody>
+        <tr> 
+          <td width="525"><img src="../../templates/template1/images/logo_21.png" width="428" height="61"></td>
+          <td  class="red" align="right" valign="bottom"><b>Chi Nguyen Tai Uyen</b>&nbsp;Software Development Manager</td>
+        </tr>
+         </tbody>
+      </table>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" height="24">
+      <tbody>
+        <tr> 
+          <td height="24" width="1" valign="top"><img src="../../templates/template1/images/l-02.gif" width="1" height="24"></td>
+          <td height="24" background="../../templates/template1/images/l-01.gif" valign="top"> 
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tbody>
+              <tr> 
+                <td width="334"><img src="../../templates/template1/images/line-l.gif" width="334" height="24"></td>
+                <td align="right" class="blue"><div align='right'><a href='http://ais/timesheet/tools/preferences.asp' class='c' onMouseOver='self.status=&quot;Preferences&quot; ; return true;' onMouseout='self.status=&quot;&quot;'>Preferences</a>&nbsp;&nbsp;&nbsp;<img src='../../images/dot.gif' width='5' height='5'>&nbsp;&nbsp;&nbsp;<a href='javascript: void(0);' class='c' onMouseOver='self.status=&quot;Help&quot; ; return true;' onMouseout='self.status=&quot;&quot;'>Help</a>&nbsp;&nbsp;&nbsp;<img src='../../images/dot.gif' width='5' height='5'>&nbsp;&nbsp;&nbsp<a href='http://ais/timesheet/logout.asp' class='c' onMouseOver='self.status=&quot;Log out&quot; ; return true;' onMouseout='self.status=&quot;&quot;'>Log out</a>&nbsp;&nbsp;&nbsp;</div></td>
+              </tr>
+               </tbody>
+            </table>
+          </td>
+          <td width="1" height="24" valign="top"><img src="../../templates/template1/images/l-02.gif" width="1" height="24"></td>
+        </tr>
+         </tbody>
+      </table>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+       <tbody>
+        <tr> 
+          <td colspan="10" background="../../templates/template1/images/l-03-3a.gif"><img src="../../templates/template1/images/l-03-3a.gif" width="1" height="7"></td>
+        </tr>
+         </tbody>
+      </table>
+    </td>
+  </tr>
+   </tbody>
+</table>
+
+<table width="95%" border="0" cellspacing="0" cellpadding="0" height="80%" align="center">
+<tbody>
+  <tr> 
+    <td width="2px" background="../../templates/template1/images/l-03-3b.gif" bgcolor="#FFE8E8" height="100%">&nbsp;</td>
+    <td width="20%" valign="top" height="100%"><table width='100%' border='0' cellspacing='0' cellpadding='4'><tr><td colspan='3'>&nbsp;</td></tr><tr><td class='blue' bgcolor='#FFFFFF' colspan='3'><a href='http://ais/timesheet/tms/timesheet.asp' OnMouseOver = 'self.status=&quot;Fill In Timesheet&quot; ; return true' OnMouseOut = 'self.status = &quot;&quot;'>Complete Timesheet</a></td></tr><tr><td class='blue' bgcolor='#FFFFFF' colspan='3'><a href='http://ais/timesheet/assignedproject.asp' OnMouseOver = 'self.status=&quot;Assigned Projects&quot; ; return true' OnMouseOut = 'self.status = &quot;&quot;'>Assigned Projects</a></td></tr>
+<tr><td class='blue' bgcolor='#FFFFFF' colspan='3'>Management Console</td></tr>
+<tr><td class='blue' bgcolor='#FFFFFF' width='6%'>&nbsp;</td><td class='blue-normal' bgcolor='#FFFFFF' width='94%' colspan='2'><img src='../../images/dot.gif' width='5' height='5'>&nbsp;<a href='http://ais/timesheet/management/workinghour/workinghours.asp' class='c' OnMouseOver = "self.status=&quot;Working Hours&quot; ; return true;" OnMouseOut = 'self.status = &quot;&quot;'>Working Hours</a></td></tr>
+<tr><td class='blue' bgcolor='#FFFFFF' width='6%'>&nbsp;</td><td class='blue' bgcolor='#FFFFFF' width='94%' colspan='2'><a href='javascript:selfsubmit("/timesheet/management/ITManagement/ComputerList.asp?choose_menu=AA&fgMenu=1");' OnMouseOver = "self.status=&quot;Timesheets&quot; ; return true;" OnMouseOut = 'self.status = &quot;&quot;'>Timesheets</a></td></tr>
+<tr><td class='blue' bgcolor='#FFFFFF' width='6%'>&nbsp;</td><td class='blue' bgcolor='#FFFFFF' width='94%' colspan='2'><a href='javascript:selfsubmit("/timesheet/management/ITManagement/ComputerList.asp?choose_menu=AB&fgMenu=1");' OnMouseOver = "self.status=&quot;Employees&quot; ; return true;" OnMouseOut = 'self.status = &quot;&quot;'>Employees</a></td></tr>
+<tr><td class='blue' bgcolor='#FFFFFF' width='6%'>&nbsp;</td><td class='blue' bgcolor='#FFFFFF' width='94%' colspan='2'><a href='javascript:selfsubmit("/timesheet/management/ITManagement/ComputerList.asp?choose_menu=AC&fgMenu=1");' OnMouseOver = "self.status=&quot;Projects&quot; ; return true;" OnMouseOut = 'self.status = &quot;&quot;'>Projects</a></td></tr>
+<tr><td class='blue' bgcolor='#FFFFFF' width='6%'>&nbsp;</td><td class='blue' bgcolor='#FFFFFF' width='94%' colspan='2'><a href='javascript:selfsubmit("/timesheet/management/ITManagement/ComputerList.asp?choose_menu=AE&fgMenu=1");' OnMouseOver = "self.status=&quot;Annual Leave&quot; ; return true;" OnMouseOut = 'self.status = &quot;&quot;'>Annual Leave</a></td></tr>
+<tr><td class='blue' bgcolor='#FFFFFF' width='6%'>&nbsp;</td><td class='blue' bgcolor='#FFFFFF' width='94%' colspan='2'>IT Asset Management</td></tr>
+<tr><td class='blue' bgcolor='#FFFFFF' width='6%'>&nbsp;</td><td class='blue' bgcolor='#FFFFFF' width='6%'>&nbsp;</td><td class='blue-normal' bgcolor='#FFFFFF' width='88%'><img src='../../images/dot.gif' width='5' height='5'>&nbsp;<a href='http://ais/timesheet/management/ITManagement/ComputerList.asp' class='c' OnMouseOver = "self.status=&quot;Hardwares&quot; ; return true;" OnMouseOut = 'self.status = &quot;&quot;'><font color='#CA0000'>Hardwares</font></a></td></tr>
+<tr><td class='blue' bgcolor='#FFFFFF' width='6%'>&nbsp;</td><td class='blue' bgcolor='#FFFFFF' width='6%'>&nbsp;</td><td class='blue-normal' bgcolor='#FFFFFF' width='88%'><img src='../../images/dot.gif' width='5' height='5'>&nbsp;<a href='http://ais/timesheet/management/ITManagement/Monitors.asp' class='c' OnMouseOver = "self.status=&quot;Spare Monitors&quot; ; return true;" OnMouseOut = 'self.status = &quot;&quot;'>Spare Monitors</a></td></tr>
+<tr><td class='blue' bgcolor='#FFFFFF' width='6%'>&nbsp;</td><td class='blue' bgcolor='#FFFFFF' width='6%'>&nbsp;</td><td class='blue-normal' bgcolor='#FFFFFF' width='88%'><img src='../../images/dot.gif' width='5' height='5'>&nbsp;<a href='http://ais/timesheet/management/ITManagement/SoftwareList.asp' class='c' OnMouseOver = "self.status=&quot;Software Installation&quot; ; return true;" OnMouseOut = 'self.status = &quot;&quot;'>Software Installation</a></td></tr>
+<tr><td class='blue' bgcolor='#FFFFFF' width='6%'>&nbsp;</td><td class='blue' bgcolor='#FFFFFF' width='6%'>&nbsp;</td><td class='blue-normal' bgcolor='#FFFFFF' width='88%'><img src='../../images/dot.gif' width='5' height='5'>&nbsp;<a href='http://ais/timesheet/management/ITManagement/SoftwareRegister.asp' class='c' OnMouseOver = "self.status=&quot;Software Licences&quot; ; return true;" OnMouseOut = 'self.status = &quot;&quot;'>Software Licences</a></td></tr>
+<tr><td class='blue' bgcolor='#FFFFFF' width='6%'>&nbsp;</td><td class='blue' bgcolor='#FFFFFF' width='6%'>&nbsp;</td><td class='blue-normal' bgcolor='#FFFFFF' width='88%'><img src='../../images/dot.gif' width='5' height='5'>&nbsp;<a href='http://ais/timesheet/management/ITManagement/CartridgeList.asp' class='c' OnMouseOver = "self.status=&quot;Cartridge &quot; ; return true;" OnMouseOut = 'self.status = &quot;&quot;'>Cartridge </a></td></tr>
+<tr><td class='blue' bgcolor='#FFFFFF' width='6%'>&nbsp;</td><td class='blue' bgcolor='#FFFFFF' width='6%'>&nbsp;</td><td class='blue-normal' bgcolor='#FFFFFF' width='88%'><img src='../../images/dot.gif' width='5' height='5'>&nbsp;<a href='http://ais/timesheet/management/ITManagement/Categories.asp' class='c' OnMouseOver = "self.status=&quot;Categories&quot; ; return true;" OnMouseOut = 'self.status = &quot;&quot;'>Categories</a></td></tr>
+<tr><td class='blue' bgcolor='#FFFFFF' width='6%'>&nbsp;</td><td class='blue' bgcolor='#FFFFFF' width='6%'>&nbsp;</td><td class='blue-normal' bgcolor='#FFFFFF' width='88%'><img src='../../images/dot.gif' width='5' height='5'>&nbsp;<a href='http://ais/timesheet/management/ITManagement/rpt_CountByYear.asp' class='c' OnMouseOver = "self.status=&quot;Hardware Count&quot; ; return true;" OnMouseOut = 'self.status = &quot;&quot;'>Hardware Count</a></td></tr>
+<tr><td class='blue' bgcolor='#FFFFFF' width='6%'>&nbsp;</td><td class='blue' bgcolor='#FFFFFF' width='94%' colspan='2'><a href='javascript:selfsubmit("/timesheet/management/ITManagement/ComputerList.asp?choose_menu=AG&fgMenu=1");' OnMouseOver = "self.status=&quot;Contract Staff&quot; ; return true;" OnMouseOut = 'self.status = &quot;&quot;'>Contract Staff</a></td></tr>
+<tr><td class='blue' bgcolor='#FFFFFF' width='6%'>&nbsp;</td><td class='blue' bgcolor='#FFFFFF' width='94%' colspan='2'><a href='javascript:selfsubmit("/timesheet/management/ITManagement/ComputerList.asp?choose_menu=AH&fgMenu=1");' OnMouseOver = "self.status=&quot;Atlas Training&quot; ; return true;" OnMouseOut = 'self.status = &quot;&quot;'>Atlas Training</a></td></tr>
+<tr><td class='blue' bgcolor='#FFFFFF' width='6%'>&nbsp;</td><td class='blue' bgcolor='#FFFFFF' width='94%' colspan='2'><a href='javascript:selfsubmit("/timesheet/management/ITManagement/ComputerList.asp?choose_menu=AI&fgMenu=1");' OnMouseOver = "self.status=&quot;Offshore Staffs&quot; ; return true;" OnMouseOut = 'self.status = &quot;&quot;'>Offshore Staffs</a></td></tr>
+<tr><td class='blue' bgcolor='#FFFFFF' colspan='3'><a href='javascript:selfsubmit("/timesheet/management/ITManagement/ComputerList.asp?choose_menu=B&fgMenu=1");' OnMouseOver = "self.status=&quot;Reporting&quot; ; return true;" OnMouseOut = 'self.status = &quot;&quot;'>Reporting</a></td></tr>
+<tr><td class='blue' bgcolor='#FFFFFF' colspan='3'><a href='javascript:selfsubmit("/timesheet/management/ITManagement/ComputerList.asp?choose_menu=C&fgMenu=1");' OnMouseOver = "self.status=&quot;Tools&quot; ; return true;" OnMouseOut = 'self.status = &quot;&quot;'>Tools</a></td></tr>
+<tr><td class='blue' bgcolor='#FFFFFF' colspan='3'><a href='http://ais/timesheet/logout.asp' OnMouseOver = 'self.status=&quot;Log Out&quot; ; return true' OnMouseOut = 'self.status = &quot;&quot;'>Log out</a><SPAN class='red'>&nbsp;CHINTU</span></td></tr></table>
+</td>
+    <td width="1px"  background="../../templates/template1/images/dot-01.gif" bgcolor="#FFE8E8" height="100%"><img src="../../templates/template1/images/dot-01.gif" width="1" height="1"></td>
+    <td width="80%" valign="top">
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" height="100%">     
+		    <tbody>     
+			
+          <tr> 
+            <td> 
+              <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr bgcolor="FFFFFF">
+					<td class="red" colspan="5" height="20" align="left" width="100%"> &nbsp;&nbsp;<b></b></td>
+				</tr>
+                <tr> 
+                  <td class="blue" width="10%" valign="middle">&nbsp;
+
+                  <a href="javascript:addnew();" onMouseOver="self.status='Add a new harware'; return true;" onMouseOut="self.status=''">Add New</a>
+
+					</td>
+                  <td class="blue-normal" align="right" width="15%" valign="middle"> 
+                    Search for&nbsp; </td>
+                  <td align="right" width="25%" valign="middle"> 
+                    <input type="text" name="txtsearch" class="blue-normal" size="15" style="width:150" value="">
+                  </td>
+                  <td align="right" width="20%" valign="middle"> 
+                    <select name='lstType' size='1' height='26px' width='70px' style='width:95%;height=24px;' class='blue-normal'>
+						<option value='1'>PC code</option>
+						<option value='2'>Computer Name</option>
+						<option value='3' selected>User name</option>
+						<option value='4'>Seri Num</option>
+					</select>
+                    
+                  </td>
+                  <td class="blue" width="30%" valign="middle">
+                    <table width="100" border="0" cellspacing="5" cellpadding="0" height="20" name="aa">
+                      <tr> 
+                        <td bgcolor="8CA0D1" onMouseOver="this.style.backgroundColor='7791D1';" onMouseOut="this.style.backgroundColor='8CA0D1';" height="20" class="blue" align="center">
+                            <a href="javascript:search();" class="b" onMouseOver="self.status='Search for Fullname'; return true;" onMouseOut="self.status=''">Search</a></td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+                <tr> 
+                  <td class="title" height="50" align="center" colspan="5">List of Hardware</td>
+                </tr>     
+                
+                 <tr> 
+                  <td class="blue" height="30" valign="top"  align="center" colspan="5">Status: &nbsp;&nbsp;
+                  <select name='lstFilter' size='1' height='26px' width='150px' class='blue-normal' onchange="javascript:GetFilterByStatus(this)">
+					<option value='-1' selected>&nbsp; </option>					
+					
+						
+							<option value='2' >Broken</option>
+							
+					
+						
+							<option value='1' >In use</option>
+							
+					
+						
+							<option value='4' >Liquidate/Charity</option>
+							
+					
+						
+							<option value='3' >Lost/ Resigned staff</option>
+							
+					
+						
+							<option value='8' >Off-site Stock</option>
+							
+					
+						
+							<option value='5' >Stock</option>
+							
+					
+						
+							<option value='7' >Work from home</option>
+							
+					
+					</select>
+					</td>
+                </tr>      
+                
+              </table>
+            </td>
+          </tr>
+          
+          <tr> 
+            <td height="100%" valign="top"> 
+              <table width="100%" border="0" cellspacing="0" cellpadding="0" style=height:"79%" height="365">
+                <tr> 
+                  <td bgcolor="#FFFFFF" valign="top"> 
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                      <tr> 
+                        <td bgcolor="#617DC0"> 
+                          <table width="100%" border="0" cellspacing="1" cellpadding="5">
+                            <tr bgcolor="8CA0D1"> 
+                              <td class="blue" align="center"  width="13%">PC Code</td>
+                              <td class="blue" align="center" width="15%">Computer Name</td>
+                              <td class="blue" align="center" width="13%">Atlas User</td>
+                              <td class="blue" align="center" width="14%">Other</td>
+                              <td class="blue" align="center" width="35%">Note</td>
+                              <td class="blue" align="center" width="10%">Status</td>                              
+                            </tr>
+<tr bgcolor=#FFF2F2><td valign='top' class='blue'><a href='javascript:getdetail(687);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>NE0801012a</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(777);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>NE0801012a</a></td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>Switch Cisco 3560G 24 - 5th F</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#E7EBF5><td valign='top' class='blue'><a href='javascript:getdetail(443);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO12S11005</a></td><td valign='top' class='blue-normal' class='blue'></td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>Liquidate/Charity</td></tr>
+<tr bgcolor=#FFF2F2><td valign='top' class='blue'><a href='javascript:getdetail(442);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO12S11004</a></td><td valign='top' class='blue-normal' class='blue'></td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>Liquidate/Charity</td></tr>
+<tr bgcolor=#E7EBF5><td valign='top' class='blue'><a href='javascript:getdetail(441);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO12S11003</a></td><td valign='top' class='blue-normal' class='blue'></td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>Liquidate/Charity</td></tr>
+<tr bgcolor=#FFF2F2><td valign='top' class='blue'><a href='javascript:getdetail(440);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO12S11002</a></td><td valign='top' class='blue-normal' class='blue'></td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>Liquidate/Charity</td></tr>
+<tr bgcolor=#E7EBF5><td valign='top' class='blue'><a href='javascript:getdetail(439);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO12S11001</a></td><td valign='top' class='blue-normal' class='blue'></td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>Liquidate/Charity</td></tr>
+<tr bgcolor=#FFF2F2><td valign='top' class='blue'><a href='javascript:getdetail(1286);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>AO2009001</a></td><td valign='top' class='blue-normal' class='blue'></td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>Air Conditioner Mitsu 2.5HP (Server room F6)</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#E7EBF5><td valign='top' class='blue'><a href='javascript:getdetail(1279);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>NE2006001</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1671);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>NE2006001</a></td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>Catalyst 9200L 24-port</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#FFF2F2><td valign='top' class='blue'><a href='javascript:getdetail(1278);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO2005807</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1626);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>Steven_Yoga</a></td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>Lenovo Yoga C740-14 i7</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#E7EBF5><td valign='top' class='blue'><a href='javascript:getdetail(1277);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1912806</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1748);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV721</a></td><td valign='top' class='blue-normal'>MINHND</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#FFF2F2><td valign='top' class='blue'><a href='javascript:getdetail(1276);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1912805</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1706);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV402</a></td><td valign='top' class='blue-normal'>ThiVKB</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#E7EBF5><td valign='top' class='blue'><a href='javascript:getdetail(1275);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1912804</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1725);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV420</a></td><td valign='top' class='blue-normal'>NHANNH</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#FFF2F2><td valign='top' class='blue'><a href='javascript:getdetail(1274);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1912803</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1627);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV720</a></td><td valign='top' class='blue-normal'>HIEUDM</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#E7EBF5><td valign='top' class='blue'><a href='javascript:getdetail(1273);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1912802</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1624);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV715</a></td><td valign='top' class='blue-normal'>CHIEUTTB</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#FFF2F2><td valign='top' class='blue'><a href='javascript:getdetail(1272);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1912801</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1707);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV404</a></td><td valign='top' class='blue-normal'>LUULV</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#E7EBF5><td valign='top' class='blue'><a href='javascript:getdetail(1271);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1912800</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1634);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV733</a></td><td valign='top' class='blue-normal'>TRIETDNH</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#FFF2F2><td valign='top' class='blue'><a href='javascript:getdetail(1270);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1912799</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1722);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV111</a></td><td valign='top' class='blue-normal'>VyNLD</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#E7EBF5><td valign='top' class='blue'><a href='javascript:getdetail(1269);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1912798</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1621);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV722</a></td><td valign='top' class='blue-normal'>KATHLEENT</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#FFF2F2><td valign='top' class='blue'><a href='javascript:getdetail(1268);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1912797</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1728);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV125</a></td><td valign='top' class='blue-normal'>PhuDH</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#E7EBF5><td valign='top' class='blue'><a href='javascript:getdetail(1267);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1912796</a></td><td valign='top' class='blue-normal' class='blue'></td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>Stock</td></tr>
+<tr bgcolor=#FFF2F2><td valign='top' class='blue'><a href='javascript:getdetail(1266);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1912795</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1724);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV310</a></td><td valign='top' class='blue-normal'>CuongCH</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#E7EBF5><td valign='top' class='blue'><a href='javascript:getdetail(1265);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1912794</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1622);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV724</a></td><td valign='top' class='blue-normal'>DANGLH</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#FFF2F2><td valign='top' class='blue'><a href='javascript:getdetail(1264);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1912793</a></td><td valign='top' class='blue-normal' class='blue'></td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>Stock</td></tr>
+<tr bgcolor=#E7EBF5><td valign='top' class='blue'><a href='javascript:getdetail(1263);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1912792</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1702);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV218</a></td><td valign='top' class='blue-normal'>KhaNP</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#FFF2F2><td valign='top' class='blue'><a href='javascript:getdetail(1262);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1911791</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1607);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV695</a></td><td valign='top' class='blue-normal'>VANNTT</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#E7EBF5><td valign='top' class='blue'><a href='javascript:getdetail(1261);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1911790</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1588);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV685</a></td><td valign='top' class='blue-normal'>NGUYENLN</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#FFF2F2><td valign='top' class='blue'><a href='javascript:getdetail(1260);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1911789</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1606);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV693</a></td><td valign='top' class='blue-normal'>HUYENHTT</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#E7EBF5><td valign='top' class='blue'><a href='javascript:getdetail(1259);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1911788</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1613);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV714</a></td><td valign='top' class='blue-normal'>KHUONGND</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#FFF2F2><td valign='top' class='blue'><a href='javascript:getdetail(1258);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1911787</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1597);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV689</a></td><td valign='top' class='blue-normal'>HUYVQ</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#E7EBF5><td valign='top' class='blue'><a href='javascript:getdetail(1257);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1911786</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1589);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV684</a></td><td valign='top' class='blue-normal'>HUYPHQ</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#FFF2F2><td valign='top' class='blue'><a href='javascript:getdetail(1256);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1911785</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1591);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV673</a></td><td valign='top' class='blue-normal'>CUONGMT</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#E7EBF5><td valign='top' class='blue'><a href='javascript:getdetail(1255);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1911784</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1700);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV687</a></td><td valign='top' class='blue-normal'>HUNGPQ</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#FFF2F2><td valign='top' class='blue'><a href='javascript:getdetail(1254);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1911783</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1598);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV690</a></td><td valign='top' class='blue-normal'>TUANNL</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#E7EBF5><td valign='top' class='blue'><a href='javascript:getdetail(1253);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1911782</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1587);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV686</a></td><td valign='top' class='blue-normal'>PHUCNNH</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#FFF2F2><td valign='top' class='blue'><a href='javascript:getdetail(1252);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1911781</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1590);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV683</a></td><td valign='top' class='blue-normal'>anhd</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#E7EBF5><td valign='top' class='blue'><a href='javascript:getdetail(1251);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1911780</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1610);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV697</a></td><td valign='top' class='blue-normal'>HANHDNN</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#FFF2F2><td valign='top' class='blue'><a href='javascript:getdetail(1250);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1911779</a></td><td valign='top' class='blue-normal' class='blue'></td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>Stock</td></tr>
+<tr bgcolor=#E7EBF5><td valign='top' class='blue'><a href='javascript:getdetail(1249);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1911778</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1596);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV688</a></td><td valign='top' class='blue-normal'>THUYNTT</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#FFF2F2><td valign='top' class='blue'><a href='javascript:getdetail(1248);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1911777</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1608);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV696</a></td><td valign='top' class='blue-normal'>HUONGBTT</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#E7EBF5><td valign='top' class='blue'><a href='javascript:getdetail(1247);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1911776</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1616);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV718</a></td><td valign='top' class='blue-normal'>TOMK</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#FFF2F2><td valign='top' class='blue'><a href='javascript:getdetail(1246);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1911775</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1595);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV678</a></td><td valign='top' class='blue-normal'>SANGTHM</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#E7EBF5><td valign='top' class='blue'><a href='javascript:getdetail(1245);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1911774</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1623);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV121</a></td><td valign='top' class='blue-normal'>HongNTB</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#FFF2F2><td valign='top' class='blue'><a href='javascript:getdetail(1244);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1911773</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1629);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMADM02</a></td><td valign='top' class='blue-normal'>TONYPA</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#E7EBF5><td valign='top' class='blue'><a href='javascript:getdetail(1243);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1911772</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1592);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV702</a></td><td valign='top' class='blue-normal'>THUYPNK</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#FFF2F2><td valign='top' class='blue'><a href='javascript:getdetail(1242);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1911771</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1579);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV118</a></td><td valign='top' class='blue-normal'>HungDHT</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#E7EBF5><td valign='top' class='blue'><a href='javascript:getdetail(1241);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1911770</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1726);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV681</a></td><td valign='top' class='blue-normal'>TRANLNB</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#FFF2F2><td valign='top' class='blue'><a href='javascript:getdetail(1240);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1911769</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1576);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV680</a></td><td valign='top' class='blue-normal'>VINHTL</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#E7EBF5><td valign='top' class='blue'><a href='javascript:getdetail(1239);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1911768</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1679);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV740</a></td><td valign='top' class='blue-normal'>TAMLNM</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#FFF2F2><td valign='top' class='blue'><a href='javascript:getdetail(1238);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1911767</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1686);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV713</a></td><td valign='top' class='blue-normal'>KHANHNV</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#E7EBF5><td valign='top' class='blue'><a href='javascript:getdetail(1237);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1911766</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1573);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV674</a></td><td valign='top' class='blue-normal'>KHOADD</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#FFF2F2><td valign='top' class='blue'><a href='javascript:getdetail(1236);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1911765</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1572);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV210</a></td><td valign='top' class='blue-normal'>HungLN</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#E7EBF5><td valign='top' class='blue'><a href='javascript:getdetail(1235);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1911764</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1571);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV672</a></td><td valign='top' class='blue-normal'>TUBV</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#FFF2F2><td valign='top' class='blue'><a href='javascript:getdetail(1234);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1911763</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1570);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV622</a></td><td valign='top' class='blue-normal'>KHOILA</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#E7EBF5><td valign='top' class='blue'><a href='javascript:getdetail(1233);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1911762</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1569);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV114</a></td><td valign='top' class='blue-normal'>NGANHT</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#FFF2F2><td valign='top' class='blue'><a href='javascript:getdetail(1232);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1907761</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1556);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV700</a></td><td valign='top' class='blue-normal'>KYVD</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#E7EBF5><td valign='top' class='blue'><a href='javascript:getdetail(1231);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1907760</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1539);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV216</a></td><td valign='top' class='blue-normal'>QUANGNT</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#FFF2F2><td valign='top' class='blue'><a href='javascript:getdetail(1230);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1907759</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1698);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV115</a></td><td valign='top' class='blue-normal'>NGANTTK</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#E7EBF5><td valign='top' class='blue'><a href='javascript:getdetail(1229);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1907758</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1555);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV698</a></td><td valign='top' class='blue-normal'>TRINHTND</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#FFF2F2><td valign='top' class='blue'><a href='javascript:getdetail(1228);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1907757</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1559);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV608</a></td><td valign='top' class='blue-normal'>DIENHD</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#E7EBF5><td valign='top' class='blue'><a href='javascript:getdetail(1227);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1907756</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1699);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV212</a></td><td valign='top' class='blue-normal'>MYPTD</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#FFF2F2><td valign='top' class='blue'><a href='javascript:getdetail(1226);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1907755</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1541);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV219</a></td><td valign='top' class='blue-normal'>HUNGMX</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#E7EBF5><td valign='top' class='blue'><a href='javascript:getdetail(1225);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1907754</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1563);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV642</a></td><td valign='top' class='blue-normal'>LINHNTT</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#FFF2F2><td valign='top' class='blue'><a href='javascript:getdetail(1224);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1907753</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1553);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>VNHCMBIMCLOUD01</a></td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>VNHCMBIMCLOUD01</td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#E7EBF5><td valign='top' class='blue'><a href='javascript:getdetail(1223);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1907752</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1558);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMMIC03</a></td><td valign='top' class='blue-normal'>ChauCH</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#FFF2F2><td valign='top' class='blue'><a href='javascript:getdetail(1222);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1907751</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1536);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV200</a></td><td valign='top' class='blue-normal'>LANHLTX</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#E7EBF5><td valign='top' class='blue'><a href='javascript:getdetail(1221);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1907750</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1540);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV214</a></td><td valign='top' class='blue-normal'>NGHIATV</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#FFF2F2><td valign='top' class='blue'><a href='javascript:getdetail(1220);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1907749</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1554);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV694</a></td><td valign='top' class='blue-normal'>DEANM</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#E7EBF5><td valign='top' class='blue'><a href='javascript:getdetail(1219);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1907748</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1550);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV712</a></td><td valign='top' class='blue-normal'>FLC-06Phuc</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#FFF2F2><td valign='top' class='blue'><a href='javascript:getdetail(1218);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1907747</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1738);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMARCAD15</a></td><td valign='top' class='blue-normal'>YENLTH</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#E7EBF5><td valign='top' class='blue'><a href='javascript:getdetail(1187);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1906746</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1485);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>Joe_X1carbon</a></td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>Lenovo X1 Carbon Joe</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#FFF2F2><td valign='top' class='blue'><a href='javascript:getdetail(1217);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1906745</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1524);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV303</a></td><td valign='top' class='blue-normal'>KhanhBD</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#E7EBF5><td valign='top' class='blue'><a href='javascript:getdetail(1216);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1906744</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1560);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV309</a></td><td valign='top' class='blue-normal'>THINHKN</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#FFF2F2><td valign='top' class='blue'><a href='javascript:getdetail(1215);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1906743</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1749);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV400</a></td><td valign='top' class='blue-normal'>TRINC</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#E7EBF5><td valign='top' class='blue'><a href='javascript:getdetail(1214);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1906742</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1515);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>SAIGON</a></td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>SAIGON ROOM</td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#FFF2F2><td valign='top' class='blue'><a href='javascript:getdetail(1213);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1906741</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1617);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMARCAD18</a></td><td valign='top' class='blue-normal'>KHOAHND</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#E7EBF5><td valign='top' class='blue'><a href='javascript:getdetail(1212);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1906740</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1511);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMARCAD13</a></td><td valign='top' class='blue-normal'>GIANGHT</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#FFF2F2><td valign='top' class='blue'><a href='javascript:getdetail(1211);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1906739</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1703);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HOTDESK</a></td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>HOTDESK</td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#E7EBF5><td valign='top' class='blue'><a href='javascript:getdetail(1210);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1906738</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1509);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV207</a></td><td valign='top' class='blue-normal'>HIEUNTD</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#FFF2F2><td valign='top' class='blue'><a href='javascript:getdetail(1209);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1906737</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1508);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMARCAD09</a></td><td valign='top' class='blue-normal'>ngannhd</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#E7EBF5><td valign='top' class='blue'><a href='javascript:getdetail(1208);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1906736</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1678);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMARCAD06</a></td><td valign='top' class='blue-normal'>LANH</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#FFF2F2><td valign='top' class='blue'><a href='javascript:getdetail(1207);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1905735</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1506);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV108</a></td><td valign='top' class='blue-normal'>PhuongTTX</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#E7EBF5><td valign='top' class='blue'><a href='javascript:getdetail(1206);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1905734</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1505);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV699</a></td><td valign='top' class='blue-normal'>THANHVP</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#FFF2F2><td valign='top' class='blue'><a href='javascript:getdetail(1205);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1905733</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1504);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV205</a></td><td valign='top' class='blue-normal'>BachD</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#E7EBF5><td valign='top' class='blue'><a href='javascript:getdetail(1204);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1905732</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1503);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV107</a></td><td valign='top' class='blue-normal'>YENPTH</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#FFF2F2><td valign='top' class='blue'><a href='javascript:getdetail(1203);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1905731</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1502);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV204</a></td><td valign='top' class='blue-normal'>QuangKD</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#E7EBF5><td valign='top' class='blue'><a href='javascript:getdetail(1202);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1905730</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1501);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV203</a></td><td valign='top' class='blue-normal'>TrieuTV</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#FFF2F2><td valign='top' class='blue'><a href='javascript:getdetail(1201);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1905729</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1500);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV202</a></td><td valign='top' class='blue-normal'>ANHHT</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#E7EBF5><td valign='top' class='blue'><a href='javascript:getdetail(1200);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1905728</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1499);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV106</a></td><td valign='top' class='blue-normal'>NGUYENCT</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#FFF2F2><td valign='top' class='blue'><a href='javascript:getdetail(1199);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1905727</a></td><td valign='top' class='blue-normal' class='blue'></td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>Stock</td></tr>
+<tr bgcolor=#E7EBF5><td valign='top' class='blue'><a href='javascript:getdetail(1198);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1905726</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1497);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV300</a></td><td valign='top' class='blue-normal'>THONGTV</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#FFF2F2><td valign='top' class='blue'><a href='javascript:getdetail(1197);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1905725</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1496);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV104</a></td><td valign='top' class='blue-normal'>PHUONGTH</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#E7EBF5><td valign='top' class='blue'><a href='javascript:getdetail(1196);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1905724</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1744);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV208</a></td><td valign='top' class='blue-normal'>BME-09Son</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#FFF2F2><td valign='top' class='blue'><a href='javascript:getdetail(1195);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1905723</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1494);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV120</a></td><td valign='top' class='blue-normal'>HIENNTM</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#E7EBF5><td valign='top' class='blue'><a href='javascript:getdetail(1194);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1905722</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1493);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV100</a></td><td valign='top' class='blue-normal'>THANHTND</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#FFF2F2><td valign='top' class='blue'><a href='javascript:getdetail(1193);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1905721</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1492);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV101</a></td><td valign='top' class='blue-normal'>VUONGLV</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#E7EBF5><td valign='top' class='blue'><a href='javascript:getdetail(1192);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1905720</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1491);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMARCAD08</a></td><td valign='top' class='blue-normal'>JOSHUAL</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#FFF2F2><td valign='top' class='blue'><a href='javascript:getdetail(1191);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1905719</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1490);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMARCAD11</a></td><td valign='top' class='blue-normal'>SANGTT</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#E7EBF5><td valign='top' class='blue'><a href='javascript:getdetail(1190);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1905718</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1489);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMARCAD05</a></td><td valign='top' class='blue-normal'>NAMTTP</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#FFF2F2><td valign='top' class='blue'><a href='javascript:getdetail(1189);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1905717</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1682);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMREV717</a></td><td valign='top' class='blue-normal'>NHONDNH</td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+<tr bgcolor=#E7EBF5><td valign='top' class='blue'><a href='javascript:getdetail(1188);' class='c' OnMouseOver = 'self.status=&quot;Computer Details&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>CO1905716</a></td><td valign='top' class='blue-normal' class='blue'><a href='javascript:inatlasnetwork(1605);' class='c' OnMouseOver = 'self.status=&quot;In Atlas Network&quot; ; return true' OnMouseOut ='self.status = &quot;&quot;'>HCMBKDL</a></td><td valign='top' class='blue-normal'></td><td valign='top' class='blue-normal'>HCMBKDL</td><td valign='top' class='blue-normal'>MSI Z390</td><td valign='top' class='blue-normal'>In use</td></tr>
+                            
+                          </table>
+						  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tr> 
+                              <td bgcolor="#FFFFFF" height="20" class="blue-normal"> 
+                                &nbsp;&nbsp;</td>
+                            </tr>
+                          </table>
+                        
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+			
+          <tr> 
+            <td> 
+			<table width="100%" border="0" cellspacing="0" cellpadding="0" height="20">
+			<tbody>
+			  <tr> 
+			    <td align="right" bgcolor="#E7EBF5"> 
+			      <table width="70%" border="0" cellspacing="1" cellpadding="0" height="20">
+			      <tbody>
+			        <tr class="black-normal"> 
+			          <td align="right" valign="middle" width="37%" class="blue-normal">Page 
+			          </td>
+			          <td align="center" valign="middle" width="13%" class="blue-normal"> 
+			            <input type="text" name="txtpage" class="blue-normal" value="1" size="2" style="width:50">
+			          </td>
+			          <td align="left" valign="middle" width="7%" class="blue-normal">&nbsp;<a href="javascript:go();"  onMouseOver="self.status='Go to page'; return true;" onMouseOut="self.status='';"><font color="#990000">Go</font></a> 
+			          </td>
+			          <td align="right" valign="middle" width="15%" class="blue-normal">Page 1/13&nbsp;&nbsp;</td>
+			          <td valign="middle" align="right" width="28%" class="blue-normal"><a href="javascript:prev();"  
+			          onMouseOver="self.status='Previous page'; return true;" onMouseOut="self.status='';">Previous</a> /
+			          <a href="javascript:next();"  onMouseOver="self.status='Next page'; return true;" onMouseOut="self.status='';"> Next</a>&nbsp;&nbsp;&nbsp;</td>
+			        </tr>
+			        </tbody>
+			      </table>
+			    </td>
+			  </tr>
+			  </tbody>
+			</table>
+	        </td>
+          </tr>
+          </tbody>
+        </table>    
+    </td>
+    <td width="2px" background="../../templates/template1/images/l-03-2b.gif" bgcolor="#FFE8E8" height="100%">&nbsp;</td>
+  </tr>
+  </tbody>
+</table>
+<!-- Footer -->
+<table width="95%" border="0" cellspacing="0" cellpadding="0" align="center">
+  <tbody>
+  <tr> 
+    <td background="../../templates/template1/images/dot-01.gif" colspan="3"><img src="../../templates/template1/images/dot-01.gif" width="1" height="1"></td>
+  </tr>
+  <tr> 
+    <td bgcolor="#8CA0D1" width="1"><img src="../../templates/template1/images/l-02.gif" width="1" height="24"></td>
+    <td bgcolor="#8CA0D1" class="blue-normal"  align="center"> 
+      Copyright &copy; 2000-2019 Atlas Industries Limited. All Rights Reserved
+    </td>
+    <td bgcolor="#8CA0D1" width="1" align="right"><img src="../../templates/template1/images/l-02.gif" width="1" height="24"></td>
+  </tr>
+  <tr> 
+    <td background="../../templates/template1/images/dot-01.gif" colspan="3"><img src="../../templates/template1/images/dot-01.gif" width="1" height="1"></td>
+  </tr>
+  </tbody>
+</table>
+
+<input type="hidden" name="txthidden" value="">
+<input type="hidden" name="txtID" value="">
+<input type="hidden" name="txtAtlasPCID" value="">
+<input type="hidden" name="txtpreviouspage" value="ComputerList.asp">
+<input type="hidden" name="year_" value="">
+<input type="hidden" name="type_" value="">
+
+</form>
+<SCRIPT language=JavaScript1.2>
+var hotkey=13
+if (document.layers)
+document.captureEvents(Event.KEYPRESS)
+function backhome(e){
+	if (document.layers){
+		if (e.which==hotkey)
+			search();}
+	else if (document.all){
+		if (event.keyCode==hotkey){
+			event.keyCode = 0;
+			search();}
+	}
+}
+document.onkeypress=backhome
+</SCRIPT>
+</body>
+</html>

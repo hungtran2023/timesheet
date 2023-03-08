@@ -1,0 +1,201 @@
+﻿@model AIS.Data.Model.TimeSheetResetModel
+@{
+    ViewBag.Title = "Reset TimeSheet";
+    // Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_LayoutWithMenu.cshtml";
+}
+@*<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>*@
+
+<link href="~/Content/style/tablestyle.css" rel="stylesheet" />
+<link href="~/Content/style/jquery.dataTables.min.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.dataTables.min.js"></script>
+
+<input type="hidden" value="@ViewBag.PageSize" name="pageSize" id="pageSize" />
+<h3 style="margin-left:10px;font-weight:normal">Reset TimeSheet</h3>
+
+<form id="frm-example" name="frm-example" method="post">
+  
+    <button type="submit" @*class="btn btn-primary"*@ class="btn btn-primary right" id="btnsumbit" style="margin-top:-40px;">Reset</button>
+    @*<button type="submit" class="btn btn-primary right" id="btnsumbit" style="margin-left:110%">Reset</button>*@
+    <td height="100%" style="vertical-align:top">
+        <table width="100%">
+            @*<tr style="background-color: white">
+                    <td style="margin-left:93%"> <button type="submit" class="btn btn-primary" style="position:relative; margin-left:93%; margin-top:-40px;"><b style="margin-right:0px">Close Project</b></button></td>
+                </tr>*@
+        </table>
+        <table border="0" cellspacing="0" cellpadding="0" width="100%">
+            <tr>
+                <td bgcolor="#FFFFFF" valign="top">
+                    <table class="tablesorter" id="tblProjectTimeSheet" width="100%">
+                        <thead>
+                            <tr>
+                                <th style="width:5%; text-align:left;">
+                                    @Html.Label("Date", new { @style = "margin-right: 100px;" })
+                                </th>
+                                <th style="width: 15%; text-align: left;">@Html.Label("StaffID", new { @style = "margin-right: 100px;" })</th>
+                                <th style="width: 30%; text-align: left;">@Html.Label("AssignmentID", new { @style = "margin-right: 100px;" })</th>
+                                <th style="width: 25%; text-align: left; ">@Html.Label("EventID", new { @style = "margin-right: 200px;" })</th>
+                                <th style="width: 10%; text-align: left; ">@Html.Label("Hours", new { @style = "margin-right: 200px;" })</th>
+                                <th style="width: 15%; text-align: left;">@Html.Label("OverTime", new { @style = "margin-right: 100px;" })</th>
+                                @*<th style="width:5%; text-align:left">Action</th>*@
+                            </tr>
+                        </thead>
+                        <tbody style="font-family:Arial,Verdana;font-size:9pt">
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </td>
+</form>
+    <style>
+
+        .right {
+            float: right;
+            width: 100px;
+            border: 1px solid #617DC0;
+            margin-right: 2px;
+        }
+
+        .dataTables_filter, .dataTables_info {
+            display: none;
+        }
+    </style>
+
+    @*<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js" type="text/javascript"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js" type="text/javascript"></script>*@
+
+    @*<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>*@
+
+    @*<script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+
+
+
+        <link href="~/Content/style/jquery-ui.css" rel="stylesheet" />*@
+
+    <script>
+
+    function InnitDataCleanUp(pagesizeNumber) {
+
+        $('tblProjectTimeSheet').dataTable({ searching: false, paging: false, info: false });
+
+        $('#tblProjectTimeSheet > td:nth-child(3) > td:nth-child(4)').css('text-align', 'left');
+
+
+        $("#tblProjectTimeSheet").DataTable({
+
+            ajax: {
+                url: './GetTimeSheetCleanUpData',
+                type: "Get",
+                datatype: 'json',
+                contentType: 'application/json',
+            },
+
+            "pageLength": pagesizeNumber,
+            "lengthChange": false,
+            "bInfo": false,
+            language: { search: "" },
+
+
+
+
+            "columns": [
+                { "data": "TDate", "autoWidth": false, "sClass": "alignLeft" },
+                { "data": "StaffID", "autoWidth": false, "sClass": "alignLeft" },
+                { "data": "AssignmentID", "autoWidth": false, "sClass": "alignLeft" },
+                { "data": "EventID", "autoWidth": false, "sClass": "alignLeft" },
+                { "data": "Hours", "autoWidth": false, "sClass": "alignLeft" },
+                { "data": "OverTime", "autoWidth": false, "sClass": "alignLeft" },
+
+
+            ],
+
+
+        });
+
+
+    }
+    $(document).ready(function () {
+
+        var pagesizeNumber = $("#pageSize").val();
+
+        if (pagesizeNumber == 0) {
+
+            pagesizeNumber = 100;
+        }
+        InnitDataCleanUp(pagesizeNumber);
+        InitMenu();
+    });
+
+    @*$("#StattID").autocomplete({
+
+            source: function (request, response) {
+                $.ajax({
+                    url: '@Url.Action("GetFullNameAutoComplete", "HREnterTimeSheet")',
+                    datatype: "json",
+                    data: {
+
+                        term: request.term
+                    },
+                    success: function (data) {
+                        response($.map(data, function (val, item) {
+                            return {
+                                label: val.Name,
+                                value: val.FullName,
+                                statffID: val.statffID
+                            }
+                        }))
+                    }
+                })
+            },
+            select: function (event, ui) {
+                  //event.preventDefault();
+                $("#StatffID").val(ui.item.statffID);
+             //   alert(ui.item.APK);
+              //  LoadSubTask(ui.item.APK);
+
+
+            },
+            create: function () {
+                $(this).data('ui-autocomplete')._renderItem = function (ul, item) {
+                    return $('<li>')
+                        .append('<div id="ui-id-6" tabindex="-1" class="ui-menu-item-wrapper">'
+                        + item.label + '<br> <span style="font-size:smaller;">' + item.statffID + '</span></div>')
+                        .appendTo(ul);
+                };
+            }
+
+
+
+
+
+    });*@
+
+      $("#btnsumbit").click(function () {
+            debugger;
+                $.ajax({
+                    url: '@Url.Action("DoResetTimeSheet", "HREnterTimeSheet")',
+                    type: 'POST',
+                    data: $("#myForm").serialize(),
+                    success: function (result) {
+
+                        var table = $('#tblProjectTimeSheet').DataTable();
+                            table.clear();
+                        table.rows.add(result.data).draw();
+                        event.preventDefault();
+                    }
+                });
+
+           // $("#NameProject").val('');
+            event.preventDefault();
+
+      });
+
+    function InitMenu() {
+        $("ul[data-menu-toggle=Management-Console]").removeClass("hide");
+        $("a[data-menu-toggle=Management-Console]").addClass("selected-menu");
+        $("ul[data-menu-toggle=Timesheets]").removeClass("hide");
+        $("a[data-menu-toggle=Timesheets]").addClass("selected-menu");
+    }
+    </script>

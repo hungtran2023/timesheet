@@ -1,0 +1,46 @@
+﻿[
+  {
+    "outputFile": "Content/style/less/base.css",
+    "inputFile": "Content/style/less/base.less"
+  },
+  {
+    "outputFile": "Content/style/less/navigation.css",
+    "inputFile": "Content/style/less/navigation.less"
+  },
+  {
+    "outputFile": "Content/style/less/layout.css",
+    "inputFile": "Content/style/less/layout.less"
+  },
+  {
+    "outputFile": "Content/style/less/holiday-booking.css",
+    "inputFile": "Content/style/less/holiday-booking.less"
+  },
+  {
+    "outputFile": "Content/style/less/table.css",
+    "inputFile": "Content/style/less/table.less"
+  },
+  {
+    "outputFile": "Content/style/less/overview-request-history.css",
+    "inputFile": "Content/style/less/overview-request-history.less"
+  },
+  {
+    "outputFile": "Content/style/less/authoriser.css",
+    "inputFile": "Content/style/less/authoriser.less"
+  },
+  {
+    "outputFile": "Content/style/less/hr.css",
+    "inputFile": "Content/style/less/hr.less"
+  },
+  {
+    "outputFile": "Content/style/less/hr-authorisation.css",
+    "inputFile": "Content/style/less/hr-authorisation.less"
+  },
+  {
+    "outputFile": "Content/style/less/hr-timesheet.css",
+    "inputFile": "Content/style/less/hr-timesheet.less"
+  },
+  {
+    "outputFile": "Content/style/less/datepicker-custom.css",
+    "inputFile": "Content/style/less/datepicker-custom.less"
+  }
+]

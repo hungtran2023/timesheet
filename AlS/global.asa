@@ -1,0 +1,48 @@
+<!-- #include file="inc/config.inc" -->
+<OBJECT RUNAT="SERVER" SCOPE="Application" PROGID="Scripting.dictionary" ID="Users"> </OBJECT>
+<OBJECT ID="g_condb" RUNAT="SERVER" SCOPE="Application" PROGID="ADODB.Connection"></OBJECT>
+<SCRIPT LANGUAGE="VBScript" RUNAT="Server">
+
+' Runs once when the first page of your application is run for the first time by any user
+Sub Application_OnStart
+ Dim strConnect
+ Dim ConfigObj
+
+' strConnect="PROVIDER=SQLOLEDB;DATA SOURCE=HCMIT12;DATABASE=TMS_CM_ANOnline;USER ID=timesheet;PASSWORD=tms;"
+ 'strConn = "Data Provider=SQLOLEDB;Data Source=HCMIT12;Initial Catalog=TMS_CM_ANOnline;USER ID=timesheet;PASSWORD=tms;"
+
+ strConnect="PROVIDER=SQLOLEDB;DATA SOURCE=VNHCMCODE;DATABASE=TMS_CM;USER ID=timesheet;PASSWORD=tms;"
+ strConn = "Data Provider=SQLOLEDB;Data Source=VNHCMCODE;Initial Catalog=TMS_CM;USER ID=timesheet;PASSWORD=tms;"
+
+' strConns = "PROVIDER=SQLOLEDB;DATA SOURCE=PHANHONG;DATABASE=Timesheet;USER ID=sa;PASSWORD=;"
+ Application("g_strConns") = strConns
+ Application("g_strConnect") = strConnect
+ Application("g_strConnectShape") = strConn
+    Application("SessionDSN") = "DATA SOURCE=VNHCMCODE;DATABASE=TMS_CM;persist security info=False;USER ID=timesheet;PASSWORD=tms;packet size=4096"
+
+ g_condb.Open strConnect & "APP=Timesheet System - Global permanent connection"
+
+End Sub
+
+' Runs once when the web server shuts down
+Sub Application_OnEnd
+ g_condb.Close
+End Sub
+
+' Runs the first time when a user runs any page in your application
+Sub Session_OnStart
+ session.Timeout = 200
+End Sub
+
+' Runs when a user's session times out or quits your application
+Sub Session_OnEnd
+'Response.Write "End session"
+'Response.End
+   If users.exists(session.SessionID) Then
+  Application.Lock
+  users.remove(session.SessionID)
+  Application.UnLock
+ End If
+End Sub
+
+</SCRIPT>

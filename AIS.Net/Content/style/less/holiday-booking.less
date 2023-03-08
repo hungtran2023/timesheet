@@ -1,0 +1,100 @@
+﻿@import "variables.less";
+
+.holiday-booking {
+    padding: 30px 0 50px 0;
+
+    .control-label {
+        text-align: left;
+    }
+
+    &__request {
+        margin: 30px auto 0;
+        width: 30%;
+        height: auto;
+
+        .row {
+            margin-top: 10px;
+        }
+
+        label {
+            margin-top: 10px;
+        }
+    }
+
+    .form-control-static {
+        font-size: 9pt;
+        font-weight: bolder;
+    }
+
+    #cancel-request {
+        display: none;
+    }
+
+    &__request-list {
+        width: 60%;
+        margin: 30px auto 0;
+
+        &--remove {
+            margin-top: 10px;
+            font-size: @fmain-font-size;
+            cursor: pointer;
+        }
+
+        .bs-checkbox {
+            position: relative;
+        }
+
+        .hide-checkbox {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width:100%;
+            height: 100%;
+        }
+
+        tr.selected .hide-checkbox{
+            background-color: @hover-on-hidden-checkbox-bg-color;
+        }
+
+        .hide-checkbox-odd{
+            background-color: @table-body-bg-color;
+        }
+
+         .hide-checkbox-even{
+             background-color: @table-total-row-bg-color;
+        }
+    }
+
+    &__remove-btn {
+        color: @main-color !important;
+        text-decoration: underline !important;
+    }
+
+    .request-list__pagination {
+        width: 60% !important;
+    }
+}
+
+@media(min-width: 240px) and (max-width: 767px) {
+    .holiday-booking {
+        &__request {
+            min-width: 95%;
+        }
+
+        &__request-list {
+            min-width: 95%;
+        }
+    }
+}
+
+@media (min-width: 767px) {
+    .holiday-booking {
+        &__request {
+            min-width: 490px;
+        }
+
+        &__request-list {
+            min-width: 750px;
+        }
+    }
+}

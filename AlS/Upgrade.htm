@@ -1,0 +1,180 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Atlas Information System</title>
+<link rel="stylesheet" href="timesheet.css" type="text/css">
+
+<style type="text/css">
+<!--
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	background: #ffffff;
+}
+.lable {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #ffffff;
+	font-weight: bold;
+}
+.clock {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #575757;
+	font-weight: normal;
+}
+.new_a:active
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 10pt;
+    COLOR: #ffffff;
+    FONT-FAMILY: Arial, Helvetica, sans-serif;
+    TEXT-DECORATION: none
+}
+.new_a:link
+{
+	FONT-WEIGHT: bold;
+    FONT-SIZE: 10pt;
+    COLOR: #ffffff;
+    FONT-FAMILY: Arial;
+    TEXT-DECORATION: none
+
+}
+.new_a:visited
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 10pt;
+    COLOR: #ffffff;
+    FONT-FAMILY: Arial;
+    TEXT-DECORATION: none
+}
+.new_a:hover
+{
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 10pt;
+    COLOR: #ffffff;
+    BACKGROUND-REPEAT: repeat;
+    FONT-FAMILY: Arial;
+    TEXT-DECORATION: underline
+}
+-->
+
+.popup{
+	position: absolute;
+	background: #E7EBF5;
+	border: 1px solid #032e9b;
+	border-style:outset;
+	z-index: 10000;
+}
+
+#background{
+	position: absolute;
+	background: gray;
+	left: 0px;
+	top: 0px;
+}
+
+
+</style>
+
+<script type="text/javascript" src="library/library.js"></script>
+
+
+<link href="jQuery/jquery-ui.css" rel="stylesheet" type="text/css"/>
+
+<script type="text/javascript" src="jQuery/jquery.min.js"></script>
+<script type="text/javascript" src="jQuery/jquery-ui.min.js"></script>
+<link href="jQuery/atlasJquery.css" rel="stylesheet" type="text/css"/>
+
+<script type="text/javascript">
+
+    $(document).ready(function() {
+        openUpload();
+        
+        $("#background").click(function(e) {
+        closePopup();
+        e.preventDefault();
+         });
+
+         $("#closeButton").click(function(e) {
+        closePopup();
+        e.preventDefault();
+         });
+          
+    })
+
+function openUpload() {
+    var dheight = getBrowserHeight();
+    var dwidth = getBrowserWidth();
+
+    $("#background").width(dwidth).height(dheight);
+    $("#background").fadeTo("slow", 0.8);
+
+    var $divUpload = $("#divUpload");
+    $divUpload.css("top", (dheight - $divUpload.height()) / 2);
+    $divUpload.css("left", (dwidth - $divUpload.width()) / 2);
+
+    $divUpload.fadeIn();
+}
+
+function closePopup() {
+    $("#background").fadeOut();
+    $("#divUpload").hide();
+}
+
+function getBrowserWidth() {
+    if (window.innerWidth) {
+        return window.innerWidth;
+    }
+    else if (document.documentElement && document.documentElement.clientWidth != 0) {
+        return document.documentElement.clientWidth;
+    }
+    else if (document.body) {
+        return document.body.clientWidth;
+    }
+
+    return 0;
+};
+
+function getBrowserHeight() {
+    if (window.innerHeight) {
+        return window.innerHeight;
+    }
+    else if (document.documentElement && document.documentElement.clientHeight != 0) {
+        return document.documentElement.clientHeight;
+    }
+    else if (document.body) {
+        return document.body.clientHeight;
+    }
+    return 0;
+};
+    
+</script>
+
+
+
+</head>
+
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td>
+        <p style="text-align: center">
+            <img src="AIS_Upgrade.jpg" /></p>
+      </td>
+
+  </tr>
+</table>
+
+
+<!--<div id="divUpload" class="popup" style="width:722px; height:559px">
+    <a id="closeButton" style="display:block; position:absolute;top: 10px; right: 10px; padding:5px ; background-color:RGB(195,197,195)" href="#">Close</a>
+    <img src="images/popup/CardCompetition.jpg" />
+</div>
+<div id="background"></div>-->
+
+</body>
+</html>

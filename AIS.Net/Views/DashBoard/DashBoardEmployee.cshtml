@@ -1,0 +1,227 @@
+﻿
+@{
+    ViewBag.Title = "Dashboard Employee";
+  //  Layout = "~/Views/Shared/_Layout.cshtml";
+   Layout = "~/Views/Shared/_LayoutWithMenu.cshtml";
+}
+@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>*@
+<head>
+    <style type="text/css" media="screen">
+        .containerOne {
+            columns: 3;
+            grid-auto-rows:auto;
+            /* margin-left: 15%;*/
+            margin-top: 10px;
+        }
+
+        .containerTwo {
+            columns: 3;
+            /*     margin-left: 15%;*/
+            margin-top: 10px;
+            grid-auto-rows: auto;
+        }
+        .containerThree {
+            columns: 3;
+            /*     margin-left: 15%;*/
+            margin-top: 10px;
+            grid-auto-rows: auto;
+        }
+
+        /*.containerThree {
+            columns: 3;*/
+            /*     margin-left: 15%;*/
+            /*margin-top: 10px;
+        }*/
+
+        [class^="main-"] {
+            background: #357ebd;
+            break-before: column;
+            color: white;
+            text-align: center;
+            font-size: 15pt;
+        }
+
+        .common {
+            /*background: ghostwhite;*/
+            height: 333px;
+            width: 100%;
+         margin-top:10px;
+            border: double #357ebd;
+        }
+
+
+        h2 {
+            text-shadow: 2px 2px #FF0000;
+        }
+
+        element.style {
+        }
+
+        A:visited {
+            font-size: 8pt;
+            color: #003399;
+            font-family: arial;
+            text-decoration: underline;
+        }
+
+        .btn-custom {
+            background-color: #88a5ea;
+            color: #ffffff !important;
+            display: inline-block;
+            padding: 6px 12px;
+            margin-bottom: 0;
+            font-size: 14px;
+            font-weight: normal;
+            line-height: 1.428571429;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            cursor: pointer;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            -o-user-select: none;
+            user-select: none;
+            text-decoration: none !important;
+            border-color: #357ebd;
+            margin-top: 10px;
+            height: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="containerOne">
+        <div class="main-one" style="">Time Sheet</div>
+        <div class="common" id="timesheet">
+            <a href="/timesheet/tms/timesheet.asp"> <img src="~/Content/images/TimeSheet.png" style="margin-left:100px;" /></a>
+
+            <ul style="margin-left:200px;margin-top:10px;">
+                <li><P><b>Total Hours of Month:</b> @ViewBag.Total </P></li>
+                <li><P><b>Total Hours Overtime of Month:</b> @ViewBag.TotalOT </P></li>
+            </ul>
+        </div>
+        <div class="main-two" style="">Timesheet Details</div>
+        <div class="common"><a href="/timesheet/tms/tms_viewdetails.asp"> <img src="~/Content/images/timesheetDetail.jpg" style="margin-left: 100px; margin-top: 30px;" /></a></div>
+        <div class="main-one" style="">Time Sheet2256</div>
+        <div class="common" id="timesheet">
+            <a href="/timesheet/tms/timesheet.asp"> <img src="~/Content/images/TimeSheet.png" style="margin-left:100px;" /></a>
+
+            <ul style="margin-left:200px;margin-top:10px;">
+                <li><P><b>Total Hours of Month:</b> @ViewBag.Total </P></li>
+                <li><P><b>Total Hours Overtime of Month:</b> @ViewBag.TotalOT </P></li>
+            </ul>
+        </div>  
+
+    </div>
+    <div class="containerTwo">
+        <div class="main-one">View Annual Leave</div>
+        <div class="common" id="viewLeave">
+            <p style="color: #003399;font-weight:bold;margin-left:120px">Current Rate: @ViewBag.CurrentRate  <b style="color:#ca0000">days/month</b></p>
+            <p style="color: #003399; font-weight: bold; margin-left: 120px"> Your annual leave balance: @Math.Round(ViewBag.Balance / 8, 2) days</p>
+            <tr>
+                <td valign="top">
+                    <table width="60%" border="1" cellspacing="0" cellpadding="0" align="center" bordercolor="#003399">
+
+                        <tr>
+                            <td bgcolor="#8FA4D3">
+                                <table width="100%" border="1" cellspacing="1" cellpadding="1" align="center">
+                                    @if (ViewBag.display == "show")
+                                    {
+                                        <tr height="25">
+                                            <td bgcolor="#C2CCE7" class="blue" width="80%" style="text-align: left; font-family: arial, verdana">&nbsp&nbsp &nbsp<b>Leave brought forward from last year to @DateTime.Now.Year (hours) </b></td>
+                                            <td bgcolor="#E7EBF5" class="blue-normal" align="center" width="25%"><b> </b></td>
+
+                                        </tr>
+                                    }
+
+                                    <tr height="25">
+                                        <td bgcolor="#C2CCE7" class="blue" style="text-align: left; font-family: arial, verdana">&nbsp&nbsp &nbsp<b>Leave Due until 1/@DateTime.Now.Month/@DateTime.Now.Year (hours)</b></td>
+                                        <td bgcolor="#E7EBF5" class="blue-normal" align="center"><b>@ViewBag.LeaveDueUntil</b></td>
+
+                                    </tr>
+
+                                    <tr height="25">
+                                        <td bgcolor="#617DC0" class="white" align="right"><b>Total (hours) </b>&nbsp&nbsp &nbsp</td>
+                                        <td bgcolor="#FFF2F2" class="red" align="center"><b style="color: #ca0000">@ViewBag.LeaveDueUntil</b></td>
+
+                                    </tr>
+                                    <tr height="25">
+                                        <td bgcolor="#C2CCE7" class="blue" width="70%" style="text-align: left;font-family: arial, verdana">&nbsp&nbsp &nbsp<b>Annual leave in  (hours) </b></td>
+                                        <td bgcolor="#E7EBF5" class="blue-normal" align="center" width="30%"><b> @ViewBag.Annualleave</b></td>
+
+                                    </tr>
+                                    <tr height="25">
+                                        <td bgcolor="#C2CCE7" class="blue" width="70%" style="text-align: left; font-family: arial,verdana">&nbsp&nbsp &nbsp<b>Annual leave reserved  (hours) </b></td>
+
+                                        <td bgcolor="#E7EBF5" class="blue-normal" align="center" width="30%"><b> </b></td>
+                                    </tr>
+                                    <tr height="25">
+                                        <td bgcolor="#617DC0" class="white" align="right"><b>Balance  (hours) </b>&nbsp&nbsp &nbsp</td>
+                                        <td bgcolor="#FFF2F2" class="red" align="center"><b style="color: #ca0000"> @ViewBag.Balance</b></td>
+
+
+                                    </tr>
+                                    <tr height="25">
+                                        <td bgcolor="#C2CCE7" class="blue" align="right"><b> </b>&nbsp&nbsp &nbsp</td>
+                                        <td bgcolor="#FFF2F2" class="red" align="center"><b style="color: #ca0000"> @Math.Round(ViewBag.Balance/8,2)  days</b></td>
+
+
+                                    </tr>
+
+                                </table>
+                            </td>
+                        </tr>
+                        <tr></tr>
+
+                    </table>
+
+                </td>
+            </tr>
+            <tr>
+                <td valign="top" class="text-right">
+                    <a style="margin-left:200px">@Html.ActionLink("Calendar", "OverviewOfRequestHistory", "OverviewOfRequestHistory", null, new { @class = "btn-custom" })</a>
+                    <a>@Html.ActionLink("Holidays Booking", "HolidayBooking", "HolidayBooking", null, new { @class = "btn-custom" })</a>
+                    @*<a href="javascript:ANTracking()" class="btn-custom">Tracking</a>*@
+                </td>
+            </tr>
+
+
+        </div>
+        <div class="main-two">Information</div>
+        <div class="common"><h2>Waitting function processing.....</h2></div>
+        <div class="main-one" style="">Time Sheet 123</div>
+        <div class="common"><h2>Waitting function processing.....</h2></div>
+      
+    </div>
+    <div class="containerThree">
+        <div class="main-one" style="">Time Sheet 678</div>
+        <div class="common"><h2>Waitting function processing</h2></div>
+        <div class="main-one" style="">Time Sheet 456</div>
+        <div class="common"><h2>Waitting function processing</h2></div>
+        <div class="main-one" style="">Time Sheet 567</div>
+        <div class="common"><h2>Waitting function processing</h2></div>
+    </div>
+  
+</body>
+
+<script>
+
+
+    function ANTracking() {
+        window.document.frmtms.action = "CalBalanceByUser.asp";
+        window.document.frmtms.target = "_self";
+        window.document.frmtms.submit();
+    }
+    //$("#timesheet")
+    //    .html('<object data="/timesheet/tms/timesheet.asp"/>');
+
+
+    $(document).ready(function () {
+
+        /*  $('#viewLeave').load("/timesheet/tms/staff_view_leave.asp");*/
+
+    });
+</script>
+

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<link rel="stylesheet" media="screen" href="/s/master.css">
+<link rel="stylesheet" media="screen" href="/s/stock.css">
+<title>Existencia | HDX</title>
+<body>
+<header id="gheader"><nav id="gpanel"><ul id="gnav"><li id="stock"><a href="/76091132/existencia/">Existencia</a></ul><ul id="gmanager">
+<li id="user"><a href="/76091132/">Tester</a>
+<li id="exit"><a href="/76091132/salir">Salir</a>
+</ul>
+</nav>
+</header><div id="overlay" class="hidden">
+<form id="addItemPage" class="hidden">
+<h1>Agregar un artículo</h1>
+<div class="contentArea">
+<p><label>SKU<input type="text" id="newSKUInput" maxlength="20" autocomplete="off"></label>
+<p><label>Descripción<input type="text" id="newDescriptionInput" maxlength="100" autocomplete="off"></label>
+<p><label>Precio unitario<input type="number" id="newUnitPriceInput" min="1" value="1" autocomplete="off"></label>
+</div>
+<div class="b">
+<input type="submit" value="Agregar"><input type="reset" value="Cancelar">
+</div>
+</form>
+</div>
+<div id="body"><header>
+<div id="functions">
+<ul>
+<li id="addItemButton">Agregar un artículo
+<li id="cancelButton" class="hidden">Cancelar
+<li id="saveButton" class="hidden">Guardar
+</ul>
+</div>
+<h1 class="fn">Existencia</h1>
+</header>
+<div id="tables" tabindex="0">
+<table id="tableHeader">
+<colgroup>
+<col class="indexCol">
+<col class="SKUCol">
+<col>
+<col class="stockCol">
+</colgroup>
+<thead>
+<tr><th>#<th>SKU<th>Descripción<th>Existencia
+</thead>
+</table>
+<table id="tableContent">
+<colgroup>
+<col class="indexCol">
+<col class="SKUCol">
+<col>
+<col class="stockCol">
+</colgroup>
+<tbody></tbody>
+</table>
+
+</div>
+</div>
+
+<div id="editItem">
+<header>
+<h2>Editar artículo</h2>
+<nav>
+<ul id="tabsLabels">
+<li id="generalTabButton" class="active">General
+<li id="stockTabButton">Existencia
+<li id="facturationTabButton">Facturación
+<li id="optionsTabButton">Opciones
+</ul>
+</nav>
+</header>
+<div id="tabsContainer" class="container">
+<div id="tabsContents" class="tabs">
+<section id="generalTab">
+<div>
+<table id="inputsTable">
+<colgroup>
+<col class="labelCol">
+</colgroup>
+<tr><th><label for="SKUInput">SKU</label><td><input type="text" id="SKUInput" autocomplete="off">
+</table>
+<table id="descriptionsTable">
+<colgroup><col><col class="languageCol"><col class="deleteCol"></colgroup>
+<tr><th>Descripción<th>Idioma<th>
+<tr id="newDescriptionRow"><td><input type="text" id="descriptionInput" placeholder="Escriba aquí para una descripción nueva en otro idioma" autocomplete="off"><td><select id="languageSelect"><option value="aa">afar<option value="ab">abjaso<option value="ae">avéstico<option value="af">afrikaans<option value="ak">akano<option value="am">amárico<option value="an">aragonés<option value="ar">árabe<option value="as">asamés<option value="av">avar<option value="ay">aimara<option value="az">azerí<option value="ba">baskir<option value="be">bielorruso<option value="bg">búlgaro<option value="bh">bhojpurí<option value="bi">bislama<option value="bm">bambara<option value="bn">bengalí<option value="bo">tibetano<option value="br">bretón<option value="bs">bosnio<option value="ca">catalán<option value="ce">checheno<option value="ch">chamorro<option value="cn">chino<option value="co">corso<option value="cr">cree<option value="cs">checo<option value="cu">eslavo eclesiástico antiguo<option value="cv">chuvasio<option value="cy">galés<option value="da">danés<option value="de">alemán<option value="dv">maldivo<option value="dz">dzongkha<option value="ee">ewe<option value="el">griego<option value="en">inglés<option value="eo">esperanto<option value="es">español<option value="et">estonio<option value="eu">euskera<option value="fa">persa<option value="ff">fula<option value="fi">finés<option value="fj">fiyiano<option value="fo">feroés<option value="fr">francés<option value="fy">frisón<option value="ga">irlandés<option value="gd">gaélico escocés<option value="gl">gallego<option value="gn">guaraní<option value="gu">guyaratí<option value="gv">manés<option value="ha">hausa<option value="he">hebreo<option value="hi">hindi<option value="ho">hiri motu<option value="hr">croata<option value="ht">haitiano<option value="hu">húngaro<option value="hy">armenio<option value="hz">herero<option value="ia">interlingua<option value="id">indonesio<option value="ie">occidental<option value="ig">igbo<option value="ii">yi de Sichuán<option value="ik">inupiaq<option value="io">ido<option value="is">islandés<option value="it">italiano<option value="iu">inuktitut<option value="ja">japonés<option value="jv">javanés<option value="ka">georgiano<option value="kg">kongo<option value="ki">kikuyu<option value="kj">kuanyama<option value="kk">kazajo<option value="kl">groenlandés<option value="km">camboyano<option value="kn">canarés<option value="ko">coreano<option value="kr">kanuri<option value="ks">cachemiro<option value="ku">kurdo<option value="kv">komi<option value="kw">córnico<option value="ky">kirguís<option value="la">latín<option value="lb">luxemburgués<option value="lg">luganda<option value="li">limburgués<option value="ln">lingala<option value="lo">lao<option value="lt">lituano<option value="lu">luba-katanga<option value="lv">letón<option value="mg">malgache<option value="mh">marshalés<option value="mi">maorí<option value="mk">macedonio<option value="ml">malayalam<option value="mn">mongol<option value="mr">maratí<option value="ms">malayo<option value="mt">maltés<option value="my">birmano<option value="na">nauruano<option value="nb">noruego bokmål<option value="nd">ndebele del norte<option value="ne">nepalí<option value="ng">ndonga<option value="nl">neerlandés<option value="nn">nynorsk<option value="no">noruego<option value="nr">ndebele del sur<option value="nv">navajo<option value="ny">chichewa<option value="oc">occitano<option value="oj">ojibwa<option value="om">oromo<option value="or">oriya<option value="os">osético<option value="pa">panyabí<option value="pi">pali<option value="pl">polaco<option value="ps">pastú<option value="pt">portugués<option value="qu">quechua<option value="rm">retorrománico<option value="rn">kirundi<option value="ro">rumano<option value="ru">ruso<option value="rw">ruandés<option value="sa">sánscrito<option value="sc">sardo<option value="sd">sindhi<option value="se">sami septentrional<option value="sg">sango<option value="sh">serbocroata<option value="si">cingalés<option value="sk">eslovaco<option value="sl">esloveno<option value="sm">samoano<option value="sn">shona<option value="so">somalí<option value="sq">albanés<option value="sr">serbio<option value="ss">suazi<option value="st">sesotho<option value="su">sundanés<option value="sv">sueco<option value="sw">suajili<option value="ta">tamil<option value="te">telugú<option value="tg">tayiko<option value="th">tailandés<option value="ti">tigriña<option value="tk">turcomano<option value="tl">tagalo<option value="tn">setsuana<option value="to">tongano<option value="tr">turco<option value="ts">tsonga<option value="tt">tártaro<option value="tw">twi<option value="ty">tahitiano<option value="ug">uigur<option value="uk">ucraniano<option value="ur">urdu<option value="uz">uzbeko<option value="ve">venda<option value="vi">vietnamita<option value="vo">volapük<option value="wa">valón<option value="wl">walisiano<option value="wo">wolof<option value="xh">xhosa<option value="yi">yídish<option value="yo">yoruba<option value="za">chuan<option value="zh">chino<option value="zu">zulú</select><td>
+</table>
+</div>
+<div>
+<table id="inputsTable">
+<colgroup>
+<col class="labelCol">
+</colgroup>
+<tr><th>Estado<td><input type="checkbox" id="statusInput" value="1"><label for="statusInput">Activo</label>
+<!--<tr><th><label for="departmentSelect">Departamento</label><td><select></select>
+<tr><th><label for="categorySelect">Categoría</label><td><select></select>
+<tr><th><label for="noteTextArea">Notas</label><td><textarea></textarea>-->
+</table>
+</div>
+</section>
+<section id="stockTab">
+<div>
+<table id="stadisticTable">
+<tr><th>Inventario<td>0
+<tr><th>Cantidad vendido<td>0
+<tr><th>Última fecha de modificación<td>
+</table>
+</div>
+</section>
+<section id="facturationTab">
+<div>
+<table id="pricesTable">
+<colgroup><col><col><col><col><col class="deleteCol"></colgroup>
+<tr><th>Código<th>Unidad<th>Cantidad equivalente<th>Precio<th>
+<tr id="newPriceRow"><td><input type="text" id="codeInput" autocomplete="off"><td><input type="text" id="unitInput" autocomplete="off"><td><input type="text" id="quantityInput" autocomplete="off"><td><input type="text" id="priceInput" autocomplete="off"><td>
+</table>
+</div>
+</section>
+<section id="optionsTab">
+<p>Imprimir precio
+</section>
+</div></div>
+</html>

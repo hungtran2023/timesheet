@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/app")
+    @{
+        var mainMenuUrl = AIS.Domain.Common.Constants.StringConstants.WelcomeURL;
+        var logOutUrl = AIS.Domain.Common.Constants.StringConstants.LogOutURL;
+    }
+</head>
+<body>
+    <div id="spinner-loading">
+        <i class="page-spinner fa fa-spin fa-spinner"></i>
+        <div class="overlay"></div>
+    </div>
+    <div class="ais-container">
+        <header>
+            <a href="/timesheet/aisnet/DashBoard/DashBoard"><img src="@Url.Content("~/Content/images/logo_21.gif")" /></a>
+            <div class="header__nav-wrapper">
+                <img class="header__menu-image" src="@Url.Content("~/Content/images/line-l.gif")" />
+                <ul type="disc" class="nav navbar-nav header__menu">
+                    <li><a href="@mainMenuUrl">Main Menu</a></li>
+                    <li><span class="menu-dot">&bull;</span> <a href="javascript:void(0);" onclick="history.go(-1);">Back</a></li>
+                    <li><span class="menu-dot">&bull;</span> <a href="@logOutUrl">Log out </a></li>
+                    <li><span class="menu-dot">&bull;</span> <a href="javascript:void(0);">Help</a></li>
+                </ul>
+            </div>
+            <hr class="header__underline" />
+        </header>
+        <div class="body-content">
+            <div class="body-content__border body-content__border--left"></div>
+            <div class="body-content__content">
+                @RenderBody()
+            </div>
+            <div class="body-content__border body-content__border--right"></div>
+        </div>
+        <footer class="footer text-center">Copyright &copy; 2000-@DateTime.Now.Year Atlas Industries Limited. All Rights Reserved</footer>
+    </div>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

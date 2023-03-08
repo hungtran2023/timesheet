@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="db2a92d31c8041918cd4099c98a3e47a" Name="Diagram1" ZoomLevel="70">
+        <EntityTypeShape EntityType="TMS_CM_ANOnlineModel.ATC_Timesheet" Width="2.375" PointX="9.375" PointY="29.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TMS_CM_ANOnlineModel.ATC_Events" Width="1.5" PointX="8.375" PointY="4.75" />
+        <EntityTypeShape EntityType="TMS_CM_ANOnlineModel.ATC_SalaryStatus" Width="1.75" PointX="5.75" PointY="6.5" />
+        <EntityTypeShape EntityType="TMS_CM_ANOnlineModel.ATC_WorkingHours" Width="1.5" PointX="0.5" PointY="7.375" />
+        <AssociationConnector Association="TMS_CM_ANOnlineModel.FK_ATC_SALA_RLSH_30_ATC_WORK" />
+        <EntityTypeShape EntityType="TMS_CM_ANOnlineModel.ATC_Timesheet2000" Width="2.125" PointX="0.625" PointY="19.25" />
+        <EntityTypeShape EntityType="TMS_CM_ANOnlineModel.ATC_Timesheet2001" Width="2" PointX="2.75" PointY="19.25" />
+        <EntityTypeShape EntityType="TMS_CM_ANOnlineModel.ATC_Timesheet2002" Width="1.875" PointX="4.75" PointY="19.25" />
+        <EntityTypeShape EntityType="TMS_CM_ANOnlineModel.ATC_Timesheet2003" Width="1.75" PointX="6.625" PointY="19.25" />
+        <EntityTypeShape EntityType="TMS_CM_ANOnlineModel.ATC_Timesheet2004" Width="1.875" PointX="8.375" PointY="19.25" />
+        <EntityTypeShape EntityType="TMS_CM_ANOnlineModel.ATC_Timesheet2005" Width="2" PointX="10.25" PointY="19.25" />
+        <EntityTypeShape EntityType="TMS_CM_ANOnlineModel.ATC_Timesheet2006" Width="2.125" PointX="0.625" PointY="22.5" />
+        <EntityTypeShape EntityType="TMS_CM_ANOnlineModel.ATC_Timesheet2007" Width="2" PointX="2.75" PointY="22.5" />
+        <EntityTypeShape EntityType="TMS_CM_ANOnlineModel.ATC_Timesheet2008" Width="1.875" PointX="4.75" PointY="22.5" />
+        <EntityTypeShape EntityType="TMS_CM_ANOnlineModel.ATC_Timesheet2009" Width="1.75" PointX="6.625" PointY="22.5" />
+        <EntityTypeShape EntityType="TMS_CM_ANOnlineModel.ATC_Timesheet2010" Width="1.875" PointX="8.375" PointY="22.5" />
+        <EntityTypeShape EntityType="TMS_CM_ANOnlineModel.ATC_Timesheet2011" Width="2" PointX="10.25" PointY="22.5" />
+        <EntityTypeShape EntityType="TMS_CM_ANOnlineModel.ATC_Timesheet2012" Width="2.125" PointX="0.625" PointY="25.75" />
+        <EntityTypeShape EntityType="TMS_CM_ANOnlineModel.ATC_Timesheet2013" Width="2" PointX="2.75" PointY="25.75" />
+        <EntityTypeShape EntityType="TMS_CM_ANOnlineModel.ATC_Timesheet2014" Width="1.875" PointX="4.75" PointY="25.75" />
+        <EntityTypeShape EntityType="TMS_CM_ANOnlineModel.ATC_Timesheet2015" Width="1.75" PointX="6.625" PointY="25.75" />
+        <AssociationConnector Association="TMS_CM_ANOnlineModel.FK_ATC_TIME_RLSH_a25_ATC_EVEN" />
+        <AssociationConnector Association="TMS_CM_ANOnlineModel.FK_ATC_Timesheet_ATC_Events" />
+        <AssociationConnector Association="TMS_CM_ANOnlineModel.FK_ATC_Timesheet_ATC_Events2002" />
+        <AssociationConnector Association="TMS_CM_ANOnlineModel.FK_ATC_Timesheet2004_ATC_Events" />
+        <AssociationConnector Association="TMS_CM_ANOnlineModel.FK_ATC_Timesheet2005_ATC_Events" />
+        <AssociationConnector Association="TMS_CM_ANOnlineModel.FK_ATC_Timesheet2006_ATC_Events" />
+        <AssociationConnector Association="TMS_CM_ANOnlineModel.FK_ATC_Timesheet2007_ATC_Events" />
+        <AssociationConnector Association="TMS_CM_ANOnlineModel.FK_ATC_Timesheet2008_ATC_Events" />
+        <AssociationConnector Association="TMS_CM_ANOnlineModel.FK_ATC_TIMESHEET2009_ATC_Events" />
+        <AssociationConnector Association="TMS_CM_ANOnlineModel.FK_ATC_Timesheet2011_ATC_Events" />
+        <AssociationConnector Association="TMS_CM_ANOnlineModel.FK_ATC_Timesheet2012_ATC_Events" />
+        <EntityTypeShape EntityType="TMS_CM_ANOnlineModel.ATC_JobTitle" Width="1.5" PointX="15.5" PointY="5" />
+        <EntityTypeShape EntityType="TMS_CM_ANOnlineModel.ATC_Department" Width="1.5" PointX="10.25" PointY="4.25" />
+        <EntityTypeShape EntityType="TMS_CM_ANOnlineModel.ATC_Functions" Width="1.5" PointX="11.125" PointY="10.75" />
+        <EntityTypeShape EntityType="TMS_CM_ANOnlineModel.ATC_Group" Width="1.5" PointX="16.75" PointY="11.25" />
+        <EntityTypeShape EntityType="TMS_CM_ANOnlineModel.ATC_Permissions" Width="1.5" PointX="14.75" PointY="7.75" />
+        <EntityTypeShape EntityType="TMS_CM_ANOnlineModel.ATC_Users" Width="1.5" PointX="14.375" PointY="10.75" />
+        <AssociationConnector Association="TMS_CM_ANOnlineModel.FK_ATC_Functions_ATC_Functions" />
+        <AssociationConnector Association="TMS_CM_ANOnlineModel.FK_ATC_PERM_REFERENCE_ATC_FUNC" />
+        <AssociationConnector Association="TMS_CM_ANOnlineModel.FK_ATC_PERM_REFERENCE_ATC_GROU" />
+        <AssociationConnector Association="TMS_CM_ANOnlineModel.FK_ATC_Users_ATC_Users" />
+        <AssociationConnector Association="TMS_CM_ANOnlineModel.ATC_UserGroup" />
+        <EntityTypeShape EntityType="TMS_CM_ANOnlineModel.ATC_Preferences" Width="1.5" PointX="5.75" PointY="11.25" />
+        <EntityTypeShape EntityType="TMS_CM_ANOnlineModel.HR_CurrentJobtitle" Width="1.5" PointX="8.125" PointY="1.25" />
+        <EntityTypeShape EntityType="TMS_CM_ANOnlineModel.ATC_Employees" Width="1.875" PointX="12.75" PointY="0.5" />
+        <AssociationConnector Association="TMS_CM_ANOnlineModel.FK_ATC_EMPL_RLSH_15_ATC_DEPA" />
+        <AssociationConnector Association="TMS_CM_ANOnlineModel.FK_ATC_EMPL_REFERENCE_ATC_EMPL" />
+        <AssociationConnector Association="TMS_CM_ANOnlineModel.FK_ATC_EMPL_RLSH_14_ATC_JOBT" />
+        <AssociationConnector Association="TMS_CM_ANOnlineModel.FK_ATC_Preferences_ATC_Employees" />
+        <AssociationConnector Association="TMS_CM_ANOnlineModel.FK_ATC_SalaryStatus_ATC_Employees" />
+        <AssociationConnector Association="TMS_CM_ANOnlineModel.FK_ATC_TIME_RLSH_aa_ATC_ASSI" />
+        <AssociationConnector Association="TMS_CM_ANOnlineModel.FK_ATC_Timesheet_ATC_Employees" />
+        <AssociationConnector Association="TMS_CM_ANOnlineModel.FK_ATC_Timesheet_ATC_Employees2002" />
+        <AssociationConnector Association="TMS_CM_ANOnlineModel.FK_ATC_Timesheet2004_ATC_Employees" />
+        <AssociationConnector Association="TMS_CM_ANOnlineModel.FK_ATC_Timesheet2005_ATC_Employees" />
+        <AssociationConnector Association="TMS_CM_ANOnlineModel.FK_ATC_Timesheet2006_ATC_Employees" />
+        <AssociationConnector Association="TMS_CM_ANOnlineModel.FK_ATC_Timesheet2007_ATC_Employees" />
+        <AssociationConnector Association="TMS_CM_ANOnlineModel.FK_ATC_Timesheet2008_ATC_Employees" />
+        <AssociationConnector Association="TMS_CM_ANOnlineModel.FK_ATC_TIMESHEET2009_ATC_Employees" />
+        <AssociationConnector Association="TMS_CM_ANOnlineModel.FK_ATC_Timesheet2011_ATC_Employees" />
+        <AssociationConnector Association="TMS_CM_ANOnlineModel.FK_ATC_Timesheet2012_ATC_Employees" />
+        <EntityTypeShape EntityType="TMS_CM_ANOnlineModel.ATC_Timesheet2016" Width="1.875" PointX="8.5" PointY="25.75" />
+        <EntityTypeShape EntityType="TMS_CM_ANOnlineModel.ATC_AbsenceRequests" Width="2" PointX="2.875" PointY="0.5" />
+        <AssociationConnector Association="TMS_CM_ANOnlineModel.FK_ATC_AbsenceRequests_ATC_Events" />
+        <AssociationConnector Association="TMS_CM_ANOnlineModel.FK_dbo_ATC_AbsenceRequests_dbo_ATC_Employees_Authoriser1_Id" />
+        <AssociationConnector Association="TMS_CM_ANOnlineModel.FK_dbo_ATC_AbsenceRequests_dbo_ATC_Employees_Authoriser2_Id" />
+        <AssociationConnector Association="TMS_CM_ANOnlineModel.FK_dbo_ATC_AbsenceRequests_dbo_ATC_Employees_StaffId" />
+        <EntityTypeShape EntityType="TMS_CM_ANOnlineModel.ATC_EmailTemplate" Width="1.5" PointX="0.5" PointY="4.375" />
+        <EntityTypeShape EntityType="TMS_CM_ANOnlineModel.HR_ReceiveReport" Width="1.5" PointX="10" PointY="1.25" />
+        <EntityTypeShape EntityType="TMS_CM_ANOnlineModel.HR_Employee" Width="1.5" PointX="0.5" PointY="9.5" />
+        <EntityTypeShape EntityType="TMS_CM_ANOnlineModel.ATC_PersonalInfo" Width="1.5" PointX="3.875" PointY="7" />
+        <AssociationConnector Association="TMS_CM_ANOnlineModel.FK_ATC_Employees_ATC_PersonalInfo" />
+        <AssociationConnector Association="TMS_CM_ANOnlineModel.FK_ATC_Users_ATC_PersonalInfo" />
+        <EntityTypeShape EntityType="TMS_CM_ANOnlineModel.ATC_Timesheet2017" Width="2.125" PointX="10.625" PointY="25.875" />
+        <EntityTypeShape EntityType="TMS_CM_ANOnlineModel.ATC_Timesheet2018" Width="2.125" PointX="0.5" PointY="29.25" />
+        <EntityTypeShape EntityType="TMS_CM_ANOnlineModel.ATC_Timesheet2019" Width="2.125" PointX="2.75" PointY="29.25" />
+        <EntityTypeShape EntityType="TMS_CM_ANOnlineModel.ATC_Timesheet2020" Width="2.125" PointX="4.875" PointY="29.25" />
+        
+        <EntityTypeShape EntityType="TMS_CM_ANOnlineModel.ATC_Timesheet2021" Width="2.125" PointX="7.125" PointY="29.25" />
+        <EntityTypeShape EntityType="TMS_CM_ANOnlineModel.ATC_ProjectTracking" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="TMS_CM_ANOnlineModel.ATC_Timesheet2022" Width="2.25" PointX="13.875" PointY="24.75" />
+        <EntityTypeShape EntityType="TMS_CM_ANOnlineModel.ATC_Timesheet2024" Width="2.25" PointX="13.375" PointY="29.25" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

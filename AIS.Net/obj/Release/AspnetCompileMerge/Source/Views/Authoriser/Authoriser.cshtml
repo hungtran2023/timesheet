@@ -1,0 +1,132 @@
+﻿@{
+    ViewBag.Title = "Team Calendar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var CurrentMonth = DateTime.Now.Month;
+    var CurrentYear = DateTime.Now.Year;
+    var GetDataForTeamCalendarUrl = Url.Content("~/Authoriser/GetDataForTeamCalendar");
+    var RejectRequestUrl = Url.Content("~/Authoriser/RejectRequest");
+    var RejectListRequestUrl = Url.Content("~/Authoriser/RejectRequests");
+    var ApproveRequestUrl = Url.Content("~/Authoriser/ApproveRequest");
+    var ApproveListRequestUrl = Url.Content("~/Authoriser/ApproveRequests");
+    var GetRequestsOfStaffsUrl = Url.Content("~/Authoriser/GetRequestsOfStaffs");
+}
+<div class="hide">
+    <input type="hidden" id="RejectManyUrl" value="@RejectListRequestUrl" />
+    <input type="hidden" id="RejectUrl" value="@RejectRequestUrl" />
+    <input type="hidden" id="ApproveManyUrl" value="@ApproveListRequestUrl" />
+    <input type="hidden" id="ApproveUrl" value="@ApproveRequestUrl" />
+    <input type="hidden" id="GetDataForTeamCalendar" value="@GetDataForTeamCalendarUrl" />
+    <input type="hidden" id="loginPageUrl" value="@ViewBag.LoginPageUrl" />
+</div>
+<div id="confirm-notificator" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Confirm</h4>
+            </div>
+            <div class="modal-body">
+                <p id="confirm-notificator__text" class="notify-message"></p>
+                <div class="form-group">
+                    <label>Note:</label>
+                    <textarea id="confirm-notificator__note" class="form-control"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="confirm-notificator__Ok" type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="authorizing">
+    <h3 class="col-xs-12 title">@ViewBag.Title</h3>
+    <div class="authorizing__team-calendar table-responsive">
+        <div id="Alert" class="alert alert-dismissable hide" role="alert">
+            <a href="#" class="close" aria-label="close" title="close">×</a>
+            <strong id="AlertMessageHeader"></strong>
+            <span id="AlertMessage"></span>
+        </div>
+        <table id="team-calendar" data-undefined-text="" data-cache="false">
+            <thead>
+                <tr>
+                    <th data-field="FullName" rowspan="2" class="authorizing__full-name text-left">Full Name</th>
+                    <th colspan="31" class="authorizing__column-day">
+                        <span class="pull-left">Team Calendar of @ViewBag.Manager</span>
+                        <div class="authorizing__button-search"><button class="btn btn-primary" onclick="SearchForTeamCalendar()">Go</button></div>
+                        <div class="authorizing__year-select">@Html.DropDownList("Years", new SelectList(ViewBag.ListOfYears, "Value", "Text", @CurrentYear), new { @class = "form-control input-sm" })</div>
+                        <div class="authorizing__month-select">@Html.DropDownList("Months", new SelectList(ViewBag.ListOfMonths, "Value", "Text", @CurrentMonth), new { @class = "form-control input-sm" })</div>
+                    </th>
+                </tr>
+                <tr class="col-of-days">
+                    <th data-field="Day01.WorkingHours" data-cell-style="CellStyle" class="authorizing__day">1</th>
+                    <th data-field="Day02.WorkingHours" data-cell-style="CellStyle" class="authorizing__day">2</th>
+                    <th data-field="Day03.WorkingHours" data-cell-style="CellStyle" class="authorizing__day">3</th>
+                    <th data-field="Day04.WorkingHours" data-cell-style="CellStyle" class="authorizing__day">4</th>
+                    <th data-field="Day05.WorkingHours" data-cell-style="CellStyle" class="authorizing__day">5</th>
+                    <th data-field="Day06.WorkingHours" data-cell-style="CellStyle" class="authorizing__day">6</th>
+                    <th data-field="Day07.WorkingHours" data-cell-style="CellStyle" class="authorizing__day">7</th>
+                    <th data-field="Day08.WorkingHours" data-cell-style="CellStyle" class="authorizing__day">8</th>
+                    <th data-field="Day09.WorkingHours" data-cell-style="CellStyle" class="authorizing__day">9</th>
+                    <th data-field="Day10.WorkingHours" data-cell-style="CellStyle" class="authorizing__day">10</th>
+                    <th data-field="Day11.WorkingHours" data-cell-style="CellStyle" class="authorizing__day">11</th>
+                    <th data-field="Day12.WorkingHours" data-cell-style="CellStyle" class="authorizing__day">12</th>
+                    <th data-field="Day13.WorkingHours" data-cell-style="CellStyle" class="authorizing__day">13</th>
+                    <th data-field="Day14.WorkingHours" data-cell-style="CellStyle" class="authorizing__day">14</th>
+                    <th data-field="Day15.WorkingHours" data-cell-style="CellStyle" class="authorizing__day">15</th>
+                    <th data-field="Day16.WorkingHours" data-cell-style="CellStyle" class="authorizing__day">16</th>
+                    <th data-field="Day17.WorkingHours" data-cell-style="CellStyle" class="authorizing__day">17</th>
+                    <th data-field="Day18.WorkingHours" data-cell-style="CellStyle" class="authorizing__day">18</th>
+                    <th data-field="Day19.WorkingHours" data-cell-style="CellStyle" class="authorizing__day">19</th>
+                    <th data-field="Day20.WorkingHours" data-cell-style="CellStyle" class="authorizing__day">20</th>
+                    <th data-field="Day21.WorkingHours" data-cell-style="CellStyle" class="authorizing__day">21</th>
+                    <th data-field="Day22.WorkingHours" data-cell-style="CellStyle" class="authorizing__day">22</th>
+                    <th data-field="Day23.WorkingHours" data-cell-style="CellStyle" class="authorizing__day">23</th>
+                    <th data-field="Day24.WorkingHours" data-cell-style="CellStyle" class="authorizing__day">24</th>
+                    <th data-field="Day25.WorkingHours" data-cell-style="CellStyle" class="authorizing__day">25</th>
+                    <th data-field="Day26.WorkingHours" data-cell-style="CellStyle" class="authorizing__day">26</th>
+                    <th data-field="Day27.WorkingHours" data-cell-style="CellStyle" class="authorizing__day">27</th>
+                    <th data-field="Day28.WorkingHours" data-cell-style="CellStyle" class="authorizing__day">28</th>
+                    <th data-field="Day29.WorkingHours" data-cell-style="CellStyle" class="authorizing__day">29</th>
+                    <th data-field="Day30.WorkingHours" data-cell-style="CellStyle" class="authorizing__day">30</th>
+                    <th data-field="Day31.WorkingHours" data-cell-style="CellStyle" class="authorizing__day">31</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <div class="authorizing__color-explain">
+        <div><span class="authorizing__color-explain--shap in-progress"></span><span>In-progress</span></div>
+        <div><span class="authorizing__color-explain--shap authorised"></span><span>Approved</span></div>
+        <div><span class="authorizing__color-explain--shap holiday"></span><span>Public Holiday</span></div>
+    </div>
+    <div class="authorizing__absence-requests text-center">
+        <table id="authorizer-request-list"  data-pagination="true"  data-page-size="@ViewBag.PageSize" data-cache="false" data-click-to-select="false" data-url="@GetRequestsOfStaffsUrl">
+            <thead>
+                <tr>
+                    <th data-formatter="PopupFormatter" data-events="Popovershow" data-field="FullName" data-sortable="true" class="text-left">Full Name</th>
+                    <th data-field="Type" data-sortable="true" class="text-left">Type Of Absence</th>
+                    <th data-field="DateFrom" class="text-left">From</th>
+                    <th data-field="DateTo" class="text-left">To</th>
+                    <th data-field="Total" class="text-left">Total</th>
+                    <th data-field="Balance" class="text-left">Balance</th>
+                    <th data-formatter="ActionFormat" data-events="ActionExecute"> </th>
+                    <th data-checkbox="true"></th>
+                </tr>
+            </thead>
+        </table>
+        <div class="row">
+            <div class="col-xs-12">
+                <span class="pull-left">*Click on each column header to sort the list by alphabetical order.</span>
+                <span class="pull-right ">
+                    <a class="authorizing__absence-requests--reject">Reject </a>
+                </span>
+                <span class="pull-right ">
+                    <a class="authorizing__absence-requests--approve"> Approve </a>
+                </span>
+            </div>
+        </div>
+        <div class="request-list__pagination"> Page  <input type="text" class="request-list__pagination--select-page" id="select-page" value="" />  <a class="request-list__pagination--select-page-btn" id="select-page-btn">Go</a> <span class="request-list__pagination--page-data" id="page-data"> </span> <span class="request-list__pagination--action"> <a id="go-previous">Previous</a> / <a id="go-next">Next</a></span> </div>
+    </div>
+</div>
+@Scripts.Render("~/bundles/authoriser")
+

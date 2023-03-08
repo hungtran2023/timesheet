@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/menu")
+    @Scripts.Render("~/bundles/app")
+    @{
+        var preferenceUrl = AIS.Domain.Common.Constants.StringConstants.PreferenceURL;
+        var logOutUrl = AIS.Domain.Common.Constants.StringConstants.LogOutURL;
+    }
+</head>
+<body>
+    <div id="spinner-loading">
+        <i class="page-spinner fa fa-spin fa-spinner"></i>
+        <div class="overlay"></div>
+    </div>
+    <div class="ais-container">
+        <header>
+            <div>
+                <a href="/timesheet/aisnet/DashBoard/DashBoard"><img src="@Url.Content("~/Content/images/logo_21.gif")" /></a>
+                <span class="name-and-job"><strong>@ViewBag.Name</strong>&nbsp; <span>@ViewBag.Job</span></span>
+            </div>
+
+            <div class="header__nav-wrapper">
+                <img class="header__menu-image" src="@Url.Content("~/Content/images/line-l.gif")" />
+                <ul type="disc" class="nav navbar-nav header__menu">
+                    <li><a   target="_blank" rel="noopener noreferrer" href="/Timesheet/aisnet/Employee/AtlasStaff">Staff Atlas</a></li>
+                    <li><a href="@preferenceUrl">Preferences</a></li>
+                    <li><span class="menu-dot">&bull;</span> <a href="javascript:void(0);">Help</a></li>
+                    <li><span class="menu-dot">&bull;</span> <a href="@logOutUrl">Log out</a></li>
+                </ul>
+            </div>
+            <hr class="header__underline" />
+        </header>
+        <div class="body-content no-padding">
+            <div class="body-content__border body-content__border--left-double"></div>
+            <div class="body-content__content">
+                <div class="body-content__left-menu">
+                    <div class="body-content__left-menu--content">
+                        @foreach (var item in ViewBag.Menu as List<AIS.Domain.Menu.Menu>)
+                        {
+                            Html.RenderPartial("_PartialMenu", item);
+                        }
+                    </div>
+                </div>
+                <div class="body-content__border body-content__border--middle"></div>
+                <div class="body-content__pages">
+                    @RenderBody()
+                </div>
+            </div>
+            <div class="body-content__border body-content__border--right-triple"></div>
+        </div>
+        <footer class="footer text-center">Copyright &copy; 2000-@DateTime.Now.Year Atlas Industries Limited. All Rights Reserved</footer>
+    </div>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

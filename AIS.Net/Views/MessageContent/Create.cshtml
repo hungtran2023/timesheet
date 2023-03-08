@@ -1,0 +1,103 @@
+﻿@model AIS.Data.Model.MessageContentModel
+@{
+    ViewBag.Title = "Create";
+  //  Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_LayoutWithMenu.cshtml";
+}
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>
+@using (Html.BeginForm("Create", "MessageContent", FormMethod.Post))
+{
+    <div class="form-group" style="clear:both">
+        <div class="col-md-10">
+            <label for="exampleInputEmail1" style="font-size: 10pt; font-weight: normal">Title</label>
+        </div>
+        <div class="col-md-6">
+            @Html.TextBoxFor(model => model.Title, new { @class = "form-control", style = "width:515px;" })
+
+        </div>
+    </div>
+
+    <div class="form-group" style="clear:both">
+        <div class="col-md-10">
+            <label for="exampleInputEmail1" style="font-size: 10pt; font-weight: normal">Description</label>
+        </div>
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.Description, new { @class = "form-control content-editor", style = "width:515px;height:80px" })
+        </div>
+    </div>
+
+
+    <div class="form-group" style="clear:both">
+        <div class="col-md-10">
+        </div>
+        <div class="col-md-10" style="margin-top:10px">
+            <button type="submit" class="btn btn-primary right">Save</button>
+        </div>
+    </div>
+
+
+
+}
+<script>
+    $(document).ready(function () {
+
+        $("#Description").summernote({
+            height: 300,                 // set editor height  
+            minHeight: null,             // set minimum height of editor  
+            maxHeight: null,             // set maximum height of editor  
+            focus: true
+        }); 
+
+        //$(".content-editor").summernote({
+        //    height: 300,
+        //    minHeight: null,
+        //    maxHeight: null,
+        //    codemirror: {
+        //        theme: "monokai"
+        //    },
+        //    callbacks: {
+        //        onImageUpload: function (files) {
+        //            for (var i = 0; i < files.length; i++) {
+
+        //                uploadImage(files[i]);
+        //            }
+        //        }
+        //    },
+        //    fontSizes: ['12', '14', '16', '18', '24', '36', '48'],
+        //    toolbar: [
+        //        ['style', ['style']],
+        //        ['font', ['bold', 'underline', 'clear']],
+        //        ['fontname', ['fontname']],
+        //        ['fontsize', ['fontsize']],
+        //        ['color', ['color']],
+        //        ['para', ['ul', 'ol', 'paragraph']],
+        //        ['table', ['table']],
+        //        ['insert', ['link', 'picture', 'video']],
+        //        ['view', ['fullscreen', 'codeview', 'help']],
+        //    ],
+        //});
+        //function uploadImage(file) {
+        //    var formData = new FormData();
+        //    formData.append("uploadedFiles", file);
+        //    $.ajax({
+        //        data: formData,
+        //        type: "POST",
+        //        url: '../MessageContent/UploadFile',
+        //        cache: false,
+        //        contentType: false,
+
+        //        processData: false,
+        //        success: function (FileUrl) {
+        //            alert(FileUrl);
+        //            var imgNode = document.createElement('img');
+        //            imgNode.src = FileUrl;
+        //            $('.content-editor').summernote('insertNode', imgNode);
+        //        },
+        //        error: function (data) {
+        //            alert(data.responseText);
+        //        }
+        //    });
+        //}
+    });
+</script>

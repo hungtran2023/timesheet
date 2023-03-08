@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "ImportFromExcel";
+    //Layout = "~/Views/Shared/_LayoutWithMenu.cshtml";
+}
+
+@using (Html.BeginForm("UploadExcel", "ProjectArchiving", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary();
+    <input type="file" name="postedFile" />
+
+    <div>
+        <input type="submit" button id="upload" value="Import" class="btn-success" />
+    </div>
+}
+      
+

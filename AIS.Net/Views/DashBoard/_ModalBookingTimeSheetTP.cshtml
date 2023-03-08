@@ -1,0 +1,370 @@
+﻿@model AIS.Data.Model.TimeSheetBookingModel
+@{
+   //Layout = "~/Views/Shared/_Layout.cshtml";
+  Layout = "~/Views/Shared/_LayoutWithMenu.cshtml";
+}
+@using (Html.BeginForm("DoBookingTimeSheet", "DashBoard", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true)
+    <input type="hidden" value="@ViewBag.TotalHours" name="totalHours" id="totalHours" />
+
+    <div id="content">
+
+        <div class="form-group">
+            <div class="col-md-10">
+                <label for="exampleInputEmail1" style="font-size:10pt;font-weight:normal">General/Admin:</label>
+                @Html.CheckBoxFor(model => model.IsGenerateAdmin, new { style = "width:100px;height:15px" })
+
+            </div>
+
+        </div>
+
+        <div id="subtakDisplay" style="display:block">
+            <div class="form-group">
+                <div class="col-md-10">
+                    <label for="exampleInputEmail1" style="font-size:10pt;font-weight:normal">Projects:</label>
+                </div>
+
+                <div class="col-md-10">
+                    @*@Html.LabelFor(model => Model.APK, new { @class = "control-label" })*@
+                    @Html.TextBoxFor(model => Model.NameProject, new { @class = "form-control", style = "width:515px;" })
+
+                    @Html.HiddenFor(model => Model.APK)
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-10">
+                    <label for="exampleInputEmail1" style="font-size:10pt;font-weight:normal">Sub Task:</label>
+                </div>
+
+                <div class="col-md-10">
+
+                    @Html.DropDownList("SubtaskID", Model.subTasks, new { @class = "form-control col-md-10", style = "width:515px;" })
+
+                </div>
+
+            </div>
+        </div>
+        <div class="form-group" style="clear:both">
+            <div class="col-md-10">
+                <label for="exampleInputEmail1" style="font-size: 10pt; font-weight: normal">Current Dates</label>
+            </div>
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.CurrentDay, new { @class = "form-control col-md-10", style = "width:515px;" })
+            </div>
+        </div>
+        <div class="form-group" style="clear:both">
+            <div class="col-md-10">
+                <label for="exampleInputEmail1" style="font-size: 10pt; font-weight: normal">Normal Hours</label>
+            </div>
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Hours, new { @class = "form-control col-md-10", style = "width:515px;" })
+
+            </div>
+        </div>
+
+        <div class="form-group" style="clear:both">
+            <div class="col-md-10">
+                <label for="exampleInputEmail1" style="font-size: 10pt; font-weight: normal">Note</label>
+            </div>
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Note, new { @class = "form-control", style = "width:515px;height:80px" })
+            </div>
+        </div>
+      
+        @*<div class="modal-footer" style="clear: both; border-top: 1px solid white;padding:unset;margin-left:0px">
+
+            </div>*@
+
+        <div class="col-md-10" style="padding-top:13px;margin-left:405px">
+            @Html.ActionLink("Back", "DashBoard", "DashBoard", null, new { @class = "btn-custom" })
+            <input type="submit" value="Sumbit" class="btn btn-primary" id="btnsumbit" />
+
+        </div>
+
+
+    </div>
+    <div class="col-md-10" style="padding-top:13px;">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="height:330px">
+            <tr>
+                <td bgcolor="#FFFFFF" valign="top">
+                    <table @*class="tablesorter"*@ id="tblTimeSheetLog">
+                        <thead>
+                            <tr>
+                                <th style="width:500px; text-align:left">
+                                    @Html.Label("Task")
+                                </th>
+                                <th style="width: 200px; text-align: left">@Html.Label("Hours")</th>
+                                <th style="width:400px; text-align:left">@Html.Label("Note")</th>
+
+                            </tr>
+                        </thead>
+                        <tbody style="font-family:Arial,Verdana;font-size:8pt">
+                            @if (Model != null)
+                            {
+                                foreach (var type in Model.resultBooks)
+                                {
+                                    <tr style="text-align: left; height: 34px; padding-left: 10px; background: #ffffff">
+                                        <td style="padding-left:10px;"><a href="/timesheet/tms/timesheet.asp">@type.Name</a></td>
+                                        <td style="padding-left: 10px;">@type.Hours</td>
+                                        <td style="padding-left: 10px;">@type.Note</td>
+
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+}
+
+<style type="text/css">
+    body {
+        font-family: Arial;
+        font-size: 10pt;
+    }
+
+    .ui-autocomplete {
+        overflow: auto;
+        max-height: 100px;
+        width: 515px;
+    }
+
+    .ui-helper-hidden-accessible {
+        display: none;
+    }
+
+    .modal-footer {
+        text-align: unset;
+    }
+</style>
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/start/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+    $("#Hours").on("keypress keyup blur", function (event) {
+        //this.value = this.value.replace(/[^0-9\.]/g,'');
+        $(this).val($(this).val().replace(/[^0-9\.]/g, ''));
+        if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+            event.preventDefault();
+        }
+    });
+    $("#Hours").change(function () {
+        debugger;
+        var value = $(this).val();
+        var totalHours = $("#totalHours").val();
+        var subtaskID = $("#SubtaskID").val();
+
+        var check = $('#IsGenerateAdmin').val();
+     
+        if (value == "0") {
+            $('#btnsumbit').prop("disabled", true);
+            return;
+        }
+        else {
+            $('#btnsumbit').removeAttr("disabled", true);
+        }
+        var sum = Number(value) + Number(totalHours);
+     
+        if (sum > 8) {
+            $('#btnsumbit').prop("disabled", true);
+        }
+        else {
+            $('#btnsumbit').removeAttr("disabled", true);
+        }
+     
+    });
+    $(document).ready(function () {
+        debugger;
+
+        var value = $("#Hours").val();
+        if (value == "0") {
+            $('#btnsumbit').prop("disabled", true);
+        }
+        else {
+            $('#btnsumbit').removeAttr("disabled", true);
+        }
+
+        debugger;
+        $("#IsGenerateAdmin").prop("checked", false);
+        var valueNameProject = $("#NameProject").val();
+
+        var subtaskID = $("#SubtaskID").val();
+        var checkGenerate = $("#IsGenerateAdmin").val();
+
+        if (checkGenerate == "false") {
+            if (valueNameProject == "" || subtaskID == "-1") {
+                $('#btnsumbit').prop("disabled", true);
+            }
+            else {
+                $('#btnsumbit').removeAttr("disabled", true);
+            }
+        }
+        $("#btnsumbit").click(function () {
+
+            //$("#subtakDisplay").show();
+            //  $("#IsGenerateAdmin").prop("checked", false);
+            $("#NameProject").val('');
+            //$("#Hours").val('0');
+            //$("#Note").val('')
+            // $("#subtakDisplay").hide();
+
+        });
+
+        $('#IsGenerateAdmin').change(function () {
+            debugger;
+             $("#Hours").val('0');
+            $("#Note").val('');
+            if (this.checked) {
+
+                $("#subtakDisplay").hide();
+
+                $(this).prop("checked", true);
+                var value = $("#Hours").val();
+
+                if (value == "0") {
+                    $('#btnsumbit').prop("disabled", true);
+                }
+                else {
+                    $('#btnsumbit').removeAttr("disabled", true);
+                }
+
+            }
+            else {
+
+                $("#subtakDisplay").show();
+                $(this).prop("checked", false);
+                var valueproject = $("#NameProject").val();
+                var subtaskID = $("#SubtaskID").val();
+                
+
+                if (valueproject != "" && subtaskID!="-1") {
+                    $('#btnsumbit').removeAttr("disabled", true);
+
+                }
+                else {
+                    $('#btnsumbit').prop("disabled", true);
+                }
+
+
+            }
+
+
+            //   $('#IsGenerateAdmin').val(this.checked);
+        });
+
+        $("#SubtaskID").change(function () {
+            debugger;
+            var valueproject = $("#NameProject").val();        
+            var value = $(this).val();
+            var hours = $("#Hours").val();
+            //if (value == "0") {
+            //    $('#btnsumbit').prop("disabled", true);
+            //}
+            //else {
+            //    $('#btnsumbit').removeAttr("disabled", true);
+            //}
+            if (valueproject != "") {
+                if (value == "-1" || hours=="0") {
+                    $('#btnsumbit').prop("disabled", true);
+                }
+                else {
+                    $('#btnsumbit').removeAttr("disabled", true);
+                }
+            }
+
+          
+        });
+
+        $("#NameProject").autocomplete({
+
+            source: function (request, response) {
+                $.ajax({
+                    url: '@Url.Action("GetAPKAutoComplete", "Dashboard")',
+                    datatype: "json",
+                    data: {
+
+                        term: request.term
+                    },
+                    success: function (data) {
+                        response($.map(data, function (val, item) {
+                            return {
+                                label: val.Name,
+                                value: val.Name,
+                                APK: val.APK
+                            }
+                        }))
+                    }
+                })
+            },
+            select: function (event, ui) {
+                //   event.preventDefault();
+                $("#APK").val(ui.item.APK);
+
+            },
+            create: function () {
+                $(this).data('ui-autocomplete')._renderItem = function (ul, item) {
+                    return $('<li>')
+                        .append('<div id="ui-id-6" tabindex="-1" class="ui-menu-item-wrapper">'
+                            + item.label + '<br> <span style="font-size:smaller;">' + item.APK + '</span></div>')
+                        .appendTo(ul);
+                };
+            }
+
+
+
+
+
+        });
+
+        $("#NameProject").change(function () {
+       
+            var checkGenerate = $("#IsGenerateAdmin").val();
+      
+                var checkName = $(this).val();
+
+                if (checkName == "") {
+                    $('#btnsumbit').prop("disabled", true);
+                }
+                else {
+                    $('#btnsumbit').removeAttr("disabled", true);
+                }
+          
+          
+                var value = $("#APK").val();
+
+
+                $.ajax({
+                    url: '@Url.Action("LoadSubtaskValues", "Dashboard")',
+                    datatype: "json",
+                    data: {
+
+                        apk: value
+                    },
+                    success: function (data) {
+                        var select = $("#SubtaskID");
+                        select.empty();
+                        $.each(data, function (index, itemData) {
+                            select.append($('<option/>', {
+                                value: itemData.Value,
+                                text: itemData.Text
+                            }));
+                        });
+                    }
+
+                })
+            
+            
+
+            });
+    
+    });
+
+</script>

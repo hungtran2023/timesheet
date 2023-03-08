@@ -1,0 +1,61 @@
+﻿@model AIS.Domain.Menu.Menu
+@{
+    var attr = "";
+    var id = Model.Name.Replace(' ', '-');
+    var cssClass = "menu-link";
+    if (Model.Children.Count == 0)
+    {
+        cssClass += "selected-menu";
+    }
+    var baseURL = AIS.Domain.Common.Constants.StringConstants.BaseUrl;
+}
+@if (Model.Link != "")
+{
+
+    
+        attr = String.Format("href='{0}{1}'", baseURL, Model.Link);
+}
+else
+{
+    attr = String.Format("data-menu-toggle='{0}'", id);
+}
+<div>
+    @if (Model.Name == "Atlas Staff")
+    {
+        <a @Html.Raw(attr) target='_blank' rel='noopener noreferrer'  class="@cssClass" data-selected="@id" >@Model.Name</a>
+    }
+    else
+    {
+        <a @Html.Raw(attr) class="@cssClass" data-selected="@id">@Model.Name</a>
+
+    }
+    @if (Model.Name == "Atlas Staff")
+    {
+        @*<span class="username-span"><img src="~/Content/images/new.gif" /></span>*@
+        @*<font color='#CA0000'></font> <img src="~/Content/images/new.gif" style="margin-top:-20px;" />*@
+    }
+    @if (Model.Name == "Log out")
+    {
+        <span class="username-span">@ViewBag.UserName</span>
+    }
+</div>
+@if (Model.Children.Count > 0)
+{
+    <ul data-menu-toggle="@id" class="hide">
+        @foreach (var item in Model.Children)
+        {
+           
+            <li>
+                @if (item.Children.Count > 0)
+                {
+                    @Html.Partial("_PartialMenu", item)
+                    }
+                    else
+                    {
+                        var itemURL = String.Format("{0}{1}", baseURL, item.Link);
+                        <span class="menu-dot">&bull;</span><a href="@itemURL" class="selected-menu no-bold"> @item.Name</a>
+                  }
+            </li>
+        }
+    </ul>
+}

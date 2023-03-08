@@ -1,0 +1,274 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html lang="en">
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
+<meta http-equiv="Content-Language" content="en"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Atlas Industries Timesheet System</title>
+<head>
+<link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="../../bootstrap/css/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css">
+
+<link href="../../css/timesheet.css" rel="stylesheet" >
+<link href="../../css/style.css" rel="stylesheet" type="text/css">  
+<style>
+.test {
+  width: 97%;
+}
+
+.rowcontent
+{
+	padding-left:45px
+}
+
+.filterable .filters input[disabled] {
+    background-color: transparent;
+    border: none;
+    cursor: auto;
+    box-shadow: none;
+    padding: 0;
+    height: auto;
+	color: white;
+	font-weight: bold;
+    font-size: 12px;
+    font-family: arial;
+	
+}
+
+.filterable .filters input[disabled]::-webkit-input-placeholder {
+    color: white;
+
+}
+.filterable .filters input[disabled]::-moz-placeholder {
+    color: white;
+
+}
+.filterable .filters input[disabled]:-ms-input-placeholder {
+    color: white;
+
+}
+
+</style>
+
+</head>
+<body data-pinterest-extension-installed="cr1.39.1">
+<!----AIS header-->
+<table width="95%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tbody>
+  <tr> 
+    <td height="85" valign="top"> 
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tbody>
+        <tr> 
+          <td width="525"><img src="../../templates/template1/images/logo_21.gif" width="428" height="61"></td>
+          <td  class="red" align="right" valign="bottom"><b>Chi Nguyen Tai Uyen</b>&nbsp;Software Development Manager</td>
+        </tr>
+         </tbody>
+      </table>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" height="24">
+      <tbody>
+        <tr> 
+          <td height="24" width="1" valign="top"><img src="../../templates/template1/images/l-02.gif" width="1" height="24"></td>
+          <td height="24" background="../../templates/template1/images/l-01.gif" valign="top"> 
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tbody>
+              <tr> 
+                <td width="334"><img src="../../templates/template1/images/line-l.gif" width="334" height="24"></td>
+                <td align="right" class="blue"><div align='right'><a href='../../welcome.asp?choose_menu=B' class='c' onMouseOver='self.status=&quot;Return Main menu&quot;; return true;' onMouseOut='self.status=&quot;&quot;'>Main Menu</a>&nbsp;&nbsp;&nbsp;<img src='../../images/dot.gif' width='5' height='5'>&nbsp;&nbsp;&nbsp;<a href='http://ais/timesheet/tools/preferences.asp' class='c' onMouseOver='self.status=&quot;Preferences&quot; ; return true;' onMouseout='self.status=&quot;&quot;'>Preferences</a>&nbsp;&nbsp;&nbsp;<img src='../../images/dot.gif' width='5' height='5'>&nbsp;&nbsp;&nbsp;<a href='javascript: void(0);' class='c' onMouseOver='self.status=&quot;Help&quot; ; return true;' onMouseout='self.status=&quot;&quot;'>Help</a>&nbsp;&nbsp;&nbsp;<img src='../../images/dot.gif' width='5' height='5'>&nbsp;&nbsp;&nbsp<a href='http://ais/timesheet/logout.asp' class='c' onMouseOver='self.status=&quot;Log out&quot; ; return true;' onMouseout='self.status=&quot;&quot;'>Log out</a>&nbsp;&nbsp;&nbsp;</div></td>
+              </tr>
+               </tbody>
+            </table>
+          </td>
+          <td width="1" height="24" valign="top"><img src="../../templates/template1/images/l-02.gif" width="1" height="24"></td>
+        </tr>
+         </tbody>
+      </table>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+       <tbody>
+        <tr> 
+          <td colspan="10" background="../../templates/template1/images/l-03-3a.gif"><img src="../../templates/template1/images/l-03-3a.gif" width="1" height="7"></td>
+        </tr>
+         </tbody>
+      </table>
+    </td>
+  </tr>
+   </tbody>
+</table>
+<!----END AIS header-->
+
+<!----AIS content-->
+<div class="container-fluid" >
+	<div class="row rowcontent">
+		<h3>Summary of TP Hours</h3>
+		<form class="form-inline"  id="frmSearch" method="post" >
+			<div class="form-group" id="sandbox-container">
+				<label for="week" class="control-label" style="padding-left:20px">Select</label>
+				<div class="input-daterange input-group" id="datepicker">
+					<span class="input-group-addon">from</span>
+					<input type="text" class="input-sm form-control" name="start" />
+					<span class="input-group-addon">to</span>
+					<input type="text" class="input-sm form-control" name="end" />
+				</div>
+			</div>
+			<button type="submit" class="btn  btn-primary" id="btnSearch">Submit</button>
+			<input type="hidden" id="txtstartDate" name="txtstartDate" value="10/10/2020">
+			
+		</form>
+	</div>
+	
+	<div class="row rowcontent" >
+		<div class="test" style="background-color: lightblue;">	
+			<button type="button" class="btn btn-default btn-filter" style="float: right;margin-bottom:10px"><span class="glyphicon glyphicon-filter"></span> Filter</button>				
+		</div>
+
+		<div class="filterable" >
+			<table class="test table">
+			  <thead style="background-color:#8ca0d1">
+			  <tr class="filters" style="background-color:#8ca0d1">
+				<th style="width:15%" scope="col"><input type="text" class="form-control blue-normal" placeholder="Full Name" disabled></th>
+				<th style="width:25%" scope="col"><input type="text" class="form-control blue-normal" placeholder="Company" disabled></th>
+				<th style="width:15%" scope="col"><input type="text" class="form-control blue-normal" placeholder="APK" disabled></th>
+				<th style="width:15%" scope="col"><input type="text" class="form-control blue-normal" placeholder="Subtask" disabled></th>
+				<th style="width:10%" scope="col">Hours</th>
+				<th style="width:10%" scope="col">Overtime</th>
+				<th style="width:10%" scope="col">Total</th>
+			  </tr>
+			  </thead>
+			  <tbody id="myTable">
+			   <tr>
+				<td>Anh Le Tuan</td>
+				<td>An Phat Ltd</td>
+				<td>AAH0005010LHK2K</td>
+				<td>Working Drawings-TP</td>
+				<td>32</td>
+				<td></td>
+				<td>32</td>
+			  </tr>
+			   <tr>
+				<td>Chinh Nguyen Van</td>
+				<td>An Phat Ltd	</td>
+				<td>AAH0005010LHK2K</td>
+				<td>Working Drawings-TP</td>
+				<td>40</td>
+				<td></td>
+				<td>40</td>
+			  </tr>
+			  
+			   <tr>
+				<td>Nhi Nguyen Thi Yen</td>
+				<td>Freelance</td>
+				<td>PER0012050LUS4B</td>
+				<td>Working Drawings-TP</td>
+				<td>24</td>
+				<td></td>
+				<td>24</td>
+			  </tr>
+			  <tr>
+				<td>Nhi Nguyen Thi Yen</td>
+				<td>Freelance</td>
+				<td>TAK0139010LSG4F</td>
+				<td>Working Drawings-TP</td>
+				<td>16</td>
+				<td></td>
+				<td>16</td>
+			  </tr>
+			  </tbody>
+			  <tfoot>
+				<tr style="background-color:#8ca0d1">
+				  <td colspan=4 style="text-align:right">Total</td>
+				  <td>$180</td>
+				  <td>$180</td>
+				  <td>$180</td>
+				</tr>
+			</tfoot>
+			</table>
+		</div>
+			
+    </div> 
+
+</div>	
+
+
+
+<!----END AIS content-->
+
+
+<!--<h2>Filterable Table</h2>
+<p>Type something in the input field to search the table for first names, last names or emails:</p>  
+<input id="myInput" type="text" placeholder="Search..">
+<br><br>
+
+
+  
+<p>Note that we start the search in tbody, to prevent filtering the table headers.</p>-->
+
+</body>
+</html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" charset="UTF-8"></script>
+<script type="text/javascript" src="../../js/library.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function(){
+	$('#sandbox-container .input-daterange').datepicker();
+	
+	 $('.btn-filter').click(function(){
+        var $row = $(this).parents('.row'),
+		$panel = $row.find('.filterable'),
+        $filters = $panel.find('.filters input'),
+        $tbody = $panel.find('.table tbody');
+		
+        if ($filters.prop('disabled') == true) {
+            $filters.prop('disabled', false);
+            $filters.first().focus();
+        } else {
+            $filters.val('').prop('disabled', true);
+            $tbody.find('.no-result').remove();
+            $tbody.find('tr').show();
+        }
+    });
+	
+	$('.filterable .filters input').keyup(function(e){
+        /* Ignore tab key */
+        var code = e.keyCode || e.which;
+        if (code == '9') return;
+
+        /* Useful DOM data and selectors */
+        var $input = $(this),
+        inputContent = $input.val().toLowerCase(),
+		$rowss = $(this).parents('.row'),
+		$panel = $rowss.find('.filterable'),
+		
+        column = $panel.find('.filters th').index($input.parents('th')),
+        $table = $panel.find('.table'),
+        $rows = $table.find('tbody tr');
+
+		 /*clear all input */
+		 
+        /* Dirtiest filter function ever ;) */
+        var $filteredRows = $rows.filter(function(){
+            var value = $(this).find('td').eq(column).text().toLowerCase();
+            return value.indexOf(inputContent) === -1;
+        });
+
+        /* Clean previous no-result if exist */
+        $table.find('tbody .no-result').remove();
+        /* Show all rows, hide filtered ones (never do that outside of a demo ! xD) */
+        $rows.show();
+        $filteredRows.hide();
+        /* Prepend no-result row if all rows are filtered */
+        if ($filteredRows.length === $rows.length) {
+            $table.find('tbody').prepend($('<tr class="no-result text-center"><td colspan="'+ $table.find('.filters th').length +'">No result found</td></tr>'));
+        }
+		
+		var $inputClears=$panel.find('.filters input');		 
+		$inputClears.val('');
+		
+		$input.val(inputContent);
+    });	
+	
+});
+</script>

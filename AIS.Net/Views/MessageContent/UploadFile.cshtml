@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.Title = "UploadFile";
+    // Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_LayoutWithMenu.cshtml";
+    var userId = Request.QueryString["UserId"].ToString();
+}
+@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>*@
+
+@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>*@
+<h3 style="margin-left:14px">Upload Image Personal</h3>
+
+@using (Html.BeginForm("UploadFileImage", "MessageContent", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+    <input name="UserId" value="@userId" type="hidden" />
+    <input style=" margin-left:14px" type="file" id="file" name="file" /> 
+
+    <div class="form-group" style="clear:both">
+        <div class="col-md-10">
+        </div>
+        <div class="col-md-10" style="margin-top:10px">
+            <button type="submit" class="btn btn-primary right" name="btnSaved" id="btnSaved">Upload</button>
+        </div>
+        <label>Please press button refresh after upload image finished!</label>
+    </div>
+
+}
+
+<script>
+    $(document).ready(function () {
+
+
+
+    });
+</script>
+

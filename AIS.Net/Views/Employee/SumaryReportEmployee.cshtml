@@ -1,0 +1,252 @@
+﻿@model List<AIS.Data.Model.ReportSumaryProjectEmployee>
+@{
+    ViewBag.Title = "Summary of employee records";
+   // Layout = "~/Views/Shared/_LayoutWithMenu.cshtml";
+}
+@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>*@
+<script src="~/Scripts/ais/Archive/jquery.min.js"></script>
+@*<script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap.js"></script>*@
+<script src="~/Scripts/ais/Archive/bootstrap.js"></script>
+
+<link href="~/Content/style/Table/tablestyle.css" rel="stylesheet" />
+@*<link href="https://cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css" rel="stylesheet" />*@
+<link href="~/Content/style/Table/jquery.dataTables.min.css" rel="stylesheet" />
+@*<script src="https://cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>*@
+<script src="~/Scripts/ais/Archive/jquery.dataTables.min.js"></script>
+<form id="frm-example" name="frm-example">
+    <div class="container">
+
+        <div class="row">
+            <div class="col">
+                <table>
+                    <tr style="background-color: white">
+                        <td>  <input type="text" class="form-control" id="searchFilter" placeholder="search" name="email" style="width:300px;margin-left:300px;margin-bottom:50px;"></td>
+
+                        <Td> @Html.DropDownList("projectsector", new SelectList(ViewBag.ProjectSectors, "Value", "Text", ""), new { @class = "form-control", @style = "margin-bottom: 50px;" })</Td>
+
+                        <Td> @Html.DropDownList("projectservice", new SelectList(ViewBag.ProjectServices, "Value", "Text", ""), new { @class = "form-control", style = "margin-bottom: 50px;" })</Td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col">
+
+            </div>
+        </div>
+
+    </div>
+
+    <div id="displayrecord">
+        <div class="table-responsive">
+            @Html.Partial("_SumarySectorEmployee", Model)
+        </div>
+    </div>
+
+</form>
+<div class="modal fade" id="typeMessageClose" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-body table-placeholder-Message">
+                <h4 class="modal-title" id="defaultModalLabel">Please choose one APK to process! Please re-checked help!</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn" id="btnCancel">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="spinner" style="display:none">
+    <div class="center-div">
+        <div class="inner-div">
+            <div class="loader"></div>
+        </div>
+    </div>
+</div>
+<style>
+    .table tr {
+        text-align: left;
+    }
+
+    .dataTables_filter input {
+        height: 30px;
+        width: 200px;
+        /*border: 2px solid;*/
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    .alignLeft {
+        text-align: left;
+        padding-left: 5px;
+    }
+
+    .alignCenter {
+        text-align: center;
+    }
+
+    .dataTables_filter {
+        display: none;
+    }
+
+        .dataTables_filter input {
+            height: 30px;
+            width: 200px;
+            /*   border: 2px solid;*/
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-top: 20px;
+            text-align: left !important;
+        }
+
+    .searchbox {
+        clear: both;
+        margin-left: 300px !important;
+        display: block;
+        width: 20%;
+        height: 34px;
+        padding: 6px 12px;
+        font-size: 14px;
+        line-height: 1.42857143;
+        color: #555;
+        /*      background-color: #fff;*/
+        background-image: none;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    .btnclose {
+        margin-right: 2px;
+    }
+
+    .formatH2 {
+        margin-left: 10px;
+        margin-top: -35px;
+        font-weight: normal
+    }
+
+    .center-div {
+        width: 300px;
+        height: 300px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin-left: -150px;
+        margin-top: -150px;
+    }
+
+    .spinner {
+        position: fixed;
+        z-index: 999;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+        background-color: Black;
+        filter: alpha(opacity=60);
+        opacity: 0.6;
+        -moz-opacity: 0.8;
+    }
+
+    .loader {
+        margin: auto;
+        border: 16px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 16px solid #15a0ec;
+        border-bottom: 16px solid #15a0ec;
+        width: 120px;
+        height: 120px;
+        -webkit-animation: spin 2s linear infinite;
+        animation: spin 2s linear infinite;
+    }
+
+    .inner-div {
+        background-color: white;
+        border-radius: 15px;
+        margin: auto;
+        padding: 2%;
+        width: 150px;
+    }
+
+    @@-webkit-keyframes spin {
+        0% {
+            -webkit-transform: rotate(0deg);
+        }
+
+        100% {
+            -webkit-transform: rotate(360deg);
+        }
+    }
+
+    @@keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+</style>
+<script>
+    $(document).ready(function () {
+
+
+        $('#projectsector').change(function () {
+
+            var value = $(this).val();
+            var servicecode = $('#projectservice').val();
+            $('.spinner').css('display', 'block');
+            jQuery.ajax({
+                type: "POST",
+                url: './ChangeProjectSector',
+                data: {
+                    projectsector: value,
+                    projectservice: servicecode
+
+                },
+                success: function (result) {
+                    debugger;
+
+                    $('#displayrecord').html("");
+
+                    $('#displayrecord').html(result);
+                    $('.spinner').css('display', 'none');
+
+                }
+            });
+
+        });
+        $('#projectservice').change(function () {
+            debugger;
+            var value = $(this).val();
+            var sector = $('#projectsector').val();
+
+            $('.spinner').css('display', 'block');
+            jQuery.ajax({
+                type: "POST",
+                url: './ChangeProjectService',
+                data: {
+                    projectservice: value,
+                    projectsector: sector
+                },
+                success: function (result) {
+
+
+                    $('#displayrecord').html("");
+                    $('#displayrecord').html(result);
+                    $('.spinner').css('display', 'none');
+
+                }
+            });
+
+        });
+        InitMenu();
+       
+    });
+
+    function InitMenu() {
+        $("ul[data-menu-toggle=Reporting]").removeClass("hide");
+        $("a[data-menu-toggle=Reporting]").addClass("selected-menu");
+        $("ul[data-menu-toggle=Reporting]").removeClass("hide");
+        $("a[data-menu-toggle=Reporting]").addClass("selected-menu");
+    }
+</script>

@@ -1,0 +1,221 @@
+﻿
+@{
+    ViewBag.Title = "EmployeeProfile";
+   // Layout = "~/Views/Shared/_LayoutWithMenu.cshtml";
+}
+
+<h2>EmployeeProfile</h2>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="tab-content employee-details-form">
+            <div class="row">
+                <div class="col-md-12 col-sm-6 col-xs-12">
+                    <form class="form-horizontal row-border" id="contactForm" method="POST">
+                       
+                        @*<div id="messages" class="alert alert-danger">
+                            <strong>Error:</strong> Indicates a dangerous or potentially negative action.
+                        </div>*@
+                        
+                        <div class="panel panel-default">
+                            <div class="panel-heading clearfix">
+                                <i class="icon-calendar"></i>
+                                <h3 class="panel-title">Personal Information</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="col-sm-6">
+                                    <div class="row">
+
+                                        <div class="col-md-3">
+                                            <img id="imageProfile" name="imageProfile" height="130" hspace="0" src="http://vnhcmcode/Timesheet/aisnet/Data/photos/<%=strPhoto%>.jpg?dummy=371662" width="100" onclick="onUploadImage();"
+                                                 onerror="this.src='http://ais.atlasindustries.com/staff/images/male.jpg;">
+                                            <!--	<button type="button"  style="margin-top:5px;" name="btnimage" id = "btnimage">Refresh</button>-->
+                                        </div>
+                                        <div class="col-md-9">
+                                            <div class="form-group">
+                                                <label class="col-md-12">First name</label>
+                                                <div class="col-md-12">
+                                                    <input type="text" id="txtFirstName" name="txtFirstName" class="form-control" placeholder="Enter first name" >
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-12">Last name</label>
+                                                <div class="col-md-12">
+                                                    <input type="text" id="txtLastName" name="txtLastName" class="form-control" placeholder="Enter last name">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-12">Gender</label>
+                                                <div class="col-md-12">
+                                                    <div class="col-md-1 no-padding width-auto">
+                                                        <input type="radio" name="radGender" id="radMale" value="1" class="no-padding" />
+                                                               
+                                                    </div>
+                                                    <label class="col-md-3 padding-left5 no-blod" for="radMale">Male</label>
+                                                    <div class="col-md-1 no-padding width-auto">
+                                                        <input type="radio" name="radGender" id="radFemale" value="0" class="no-padding" />
+                                                    </div>
+                                                    <label class="col-md-3 padding-left5 no-blod" for="radFemale">Female</label>
+                                                </div>
+                                                <div id="radGenderMessage" class="col-md-12" style="margin-bottom:0px;"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <label class="col-md-12">Date of Birth</label>
+                                            <div class="col-md-12">
+                                                <div class="input-group date">
+                                                    <input type="text" id="txtBirthDate" name="txtBirthDate" class="form-control datepicker" placeholder="DD/MM/YYYY" />
+                                                    <span class="input-group-addon">
+                                                        <span class="ic-calendar"></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-md-12">Card Number</label>
+                                            <div class="col-md-12">
+                                                <input type="text" id="txtCardNumber" name="txtCardNumber" class="form-control" />
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-6 no-padding">
+                                                <label class="col-md-12">Passport</label>
+                                                <div class="col-md-12">
+                                                    <input type="text" id="txtPassport" name="txtPassport" class="form-control" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 no-padding">
+                                                <label class="col-md-12">Expired date</label>
+                                                <div class="col-md-12">
+                                                    <div class="input-group date">
+                                                        <input type="text" id="txtExpireddate" name="txtExpireddate" class="form-control datepicker" placeholder="DD/MM/YYYY" />
+                                                        <span class="input-group-addon">
+                                                            <span class="ic-calendar"></span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-12">Nationality</label>
+                                            <div class="col-md-12">
+                                                <select id="lstNationality" name="lstNationality" class="form-control">
+                                                    <%=strNationality%>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="col-md-12">Tax code</label>
+                                        <div class="col-md-12">
+                                            <input type="text" id="txtTaxcode" name="txtTaxcode" class="form-control" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-12">Insurance Book No.</label>
+                                        <div class="col-md-12">
+                                            <input type="text" id="txtInsurance" name="txtInsurance" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12">Private Email</label>
+                                        <div class="col-md-12">
+                                            <input type="text" id="txtPrivateEmail" name="txtPrivateEmail" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12">Marital status</label>
+                                        <div class="col-md-12">
+                                            <select id="lstMarialstatus" name="lstMarialstatus" class="form-control">
+                                                <option value="0">Single</option>
+                                                <option value="1">Married</option>
+                                                <option value="2">Separated</option>
+                                                <option value="3">Divorced</option>
+                                                <option value="4">Widowed</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12">Bank account 1</label>
+                                        <div class="col-md-12">
+                                            <input type="text" id="txtBankAcc1" name="txtBankAcc1" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12">Bank account 2</label>
+                                        <div class="col-md-12">
+                                            <input type="text" id="txtBankAcc2" name="txtBankAcc2" class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-heading clearfix">
+                                <i class="icon-calendar"></i>
+                                <h3 class="panel-title">Contact Information</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="col-md-12">Current address</label>
+                                        <div class="col-md-12">
+                                            <input type="text" id="txtCurrentAddr" name="txtCurrentAddr" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12">Home address</label>
+                                        <div class="col-md-12">
+                                            <input type="text" id="txtHomeAddr" name="txtHomeAddr" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12">Mobile phone</label>
+                                        <div class="col-md-12">
+                                            <input type="text" id="txtMobile" name="txtMobile" class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="col-md-12">Contact Vietnam</label>
+                                        <div class="col-md-12">
+                                            <input type="text" id="txtContactVN" name="txtContactVN" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12">Home country</label>
+                                        <div class="col-md-12">
+                                            <input type="text" id="txtHomeCountry" name="txtHomeCountry" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12">Emergency</label>
+                                        <div class="col-md-12">
+                                            <input type="text" id="txtEmergency" name="txtEmergency" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12">
+                            <div class="form-group text-right">
+
+                                <button type="submit" id="btnNext" class="btn btn-primary btnNext">Save & Next</button>
+                                <button type="button" id="btnCancel" class="btn btn-default">Cancel</button>
+                            </div>
+                        </div>
+                        <input type="hidden" name="txtuserid" id="txtuserid" />
+                        <input type="hidden" name="txtstatus" />
+                        <input type="hidden" name="txtPhoto" id="txtPhoto" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

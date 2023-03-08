@@ -1,0 +1,78 @@
+﻿@import "variables.less";
+
+table{
+
+    th{
+        background-color: @table-header-bg-color;
+        color: @white-color;
+        text-align:center !important;
+        border: 1px solid @table-border-color !important;
+
+        &.weekend-saturday,&.weekend-sunday, &.authorizing__full-name{
+             background-color: @table-header-bg-color;
+        }
+    }
+
+    tr{
+        background-color: @table-body-bg-color;
+        color: @main-color;
+        text-align:center;
+    }
+
+    td{
+        padding: 5px !important;
+        border: 1px solid @table-border-color !important;
+
+        &.text-left{
+            padding-left: 10px !important;
+        }
+    }
+
+    .sortable
+    {
+        &.desc{
+            background-image: url(../../images/desc.gif) !important;
+        }
+
+        &.asc{
+            background-image: url(../../images/asc.gif) !important;
+        }
+    }
+
+    .light-text-row{
+        background-color: @table-header-bg-color;
+        color: @white-color;
+    }
+
+    .light-number-row{
+        background-color: @table-total-row-bg-color;
+        color: @link-hover;
+    }
+
+    .dark-row{
+        background-color: @table-body-bg-dark-color;
+        color: @main-color;
+        padding-left: 15px !important;
+    }
+
+    label{
+        margin-bottom: 0;
+    }
+}
+
+//Custom Bootstrap Table
+.fixed-table-container tbody td .th-inner,
+.fixed-table-container thead th .th-inner{
+    height: 28px;
+    line-height: 26px;
+    padding: 0;
+}
+
+.fixed-table-container tbody tr:nth-child(2n+1){
+    background-color: @table-total-row-bg-color;
+}
+
+.fixed-table-container tbody tr:hover{
+    cursor: pointer;
+    background-color: @days-off-bg-color;
+}

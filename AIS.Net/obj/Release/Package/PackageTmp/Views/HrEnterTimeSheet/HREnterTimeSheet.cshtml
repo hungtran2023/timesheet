@@ -1,0 +1,105 @@
+﻿@using AIS.Models;
+@model TimeSheet
+
+@{
+    ViewBag.Title = "Enter Timesheet for Duration";
+    Layout = "~/Views/Shared/_LayoutWithMenu.cshtml";
+    var AddTimeSheetUrl = Url.Content("~/HREnterTimeSheet/Add");
+    var WorkingHours = ViewBag.WorkingHours;
+}
+
+<div class="hide">
+    <input type="hidden" id="addTimeSheetUrl" value="@AddTimeSheetUrl" />
+    <input id="loginPageUrl" type="hidden" value="@ViewBag.LoginPageUrl" />
+    <input id="timesheetListPageUrl" type="hidden" value="@ViewBag.TimesheetListPageUrl" />
+    <input id="timesheetPageUrl" type="hidden" value="@ViewBag.TimesheetUrl" />
+    <input id="workingHours" type="hidden" value="@WorkingHours" />
+</div>
+<div class="hr-timesheet">
+    <h3 class="col-xs-12 title">@ViewBag.Title</h3>
+    <div id="Alert" class="alert alert-dismissable hide" role="alert">
+        <a href="#" class="close" aria-label="close" title="close">×</a>
+        <strong id="AlertMessageHeader"></strong>
+        <span id="AlertMessage"></span>
+    </div>
+    <form id="hr-timesheet-form" class="form-horizontal" method="post">
+        <div class="for-hidden hide">
+            @Html.HiddenFor(r => r.StaffId, new { Value = ViewBag.EmployeeId })
+        </div>
+        <div class="form-group">
+            @Html.Label("Full Name", new { @class = "col-xs-4 control-label" })
+            <div class="col-xs-8">
+                <p id="FullName" class="form-control-static">@ViewBag.NameOfEmployee</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-4 control-label">@Html.DisplayNameFor(r => r.AbsenceType)</label>
+            <div class="col-xs-8">
+                @Html.DropDownListFor(r => r.AbsenceType, new SelectList(ViewBag.AbsenceTypeList, "Value", "Text", 5), new { @class = "form-control input-sm" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-4 control-label">@Html.DisplayNameFor(r => r.StartDate)</label>
+            <div class="col-xs-8">
+                <div class="col-xs-8 no-padding-left">
+                    <div class="input-group date" id="StartDatePicker">
+                        @Html.TextBoxFor(r => r.StartDate, new { @class = "form-control datepicker", @placeholder = "DD/MM/YYYY", @type = "text" })
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-4 control-label">@Html.DisplayNameFor(r => r.EndDate)</label>
+            <div class="col-xs-8">
+                <div class="col-xs-8 no-padding-left">
+                    <div class="input-group date" id="EndDatePicker">
+                        @Html.TextBoxFor(r => r.EndDate, new { @class = "form-control datepicker", @placeholder = "DD/MM/YYYY", @type = "text" })
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-4 control-label">Hours</label>
+            <div class="col-xs-4">
+                @Html.TextBoxFor(r => r.Hours, new { @class = "form-control", @rows = "4", @placeholder = "0"  })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-4 control-label">Note</label>
+            <div class="col-xs-8">
+                @Html.TextAreaFor(r => r.Note, new { @class = "form-control", @rows = "4" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-xs-12 text-right button-control">
+                <button id="cancel-timesheet" class="btn btn-default">Cancel</button>
+                <button type="submit" id="submit-timesheet" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </form>
+    <div id="hrTimeSheetNotifier" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Information</h4>
+                </div>
+                <div class="modal-body">
+                    <p class="notify-message"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@Scripts.Render("~/bundles/hr-timesheet")
+

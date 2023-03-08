@@ -1,0 +1,313 @@
+﻿@model List<AIS.Data.Model.ProjectClosingModel>
+<input type="hidden" value="@ViewBag.ListProjectCloses" name="listProjectClose" id="listProjectClose" />
+<table width="100%" border="0" cellspacing="0" cellpadding="0" style="height:330px">
+    <tr>
+        <td bgcolor="#FFFFFF" valign="top">
+            <table @*class="tablesorter"*@ id="tblProjectArchivingValue">
+                <thead>
+                    <tr>
+                        <th style="width:10%; text-align:left">
+                            @Html.Label("APK")
+                        </th>
+                        <th style="width: 400px; text-align: left">@Html.Label("Project Name")</th>
+                        <th style="width:50px; text-align:left">@Html.Label("Proposal")</th>
+                        <th style="width: 50px; text-align: left">@Html.Label("Awarded")</th>
+                        <th style="width: 50px; text-align: left">@Html.Label("Invoice")</th>
+                        <th style="width:2%"> Be Archiving<input type="checkbox" name="select_all" value="1" id="chk-select-all-popup"></th>
+                        @*<th style="width:2%"> Will Close<input type="checkbox" name="select_all" value="1" id="chk-select-all-popup-close"></th>*@
+                    </tr>
+                </thead>
+                <tbody style="font-family:Arial,Verdana;font-size:8pt">
+                    @if (Model != null)
+                    {
+                        foreach (var type in Model)
+                        {
+                            <tr style="text-align:left;height:34px">
+                                <td>@type.ProjectKey</td>
+                                <td style="padding-left: 10px;">@type.ProjectName</td>
+                                <td style="padding-left: 10px;"> @String.Format("{0:#,##0.00}", type.Proposal)</td>
+                                <td style="padding-left: 10px;"> @String.Format("{0:#,##0.00}", type.Awarded)</td>
+                                <td style="padding-left: 10px;">@String.Format("{0:#,##0.00}", type.Invoice)</td>
+                                <td style="text-align: center;">@Html.CheckBox("chk_choose", false)</td>
+                                @*<td style="text-align: center;">@Html.CheckBox("chk_choose_close", false)</td>*@
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </td>
+    </tr>
+</table>
+<div class="modal fade" id="typeMessageClose" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-body table-placeholder-Message">
+                <h4 class="modal-title" id="defaultModalLabel">Please choose one APK to process! Please re-checked help!</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn" id="btnCancel">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .table tr {
+        text-align:left;
+    }
+</style>
+<script>
+    $(document).ready(function () {
+        var projectKeysListClose = $("#listProjectClose").val();
+        $('#btnOk').removeAttr("disabled", true);
+        const projectKeysList = [];
+      //  const projectKeysListClose = [];
+        $('#tblProjectArchivingValue').dataTable({ searching: false, paging: false, info: false, "bDestroy": true });
+
+        $('#chk-select-all-popup').on('click', function () {
+            debugger;
+     
+           
+            $('#tblProjectArchivingValue').dataTable({ searching: false, paging: false, info: false, "bDestroy": true });
+
+            var rows = $("#tblProjectArchivingValue").DataTable().rows({ 'search': 'applied' }).nodes();
+
+            // Check/uncheck checkboxes for all rows in the table
+            /*        $('input[type="checkbox"]', rows).prop('checked', this.checked);*/
+
+            $('#chk_choose', rows).prop('checked', this.checked);
+
+            //$('#chk_choose_close', rows).prop('checked', false);
+            //$('#chk-select-all-popup-close').prop('checked', false);
+         //   projectKeysListClose.pop();
+
+            var table = $('#tblProjectArchivingValue').dataTable();
+
+            var rows = table.fnGetNodes();
+
+            for (var r = 0; r < rows.length; r++) {
+
+                var myRow = $('#tblProjectArchivingValue').dataTable().fnGetData(rows[r]);
+          
+                if (this.checked) {
+
+            
+                    if (!projectKeysList.includes(myRow[0]))
+                        projectKeysList.push(myRow[0]);
+
+                    projectKeysListClose.pop(myRow[0]);
+                }
+                else {
+                    projectKeysList.pop();
+                    projectKeysListClose.pop();
+                }
+            }
+            $('#btnOk').removeAttr("disabled", true);
+            //if (projectKeysList.length > 0 || projectKeysListClose.length>0) {
+
+            //    $('#btnOk').removeAttr("disabled", true);
+            //}
+            //else {
+            //    $('#btnOk').prop("disabled", true);
+            //}
+
+        });
+
+
+        //$('#chk-select-all-popup-close').on('click', function () {
+
+
+        //    $('#tblProjectArchivingValue').dataTable({ searching: false, paging: false, info: false, "bDestroy": true });
+
+        //    var rows = $("#tblProjectArchivingValue").DataTable().rows({ 'search': 'applied' }).nodes();
+
+        //    // Check/uncheck checkboxes for all rows in the table
+        //    /*        $('input[type="checkbox"]', rows).prop('checked', this.checked);*/
+
+        //    $('#chk_choose_close', rows).prop('checked', this.checked);
+
+        //    $('#chk_choose', rows).prop('checked', false);
+        //    $('#chk-select-all-popup').prop('checked', false);
+        //    projectKeysList.pop();
+
+        //    var table = $('#tblProjectArchivingValue').dataTable();
+
+        //    var rows = table.fnGetNodes();
+
+        //    for (var r = 0; r < rows.length; r++) {
+
+        //        var myRow = $('#tblProjectArchivingValue').dataTable().fnGetData(rows[r]);
+
+        //        if (this.checked) {
+
+             
+        //            if (!projectKeysListClose.includes(myRow[0]))
+        //                projectKeysListClose.push(myRow[0]);
+
+        //            projectKeysList.pop(myRow[0]);
+        //        }
+        //        else {
+        //            projectKeysListClose.pop();
+        //            projectKeysList.pop();
+        //        }
+        //    }
+
+        //    if (projectKeysListClose.length > 0 || projectKeysList.length > 0) {
+
+        //        $('#btnOk').removeAttr("disabled", true);
+        //    }
+        //    else {
+        //        $('#btnOk').prop("disabled", true);
+        //    }
+
+        //});
+
+
+        $("#tblProjectArchivingValue").on('change', "#chk_choose", function (e) {
+
+     
+           // var rows = $("#tblProjectArchivingValue").DataTable().rows({ 'search': 'applied' }).nodes();
+         
+            if (!this.checked) {
+                var currentRow = $(this).closest("tr");
+            
+                var col1 = currentRow.find("td:eq(0)").text();
+                $('#chk_choose_close', currentRow).prop('checked', false);
+                for (var i = 0; i < projectKeysList.length; i++) {
+
+                    if (projectKeysList[i] === col1) {
+
+                        projectKeysList.splice(i, 1);
+                      // projectKeysListClose.splice(i,1);
+                    }
+                }
+
+            }
+            else {
+
+                var currentRow = $(this).closest("tr");
+                $('#chk_choose_close', currentRow).prop('checked', false);
+             
+                var col1 = currentRow.find("td:eq(0)").text();
+                if (col1 != "") {
+                    projectKeysList.push(col1);
+                    //if (projectKeysListClose.includes(col1)) {
+
+                    //    projectKeysListClose.splice(i,1);
+                    //}
+
+                    //for (var i = 0; i < projectKeysListClose.length; i++) {
+
+                    //    if (projectKeysListClose[i] === col1) {
+                          
+                    //        projectKeysListClose.splice(i, 1);
+                    //    }
+                    //}
+                   
+                }
+
+
+            }
+            //if (projectKeysList.length > 0) {
+            //    $('#chk-select-all-popup-close').prop('checked', false);
+            //}
+            //if (projectKeysList.length > 0 || projectKeysListClose.length > 0) {
+
+            //    $('#btnOk').removeAttr("disabled", true);
+            //}
+            //else {
+            //    $('#btnOk').prop("disabled", true);
+            //}
+        });
+
+
+        //$("#tblProjectArchivingValue").on('change', "#chk_choose_close", function (e) {
+
+       
+        //    //    var rows = $("#tblProjectArchivingValue").DataTable().rows({ 'search': 'applied' }).nodes();
+          
+
+        //    if (!this.checked) {
+        //        var currentRow = $(this).closest("tr");
+        //        $('#chk_choose', currentRow).prop('checked', false);
+        //        var col1 = currentRow.find("td:eq(0)").text();
+
+        //        for (var i = 0; i < projectKeysListClose.length; i++) {
+
+        //            if (projectKeysListClose[i] === col1) {
+
+        //                projectKeysListClose.splice(i, 1);
+        //                projectKeysList.splice(i, 1);
+        //            }
+        //        }
+
+        //    }
+        //    else {
+
+        //        var currentRow = $(this).closest("tr");
+        //        $('#chk_choose', currentRow).prop('checked', false);
+           
+        //        var col1 = currentRow.find("td:eq(0)").text();
+        //        if (col1 != "") {
+        //            projectKeysListClose.push(col1);
+
+        //            for (var i = 0; i < projectKeysList.length; i++) {
+
+        //                if (projectKeysList[i] === col1) {
+
+        //                    projectKeysList.splice(i, 1);
+        //                }
+        //            }
+        //            //if (projectKeysList.includes(col1)) {
+        //            //    projectKeysList.pop(col1);
+        //            //}
+                   
+        //        }
+
+
+        //    }
+        //    if (projectKeysListClose.length > 0) {
+        //        $('#chk-select-all-popup').prop('checked', false);
+        //    }
+        //    if (projectKeysListClose.length > 0 || projectKeysList.length>0) {
+
+        //        $('#btnOk').removeAttr("disabled", true);
+        //    }
+        //    else {
+        //        $('#btnOk').prop("disabled", true);
+        //    }
+        //});
+
+        $('#btnOk').on('click', function (evt) {
+
+           
+         
+            $.ajax({
+                url: "./UpdateProjectStatus",
+                type: "POST",
+                data: { ProjectIds: projectKeysList, projectCloseIds: projectKeysListClose },
+                success: function (response) {
+                    //alert(response);
+                },
+                error: function (response) {
+                    // alert(response);
+                }
+            });
+
+            projectKeysList.pop();// = [];
+         //   projectKeysListClose.pop();
+            window.location.reload();
+
+
+        });
+
+
+
+        $("#btnCancelData").on('click', function (e) {
+
+            projectKeysList.pop();// = [];
+           // projectKeysListClose.pop();
+            window.location.reload();
+        });
+
+    });
+</script>

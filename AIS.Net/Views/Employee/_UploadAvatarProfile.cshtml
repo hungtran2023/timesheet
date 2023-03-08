@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "Upload Avartar Profiles";
+    // Layout = "~/Views/Shared/_LayoutWithMenu.cshtml";
+}
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" crossorigin="anonymous" />
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"  crossorigin="anonymous"></script>
+<h2>UpLoad Images</h2>
+@{
+
+}
+@using (Html.BeginForm("SaveImageProfile", "Employee", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+    <div class="container">
+        <table>
+            <tr>
+                @*<td style="width:80px;height:50px"><label>Binary Image</label></td>*@
+                <input type="file" name="filename" id="filename" style="width: 100%;" />
+                <br />
+                <td></td>
+
+                @*<td><label>Path Image</label> <input type="file" name="file2" id="file2" style="width: 100%;" /></td>*@
+                <td><input type="submit" value="Submit" /></td>
+            </tr>
+
+        </table>
+    </div>
+}
+
+

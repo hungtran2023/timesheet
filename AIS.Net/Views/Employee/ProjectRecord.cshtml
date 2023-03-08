@@ -1,0 +1,249 @@
+﻿@model AIS.Data.Model.ReportProjectHours
+@{
+    ViewBag.Title = "Project Record";
+    Layout = "~/Views/Shared/_LayoutWithMenu.cshtml";
+}
+<script src="//cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
+<link href="~/Content/style/Table/tablestyle.css" rel="stylesheet" />
+<link href="~/Content/style/Table/jquery.dataTables.min.css" rel="stylesheet" />
+
+@if (Model.information != null)
+{
+    <div id="divData">
+
+        <h3 style="text-align: center; color: #003399;">Project Records</h3>
+
+        <div class="form-horizontal" style="margin-left:20px;">
+
+            <div class="form-group row">
+                @Html.Label("Employee Name:", new { @class = "col-sm-2 col-form-label", @style = "font-family:arial,verdana" })
+                <div class="col-sm-2">
+                    @Html.DisplayFor(model => model.information.FullName, new { @class = "col-sm-2 col-form-label", @style = "font-family:arial,verdana" })
+                </div>
+
+            </div>
+            <div class="form-group row">
+
+                @Html.Label("Birthday:", new { @class = "col-sm-2 col-form-label,@style=\"font-family:arial,verdana" })
+                <div class="col-sm-2">
+                    @Html.DisplayFor(model => model.information.BIRTHDAY, new { @class = "col-sm-2 col-form-label", @style = "font-family:arial,verdana" })
+                </div>
+            </div>
+            <div class="form-group row">
+
+                @Html.Label("Start date:", new { @class = "col-sm-2 col-form-label", @style = "font-family:arial,verdana" })
+
+                <div class="col-sm-2">
+                    @Html.DisplayFor(model => model.information.STARDATE, new { @class = "col-sm-2 col-form-label", @style = "font-family:arial,verdana" })
+
+                </div>
+            </div>
+            <div class="form-group row">
+
+                @Html.Label("Last date:", new { @class = "col-sm-2 col-form-label", @style = "font-family:arial,verdana" })
+
+                <div class="col-sm-2">
+                    @Html.DisplayFor(model => model.information.LASTDATE, new { @class = "col-sm-2 col-form-label", @style = "font-family:arial,verdana" })
+
+                </div>
+            </div>
+            <div class="form-group row">
+
+                @Html.Label("Jobtitle:", new { @class = "col-sm-2 col-form-label", @style = "font-family:arial,verdana" })
+
+                <div class="col-sm-2">
+                    @Html.DisplayFor(model => model.information.JOBTITLE, new { @class = "col-sm-2 col-form-label", @style = "font-family:arial,verdana" })
+
+                </div>
+            </div>
+            <div class="form-group row">
+
+                @Html.Label("Statt ID:", new { @class = "col-sm-2 col-form-label", @style = "font-family:arial,verdana" })
+                <div class="col-sm-2">
+                    @Html.DisplayFor(model => model.information.STATTIDDISPLAY, new { @class = "col-sm-2 col-form-label", @style = "font-family:arial,verdana" })
+
+                </div>
+            </div>
+
+        </div>
+
+        <button id="btnexport" class="btn btn-primary" style="margin-left:96.5%;margin-bottom:3px;"><i class="glyphicon glyphicon-save"></i></button>
+        <tr>
+            <td bgcolor="#FFFFFF" valign="top">
+
+                <table class="table table-hover dataTable no-footer" id="tblexport">
+                    <thead>
+                        <tr style="display:none"><td><h2 style="color:#0a092e">@Model.information.FullName</h2></td></tr>
+                        <tr style="display:none">
+                            <td><b style="color:#0c1334;font-weight:bold">Employee Name</b></td>
+                            <td><b style="color: #0c1334; font-weight: bold ">@Model.information.FullName</b></td>
+                        </tr>
+                        <tr style="display:none">
+                            <td><b style="color: #0c1334; font-weight: bold ">Birthday</b></td>
+                            <td><b style="color: #0c1334; font-weight: bold ">@Html.Raw("'")@Model.information.BIRTHDAY.ToString()</b></td>
+                        </tr>
+                        <tr style="display:none">
+                            <td><b style="color: #0c1334; font-weight: bold ">Start Date</b></td>
+                            <td><b style="color: #0c1334; font-weight: bold ">@Html.Raw("'")@Model.information.STARDATE.ToString()</b></td>
+                        </tr>
+                        <tr style="display:none">
+                            <td><b style="color: #0c1334; font-weight: bold ">Last Date</b></td>
+                            <td><b style="color: #0c1334; font-weight: bold ">@Model.information.LASTDATE</b></td>
+                        </tr>
+                        <tr style="display:none">
+                            <td><b style="color: #0c1334; font-weight: bold ">Current Jobtitle</b></td>
+                            <td><b style="color: #0c1334; font-weight: bold ">@Model.information.JOBTITLE</b></td>
+                        </tr>
+                        <tr style="display:none">
+                            <td><b style="color: #0c1334; font-weight: bold ">Staff ID</b></td>
+                            <td><b style="color: #0c1334; font-weight: bold ">@Model.information.STATTIDDISPLAY</b></td>
+                        </tr>
+                        <tr>
+                            <th style="width: 400px; text-align: left"><b>@Html.Label("Experienced on Project Sector")</b></th>
+                            <th style="width:100px; text-align:left"><b>@Html.Label("Total Hours")</b></th>
+                            <th style="width: 100px; text-align: left"><b>@Html.Label("Percentage")</b></th>
+                        </tr>
+                    </thead>
+                    <tbody style="font-family:Arial,Verdana;font-size:8pt;">
+                        @if (Model != null)
+                        {
+                            foreach (var type in Model.totalHourSectors)
+                            {
+                                <tr style="background:#ffffff">
+                                    <td><p style="text-align: left; margin-left: 100px; margin-bottom: 3px !important">@type.SECTORNAME</p></td>
+                                    <td style="padding-left: 10px;"><p style="text-align: center; margin-bottom: 3px !important">@type.TOTALHOURSECTOR</p></td>
+                                    <td style="padding-left: 10px;"><p style="text-align: center; margin-bottom: 3px !important">@Html.Raw(Math.Round(type.PECENTAGESECTOR, 2)) @Html.Raw("%")</p></td>
+                                </tr>
+
+                            }
+                            <tr>
+                                <th><b>@Html.Label("Experienced on Atlas Service Code")</b></th>
+                                <th><b> @Html.Label("Total Hours")</b></th>
+                                <th><b>@Html.Label("Percentage") </b></th>
+
+                            </tr>
+                            foreach (var type in Model.totalHourServices)
+                            {
+                                <tr style="background: #ffffff">
+                                    <td><p style="text-align:left;margin-left:100px;margin-bottom:3px!important">@type.SERVICENAME</p></td>
+                                    <td style="padding-left: 10px;"><p style="text-align:center;margin-bottom:3px!important"> @type.TOTALHOURSERVICECODE</p></td>
+                                    <td style="padding-left: 10px;"><p style="text-align: center; margin-bottom: 3px !important">@Html.Raw(Math.Round(type.PECENTAGESERVICECODE, 2)) @Html.Raw("%")</p></td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td bgcolor="#FFFFFF" valign="top">
+
+                <table class="table table-hover dataTable no-footer" id="tblexportFormat" style="display:none">
+                    <thead>
+                        <tr style="display:none"><td><h2 style="color:#0a092e">@Model.information.FullName</h2></td></tr>
+                        <tr style="display:none">
+                            <td><b style="color:#0c1334;font-weight:bold">Employee Name</b></td>
+                            <td><b style="color: #0c1334; font-weight: bold ">@Model.information.FullName</b></td>
+                        </tr>
+                        <tr style="display:none">
+                            <td><b style="color: #0c1334; font-weight: bold ">Birthday</b></td>
+                            <td><b style="color: #0c1334; font-weight: bold ">@Html.Raw("'")@Model.information.BIRTHDAY.ToString()</b></td>
+                        </tr>
+                        <tr style="display:none">
+                            <td><b style="color: #0c1334; font-weight: bold ">Start Date</b></td>
+                            <td><b style="color: #0c1334; font-weight: bold ">@Html.Raw("'")@Model.information.STARDATE.ToString()</b></td>
+                        </tr>
+                        <tr style="display:none">
+                            <td><b style="color: #0c1334; font-weight: bold ">Last Date</b></td>
+                            <td><b style="color: #0c1334; font-weight: bold ">@Model.information.LASTDATE</b></td>
+                        </tr>
+                        <tr style="display:none">
+                            <td><b style="color: #0c1334; font-weight: bold ">Current Jobtitle</b></td>
+                            <td><b style="color: #0c1334; font-weight: bold ">@Model.information.JOBTITLE</b></td>
+                        </tr>
+                        <tr style="display:none">
+                            <td><b style="color: #0c1334; font-weight: bold ">Staff ID</b></td>
+                            <td><b style="color: #0c1334; font-weight: bold ">@Model.information.STATTIDDISPLAY</b></td>
+                        </tr>
+                        <tr style="border:2px solid black;">
+                            <th style="width: 400px; text-align: left;"><b style=" color: orange; background-color: white; font-weight: bold">@Html.Label("Experienced on Project Sector")</b></th>
+                            <th style="width: 100px; text-align: left; "><b style="color: orange; background-color: white; font-weight: bold">@Html.Label("Total Hours")</b></th>
+                            <th style="width: 100px; text-align: left;"><b style="color: orange; background-color: white; font-weight: bold">@Html.Label("Percentage")</b></th>
+
+
+                        </tr>
+                    </thead>
+                    <tbody style="font-family: Arial,Verdana; font-size: 8pt; border: 1px solid black;">
+                        @if (Model != null)
+                        {
+                            foreach (var type in Model.totalHourSectors)
+                            {
+                                <tr style="background:#ffffff">
+                                    <td><p style="text-align: left; margin-left: 100px; margin-bottom: 3px !important">@type.SECTORNAME</p></td>
+                                    <td style="padding-left: 10px;"><p style="text-align: center; margin-bottom: 3px !important">@type.TOTALHOURSECTOR</p></td>
+                                    <td style="padding-left: 10px;"><p style="text-align: center; margin-bottom: 3px !important">@Html.Raw(Math.Round(type.PECENTAGESECTOR, 2)) @Html.Raw("%")</p></td>
+                                </tr>
+
+                            }
+                            <tr>
+                                <th><b style="color:orange;background-color:white; font-weight:bold">@Html.Label("Experienced on Atlas Service Code")</b></th>
+                                <th><b style="color: orange; background-color: white; font-weight: bold"> @Html.Label("Total Hours")</b></th>
+                                <th><b style="color: orange; background-color:white; font-weight: bold">@Html.Label("Percentage") </b></th>
+
+                            </tr>
+                            foreach (var type in Model.totalHourServices)
+                            {
+                                <tr style="background: #ffffff">
+                                    <td><p style="text-align:left;margin-left:100px;margin-bottom:3px!important">@type.SERVICENAME</p></td>
+                                    <td style="padding-left: 10px;"><p style="text-align:center;margin-bottom:3px!important"> @type.TOTALHOURSERVICECODE</p></td>
+                                    <td style="padding-left: 10px;"><p style="text-align: center; margin-bottom: 3px !important">@Html.Raw(Math.Round(type.PECENTAGESERVICECODE, 2)) @Html.Raw("%")</p></td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+
+    </div>
+    }
+    
+    <style>
+        .form-group {
+            margin-bottom: unset;
+        }
+        .table thead > tr > th, .table tbody > tr > th, .table tfoot > tr > th, .table thead > tr > td, .table tbody > tr > td, .table tfoot > tr > td {
+           border: 1px solid #ccc;
+        }
+       /* .table th
+        {
+            background-color:white;
+            color:orange;
+        }*/
+    </style>
+    <script>
+        $(document).ready(function () {
+
+            InitMenu();
+
+            $('#btnexport').on('click', function (e) {
+                $("#tblexportFormat").table2excel({
+                    exclude: "",
+                    name: "Data",
+                    filename: "ProjectRecord",
+                    sheetName: "ProjectRecord_Emlpyee",
+                    
+                });
+
+            });
+        });
+
+        function InitMenu() {
+            $("ul[data-menu-toggle=Management-Console]").removeClass("hide");
+            $("a[data-menu-toggle=Management-Console]").addClass("selected-menu");
+            $("ul[data-menu-toggle=Employees]").removeClass("hide");
+            $("a[data-menu-toggle=Employees]").addClass("selected-menu");
+        }
+    </script>
+
+

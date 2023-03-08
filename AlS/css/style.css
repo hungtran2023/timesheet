@@ -1,0 +1,364 @@
+a
+{
+	color: #003399;
+}
+.left-menu th,
+.left-menu td{
+    padding: 5px 8px
+}
+.no-padding {
+   padding: 0 !important;
+   margin: 0 !important;
+}
+.margin-bottom10{
+    margin-bottom: 10px;
+}
+.width-auto{
+    width: auto !important;
+}
+.padding-left5{
+    padding: 0 0 0 5px !important;
+}
+.padding-right15{
+    padding: 0 15px 0 0 !important;
+}
+.btn-full-width{
+    width: 100%;
+}
+.no-blod{
+    font-weight: normal;
+}
+.hide
+{
+	display:none;
+	}
+.space-row20{
+    width: 100%;
+    clear: both;
+    display: block;
+    height: 20px
+}
+.space-row30{
+    width: 100%;
+    clear: both;
+    display: block;
+    height: 30px
+}
+.navi-info
+{
+	width:100%;
+	display: block;
+	clear:both;
+}
+.navi-info a
+{
+	width:auto;
+	display: inline-block;
+	padding-right: 10px;
+	font-weight: bold;
+	font-size:14px;
+	float: left;
+	text-transform: uppercase;
+	text-decoration: none;
+}
+.navi-info span
+{
+	float: left;
+	font-size: 14px;
+	text-transform: capitalize;
+	color: #ca0000;
+}
+.btn-remove-item
+{
+	background: url(../images/ic-delete.png) left top no-repeat !important;
+	width: 20px;
+	height: 20px;
+}
+.ic-calendar
+{
+	background: url(../images/ic-calendar.png) left top no-repeat !important;
+	width: 20px;
+	height: 20px;
+	display: block;
+}
+.basictab {
+    padding: 3px 0;
+    margin-left: 0;
+    font: bold 8px arial;
+    border-bottom: 1px solid gray;
+    list-style-type: none;
+    text-align: right;
+    /*set to left, center, or right to align the menu as desired*/
+}
+
+.basictab li {
+    display: inline;
+    margin: 0;
+}
+
+.basictab li a {
+    text-decoration: none;
+    padding: 3px 7px;
+    margin-right: 3px;
+    border: 1px solid gray;
+    border-bottom: none;
+    background-color: #E7EBF5;
+    color: #003399;
+}
+
+.basictab li a:visited {
+    color: #2d2b2b;
+}
+
+.basictab li a:hover {
+    background-color: #FFFFFF;
+    color: #ca0000;
+}
+
+.basictab li a:active {
+    color: #ca0000;
+}
+
+.basictab li.selected a {
+    /*selected tab effect*/
+    position: relative;
+    top: 1px;
+    padding-top: 4px;
+    background-color: #FFFFFF;
+    color: #ca0000;
+}
+* {
+    font-size: 12px;
+    font-family: arial, verdana;
+    text-decoration: none
+}
+
+#contactform {
+    width: 100%;
+}
+
+#contactform input,
+#contactform textarea {
+    width: 100%;
+    border: 1px solid gray;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+#contactform textarea {
+    resize: vertical;
+    /* allow vertical resize of textarea */
+    height: 200px;
+}
+
+#contactform input:focus,
+#contactform textarea:focus {
+    background-color: #316AC5;
+    color: White;
+    border-color: #8BACE2;
+}
+
+#contactform input[type="radio"],
+#contactform input[type="checkbox"] {
+    padding: 0;
+    width: auto;
+    height: auto;
+}
+
+#contactform select {
+    width: 100%;
+    border: 1px solid gray;
+}
+
+#contactform .formcolumn {
+    /* column div inside form */
+    width: 49%;
+    float: left;
+}
+
+#contactform .formcolumn:first-of-type {
+    margin-right: 2%;
+    /* 2% margin after first column */
+}
+
+#contactform .formcolumn label,
+#contactform .formcolumn fieldset {
+    font-weight: bold;
+    padding-left: 10px;
+    padding-right: 0px
+}
+
+#contactform ul {
+    list-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+#contactform ul li {
+    display: inline-block;
+    margin-bottom: 5px;
+    margin-right: 1em;
+    width: 100%;
+}
+
+#contactform fieldset {
+    width: 98%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+#contactform .formcolumn label:first-child,
+#contactform .formcolumn fieldset:first-child {
+    margin-top: 0;
+    /* first label or fieldset within each column should not no top margin */
+}
+
+#contactform fieldset ul {
+    list-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+#contactform fieldset ul li {
+    display: inline-block;
+    margin-bottom: 5px;
+    margin-right: 1em;
+}
+
+#contactform div.buttons {
+    clear: both;
+    text-align: center;
+}
+
+#contactform input.button {
+    margin-top: 1.5EM;
+    width: 50%;
+    box-shadow: 0 0 10px gray;
+    text-transform: uppercase;
+    cursor: pointer;
+    min-width: 100px;
+    max-width: 600px;
+    color: white;
+    font-weight: bold;
+    letter-spacing: 7px;
+    text-shadow: 0 -2px 1px #8a8a8a;
+    background: rgb(169, 3, 41);
+    background: -moz-linear-gradient(top, rgba(169, 3, 41, 1) 0%, rgba(143, 2, 34, 1) 44%, rgba(109, 0, 25, 1) 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(169, 3, 41, 1)), color-stop(44%, rgba(143, 2, 34, 1)), color-stop(100%, rgba(109, 0, 25, 1)));
+    background: -webkit-linear-gradient(top, rgba(169, 3, 41, 1) 0%, rgba(143, 2, 34, 1) 44%, rgba(109, 0, 25, 1) 100%);
+    background: -o-linear-gradient(top, rgba(169, 3, 41, 1) 0%, rgba(143, 2, 34, 1) 44%, rgba(109, 0, 25, 1) 100%);
+    background: -ms-linear-gradient(top, rgba(169, 3, 41, 1) 0%, rgba(143, 2, 34, 1) 44%, rgba(109, 0, 25, 1) 100%);
+    background: linear-gradient(to bottom, rgba(169, 3, 41, 1) 0%, rgba(143, 2, 34, 1) 44%, rgba(109, 0, 25, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#a90329', endColorstr='#6d0019', GradientType=0);
+}
+
+#contactform input.button:active {
+    text-shadow: 0 0 1px #8a8a8a;
+    background: rgb(109, 0, 25);
+    background: -moz-linear-gradient(top, rgba(109, 0, 25, 1) 0%, rgba(143, 2, 34, 1) 56%, rgba(169, 3, 41, 1) 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(109, 0, 25, 1)), color-stop(56%, rgba(143, 2, 34, 1)), color-stop(100%, rgba(169, 3, 41, 1)));
+    background: -webkit-linear-gradient(top, rgba(109, 0, 25, 1) 0%, rgba(143, 2, 34, 1) 56%, rgba(169, 3, 41, 1) 100%);
+    background: -o-linear-gradient(top, rgba(109, 0, 25, 1) 0%, rgba(143, 2, 34, 1) 56%, rgba(169, 3, 41, 1) 100%);
+    background: -ms-linear-gradient(top, rgba(109, 0, 25, 1) 0%, rgba(143, 2, 34, 1) 56%, rgba(169, 3, 41, 1) 100%);
+    background: linear-gradient(to bottom, rgba(109, 0, 25, 1) 0%, rgba(143, 2, 34, 1) 56%, rgba(169, 3, 41, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#6d0019', endColorstr='#a90329', GradientType=0);    
+    }
+/* ----- employee-details-form ----*/
+.employee-details-form
+{
+	padding: 20px 0 0;
+}
+.employee-details-form .nav-tabs{
+    margin-bottom: 20px;
+    border-bottom: 1px solid #88a5ea;
+}
+.employee-details-form .nav-tabs a{
+    font-size: 14px;
+    font-weight: 500
+}  
+.nav>li>a{
+    background-color: #f3f3f3;
+    text-decoration: none;
+    border: 1px solid #88a5ea;
+}  
+.nav>li>a:focus, .nav>li>a:hover{
+    background-color: #fff2f2;
+    color: #0032a4;
+    border: 1px solid #88a5ea;
+}
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{
+    background-color: #617dc0;
+    color: #fff;
+    text-decoration: none;
+    border: 1px solid #88a5ea;
+}
+.panel{
+    border-color: #88a5ea;
+    background-color: #f7f9fe;
+}
+.panel-default>.panel-heading{
+    background-color: #c6d1eb;
+    border-color: #88a5ea;
+}
+.btn-primary{
+    background-color: #88a5ea;
+}
+.datepicker{
+    margin-top: 0;
+    padding: 4px 10px;
+}
+.table-bordered{
+    border-color: #88a5ea;
+}
+.table-bordered>tbody>tr>td, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>td, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, .table-bordered>thead>tr>th{
+    border-color: #88a5ea;
+}
+.table-striped>tbody>tr{
+    background-color: #fff;
+}
+.table-striped>tbody>tr:nth-of-type(odd){
+    background-color: #fef5f5;
+}
+.thead-inverse{
+    background-color: #e7ebf5;
+}
+.col-md-checkbox{
+    max-width: 30px;
+    text-align: center;
+    width: 30px;
+}
+.col-action{
+     max-width: 30px;
+    text-align: center;
+    width: 30px;   
+}
+.btn-remove-item,
+.btn-remove-item:hover{
+    border: 0;
+    background-color: transparent;
+    color: #000;
+    padding: 0;
+}
+
+/* ----- table list ----*/
+
+.tableheaderblue {
+    background-color:#8ca0d1 !important;
+}
+.tableheaderblue th {
+    color:white ;
+}
+
+.sort-by{
+	padding-left:15px;
+	cursor:pointer;
+}
+
+@media print {
+  a[href]:after {
+    content: none !important;
+  }
+}
+

@@ -1,0 +1,77 @@
+﻿@{
+    ViewBag.Title = "Overview Of Holiday";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var GetDaysOffUrl = Url.Content("~/OverviewOfRequestHistory/GetDaysOff");
+    var CurrentYear = DateTime.Now.Year;
+    var CurrentMonth = DateTime.Now.Month;
+}
+<div class="hidden">
+    <input id="StaffId" type="hidden" value="@ViewBag.StaffID" />
+    <input id="GetDaysOffUrl" type="hidden" value="@GetDaysOffUrl" />
+    <input id="loginPageUrl" type="hidden" value="@ViewBag.LoginPageUrl" />
+</div>
+<div class="overview-request-history">
+    <h3 class="col-xs-12 title">@ViewBag.Title</h3>
+    <p class="text-center"><strong>@ViewBag.FullNameOfUser - @ViewBag.PositionOfUser</strong></p>
+    <div class="overview-request-history__info">
+        <div class="row">
+            <label class="col-xs-6 text-right">Current Rate:</label>
+            <span class="text--red"><strong>@ViewBag.CurrentRate</strong> days/month</span>
+        </div>
+        <div class="row">
+            <label class="col-xs-6 text-right">Anual Leave Balance:</label>
+            <span class="text--red"><strong>@ViewBag.BalanceDay</strong> days</span>
+        </div>
+        <div class="table-responsive">
+            <table class="table">
+                <tbody>
+                    @if (ViewBag.BalanceLastYear > 0)
+                    {
+                        <tr>
+                            <td class="dark-row text-left"><label>Leave brought forward from last year to @CurrentYear (hours)</label></td>
+                            <td class=""><strong>@ViewBag.BalanceLastYear</strong></td>
+                        </tr>
+                    }
+                    <tr>
+                        <td class="dark-row text-left"><label>Leave Due until 1/@CurrentMonth/@CurrentYear (hours)</label></td>
+                        <td class=""><strong>@ViewBag.LeaveUntilDay.ToString("F")</strong></td>
+                    </tr>
+                    <tr>
+                        <td class="text-right light-text-row"><label>Total (hours)</label></td>
+                        <td class="light-number-row"><span class="text--red"><strong>@ViewBag.TotalHours.ToString("F")</strong></span></td>
+                    </tr>
+                    <tr>
+                        <td class="dark-row text-left"><label>Annual leave in @CurrentYear (hours)</label></td>
+                        <td class=""><strong>@ViewBag.AnualLeaveCurrentYear.ToString("F")</strong></td>
+                    </tr>
+                    <tr>
+                        <td class="dark-row text-left"><label>Annual leave reserved (hours)</label></td>
+                        <td class=""><strong>@ViewBag.AnualLeaveReserved.ToString("F")</strong></td>
+                    </tr>
+                    <tr>
+                        <td class="dark-row text-left"><label>Unauthorised (hours)</label></td>
+                        <td class=""><strong>@ViewBag.TotalUnauthorisedDays.ToString("F")</strong></td>
+                    </tr>
+                    <tr>
+                        <td class="text-right light-text-row"><label>Balance (hours)</label></td>
+                        <td class="light-number-row"><span class="text--red"><strong>@ViewBag.BalanceHours.ToString("F")</strong></span></td>
+                    </tr>
+                    <tr>
+                        <td class="text-right dark-row"><label></label></td>
+                        <td class="light-number-row"><span class="text--red"><strong>@ViewBag.BalanceDay.ToString("F") (days)</strong></span></td>
+                    </tr></tbody>
+            </table>
+        </div>
+    </div>
+    <div class="overview-request-history__calendar">
+        <div id="OverviewCalendarFirst" class="overview-request-history__calendar--item"></div>
+        <div id="OverviewCalendarMiddle" class="overview-request-history__calendar--item"></div>
+        <div id="OverviewCalendarLast" class="overview-request-history__calendar--item"></div>
+        <div class="overview-request-history__control">
+            <a id="PreviousThreeMonths" class="pull-left"><span class="glyphicon glyphicon-backward"></span><strong> Previous 3 months</strong></a>
+            <a  id="NextThreeMonths" class="pull-right"><strong>Next 3 months </strong><span class="glyphicon glyphicon-forward"></span></a>
+        </div>
+    </div>
+</div>
+@Scripts.Render("~/bundles/overview-holiday")
+

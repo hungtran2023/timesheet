@@ -1,0 +1,334 @@
+﻿@model List<AIS.Data.Model.ReportSumaryProjectEmployee>
+
+@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>*@
+<script src="~/Scripts/ais/Archive/jquery.min.js"></script>
+@*<script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap.js"></script>*@
+<script src="~/Scripts/ais/Archive/bootstrap.js"></script>
+
+@*<link href="~/Content/style/Table/tablestyle.css" rel="stylesheet" />*@
+@*<link href="https://cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css" rel="stylesheet" />*@
+@*<link href="~/Content/style/Table/jquery.dataTables.min.css" rel="stylesheet" />*@
+@*<script src="https://cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>*@
+<script src="~/Scripts/ais/Archive/jquery.dataTables.min.js"></script>
+@*<link href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" rel="stylesheet" />*@
+<link href="~/Content/style/Table/CSS/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css" rel="stylesheet" />
+<script src="//cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
+@*<form id="frm-example" name="frm-example">*@
+
+    <button  id="btnexport" class="btn btn-primary" style="margin-left:96.5%;margin-bottom:3px;"><i class="glyphicon glyphicon-save"></i></button>
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+            <td bgcolor="#FFFFFF" valign="top">
+                <table @*class="tablesorter"*@ id="tblProjectArchiving">
+                    <thead>
+                        <tr>
+                            <Th style="width:20px; text-align:left">STT</Th>
+                            <th style="width:500px; text-align:left"> @Html.Label("FullName") </th>
+                            <th style="width: 200px; text-align:left ">@Html.Label("Birthday")</th>
+                            <th style="width: 200px; text-align:left ">@Html.Label("Start Date")</th>
+                            <th style="width: 500px; text-align: left ">@Html.Label("JobTitle")</th>
+                            <th style="width: 300px; text-align:left ">@Html.Label("Department")</th>
+                            <th style="width: 500px; text-align: left ">@Html.Label("Report To")</th>
+                            <th style="width: 350px; text-align: left ">@Html.Label("StaffID")</th>
+                            <th style="width: 300px; text-align:left ">@Html.Label("Sector Project")</th>
+                            <th style="width: 80px; text-align:left ">@Html.Label("Total Hours")</th>
+                            <th style="width: 300px; text-align:left ">@Html.Label("Service Project")</th>
+                            <th style="width: 80px; text-align:left ">@Html.Label("Total Hours")</th>
+                    </thead>
+
+                    <tbody style="font-family: Arial,Verdana; font-size: 8pt; border: 1px solid black;">
+                        @if (Model != null)
+                        {
+                            int i = 0;
+                            //Model.Where(m => m.ListSector.Select(x => x.SECTORTYPE).Contains("A")).OrderByDescending(x => x.ListSector.Max(t => t.TOTALHOURSECTOR)))
+                            //Model.OrderByDescending(x => x.ListSector.Max(t => t.TOTALHOURSECTOR)
+                            foreach (var item in Model)
+                            {
+                                i = i + 1;
+                                var check = @item.ListSector.Where(x => x.SECTORTYPE == ViewBag.projectsector).FirstOrDefault();
+                                var check1 = @item.ListService.Where(x => x.SERVICECODE == ViewBag.projectservice).FirstOrDefault();
+
+                                <tr>
+                                    <td>@i</td>
+                                    <td style="text-align:left">
+                                        @item.Information.FullName
+                                    </td>
+                                    <td style="text-align:left;padding-left:10px">
+
+                                        @item.Information.BIRTHDAY
+                                    </td>
+                                    <td style="text-align:left;padding-left:10px">
+
+                                        @item.Information.STARDATE
+                                    </td>
+                                    <td style="text-align:left">
+
+                                        @item.Information.JOBTITLE
+                                    </td>
+                                    <td style="text-align:left;padding-left:10px">
+
+                                        @item.Information.DEPARTERMENT
+                                    </td>
+                                    <td style="text-align:left;padding-left:10px">
+
+                                        @item.Information.REPORTTO
+                                    </td>
+                                    <td style="text-align:left">
+                                        @item.Information.STATTIDDISPLAY
+                                    </td>
+                                    @if (check != null)
+                                    {
+                                        <td style="text-align:left;padding-left:10px">
+                                            @Html.Raw(check.SECTORNAME)
+
+                                        </td>
+                                        <td style="text-align:left;padding-left:10px">
+                                            @Html.Raw(check.TOTALHOURSECTOR)
+                                        </td>
+                                    }
+                                    else
+                                    {
+
+                                        <td>
+                                        </td>
+                                        <td>
+                                        </td>
+                                    }
+                                    @if (check1 != null)
+                                    {
+                                        <td style="text-align:left;padding-left:10px">
+                                            @Html.Raw(check1.SERVICENAME)
+
+                                        </td>
+                                        <td style="text-align:left;padding-left:10px">
+                                            @Html.Raw(check1.TOTALHOURSERVICECODE)
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td>
+                                        </td>
+                                        <td>
+                                        </td>
+
+                                    }
+
+                                </tr>
+
+                            }
+                        }
+                    </tbody>
+                </table>
+                <table @*class="tablesorter"*@ id="tblProjectArchivingExport" style="display:none">
+                    <thead>
+                        <tr>
+                            <Th><b style="color:#617DC0">STT</b></Th>
+                            <th style="width:200px; text-align:left;color:#ff6a00"><b style="color:#617DC0">@Html.Label("FullName") </b> </th>
+                            <th style="width: 200px; text-align:left;"><b style="color:#617DC0"> @Html.Label("Birthday")</b></th>
+                            <th style="width: 200px; text-align:left "><b style="color:#617DC0">@Html.Label("Start Date")</b></th>
+                            <th style="width: 300px; text-align:left "><b style="color:#617DC0">@Html.Label("JobTitle")</b></th>
+                            <th style="width: 200px; text-align:left "><b style="color:#617DC0">@Html.Label("Department")</b></th>
+                            <th style="width: 200px; text-align:left "><b style="color:#617DC0">@Html.Label("Report To")</b></th>
+                            <th style="width: 200px; text-align:left "><b style="color:#617DC0">@Html.Label("StaffID")</b></th>
+                            <th style="width: 300px; text-align:left "><b style="color:#617DC0">@Html.Label("Sector Project")</b></th>
+                            <th style="width: 100px; text-align:left "><b style="color:#617DC0">@Html.Label("Total Hours")</b></th>
+                            <th style="width: 300px; text-align:left "><b style="color:#617DC0">@Html.Label("Service Project")</b></th>
+                            <th style="width: 100px; text-align:left "><b style="color:#617DC0">@Html.Label("Total Hours")</b></th>
+                    </thead>
+
+                    <tbody style="font-family: Arial,Verdana; font-size: 8pt; border: 1px solid black;">
+                        @if (Model != null)
+                        {
+                            int i = 0;
+                            //Model.Where(m => m.ListSector.Select(x => x.SECTORTYPE).Contains("A")).OrderByDescending(x => x.ListSector.Max(t => t.TOTALHOURSECTOR)))
+                            //Model.OrderByDescending(x => x.ListSector.Max(t => t.TOTALHOURSECTOR)
+                            foreach (var item in Model)
+                            {
+                                i = i + 1;
+                                var check = @item.ListSector.Where(x => x.SECTORTYPE == ViewBag.projectsector).FirstOrDefault();
+                                var check1 = @item.ListService.Where(x => x.SERVICECODE == ViewBag.projectservice).FirstOrDefault();
+
+                                <tr>
+                                    <td>@i</td>
+                                    <td style="text-align:left">
+                                        @item.Information.FullName
+                                    </td>
+                                    <td style="text-align:left;padding-left:10px">
+
+                                        @item.Information.BIRTHDAY
+                                    </td>
+                                    <td style="text-align:left;padding-left:10px">
+
+                                        @item.Information.STARDATE
+                                    </td>
+                                    <td style="text-align:left">
+
+                                        @item.Information.JOBTITLE
+                                    </td>
+                                    <td style="text-align:left;padding-left:10px">
+
+                                        @item.Information.DEPARTERMENT
+                                    </td>
+                                    <td style="text-align:left;padding-left:10px">
+
+                                        @item.Information.REPORTTO
+                                    </td>
+                                    <td style="text-align:left">
+                                        @item.Information.STATTIDDISPLAY
+                                    </td>
+                                    @if (check != null)
+                                    {
+                                        <td style="text-align:left;padding-left:10px">
+                                            @Html.Raw(check.SECTORNAME)
+
+                                        </td>
+                                        <td style="text-align:left;padding-left:10px">
+                                            @Html.Raw(check.TOTALHOURSECTOR)
+                                        </td>
+                                    }
+                                    else
+                                    {
+
+                                        <td>
+                                        </td>
+                                        <td>
+                                        </td>
+                                    }
+                                    @if (check1 != null)
+                                    {
+                                        <td style="text-align:left;padding-left:10px">
+                                            @Html.Raw(check1.SERVICENAME)
+
+                                        </td>
+                                        <td style="text-align:left;padding-left:10px">
+                                            @Html.Raw(check1.TOTALHOURSERVICECODE)
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td>
+                                        </td>
+                                        <td>
+                                        </td>
+
+                                    }
+
+                                </tr>
+
+                            }
+                        }
+                    </tbody>
+                </table>
+            </td>
+
+        </tr>
+    </table>
+@*</form>*@
+    <div class="modal fade" id="typeMessageClose" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-body table-placeholder-Message">
+                    <h4 class="modal-title" id="defaultModalLabel">Please choose one APK to process! Please re-checked help!</h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn" id="btnCancel">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <style>
+        .table tr {
+            text-align: left;
+        }
+
+        .dataTables_filter input {
+            height: 30px;
+            width: 200px;
+            /*border: 2px solid;*/
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .alignLeft {
+            text-align: left;
+            padding-left: 5px;
+        }
+
+        .alignCenter {
+            text-align: center;
+        }
+
+        .dataTables_filter {
+          /*  display: none;*/
+        }
+
+            .dataTables_filter input {
+                height: 30px;
+                width: 200px;
+                /*   border: 2px solid;*/
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                margin-top: 20px;
+                text-align: left !important;
+            }
+
+        .searchbox {
+            clear: both;
+            margin-left: 300px !important;
+            display: block;
+            width: 20%;
+            height: 34px;
+            padding: 6px 12px;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: #555;
+            /*      background-color: #fff;*/
+            background-image: none;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .btnclose {
+            margin-right: 2px;
+        }
+
+        .formatH2 {
+            margin-left: 10px;
+            margin-top: -35px;
+            font-weight: normal
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+
+
+            $('#tblProjectArchiving').dataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ],
+                "pageLength": 300,
+                "lengthChange": false,
+                language: { search: "" }
+               
+            });
+            $('#searchFilter').on('keyup', function () {
+                var table = $('#tblProjectArchiving').DataTable();
+                table.search(this.value).draw();
+            });
+
+            $('#btnexport').on('click', function (e) {
+                $("#tblProjectArchivingExport").table2excel({
+                    exclude: "",
+                    name: "Data",
+                    filename: "SumaryReportProject",
+                    sheetName: "SumaryReportProject",
+
+                });
+
+            });
+
+         
+        });
+    </script>

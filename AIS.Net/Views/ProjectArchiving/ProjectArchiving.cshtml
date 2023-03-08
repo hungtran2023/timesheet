@@ -1,0 +1,371 @@
+﻿
+@{
+    ViewBag.Title = "Project Archive";
+   // Layout = "~/Views/Shared/_Layout.cshtml";
+     Layout = "~/Views/Shared/_LayoutWithMenu.cshtml";
+}
+
+<script src="~/Scripts/jquery.min.js"></script>
+
+<link href="~/Content/style/tablestyle.css" rel="stylesheet" />
+<link href="~/Content/style/jquery.dataTables.min.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/bootstrap.js"></script>
+<input type="hidden" value="@ViewBag.PageSize" name="pageSize" id="pageSize" />
+<input type="hidden" id="loginPageUrl" value="@ViewBag.LoginPageUrl" />
+<form id="frm-example" name="frm-example" method="post">
+    <h3 style="margin-left:10px;font-weight:normal">Project Archive List</h3>
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col">
+                <table>
+                    <tr style="background-color: white">
+                        <td>  <input type="text" class="form-control" id="searchFilter" placeholder="search" name="email" style="width:300px;margin-left:300px;"></td>
+
+                        <Td> @Html.DropDownList("projectchoose", new SelectList(ViewBag.ProjectStatusChooseList, "Value", "Text", ""), new { @class = "form-control" })</Td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col">
+
+            </div>
+        </div>
+
+    </div>
+
+    <br />
+    <br />
+
+
+    <table border="0" cellspacing="0" cellpadding="0" width="100%">
+        <tr>
+            <td bgcolor="#FFFFFF" valign="top">
+                <table class="tablesorter" id="tblProjectArchiving" width="100%">
+                    <thead>
+                        <tr>
+                            <th style="width:5%; text-align:left;">
+                                @Html.Label("APK", new { @style = "margin-right: 100px;" })
+                            </th>
+                            <th style="width: 15%; text-align: left;">@Html.Label("Project Name", new { @style = "margin-right: 100px;" })</th>
+                            <th style="width: 30%; text-align: left;">@Html.Label("Server Path", new { @style = "margin-right: 100px;" })</th>
+                            <th style="width: 25%; text-align: left; ">@Html.Label("Note", new { @style = "margin-right: 200px;" })</th>
+                            <th style="width: 10%; text-align: left; ">@Html.Label("Status", new { @style = "margin-right: 200px;" })</th>
+                            <th style="width: 15%; text-align: left;">@Html.Label("Date", new { @style = "margin-right: 100px;" })</th>
+                            @*<th style="width:5%; text-align:left">Action</th>*@
+                        </tr>
+                    </thead>
+                    <tbody style="font-family:Arial,Verdana;font-size:9pt">
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </table>
+</form>
+
+<div class="modal fade" id="type" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content" style="width:557px">
+            <div class="modal-header">
+                <h4 style="margin-left:10px;font-weight:normal">Archiving detail of</h4>
+            </div>
+
+            <div class="modal-body table-placeholder" style="margin-top:-28px!important;">
+                <h4 class="modal-title" id="defaultModalLabel">Archiving detail of @*<label id="lblAPK"></label>*@</h4>
+            </div>
+
+        </div>
+    </div>
+</div>
+<style>
+
+    .title {
+        margin-left: 10px;
+    }
+
+    .pull-left {
+        float: left !important;
+    }
+
+    .dataTables_filter input {
+        height: 30px;
+        width: 200px;
+        /*   border: 2px solid;*/
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin-top: 20px;
+        text-align: left !important;
+    }
+
+    .select input-sm {
+        height: 35px !important;
+    }
+
+    .alignLeft {
+        text-align: left;
+        padding-left: 5px;
+    }
+
+    .searchbox {
+        clear: both;
+        margin-left: 300px !important;
+        display: block;
+        width: 20%;
+        height: 34px;
+        padding: 6px 12px;
+        font-size: 14px;
+        line-height: 1.42857143;
+        color: #555;
+        /*      background-color: #fff;*/
+        background-image: none;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    .alignCenter {
+        text-align: center;
+    }
+
+    /* #tblProjectArchiving_filter{
+            width:100%;
+        }*/
+    .dataTables_filter {
+        display: none;
+    }
+</style>
+@*class='btn btn-primary'*@
+<script>
+
+    function InnitDataArchiving(pagesizeNumber) {
+        //  var table = $('#tblProjectArchiving').DataTable();
+
+        $('#tblProjectArchiving > td:nth-child(3) > td:nth-child(4)').css('text-align', 'left');
+
+
+        $("#tblProjectArchiving").DataTable({
+
+            ajax: {
+                url: './GetArchivingData',
+                type: "Get",
+                datatype: 'json',
+                contentType: 'application/json',
+            },
+
+            "pageLength": pagesizeNumber,
+            "lengthChange": false,
+            "bInfo": false,
+            language: { search: "" },
+
+            //"search": {
+            //    "addClass": 'form-control input-lg col-xs-12'
+            //},
+            //"fnDrawCallback": function () {
+            //    $("input[type='search']").attr("id", "searchBox");
+            //    $('#tblProjectArchiving').css('cssText', "margin-top: 30px !important;height: 50px; border: 1px solid #ccc;");
+            //    $("select[name='tblProjectArchiving_length'], #searchBox").removeClass("input-sm");
+            //   $('#searchBox').addClass("searchbox");
+
+            //    $('#tblProjectArchiving_filter').removeClass('dataTables_filter');
+            //  /*  $('#tblProjectArchiving_filter').css("width:400px");*/
+            //    $('#tblProjectArchiving_filter').append(combox);
+
+
+            //},
+
+            "columns": [
+                { "data": "ProjectKey", "autoWidth": false, "sClass": "alignLeft" },
+                { "data": "ProjectName", "autoWidth": false, "sClass": "alignLeft" },
+                {
+
+                    "data": "ServerPath", "autoWidth": false, "sClass": "alignLeft"
+
+                },
+
+
+                { "data": "Note", "autoWidth": false, "sClass": "alignLeft" },
+                { "data": "ProjStatus", "autoWidth": false, "sClass": "alignLeft" },
+                { "data": "ArchiveDate", "autoWidth": false, "sClass": "alignLeft" },
+
+
+            ],
+
+            //'columnDefs': [
+            //    //hide the second & fourth column
+            //    { 'visible': false, 'targets': [1, 2] }
+            //]
+
+            //'columnDefs': [{
+
+
+            //    "targets": 6,
+            //    render: function (a, b, data, d) {
+            //        if (data.ArchiveDate == null || data.ArchiveDate != null) {
+            //            return "<a type='button' id='btnArchive'  style='height:20px'><b>...</b></a>";
+            //        }
+            //        return "";
+            //    },
+
+
+
+            //}
+
+
+            //],
+
+
+
+        });
+
+
+    }
+
+    function GetModalPopupArchiving(projectkey) {
+
+        $.ajax({
+        type: "POST",
+        url: '@Url.Action("GetArchivingValuesData", "ProjectArchiving")',
+        data: {
+            ProjectId: projectkey
+        },
+
+        dataType: "html",
+        success: function (response) {
+            $('.table-placeholder').html(response);
+            $('#type').modal('show');
+        },
+        error: function (response) {
+            alert("error");
+        }
+    });
+
+    }
+
+    $(document).ready(function () {
+
+        //var table = $('#tblProjectArchiving').DataTable();
+
+
+      /*  $('#tblProjectArchiving tr td:nth-child(3)').addClass('alignLeft');*/
+
+        var pagesizeNumber = $("#pageSize").val();
+
+        if (pagesizeNumber == 0) {
+
+            pagesizeNumber = 100;
+        }
+
+        $('#projectchoose').change(function () {
+
+            var value = $(this).val();
+            jQuery.ajax({
+                type: "POST",
+                url: './ChangeYourProjectStatusArchiving',
+                data: { projectChoose: value },
+                success: function (result) {
+
+                    //Below is basic code for table redraw, i know it will not work as it will look for no search query
+                    if (value != "Archive") {
+
+
+                        var table = $('#tblProjectArchiving').DataTable();
+                        table.clear();
+                        table.column(2).visible(true);
+                        table.rows.add(result.data).draw();
+                    }
+                    else {
+
+                     
+                        var table = $('#tblProjectArchiving').DataTable();
+                        table.clear();
+                        table.column(2).visible(false);
+                        table.rows.add(result.data).draw();
+
+                    }
+
+                }
+            });
+
+        });
+
+        $('#tblProjectArchiving tbody').on('click', '[id*=btnArchive]', function () {
+
+            var currentRow = $(this).closest("tr");
+            var col1 = currentRow.find("td:eq(0)").text();
+            GetModalPopupArchiving(col1);
+        });
+
+        InnitDataArchiving(pagesizeNumber);
+
+        var table = $('#tblProjectArchiving').DataTable();
+        $('#searchFilter').on('keyup', function () {
+            table.search(this.value).draw();
+        });
+        var combox = $("#cobbox");
+
+    //    $("#filterSearch").append(combox);
+
+        InitMenu();
+
+        const projectKeysList = [];
+
+
+        // Handle click on "Select all" control
+        $('#chk-select-all').on('click', function () {
+
+            var rows = $("#tblProjectArchiving").DataTable().rows({ 'search': 'applied' }).nodes();
+            // Check/uncheck checkboxes for all rows in the table
+            $('input[type="checkbox"]', rows).prop('checked', this.checked);
+
+        });
+
+        $("#tblProjectArchiving").on('change', "input[type='checkbox']", function (e) {
+
+            if (!this.checked) {
+                var currentRow = $(this).closest("tr");
+                var col1 = currentRow.find("td:eq(0)").text();
+
+                for (var i = 0; i < projectKeysList.length; i++) {
+
+                    if (projectKeysList[i] === col1) {
+
+                        projectKeysList.splice(i, 1);
+                    }
+                }
+            }
+            else {
+
+                var currentRow = $(this).closest("tr");
+                var col1 = currentRow.find("td:eq(0)").text();
+                projectKeysList.push(col1);
+
+
+            }
+        });
+
+        $('#tblProjectArchiving tbody').on('click', 'tr', function () {
+
+            var currentRow = $(this).closest("tr");
+            var col1 = currentRow.find("td:eq(0)").text();
+            GetModalPopupArchiving(col1);
+
+        });
+
+        $('#frm-example').on('submit', function (e) {
+            debugger;
+            var form = this;
+            e.preventDefault();
+            GetModalPopupArchiving(projectKeysList);
+        });
+
+
+    });
+
+    function InitMenu() {
+        $("ul[data-menu-toggle=Management-Console]").removeClass("hide");
+        $("a[data-menu-toggle=Management-Console]").addClass("selected-menu");
+        $("ul[data-menu-toggle=IT-Asset-Management]").removeClass("hide");
+        $("a[data-menu-toggle=IT-Asset-Management]").addClass("selected-menu");
+    }
+
+</script>

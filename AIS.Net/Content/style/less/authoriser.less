@@ -1,0 +1,197 @@
+﻿@import "variables.less";
+
+.authorizing {
+    padding: 30px 0 50px 0;
+
+    #team-calendar{
+        table-layout: fixed;
+        width: 100%;
+    }
+
+     &__full-name{
+        background-color: @table-total-row-bg-color;
+        width: 30%;
+    }
+
+    &__team-calendar{
+        width: 60%;
+        margin: 30px auto 0;
+
+        .bootstrap-table .table:not(.table-condensed),
+        .bootstrap-table .table:not(.table-condensed) > tfoot > tr > td,
+        .bootstrap-table .table:not(.table-condensed) > tfoot > tr > th,
+        .bootstrap-table .table:not(.table-condensed) > thead > tr > td{
+            padding: 3px;
+        }
+
+        .bootstrap-table .table:not(.table-condensed) > tbody > tr > td:first-child,
+        .bootstrap-table .table:not(.table-condensed) > tbody > tr > th:first-child{
+            padding: 5px 5px 5px 10px !important;
+        }
+
+        .bootstrap-table .table:not(.table-condensed) > tbody > tr > td,
+        .bootstrap-table .table:not(.table-condensed) > tbody > tr > th{
+            padding: 5px 0 !important;
+        }
+
+        .fixed-table-container tbody td .th-inner,
+        .fixed-table-container thead th .th-inner{
+            padding: 0;
+        }
+
+        tbody{
+            pointer-events: none;
+
+            tr{
+                background-color: @white-color !important;
+                height: 24px;
+
+                 .authorizing__full-name{
+                    text-align:left;
+                }
+            }
+        }
+    }
+
+    &__day{
+        width:22px;
+    }
+
+    &__column-day{
+        width:100%;
+        padding: 5px 8px !important;
+    }
+
+    &__month-select{
+       width: 110px;
+       display:inline-block;
+       float: right;
+       cursor: pointer;
+
+       select{
+           height: 25px;
+           line-height: 25px;
+           color: @main-color;
+       }
+    }
+
+     &__year-select{
+       width: 80px;
+       display:inline-block;
+       float: right;
+       margin: 0 15px;
+       cursor: pointer;
+
+       select{
+           height: 25px;
+           line-height: 25px;
+           color: @main-color;
+       }
+    }
+
+     &__button-search{
+        display:inline-block;
+        float: right;
+
+        button{
+            border: none;
+            padding: 2px 12px;
+        }
+     }
+
+    &__color-explain{
+        width: 60%;
+        margin: 10px auto 0;
+
+        >div{
+            display:inline-block;
+            margin-right: 20px;
+        }
+
+        &--shap{
+            width: 20px;
+            height: 20px;
+            display:inline-block;
+            margin-right:5px;
+            margin-bottom: -5px;
+        }
+    }
+
+    &__absence-requests {
+        width: 60%;
+        margin: 30px auto 0;
+
+        &--approve, &--reject {
+            text-decoration: underline;
+            color: #003399 !important;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 5px 5px;
+
+            &-inbox {
+                text-decoration: underline;
+                color: #003399 !important;
+                font-weight: bold;
+                cursor: pointer;
+                padding: 3px 8px;
+                background-color: @button-bg-color;
+                border-radius: 10px;
+            }
+        }
+
+
+
+        &--reject-icon, &--approve-icon {
+            position: relative;
+            left: 5px;
+            top: 9px;
+        }
+
+        &--approve-icon {
+            color: green;
+        }
+
+        &--reject-icon {
+            color: red;
+        }
+
+        .bootstrap-table{
+            margin-bottom: 10px;
+        }
+    }
+    .request-list__pagination {
+        width: 60% !important;
+    }
+}
+
+@media(min-width: 240px) and (max-width: 767px) {
+    .authorizing {
+        &__absence-requests {
+            min-width: 95%;
+        }
+
+        &__color-explain{
+            min-width: 95%;
+        }
+
+        &__team-calendar{
+            min-width: 95%;
+        }
+    }
+}
+
+@media (min-width: 767px) {
+    .authorizing {
+        &__absence-requests {
+            min-width: 750px;
+        }
+
+        &__color-explain{
+            min-width: 750px;
+        }
+
+        &__team-calendar{
+           min-width: 750px;
+        }
+    }
+}

@@ -1,0 +1,1462 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TMS_CM_ANOnlineModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ATC_Employees">
+    <Key>
+      <PropertyRef Name="StaffID" />
+    </Key>
+    <Property Name="StaffID" Type="Int32" Nullable="false" />
+    <Property Name="JobTitleID" Type="Int32" />
+    <Property Name="DepartmentID" Type="Int32" />
+    <Property Name="ContactTypeID" Type="Int32" />
+    <Property Name="DirectLeaderID" Type="Int32" />
+    <Property Name="JoinDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="LeaveDate" Type="DateTime" Precision="3" />
+    <Property Name="fgIndirect" Type="Boolean" Nullable="false" />
+    <Property Name="LeaveDue" Type="Decimal" Precision="12" Scale="2" />
+    <Property Name="PCName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ExtPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="EmailID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CSOLevel" Type="Int32" />
+    <Property Name="StaffIDHR" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="LeaderOfStaffs" Relationship="Self.FK_ATC_EMPL_REFERENCE_ATC_EMPL" FromRole="ATC_Employees" ToRole="ATC_Employees1" />
+    <NavigationProperty Name="DirectLeader" Relationship="Self.FK_ATC_EMPL_REFERENCE_ATC_EMPL" FromRole="ATC_Employees1" ToRole="ATC_Employees" />
+    <NavigationProperty Name="ATC_SalaryStatus" Relationship="TMS_CM_ANOnlineModel.FK_ATC_SalaryStatus_ATC_Employees" FromRole="ATC_Employees" ToRole="ATC_SalaryStatus" />
+    <NavigationProperty Name="ATC_Timesheet2000" Relationship="TMS_CM_ANOnlineModel.FK_ATC_TIME_RLSH_aa_ATC_ASSI" FromRole="ATC_Employees" ToRole="ATC_Timesheet2000" />
+    <NavigationProperty Name="ATC_Timesheet2003" Relationship="TMS_CM_ANOnlineModel.FK_ATC_Timesheet_ATC_Employees" FromRole="ATC_Employees" ToRole="ATC_Timesheet2003" />
+    <NavigationProperty Name="ATC_Timesheet2002" Relationship="TMS_CM_ANOnlineModel.FK_ATC_Timesheet_ATC_Employees2002" FromRole="ATC_Employees" ToRole="ATC_Timesheet2002" />
+    <NavigationProperty Name="ATC_Timesheet2004" Relationship="TMS_CM_ANOnlineModel.FK_ATC_Timesheet2004_ATC_Employees" FromRole="ATC_Employees" ToRole="ATC_Timesheet2004" />
+    <NavigationProperty Name="ATC_Timesheet2005" Relationship="TMS_CM_ANOnlineModel.FK_ATC_Timesheet2005_ATC_Employees" FromRole="ATC_Employees" ToRole="ATC_Timesheet2005" />
+    <NavigationProperty Name="ATC_Timesheet2006" Relationship="TMS_CM_ANOnlineModel.FK_ATC_Timesheet2006_ATC_Employees" FromRole="ATC_Employees" ToRole="ATC_Timesheet2006" />
+    <NavigationProperty Name="ATC_Timesheet2007" Relationship="TMS_CM_ANOnlineModel.FK_ATC_Timesheet2007_ATC_Employees" FromRole="ATC_Employees" ToRole="ATC_Timesheet2007" />
+    <NavigationProperty Name="ATC_Timesheet2008" Relationship="TMS_CM_ANOnlineModel.FK_ATC_Timesheet2008_ATC_Employees" FromRole="ATC_Employees" ToRole="ATC_Timesheet2008" />
+    <NavigationProperty Name="ATC_Timesheet2009" Relationship="TMS_CM_ANOnlineModel.FK_ATC_TIMESHEET2009_ATC_Employees" FromRole="ATC_Employees" ToRole="ATC_Timesheet2009" />
+    <NavigationProperty Name="ATC_Timesheet2011" Relationship="TMS_CM_ANOnlineModel.FK_ATC_Timesheet2011_ATC_Employees" FromRole="ATC_Employees" ToRole="ATC_Timesheet2011" />
+    <NavigationProperty Name="ATC_Timesheet2012" Relationship="TMS_CM_ANOnlineModel.FK_ATC_Timesheet2012_ATC_Employees" FromRole="ATC_Employees" ToRole="ATC_Timesheet2012" />
+    <NavigationProperty Name="ATC_JobTitle" Relationship="TMS_CM_ANOnlineModel.FK_ATC_EMPL_RLSH_14_ATC_JOBT" FromRole="ATC_Employees" ToRole="ATC_JobTitle" />
+    <NavigationProperty Name="ATC_Department" Relationship="TMS_CM_ANOnlineModel.FK_ATC_EMPL_RLSH_15_ATC_DEPA" FromRole="ATC_Employees" ToRole="ATC_Department" />
+    <NavigationProperty Name="ATC_Preferences" Relationship="TMS_CM_ANOnlineModel.FK_ATC_Preferences_ATC_Employees" FromRole="ATC_Employees" ToRole="ATC_Preferences" />
+    <NavigationProperty Name="Authoriser1Requests" Relationship="TMS_CM_ANOnlineModel.FK_dbo_ATC_AbsenceRequests_dbo_ATC_Employees_Authoriser1_Id" FromRole="ATC_Employees" ToRole="ATC_AbsenceRequests" />
+    <NavigationProperty Name="Authoriser2Requests" Relationship="TMS_CM_ANOnlineModel.FK_dbo_ATC_AbsenceRequests_dbo_ATC_Employees_Authoriser2_Id" FromRole="ATC_Employees" ToRole="ATC_AbsenceRequests" />
+    <NavigationProperty Name="AbsenceRequests" Relationship="TMS_CM_ANOnlineModel.FK_dbo_ATC_AbsenceRequests_dbo_ATC_Employees_StaffId" FromRole="ATC_Employees" ToRole="ATC_AbsenceRequests" />
+    <NavigationProperty Name="PersonalInfo" Relationship="TMS_CM_ANOnlineModel.FK_ATC_Employees_ATC_PersonalInfo" FromRole="ATC_Employees" ToRole="ATC_PersonalInfo" />
+    <Property Name="JobRoleID" Type="Decimal" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="ATC_Timesheet">
+    <Key>
+      <PropertyRef Name="TDate" />
+      <PropertyRef Name="StaffID" />
+      <PropertyRef Name="AssignmentID" />
+      <PropertyRef Name="EventID" />
+    </Key>
+    <Property Name="TDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="StaffID" Type="Int32" Nullable="false" />
+    <Property Name="AssignmentID" Type="Int32" Nullable="false" />
+    <Property Name="EventID" Type="Int32" Nullable="false" />
+    <Property Name="Hours" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="OverTime" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="OverRate" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="OTNight" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="OTNormal" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_ATC_EMPL_REFERENCE_ATC_EMPL">
+    <End Role="ATC_Employees" Type="Self.ATC_Employees" Multiplicity="0..1" />
+    <End Role="ATC_Employees1" Type="Self.ATC_Employees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ATC_Employees">
+        <PropertyRef Name="StaffID" />
+      </Principal>
+      <Dependent Role="ATC_Employees1">
+        <PropertyRef Name="DirectLeaderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="LeaveManagementContext" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ATC_Employees" EntityType="Self.ATC_Employees" />
+    <EntitySet Name="ATC_Timesheet" EntityType="Self.ATC_Timesheet" />
+    <AssociationSet Name="FK_ATC_EMPL_REFERENCE_ATC_EMPL" Association="Self.FK_ATC_EMPL_REFERENCE_ATC_EMPL">
+      <End Role="ATC_Employees" EntitySet="ATC_Employees" />
+      <End Role="ATC_Employees1" EntitySet="ATC_Employees" />
+    </AssociationSet>
+    <EntitySet Name="ATC_Events" EntityType="TMS_CM_ANOnlineModel.ATC_Events" />
+    <EntitySet Name="ATC_SalaryStatus" EntityType="TMS_CM_ANOnlineModel.ATC_SalaryStatus" />
+    <EntitySet Name="ATC_WorkingHours" EntityType="TMS_CM_ANOnlineModel.ATC_WorkingHours" />
+    <AssociationSet Name="FK_ATC_SalaryStatus_ATC_Employees" Association="TMS_CM_ANOnlineModel.FK_ATC_SalaryStatus_ATC_Employees">
+      <End Role="ATC_Employees" EntitySet="ATC_Employees" />
+      <End Role="ATC_SalaryStatus" EntitySet="ATC_SalaryStatus" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ATC_SALA_RLSH_30_ATC_WORK" Association="TMS_CM_ANOnlineModel.FK_ATC_SALA_RLSH_30_ATC_WORK">
+      <End Role="ATC_WorkingHours" EntitySet="ATC_WorkingHours" />
+      <End Role="ATC_SalaryStatus" EntitySet="ATC_SalaryStatus" />
+    </AssociationSet>
+    <EntitySet Name="ATC_Holiday" EntityType="TMS_CM_ANOnlineModel.ATC_Holiday" />
+    <EntitySet Name="ATC_Timesheet2000" EntityType="TMS_CM_ANOnlineModel.ATC_Timesheet2000" />
+    <EntitySet Name="ATC_Timesheet2001" EntityType="TMS_CM_ANOnlineModel.ATC_Timesheet2001" />
+    <EntitySet Name="ATC_Timesheet2002" EntityType="TMS_CM_ANOnlineModel.ATC_Timesheet2002" />
+    <EntitySet Name="ATC_Timesheet2003" EntityType="TMS_CM_ANOnlineModel.ATC_Timesheet2003" />
+    <EntitySet Name="ATC_Timesheet2004" EntityType="TMS_CM_ANOnlineModel.ATC_Timesheet2004" />
+    <EntitySet Name="ATC_Timesheet2005" EntityType="TMS_CM_ANOnlineModel.ATC_Timesheet2005" />
+    <EntitySet Name="ATC_Timesheet2006" EntityType="TMS_CM_ANOnlineModel.ATC_Timesheet2006" />
+    <EntitySet Name="ATC_Timesheet2007" EntityType="TMS_CM_ANOnlineModel.ATC_Timesheet2007" />
+    <EntitySet Name="ATC_Timesheet2008" EntityType="TMS_CM_ANOnlineModel.ATC_Timesheet2008" />
+    <EntitySet Name="ATC_Timesheet2009" EntityType="TMS_CM_ANOnlineModel.ATC_Timesheet2009" />
+    <EntitySet Name="ATC_Timesheet2010" EntityType="TMS_CM_ANOnlineModel.ATC_Timesheet2010" />
+    <EntitySet Name="ATC_Timesheet2011" EntityType="TMS_CM_ANOnlineModel.ATC_Timesheet2011" />
+    <EntitySet Name="ATC_Timesheet2012" EntityType="TMS_CM_ANOnlineModel.ATC_Timesheet2012" />
+    <EntitySet Name="ATC_Timesheet2013" EntityType="TMS_CM_ANOnlineModel.ATC_Timesheet2013" />
+    <EntitySet Name="ATC_Timesheet2014" EntityType="TMS_CM_ANOnlineModel.ATC_Timesheet2014" />
+    <EntitySet Name="ATC_Timesheet2015" EntityType="TMS_CM_ANOnlineModel.ATC_Timesheet2015" />
+    <AssociationSet Name="FK_ATC_TIME_RLSH_aa_ATC_ASSI" Association="TMS_CM_ANOnlineModel.FK_ATC_TIME_RLSH_aa_ATC_ASSI">
+      <End Role="ATC_Employees" EntitySet="ATC_Employees" />
+      <End Role="ATC_Timesheet2000" EntitySet="ATC_Timesheet2000" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ATC_Timesheet_ATC_Employees" Association="TMS_CM_ANOnlineModel.FK_ATC_Timesheet_ATC_Employees">
+      <End Role="ATC_Employees" EntitySet="ATC_Employees" />
+      <End Role="ATC_Timesheet2003" EntitySet="ATC_Timesheet2003" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ATC_Timesheet_ATC_Employees2002" Association="TMS_CM_ANOnlineModel.FK_ATC_Timesheet_ATC_Employees2002">
+      <End Role="ATC_Employees" EntitySet="ATC_Employees" />
+      <End Role="ATC_Timesheet2002" EntitySet="ATC_Timesheet2002" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ATC_Timesheet2004_ATC_Employees" Association="TMS_CM_ANOnlineModel.FK_ATC_Timesheet2004_ATC_Employees">
+      <End Role="ATC_Employees" EntitySet="ATC_Employees" />
+      <End Role="ATC_Timesheet2004" EntitySet="ATC_Timesheet2004" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ATC_Timesheet2005_ATC_Employees" Association="TMS_CM_ANOnlineModel.FK_ATC_Timesheet2005_ATC_Employees">
+      <End Role="ATC_Employees" EntitySet="ATC_Employees" />
+      <End Role="ATC_Timesheet2005" EntitySet="ATC_Timesheet2005" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ATC_Timesheet2006_ATC_Employees" Association="TMS_CM_ANOnlineModel.FK_ATC_Timesheet2006_ATC_Employees">
+      <End Role="ATC_Employees" EntitySet="ATC_Employees" />
+      <End Role="ATC_Timesheet2006" EntitySet="ATC_Timesheet2006" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ATC_Timesheet2007_ATC_Employees" Association="TMS_CM_ANOnlineModel.FK_ATC_Timesheet2007_ATC_Employees">
+      <End Role="ATC_Employees" EntitySet="ATC_Employees" />
+      <End Role="ATC_Timesheet2007" EntitySet="ATC_Timesheet2007" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ATC_Timesheet2008_ATC_Employees" Association="TMS_CM_ANOnlineModel.FK_ATC_Timesheet2008_ATC_Employees">
+      <End Role="ATC_Employees" EntitySet="ATC_Employees" />
+      <End Role="ATC_Timesheet2008" EntitySet="ATC_Timesheet2008" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ATC_TIMESHEET2009_ATC_Employees" Association="TMS_CM_ANOnlineModel.FK_ATC_TIMESHEET2009_ATC_Employees">
+      <End Role="ATC_Employees" EntitySet="ATC_Employees" />
+      <End Role="ATC_Timesheet2009" EntitySet="ATC_Timesheet2009" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ATC_Timesheet2011_ATC_Employees" Association="TMS_CM_ANOnlineModel.FK_ATC_Timesheet2011_ATC_Employees">
+      <End Role="ATC_Employees" EntitySet="ATC_Employees" />
+      <End Role="ATC_Timesheet2011" EntitySet="ATC_Timesheet2011" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ATC_Timesheet2012_ATC_Employees" Association="TMS_CM_ANOnlineModel.FK_ATC_Timesheet2012_ATC_Employees">
+      <End Role="ATC_Employees" EntitySet="ATC_Employees" />
+      <End Role="ATC_Timesheet2012" EntitySet="ATC_Timesheet2012" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ATC_TIME_RLSH_a25_ATC_EVEN" Association="TMS_CM_ANOnlineModel.FK_ATC_TIME_RLSH_a25_ATC_EVEN">
+      <End Role="ATC_Events" EntitySet="ATC_Events" />
+      <End Role="ATC_Timesheet2000" EntitySet="ATC_Timesheet2000" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ATC_Timesheet_ATC_Events" Association="TMS_CM_ANOnlineModel.FK_ATC_Timesheet_ATC_Events">
+      <End Role="ATC_Events" EntitySet="ATC_Events" />
+      <End Role="ATC_Timesheet2003" EntitySet="ATC_Timesheet2003" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ATC_Timesheet_ATC_Events2002" Association="TMS_CM_ANOnlineModel.FK_ATC_Timesheet_ATC_Events2002">
+      <End Role="ATC_Events" EntitySet="ATC_Events" />
+      <End Role="ATC_Timesheet2002" EntitySet="ATC_Timesheet2002" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ATC_Timesheet2004_ATC_Events" Association="TMS_CM_ANOnlineModel.FK_ATC_Timesheet2004_ATC_Events">
+      <End Role="ATC_Events" EntitySet="ATC_Events" />
+      <End Role="ATC_Timesheet2004" EntitySet="ATC_Timesheet2004" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ATC_Timesheet2005_ATC_Events" Association="TMS_CM_ANOnlineModel.FK_ATC_Timesheet2005_ATC_Events">
+      <End Role="ATC_Events" EntitySet="ATC_Events" />
+      <End Role="ATC_Timesheet2005" EntitySet="ATC_Timesheet2005" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ATC_Timesheet2006_ATC_Events" Association="TMS_CM_ANOnlineModel.FK_ATC_Timesheet2006_ATC_Events">
+      <End Role="ATC_Events" EntitySet="ATC_Events" />
+      <End Role="ATC_Timesheet2006" EntitySet="ATC_Timesheet2006" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ATC_Timesheet2007_ATC_Events" Association="TMS_CM_ANOnlineModel.FK_ATC_Timesheet2007_ATC_Events">
+      <End Role="ATC_Events" EntitySet="ATC_Events" />
+      <End Role="ATC_Timesheet2007" EntitySet="ATC_Timesheet2007" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ATC_Timesheet2008_ATC_Events" Association="TMS_CM_ANOnlineModel.FK_ATC_Timesheet2008_ATC_Events">
+      <End Role="ATC_Events" EntitySet="ATC_Events" />
+      <End Role="ATC_Timesheet2008" EntitySet="ATC_Timesheet2008" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ATC_TIMESHEET2009_ATC_Events" Association="TMS_CM_ANOnlineModel.FK_ATC_TIMESHEET2009_ATC_Events">
+      <End Role="ATC_Events" EntitySet="ATC_Events" />
+      <End Role="ATC_Timesheet2009" EntitySet="ATC_Timesheet2009" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ATC_Timesheet2011_ATC_Events" Association="TMS_CM_ANOnlineModel.FK_ATC_Timesheet2011_ATC_Events">
+      <End Role="ATC_Events" EntitySet="ATC_Events" />
+      <End Role="ATC_Timesheet2011" EntitySet="ATC_Timesheet2011" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ATC_Timesheet2012_ATC_Events" Association="TMS_CM_ANOnlineModel.FK_ATC_Timesheet2012_ATC_Events">
+      <End Role="ATC_Events" EntitySet="ATC_Events" />
+      <End Role="ATC_Timesheet2012" EntitySet="ATC_Timesheet2012" />
+    </AssociationSet>
+    <EntitySet Name="ATC_JobTitle" EntityType="TMS_CM_ANOnlineModel.ATC_JobTitle" />
+    <AssociationSet Name="FK_ATC_EMPL_RLSH_14_ATC_JOBT" Association="TMS_CM_ANOnlineModel.FK_ATC_EMPL_RLSH_14_ATC_JOBT">
+      <End Role="ATC_JobTitle" EntitySet="ATC_JobTitle" />
+      <End Role="ATC_Employees" EntitySet="ATC_Employees" />
+    </AssociationSet>
+    <EntitySet Name="ATC_Department" EntityType="TMS_CM_ANOnlineModel.ATC_Department" />
+    <AssociationSet Name="FK_ATC_EMPL_RLSH_15_ATC_DEPA" Association="TMS_CM_ANOnlineModel.FK_ATC_EMPL_RLSH_15_ATC_DEPA">
+      <End Role="ATC_Department" EntitySet="ATC_Department" />
+      <End Role="ATC_Employees" EntitySet="ATC_Employees" />
+    </AssociationSet>
+    <EntitySet Name="ATC_Functions" EntityType="TMS_CM_ANOnlineModel.ATC_Functions" />
+    <EntitySet Name="ATC_Group" EntityType="TMS_CM_ANOnlineModel.ATC_Group" />
+    <EntitySet Name="ATC_Permissions" EntityType="TMS_CM_ANOnlineModel.ATC_Permissions" />
+    <EntitySet Name="ATC_Users" EntityType="TMS_CM_ANOnlineModel.ATC_Users" />
+    <AssociationSet Name="FK_ATC_Functions_ATC_Functions" Association="TMS_CM_ANOnlineModel.FK_ATC_Functions_ATC_Functions">
+      <End Role="ATC_Functions" EntitySet="ATC_Functions" />
+      <End Role="ATC_Functions1" EntitySet="ATC_Functions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ATC_PERM_REFERENCE_ATC_FUNC" Association="TMS_CM_ANOnlineModel.FK_ATC_PERM_REFERENCE_ATC_FUNC">
+      <End Role="ATC_Functions" EntitySet="ATC_Functions" />
+      <End Role="ATC_Permissions" EntitySet="ATC_Permissions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ATC_PERM_REFERENCE_ATC_GROU" Association="TMS_CM_ANOnlineModel.FK_ATC_PERM_REFERENCE_ATC_GROU">
+      <End Role="ATC_Group" EntitySet="ATC_Group" />
+      <End Role="ATC_Permissions" EntitySet="ATC_Permissions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ATC_Users_ATC_Users" Association="TMS_CM_ANOnlineModel.FK_ATC_Users_ATC_Users">
+      <End Role="ATC_Users" EntitySet="ATC_Users" />
+      <End Role="ATC_Users1" EntitySet="ATC_Users" />
+    </AssociationSet>
+    <AssociationSet Name="ATC_UserGroup" Association="TMS_CM_ANOnlineModel.ATC_UserGroup">
+      <End Role="ATC_Group" EntitySet="ATC_Group" />
+      <End Role="ATC_Users" EntitySet="ATC_Users" />
+    </AssociationSet>
+    <EntitySet Name="ATC_Preferences" EntityType="TMS_CM_ANOnlineModel.ATC_Preferences" />
+    <AssociationSet Name="FK_ATC_Preferences_ATC_Employees" Association="TMS_CM_ANOnlineModel.FK_ATC_Preferences_ATC_Employees">
+      <End Role="ATC_Employees" EntitySet="ATC_Employees" />
+      <End Role="ATC_Preferences" EntitySet="ATC_Preferences" />
+    </AssociationSet>
+    <EntitySet Name="HR_CurrentJobtitle" EntityType="TMS_CM_ANOnlineModel.HR_CurrentJobtitle" />
+    <EntitySet Name="ATC_Timesheet2016" EntityType="TMS_CM_ANOnlineModel.ATC_Timesheet2016" />
+    <EntitySet Name="ATC_AbsenceRequests" EntityType="TMS_CM_ANOnlineModel.ATC_AbsenceRequests" />
+    <AssociationSet Name="FK_ATC_AbsenceRequests_ATC_Events" Association="TMS_CM_ANOnlineModel.FK_ATC_AbsenceRequests_ATC_Events">
+      <End Role="ATC_Events" EntitySet="ATC_Events" />
+      <End Role="ATC_AbsenceRequests" EntitySet="ATC_AbsenceRequests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_ATC_AbsenceRequests_dbo_ATC_Employees_Authoriser1_Id" Association="TMS_CM_ANOnlineModel.FK_dbo_ATC_AbsenceRequests_dbo_ATC_Employees_Authoriser1_Id">
+      <End Role="ATC_Employees" EntitySet="ATC_Employees" />
+      <End Role="ATC_AbsenceRequests" EntitySet="ATC_AbsenceRequests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_ATC_AbsenceRequests_dbo_ATC_Employees_Authoriser2_Id" Association="TMS_CM_ANOnlineModel.FK_dbo_ATC_AbsenceRequests_dbo_ATC_Employees_Authoriser2_Id">
+      <End Role="ATC_Employees" EntitySet="ATC_Employees" />
+      <End Role="ATC_AbsenceRequests" EntitySet="ATC_AbsenceRequests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_ATC_AbsenceRequests_dbo_ATC_Employees_StaffId" Association="TMS_CM_ANOnlineModel.FK_dbo_ATC_AbsenceRequests_dbo_ATC_Employees_StaffId">
+      <End Role="ATC_Employees" EntitySet="ATC_Employees" />
+      <End Role="ATC_AbsenceRequests" EntitySet="ATC_AbsenceRequests" />
+    </AssociationSet>
+    <EntitySet Name="ATC_EmailTemplate" EntityType="TMS_CM_ANOnlineModel.ATC_EmailTemplate" />
+    <EntitySet Name="HR_ReceiveReport" EntityType="TMS_CM_ANOnlineModel.HR_ReceiveReport" />
+    <EntitySet Name="HR_Employee" EntityType="TMS_CM_ANOnlineModel.HR_Employee" />
+    <EntitySet Name="ATC_PersonalInfo" EntityType="TMS_CM_ANOnlineModel.ATC_PersonalInfo" />
+    <AssociationSet Name="FK_ATC_Employees_ATC_PersonalInfo" Association="TMS_CM_ANOnlineModel.FK_ATC_Employees_ATC_PersonalInfo">
+      <End Role="ATC_PersonalInfo" EntitySet="ATC_PersonalInfo" />
+      <End Role="ATC_Employees" EntitySet="ATC_Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ATC_Users_ATC_PersonalInfo" Association="TMS_CM_ANOnlineModel.FK_ATC_Users_ATC_PersonalInfo">
+      <End Role="ATC_PersonalInfo" EntitySet="ATC_PersonalInfo" />
+      <End Role="ATC_Users" EntitySet="ATC_Users" />
+    </AssociationSet>
+    <EntitySet Name="ATC_Timesheet2017" EntityType="TMS_CM_ANOnlineModel.ATC_Timesheet2017" />
+    <EntitySet Name="ATC_Timesheet2018" EntityType="TMS_CM_ANOnlineModel.ATC_Timesheet2018" />
+    <EntitySet Name="ATC_Timesheet2019" EntityType="TMS_CM_ANOnlineModel.ATC_Timesheet2019" />
+    <EntitySet Name="ATC_Timesheet2020" EntityType="TMS_CM_ANOnlineModel.ATC_Timesheet2020" />
+    <EntitySet Name="ATC_Timesheet2021" EntityType="TMS_CM_ANOnlineModel.ATC_Timesheet2021" />
+    <EntitySet Name="ATC_Timesheet2023" EntityType="TMS_CM_ANOnlineModel.ATC_Timesheet2023" />
+    <EntitySet Name="ATC_ProjectTracking" EntityType="TMS_CM_ANOnlineModel.ATC_ProjectTracking" />
+  </EntityContainer>
+  <EntityType Name="ATC_Events">
+    <Key>
+      <PropertyRef Name="EventID" />
+    </Key>
+    <Property Name="EventID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EventName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ATC_Timesheet2000" Relationship="TMS_CM_ANOnlineModel.FK_ATC_TIME_RLSH_a25_ATC_EVEN" FromRole="ATC_Events" ToRole="ATC_Timesheet2000" />
+    <NavigationProperty Name="ATC_Timesheet2003" Relationship="TMS_CM_ANOnlineModel.FK_ATC_Timesheet_ATC_Events" FromRole="ATC_Events" ToRole="ATC_Timesheet2003" />
+    <NavigationProperty Name="ATC_Timesheet2002" Relationship="TMS_CM_ANOnlineModel.FK_ATC_Timesheet_ATC_Events2002" FromRole="ATC_Events" ToRole="ATC_Timesheet2002" />
+    <NavigationProperty Name="ATC_Timesheet2004" Relationship="TMS_CM_ANOnlineModel.FK_ATC_Timesheet2004_ATC_Events" FromRole="ATC_Events" ToRole="ATC_Timesheet2004" />
+    <NavigationProperty Name="ATC_Timesheet2005" Relationship="TMS_CM_ANOnlineModel.FK_ATC_Timesheet2005_ATC_Events" FromRole="ATC_Events" ToRole="ATC_Timesheet2005" />
+    <NavigationProperty Name="ATC_Timesheet2006" Relationship="TMS_CM_ANOnlineModel.FK_ATC_Timesheet2006_ATC_Events" FromRole="ATC_Events" ToRole="ATC_Timesheet2006" />
+    <NavigationProperty Name="ATC_Timesheet2007" Relationship="TMS_CM_ANOnlineModel.FK_ATC_Timesheet2007_ATC_Events" FromRole="ATC_Events" ToRole="ATC_Timesheet2007" />
+    <NavigationProperty Name="ATC_Timesheet2008" Relationship="TMS_CM_ANOnlineModel.FK_ATC_Timesheet2008_ATC_Events" FromRole="ATC_Events" ToRole="ATC_Timesheet2008" />
+    <NavigationProperty Name="ATC_Timesheet2009" Relationship="TMS_CM_ANOnlineModel.FK_ATC_TIMESHEET2009_ATC_Events" FromRole="ATC_Events" ToRole="ATC_Timesheet2009" />
+    <NavigationProperty Name="ATC_Timesheet2011" Relationship="TMS_CM_ANOnlineModel.FK_ATC_Timesheet2011_ATC_Events" FromRole="ATC_Events" ToRole="ATC_Timesheet2011" />
+    <NavigationProperty Name="ATC_Timesheet2012" Relationship="TMS_CM_ANOnlineModel.FK_ATC_Timesheet2012_ATC_Events" FromRole="ATC_Events" ToRole="ATC_Timesheet2012" />
+    <NavigationProperty Name="ATC_AbsenceRequests" Relationship="TMS_CM_ANOnlineModel.FK_ATC_AbsenceRequests_ATC_Events" FromRole="ATC_Events" ToRole="ATC_AbsenceRequests" />
+  </EntityType>
+  <EntityType Name="ATC_SalaryStatus">
+    <Key>
+      <PropertyRef Name="StaffID" />
+      <PropertyRef Name="SalaryDate" />
+    </Key>
+    <Property Name="StaffID" Type="Int32" Nullable="false" />
+    <Property Name="SalaryDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="WorkingHourID" Type="Int32" />
+    <Property Name="Salary" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SalaryTax" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Currency" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="CurrencyTax" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="fgOverTimePay" Type="Boolean" />
+    <Property Name="BankID" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="AccountNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="BankDetail" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="fgProbation" Type="Boolean" Nullable="false" />
+    <Property Name="fgNoInsurance" Type="Boolean" Nullable="false" />
+    <Property Name="SalaryNote" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ATC_Employees" Relationship="TMS_CM_ANOnlineModel.FK_ATC_SalaryStatus_ATC_Employees" FromRole="ATC_SalaryStatus" ToRole="ATC_Employees" />
+    <NavigationProperty Name="ATC_WorkingHours" Relationship="TMS_CM_ANOnlineModel.FK_ATC_SALA_RLSH_30_ATC_WORK" FromRole="ATC_SalaryStatus" ToRole="ATC_WorkingHours" />
+  </EntityType>
+  <EntityType Name="ATC_WorkingHours">
+    <Key>
+      <PropertyRef Name="WorkingHourID" />
+    </Key>
+    <Property Name="WorkingHourID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Hours" Type="Decimal" Nullable="false" Precision="12" Scale="2" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ATC_SalaryStatus" Relationship="TMS_CM_ANOnlineModel.FK_ATC_SALA_RLSH_30_ATC_WORK" FromRole="ATC_WorkingHours" ToRole="ATC_SalaryStatus" />
+  </EntityType>
+  <Association Name="FK_ATC_SalaryStatus_ATC_Employees">
+    <End Type="TMS_CM_ANOnlineModel.ATC_Employees" Role="ATC_Employees" Multiplicity="1" />
+    <End Type="TMS_CM_ANOnlineModel.ATC_SalaryStatus" Role="ATC_SalaryStatus" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ATC_Employees">
+        <PropertyRef Name="StaffID" />
+      </Principal>
+      <Dependent Role="ATC_SalaryStatus">
+        <PropertyRef Name="StaffID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ATC_SALA_RLSH_30_ATC_WORK">
+    <End Type="TMS_CM_ANOnlineModel.ATC_WorkingHours" Role="ATC_WorkingHours" Multiplicity="0..1" />
+    <End Type="TMS_CM_ANOnlineModel.ATC_SalaryStatus" Role="ATC_SalaryStatus" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ATC_WorkingHours">
+        <PropertyRef Name="WorkingHourID" />
+      </Principal>
+      <Dependent Role="ATC_SalaryStatus">
+        <PropertyRef Name="WorkingHourID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="ATC_Holiday">
+    <Key>
+      <PropertyRef Name="HolidayID" />
+    </Key>
+    <Property Name="HolidayID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sDay" Type="Int16" Nullable="false" />
+    <Property Name="sMonth" Type="Int16" Nullable="false" />
+    <Property Name="sYear" Type="Int32" Nullable="false" />
+    <Property Name="dates" Type="DateTime" Precision="3" />
+    <Property Name="Holiday" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ratio" Type="Decimal" Nullable="false" Precision="2" Scale="1" />
+  </EntityType>
+  <EntityType Name="ATC_Timesheet2000">
+    <Key>
+      <PropertyRef Name="TDate" />
+      <PropertyRef Name="StaffID" />
+      <PropertyRef Name="AssignmentID" />
+      <PropertyRef Name="EventID" />
+    </Key>
+    <Property Name="TDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="StaffID" Type="Int32" Nullable="false" />
+    <Property Name="AssignmentID" Type="Int32" Nullable="false" />
+    <Property Name="EventID" Type="Int32" Nullable="false" />
+    <Property Name="Hours" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="OverTime" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="OverRate" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="OTNight" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="OTNormal" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <NavigationProperty Name="ATC_Employees" Relationship="TMS_CM_ANOnlineModel.FK_ATC_TIME_RLSH_aa_ATC_ASSI" FromRole="ATC_Timesheet2000" ToRole="ATC_Employees" />
+    <NavigationProperty Name="ATC_Events" Relationship="TMS_CM_ANOnlineModel.FK_ATC_TIME_RLSH_a25_ATC_EVEN" FromRole="ATC_Timesheet2000" ToRole="ATC_Events" />
+  </EntityType>
+  <EntityType Name="ATC_Timesheet2001">
+    <Key>
+      <PropertyRef Name="TDate" />
+      <PropertyRef Name="StaffID" />
+      <PropertyRef Name="AssignmentID" />
+      <PropertyRef Name="EventID" />
+    </Key>
+    <Property Name="TDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="StaffID" Type="Int32" Nullable="false" />
+    <Property Name="AssignmentID" Type="Int32" Nullable="false" />
+    <Property Name="EventID" Type="Int32" Nullable="false" />
+    <Property Name="Hours" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="OverTime" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="OverRate" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="OTNight" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="OTNormal" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="ATC_Timesheet2002">
+    <Key>
+      <PropertyRef Name="TDate" />
+      <PropertyRef Name="StaffID" />
+      <PropertyRef Name="AssignmentID" />
+      <PropertyRef Name="EventID" />
+    </Key>
+    <Property Name="TDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="StaffID" Type="Int32" Nullable="false" />
+    <Property Name="AssignmentID" Type="Int32" Nullable="false" />
+    <Property Name="EventID" Type="Int32" Nullable="false" />
+    <Property Name="Hours" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="OverTime" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="OverRate" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="OTNight" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="OTNormal" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <NavigationProperty Name="ATC_Employees" Relationship="TMS_CM_ANOnlineModel.FK_ATC_Timesheet_ATC_Employees2002" FromRole="ATC_Timesheet2002" ToRole="ATC_Employees" />
+    <NavigationProperty Name="ATC_Events" Relationship="TMS_CM_ANOnlineModel.FK_ATC_Timesheet_ATC_Events2002" FromRole="ATC_Timesheet2002" ToRole="ATC_Events" />
+  </EntityType>
+  <EntityType Name="ATC_Timesheet2003">
+    <Key>
+      <PropertyRef Name="TDate" />
+      <PropertyRef Name="StaffID" />
+      <PropertyRef Name="AssignmentID" />
+      <PropertyRef Name="EventID" />
+    </Key>
+    <Property Name="TDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="StaffID" Type="Int32" Nullable="false" />
+    <Property Name="AssignmentID" Type="Int32" Nullable="false" />
+    <Property Name="EventID" Type="Int32" Nullable="false" />
+    <Property Name="Hours" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="OverTime" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="OverRate" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="OTNight" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="OTNormal" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <NavigationProperty Name="ATC_Employees" Relationship="TMS_CM_ANOnlineModel.FK_ATC_Timesheet_ATC_Employees" FromRole="ATC_Timesheet2003" ToRole="ATC_Employees" />
+    <NavigationProperty Name="ATC_Events" Relationship="TMS_CM_ANOnlineModel.FK_ATC_Timesheet_ATC_Events" FromRole="ATC_Timesheet2003" ToRole="ATC_Events" />
+  </EntityType>
+  <EntityType Name="ATC_Timesheet2004">
+    <Key>
+      <PropertyRef Name="TDate" />
+      <PropertyRef Name="StaffID" />
+      <PropertyRef Name="AssignmentID" />
+      <PropertyRef Name="EventID" />
+    </Key>
+    <Property Name="TDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="StaffID" Type="Int32" Nullable="false" />
+    <Property Name="AssignmentID" Type="Int32" Nullable="false" />
+    <Property Name="EventID" Type="Int32" Nullable="false" />
+    <Property Name="Hours" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="OverTime" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="OverRate" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="OTNight" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="OTNormal" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <NavigationProperty Name="ATC_Employees" Relationship="TMS_CM_ANOnlineModel.FK_ATC_Timesheet2004_ATC_Employees" FromRole="ATC_Timesheet2004" ToRole="ATC_Employees" />
+    <NavigationProperty Name="ATC_Events" Relationship="TMS_CM_ANOnlineModel.FK_ATC_Timesheet2004_ATC_Events" FromRole="ATC_Timesheet2004" ToRole="ATC_Events" />
+  </EntityType>
+  <EntityType Name="ATC_Timesheet2005">
+    <Key>
+      <PropertyRef Name="TDate" />
+      <PropertyRef Name="StaffID" />
+      <PropertyRef Name="AssignmentID" />
+      <PropertyRef Name="EventID" />
+    </Key>
+    <Property Name="TDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="StaffID" Type="Int32" Nullable="false" />
+    <Property Name="AssignmentID" Type="Int32" Nullable="false" />
+    <Property Name="EventID" Type="Int32" Nullable="false" />
+    <Property Name="Hours" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="OverTime" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="OverRate" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="OTNight" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="OTNormal" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <NavigationProperty Name="ATC_Employees" Relationship="TMS_CM_ANOnlineModel.FK_ATC_Timesheet2005_ATC_Employees" FromRole="ATC_Timesheet2005" ToRole="ATC_Employees" />
+    <NavigationProperty Name="ATC_Events" Relationship="TMS_CM_ANOnlineModel.FK_ATC_Timesheet2005_ATC_Events" FromRole="ATC_Timesheet2005" ToRole="ATC_Events" />
+  </EntityType>
+  <EntityType Name="ATC_Timesheet2006">
+    <Key>
+      <PropertyRef Name="TDate" />
+      <PropertyRef Name="StaffID" />
+      <PropertyRef Name="AssignmentID" />
+      <PropertyRef Name="EventID" />
+    </Key>
+    <Property Name="TDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="StaffID" Type="Int32" Nullable="false" />
+    <Property Name="AssignmentID" Type="Int32" Nullable="false" />
+    <Property Name="EventID" Type="Int32" Nullable="false" />
+    <Property Name="Hours" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="OverTime" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="OverRate" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="OTNight" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="OTNormal" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <NavigationProperty Name="ATC_Employees" Relationship="TMS_CM_ANOnlineModel.FK_ATC_Timesheet2006_ATC_Employees" FromRole="ATC_Timesheet2006" ToRole="ATC_Employees" />
+    <NavigationProperty Name="ATC_Events" Relationship="TMS_CM_ANOnlineModel.FK_ATC_Timesheet2006_ATC_Events" FromRole="ATC_Timesheet2006" ToRole="ATC_Events" />
+  </EntityType>
+  <EntityType Name="ATC_Timesheet2007">
+    <Key>
+      <PropertyRef Name="TDate" />
+      <PropertyRef Name="StaffID" />
+      <PropertyRef Name="AssignmentID" />
+      <PropertyRef Name="EventID" />
+    </Key>
+    <Property Name="TDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="StaffID" Type="Int32" Nullable="false" />
+    <Property Name="AssignmentID" Type="Int32" Nullable="false" />
+    <Property Name="EventID" Type="Int32" Nullable="false" />
+    <Property Name="Hours" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="OverTime" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="OverRate" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="OTNight" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="OTNormal" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <NavigationProperty Name="ATC_Employees" Relationship="TMS_CM_ANOnlineModel.FK_ATC_Timesheet2007_ATC_Employees" FromRole="ATC_Timesheet2007" ToRole="ATC_Employees" />
+    <NavigationProperty Name="ATC_Events" Relationship="TMS_CM_ANOnlineModel.FK_ATC_Timesheet2007_ATC_Events" FromRole="ATC_Timesheet2007" ToRole="ATC_Events" />
+  </EntityType>
+  <EntityType Name="ATC_Timesheet2008">
+    <Key>
+      <PropertyRef Name="TDate" />
+      <PropertyRef Name="StaffID" />
+      <PropertyRef Name="AssignmentID" />
+      <PropertyRef Name="EventID" />
+    </Key>
+    <Property Name="TDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="StaffID" Type="Int32" Nullable="false" />
+    <Property Name="AssignmentID" Type="Int32" Nullable="false" />
+    <Property Name="EventID" Type="Int32" Nullable="false" />
+    <Property Name="Hours" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="OverTime" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="OverRate" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="OTNight" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="OTNormal" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <NavigationProperty Name="ATC_Employees" Relationship="TMS_CM_ANOnlineModel.FK_ATC_Timesheet2008_ATC_Employees" FromRole="ATC_Timesheet2008" ToRole="ATC_Employees" />
+    <NavigationProperty Name="ATC_Events" Relationship="TMS_CM_ANOnlineModel.FK_ATC_Timesheet2008_ATC_Events" FromRole="ATC_Timesheet2008" ToRole="ATC_Events" />
+  </EntityType>
+  <EntityType Name="ATC_Timesheet2009">
+    <Key>
+      <PropertyRef Name="TDate" />
+      <PropertyRef Name="StaffID" />
+      <PropertyRef Name="AssignmentID" />
+      <PropertyRef Name="EventID" />
+    </Key>
+    <Property Name="TDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="StaffID" Type="Int32" Nullable="false" />
+    <Property Name="AssignmentID" Type="Int32" Nullable="false" />
+    <Property Name="EventID" Type="Int32" Nullable="false" />
+    <Property Name="Hours" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="OverTime" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="OverRate" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="OTNight" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="OTNormal" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <NavigationProperty Name="ATC_Employees" Relationship="TMS_CM_ANOnlineModel.FK_ATC_TIMESHEET2009_ATC_Employees" FromRole="ATC_Timesheet2009" ToRole="ATC_Employees" />
+    <NavigationProperty Name="ATC_Events" Relationship="TMS_CM_ANOnlineModel.FK_ATC_TIMESHEET2009_ATC_Events" FromRole="ATC_Timesheet2009" ToRole="ATC_Events" />
+  </EntityType>
+  <EntityType Name="ATC_Timesheet2010">
+    <Key>
+      <PropertyRef Name="TDate" />
+      <PropertyRef Name="StaffID" />
+      <PropertyRef Name="AssignmentID" />
+      <PropertyRef Name="EventID" />
+    </Key>
+    <Property Name="TDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="StaffID" Type="Int32" Nullable="false" />
+    <Property Name="AssignmentID" Type="Int32" Nullable="false" />
+    <Property Name="EventID" Type="Int32" Nullable="false" />
+    <Property Name="Hours" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="OverTime" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="OverRate" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="OTNight" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="OTNormal" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="ATC_Timesheet2011">
+    <Key>
+      <PropertyRef Name="TDate" />
+      <PropertyRef Name="StaffID" />
+      <PropertyRef Name="AssignmentID" />
+      <PropertyRef Name="EventID" />
+    </Key>
+    <Property Name="TDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="StaffID" Type="Int32" Nullable="false" />
+    <Property Name="AssignmentID" Type="Int32" Nullable="false" />
+    <Property Name="EventID" Type="Int32" Nullable="false" />
+    <Property Name="Hours" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="OverTime" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="OverRate" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="OTNight" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="OTNormal" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <NavigationProperty Name="ATC_Employees" Relationship="TMS_CM_ANOnlineModel.FK_ATC_Timesheet2011_ATC_Employees" FromRole="ATC_Timesheet2011" ToRole="ATC_Employees" />
+    <NavigationProperty Name="ATC_Events" Relationship="TMS_CM_ANOnlineModel.FK_ATC_Timesheet2011_ATC_Events" FromRole="ATC_Timesheet2011" ToRole="ATC_Events" />
+  </EntityType>
+  <EntityType Name="ATC_Timesheet2012">
+    <Key>
+      <PropertyRef Name="TDate" />
+      <PropertyRef Name="StaffID" />
+      <PropertyRef Name="AssignmentID" />
+      <PropertyRef Name="EventID" />
+    </Key>
+    <Property Name="TDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="StaffID" Type="Int32" Nullable="false" />
+    <Property Name="AssignmentID" Type="Int32" Nullable="false" />
+    <Property Name="EventID" Type="Int32" Nullable="false" />
+    <Property Name="Hours" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="OverTime" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="OverRate" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="OTNight" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="OTNormal" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <NavigationProperty Name="ATC_Employees" Relationship="TMS_CM_ANOnlineModel.FK_ATC_Timesheet2012_ATC_Employees" FromRole="ATC_Timesheet2012" ToRole="ATC_Employees" />
+    <NavigationProperty Name="ATC_Events" Relationship="TMS_CM_ANOnlineModel.FK_ATC_Timesheet2012_ATC_Events" FromRole="ATC_Timesheet2012" ToRole="ATC_Events" />
+  </EntityType>
+  <EntityType Name="ATC_Timesheet2013">
+    <Key>
+      <PropertyRef Name="TDate" />
+      <PropertyRef Name="StaffID" />
+      <PropertyRef Name="AssignmentID" />
+      <PropertyRef Name="EventID" />
+    </Key>
+    <Property Name="TDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="StaffID" Type="Int32" Nullable="false" />
+    <Property Name="AssignmentID" Type="Int32" Nullable="false" />
+    <Property Name="EventID" Type="Int32" Nullable="false" />
+    <Property Name="Hours" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="OverTime" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="OverRate" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="OTNight" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="OTNormal" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="ATC_Timesheet2014">
+    <Key>
+      <PropertyRef Name="TDate" />
+      <PropertyRef Name="StaffID" />
+      <PropertyRef Name="AssignmentID" />
+      <PropertyRef Name="EventID" />
+    </Key>
+    <Property Name="TDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="StaffID" Type="Int32" Nullable="false" />
+    <Property Name="AssignmentID" Type="Int32" Nullable="false" />
+    <Property Name="EventID" Type="Int32" Nullable="false" />
+    <Property Name="Hours" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="OverTime" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="OverRate" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="OTNight" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="OTNormal" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="ATC_Timesheet2015">
+    <Key>
+      <PropertyRef Name="TDate" />
+      <PropertyRef Name="StaffID" />
+      <PropertyRef Name="AssignmentID" />
+      <PropertyRef Name="EventID" />
+    </Key>
+    <Property Name="TDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="StaffID" Type="Int32" Nullable="false" />
+    <Property Name="AssignmentID" Type="Int32" Nullable="false" />
+    <Property Name="EventID" Type="Int32" Nullable="false" />
+    <Property Name="Hours" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="OverTime" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="OverRate" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="OTNight" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="OTNormal" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+  </EntityType>
+  <Association Name="FK_ATC_TIME_RLSH_aa_ATC_ASSI">
+    <End Type="TMS_CM_ANOnlineModel.ATC_Employees" Role="ATC_Employees" Multiplicity="1" />
+    <End Type="TMS_CM_ANOnlineModel.ATC_Timesheet2000" Role="ATC_Timesheet2000" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ATC_Employees">
+        <PropertyRef Name="StaffID" />
+      </Principal>
+      <Dependent Role="ATC_Timesheet2000">
+        <PropertyRef Name="StaffID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ATC_Timesheet_ATC_Employees">
+    <End Type="TMS_CM_ANOnlineModel.ATC_Employees" Role="ATC_Employees" Multiplicity="1" />
+    <End Type="TMS_CM_ANOnlineModel.ATC_Timesheet2003" Role="ATC_Timesheet2003" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ATC_Employees">
+        <PropertyRef Name="StaffID" />
+      </Principal>
+      <Dependent Role="ATC_Timesheet2003">
+        <PropertyRef Name="StaffID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ATC_Timesheet_ATC_Employees2002">
+    <End Type="TMS_CM_ANOnlineModel.ATC_Employees" Role="ATC_Employees" Multiplicity="1" />
+    <End Type="TMS_CM_ANOnlineModel.ATC_Timesheet2002" Role="ATC_Timesheet2002" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ATC_Employees">
+        <PropertyRef Name="StaffID" />
+      </Principal>
+      <Dependent Role="ATC_Timesheet2002">
+        <PropertyRef Name="StaffID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ATC_Timesheet2004_ATC_Employees">
+    <End Type="TMS_CM_ANOnlineModel.ATC_Employees" Role="ATC_Employees" Multiplicity="1" />
+    <End Type="TMS_CM_ANOnlineModel.ATC_Timesheet2004" Role="ATC_Timesheet2004" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ATC_Employees">
+        <PropertyRef Name="StaffID" />
+      </Principal>
+      <Dependent Role="ATC_Timesheet2004">
+        <PropertyRef Name="StaffID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ATC_Timesheet2005_ATC_Employees">
+    <End Type="TMS_CM_ANOnlineModel.ATC_Employees" Role="ATC_Employees" Multiplicity="1" />
+    <End Type="TMS_CM_ANOnlineModel.ATC_Timesheet2005" Role="ATC_Timesheet2005" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ATC_Employees">
+        <PropertyRef Name="StaffID" />
+      </Principal>
+      <Dependent Role="ATC_Timesheet2005">
+        <PropertyRef Name="StaffID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ATC_Timesheet2006_ATC_Employees">
+    <End Type="TMS_CM_ANOnlineModel.ATC_Employees" Role="ATC_Employees" Multiplicity="1" />
+    <End Type="TMS_CM_ANOnlineModel.ATC_Timesheet2006" Role="ATC_Timesheet2006" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ATC_Employees">
+        <PropertyRef Name="StaffID" />
+      </Principal>
+      <Dependent Role="ATC_Timesheet2006">
+        <PropertyRef Name="StaffID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ATC_Timesheet2007_ATC_Employees">
+    <End Type="TMS_CM_ANOnlineModel.ATC_Employees" Role="ATC_Employees" Multiplicity="1" />
+    <End Type="TMS_CM_ANOnlineModel.ATC_Timesheet2007" Role="ATC_Timesheet2007" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ATC_Employees">
+        <PropertyRef Name="StaffID" />
+      </Principal>
+      <Dependent Role="ATC_Timesheet2007">
+        <PropertyRef Name="StaffID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ATC_Timesheet2008_ATC_Employees">
+    <End Type="TMS_CM_ANOnlineModel.ATC_Employees" Role="ATC_Employees" Multiplicity="1" />
+    <End Type="TMS_CM_ANOnlineModel.ATC_Timesheet2008" Role="ATC_Timesheet2008" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ATC_Employees">
+        <PropertyRef Name="StaffID" />
+      </Principal>
+      <Dependent Role="ATC_Timesheet2008">
+        <PropertyRef Name="StaffID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ATC_TIMESHEET2009_ATC_Employees">
+    <End Type="TMS_CM_ANOnlineModel.ATC_Employees" Role="ATC_Employees" Multiplicity="1" />
+    <End Type="TMS_CM_ANOnlineModel.ATC_Timesheet2009" Role="ATC_Timesheet2009" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ATC_Employees">
+        <PropertyRef Name="StaffID" />
+      </Principal>
+      <Dependent Role="ATC_Timesheet2009">
+        <PropertyRef Name="StaffID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ATC_Timesheet2011_ATC_Employees">
+    <End Type="TMS_CM_ANOnlineModel.ATC_Employees" Role="ATC_Employees" Multiplicity="1" />
+    <End Type="TMS_CM_ANOnlineModel.ATC_Timesheet2011" Role="ATC_Timesheet2011" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ATC_Employees">
+        <PropertyRef Name="StaffID" />
+      </Principal>
+      <Dependent Role="ATC_Timesheet2011">
+        <PropertyRef Name="StaffID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ATC_Timesheet2012_ATC_Employees">
+    <End Type="TMS_CM_ANOnlineModel.ATC_Employees" Role="ATC_Employees" Multiplicity="1" />
+    <End Type="TMS_CM_ANOnlineModel.ATC_Timesheet2012" Role="ATC_Timesheet2012" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ATC_Employees">
+        <PropertyRef Name="StaffID" />
+      </Principal>
+      <Dependent Role="ATC_Timesheet2012">
+        <PropertyRef Name="StaffID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ATC_TIME_RLSH_a25_ATC_EVEN">
+    <End Type="TMS_CM_ANOnlineModel.ATC_Events" Role="ATC_Events" Multiplicity="1" />
+    <End Type="TMS_CM_ANOnlineModel.ATC_Timesheet2000" Role="ATC_Timesheet2000" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ATC_Events">
+        <PropertyRef Name="EventID" />
+      </Principal>
+      <Dependent Role="ATC_Timesheet2000">
+        <PropertyRef Name="EventID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ATC_Timesheet_ATC_Events">
+    <End Type="TMS_CM_ANOnlineModel.ATC_Events" Role="ATC_Events" Multiplicity="1" />
+    <End Type="TMS_CM_ANOnlineModel.ATC_Timesheet2003" Role="ATC_Timesheet2003" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ATC_Events">
+        <PropertyRef Name="EventID" />
+      </Principal>
+      <Dependent Role="ATC_Timesheet2003">
+        <PropertyRef Name="EventID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ATC_Timesheet_ATC_Events2002">
+    <End Type="TMS_CM_ANOnlineModel.ATC_Events" Role="ATC_Events" Multiplicity="1" />
+    <End Type="TMS_CM_ANOnlineModel.ATC_Timesheet2002" Role="ATC_Timesheet2002" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ATC_Events">
+        <PropertyRef Name="EventID" />
+      </Principal>
+      <Dependent Role="ATC_Timesheet2002">
+        <PropertyRef Name="EventID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ATC_Timesheet2004_ATC_Events">
+    <End Type="TMS_CM_ANOnlineModel.ATC_Events" Role="ATC_Events" Multiplicity="1" />
+    <End Type="TMS_CM_ANOnlineModel.ATC_Timesheet2004" Role="ATC_Timesheet2004" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ATC_Events">
+        <PropertyRef Name="EventID" />
+      </Principal>
+      <Dependent Role="ATC_Timesheet2004">
+        <PropertyRef Name="EventID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ATC_Timesheet2005_ATC_Events">
+    <End Type="TMS_CM_ANOnlineModel.ATC_Events" Role="ATC_Events" Multiplicity="1" />
+    <End Type="TMS_CM_ANOnlineModel.ATC_Timesheet2005" Role="ATC_Timesheet2005" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ATC_Events">
+        <PropertyRef Name="EventID" />
+      </Principal>
+      <Dependent Role="ATC_Timesheet2005">
+        <PropertyRef Name="EventID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ATC_Timesheet2006_ATC_Events">
+    <End Type="TMS_CM_ANOnlineModel.ATC_Events" Role="ATC_Events" Multiplicity="1" />
+    <End Type="TMS_CM_ANOnlineModel.ATC_Timesheet2006" Role="ATC_Timesheet2006" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ATC_Events">
+        <PropertyRef Name="EventID" />
+      </Principal>
+      <Dependent Role="ATC_Timesheet2006">
+        <PropertyRef Name="EventID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ATC_Timesheet2007_ATC_Events">
+    <End Type="TMS_CM_ANOnlineModel.ATC_Events" Role="ATC_Events" Multiplicity="1" />
+    <End Type="TMS_CM_ANOnlineModel.ATC_Timesheet2007" Role="ATC_Timesheet2007" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ATC_Events">
+        <PropertyRef Name="EventID" />
+      </Principal>
+      <Dependent Role="ATC_Timesheet2007">
+        <PropertyRef Name="EventID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ATC_Timesheet2008_ATC_Events">
+    <End Type="TMS_CM_ANOnlineModel.ATC_Events" Role="ATC_Events" Multiplicity="1" />
+    <End Type="TMS_CM_ANOnlineModel.ATC_Timesheet2008" Role="ATC_Timesheet2008" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ATC_Events">
+        <PropertyRef Name="EventID" />
+      </Principal>
+      <Dependent Role="ATC_Timesheet2008">
+        <PropertyRef Name="EventID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ATC_TIMESHEET2009_ATC_Events">
+    <End Type="TMS_CM_ANOnlineModel.ATC_Events" Role="ATC_Events" Multiplicity="1" />
+    <End Type="TMS_CM_ANOnlineModel.ATC_Timesheet2009" Role="ATC_Timesheet2009" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ATC_Events">
+        <PropertyRef Name="EventID" />
+      </Principal>
+      <Dependent Role="ATC_Timesheet2009">
+        <PropertyRef Name="EventID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ATC_Timesheet2011_ATC_Events">
+    <End Type="TMS_CM_ANOnlineModel.ATC_Events" Role="ATC_Events" Multiplicity="1" />
+    <End Type="TMS_CM_ANOnlineModel.ATC_Timesheet2011" Role="ATC_Timesheet2011" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ATC_Events">
+        <PropertyRef Name="EventID" />
+      </Principal>
+      <Dependent Role="ATC_Timesheet2011">
+        <PropertyRef Name="EventID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ATC_Timesheet2012_ATC_Events">
+    <End Type="TMS_CM_ANOnlineModel.ATC_Events" Role="ATC_Events" Multiplicity="1" />
+    <End Type="TMS_CM_ANOnlineModel.ATC_Timesheet2012" Role="ATC_Timesheet2012" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ATC_Events">
+        <PropertyRef Name="EventID" />
+      </Principal>
+      <Dependent Role="ATC_Timesheet2012">
+        <PropertyRef Name="EventID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="ATC_JobTitle">
+    <Key>
+      <PropertyRef Name="JobTitleID" />
+    </Key>
+    <Property Name="JobTitleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="JobTitle" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="TaxType" Type="Int32" Nullable="false" />
+    <Property Name="fgActivate" Type="Boolean" Nullable="false" />
+    <Property Name="CostingGroupID" Type="Decimal" Precision="18" Scale="0" />
+    <NavigationProperty Name="ATC_Employees" Relationship="TMS_CM_ANOnlineModel.FK_ATC_EMPL_RLSH_14_ATC_JOBT" FromRole="ATC_JobTitle" ToRole="ATC_Employees" />
+  </EntityType>
+  <Association Name="FK_ATC_EMPL_RLSH_14_ATC_JOBT">
+    <End Type="TMS_CM_ANOnlineModel.ATC_JobTitle" Role="ATC_JobTitle" Multiplicity="0..1" />
+    <End Type="TMS_CM_ANOnlineModel.ATC_Employees" Role="ATC_Employees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ATC_JobTitle">
+        <PropertyRef Name="JobTitleID" />
+      </Principal>
+      <Dependent Role="ATC_Employees">
+        <PropertyRef Name="JobTitleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="ATC_Department">
+    <Key>
+      <PropertyRef Name="DepartmentID" />
+    </Key>
+    <Property Name="DepartmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Department" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="DepartmentCode" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="fgActivate" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="ATC_Employees" Relationship="TMS_CM_ANOnlineModel.FK_ATC_EMPL_RLSH_15_ATC_DEPA" FromRole="ATC_Department" ToRole="ATC_Employees" />
+  </EntityType>
+  <Association Name="FK_ATC_EMPL_RLSH_15_ATC_DEPA">
+    <End Type="TMS_CM_ANOnlineModel.ATC_Department" Role="ATC_Department" Multiplicity="0..1" />
+    <End Type="TMS_CM_ANOnlineModel.ATC_Employees" Role="ATC_Employees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ATC_Department">
+        <PropertyRef Name="DepartmentID" />
+      </Principal>
+      <Dependent Role="ATC_Employees">
+        <PropertyRef Name="DepartmentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="ATC_Functions">
+    <Key>
+      <PropertyRef Name="FunctionID" />
+    </Key>
+    <Property Name="FunctionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Form" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="GroupID" Type="Int32" />
+    <Property Name="LevelOrder" Type="Byte" />
+    <Property Name="fgUpdateable" Type="Boolean" Nullable="false" />
+    <Property Name="fgAttribute" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="ATC_Functions1" Relationship="TMS_CM_ANOnlineModel.FK_ATC_Functions_ATC_Functions" FromRole="ATC_Functions" ToRole="ATC_Functions1" />
+    <NavigationProperty Name="ATC_Functions2" Relationship="TMS_CM_ANOnlineModel.FK_ATC_Functions_ATC_Functions" FromRole="ATC_Functions1" ToRole="ATC_Functions" />
+    <NavigationProperty Name="ATC_Permissions" Relationship="TMS_CM_ANOnlineModel.FK_ATC_PERM_REFERENCE_ATC_FUNC" FromRole="ATC_Functions" ToRole="ATC_Permissions" />
+  </EntityType>
+  <EntityType Name="ATC_Group">
+    <Key>
+      <PropertyRef Name="GroupID" />
+    </Key>
+    <Property Name="GroupID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GroupName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Comment" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ATC_Permissions" Relationship="TMS_CM_ANOnlineModel.FK_ATC_PERM_REFERENCE_ATC_GROU" FromRole="ATC_Group" ToRole="ATC_Permissions" />
+    <NavigationProperty Name="ATC_Users" Relationship="TMS_CM_ANOnlineModel.ATC_UserGroup" FromRole="ATC_Group" ToRole="ATC_Users" />
+  </EntityType>
+  <EntityType Name="ATC_Permissions">
+    <Key>
+      <PropertyRef Name="GroupID" />
+      <PropertyRef Name="FunctionID" />
+    </Key>
+    <Property Name="GroupID" Type="Int32" Nullable="false" />
+    <Property Name="FunctionID" Type="Int32" Nullable="false" />
+    <Property Name="Updateable" Type="Boolean" />
+    <NavigationProperty Name="ATC_Functions" Relationship="TMS_CM_ANOnlineModel.FK_ATC_PERM_REFERENCE_ATC_FUNC" FromRole="ATC_Permissions" ToRole="ATC_Functions" />
+    <NavigationProperty Name="ATC_Group" Relationship="TMS_CM_ANOnlineModel.FK_ATC_PERM_REFERENCE_ATC_GROU" FromRole="ATC_Permissions" ToRole="ATC_Group" />
+  </EntityType>
+  <EntityType Name="ATC_Users">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="Salt" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="IDPassword" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="IPRequest" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DateRequest" Type="DateTime" Precision="3" />
+    <Property Name="Photo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="fgChangePass" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="ATC_Users1" Relationship="TMS_CM_ANOnlineModel.FK_ATC_Users_ATC_Users" FromRole="ATC_Users" ToRole="ATC_Users1" />
+    <NavigationProperty Name="ATC_Users2" Relationship="TMS_CM_ANOnlineModel.FK_ATC_Users_ATC_Users" FromRole="ATC_Users1" ToRole="ATC_Users" />
+    <NavigationProperty Name="ATC_Group" Relationship="TMS_CM_ANOnlineModel.ATC_UserGroup" FromRole="ATC_Users" ToRole="ATC_Group" />
+    <NavigationProperty Name="ATC_PersonalInfo" Relationship="TMS_CM_ANOnlineModel.FK_ATC_Users_ATC_PersonalInfo" FromRole="ATC_Users" ToRole="ATC_PersonalInfo" />
+  </EntityType>
+  <Association Name="FK_ATC_Functions_ATC_Functions">
+    <End Type="TMS_CM_ANOnlineModel.ATC_Functions" Role="ATC_Functions" Multiplicity="0..1" />
+    <End Type="TMS_CM_ANOnlineModel.ATC_Functions" Role="ATC_Functions1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ATC_Functions">
+        <PropertyRef Name="FunctionID" />
+      </Principal>
+      <Dependent Role="ATC_Functions1">
+        <PropertyRef Name="GroupID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ATC_PERM_REFERENCE_ATC_FUNC">
+    <End Type="TMS_CM_ANOnlineModel.ATC_Functions" Role="ATC_Functions" Multiplicity="1" />
+    <End Type="TMS_CM_ANOnlineModel.ATC_Permissions" Role="ATC_Permissions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ATC_Functions">
+        <PropertyRef Name="FunctionID" />
+      </Principal>
+      <Dependent Role="ATC_Permissions">
+        <PropertyRef Name="FunctionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ATC_PERM_REFERENCE_ATC_GROU">
+    <End Type="TMS_CM_ANOnlineModel.ATC_Group" Role="ATC_Group" Multiplicity="1" />
+    <End Type="TMS_CM_ANOnlineModel.ATC_Permissions" Role="ATC_Permissions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ATC_Group">
+        <PropertyRef Name="GroupID" />
+      </Principal>
+      <Dependent Role="ATC_Permissions">
+        <PropertyRef Name="GroupID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ATC_Users_ATC_Users">
+    <End Type="TMS_CM_ANOnlineModel.ATC_Users" Role="ATC_Users" Multiplicity="1" />
+    <End Type="TMS_CM_ANOnlineModel.ATC_Users" Role="ATC_Users1" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="ATC_Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="ATC_Users1">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ATC_UserGroup">
+    <End Type="TMS_CM_ANOnlineModel.ATC_Group" Role="ATC_Group" Multiplicity="*" />
+    <End Type="TMS_CM_ANOnlineModel.ATC_Users" Role="ATC_Users" Multiplicity="*" />
+  </Association>
+  <EntityType Name="ATC_Preferences">
+    <Key>
+      <PropertyRef Name="StaffID" />
+    </Key>
+    <Property Name="StaffID" Type="Int32" Nullable="false" />
+    <Property Name="FavoriteUrl" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Numofrows" Type="Byte" />
+    <Property Name="ProCriteria" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="EmpCriteria" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ATC_Employees" Relationship="TMS_CM_ANOnlineModel.FK_ATC_Preferences_ATC_Employees" FromRole="ATC_Preferences" ToRole="ATC_Employees" />
+  </EntityType>
+  <Association Name="FK_ATC_Preferences_ATC_Employees">
+    <End Type="TMS_CM_ANOnlineModel.ATC_Employees" Role="ATC_Employees" Multiplicity="1" />
+    <End Type="TMS_CM_ANOnlineModel.ATC_Preferences" Role="ATC_Preferences" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="ATC_Employees">
+        <PropertyRef Name="StaffID" />
+      </Principal>
+      <Dependent Role="ATC_Preferences">
+        <PropertyRef Name="StaffID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="HR_CurrentJobtitle">
+    <Key>
+      <PropertyRef Name="PromotionID" />
+      <PropertyRef Name="StaffID" />
+      <PropertyRef Name="JobtitleID" />
+      <PropertyRef Name="ApplyFrom" />
+      <PropertyRef Name="JobTitle" />
+    </Key>
+    <Property Name="PromotionID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="StaffID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="JobtitleID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="ApplyFrom" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="JobTitle" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="ATC_Timesheet2016">
+    <Key>
+      <PropertyRef Name="TDate" />
+      <PropertyRef Name="StaffID" />
+      <PropertyRef Name="AssignmentID" />
+      <PropertyRef Name="EventID" />
+    </Key>
+    <Property Name="TDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="StaffID" Type="Int32" Nullable="false" />
+    <Property Name="AssignmentID" Type="Int32" Nullable="false" />
+    <Property Name="EventID" Type="Int32" Nullable="false" />
+    <Property Name="Hours" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="OverTime" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="OverRate" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="OTNight" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="OTNormal" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="ATC_AbsenceRequests">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Type" Type="Int32" Nullable="false" />
+    <Property Name="StaffId" Type="Int32" Nullable="false" />
+    <Property Name="Authoriser1_Id" Type="Int32" Nullable="false" />
+    <Property Name="Authoriser2_Id" Type="Int32" />
+    <Property Name="DateFrom" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DateTo" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Note" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="isAuthorisedByHr" Type="Boolean" Nullable="false" />
+    <Property Name="isAuthoriser1Approved" Type="Boolean" Nullable="false" />
+    <Property Name="isAuthoriser2Approved" Type="Boolean" />
+    <Property Name="isHrApproved" Type="Boolean" />
+    <Property Name="Status" Type="Int32" Nullable="false" />
+    <Property Name="Authoriser1Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Authoriser2Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="HrNote" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DateSubmitted" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="ATC_Events" Relationship="TMS_CM_ANOnlineModel.FK_ATC_AbsenceRequests_ATC_Events" FromRole="ATC_AbsenceRequests" ToRole="ATC_Events" />
+    <NavigationProperty Name="Authoriser1" Relationship="TMS_CM_ANOnlineModel.FK_dbo_ATC_AbsenceRequests_dbo_ATC_Employees_Authoriser1_Id" FromRole="ATC_AbsenceRequests" ToRole="ATC_Employees" />
+    <NavigationProperty Name="Authoriser2" Relationship="TMS_CM_ANOnlineModel.FK_dbo_ATC_AbsenceRequests_dbo_ATC_Employees_Authoriser2_Id" FromRole="ATC_AbsenceRequests" ToRole="ATC_Employees" />
+    <NavigationProperty Name="Staff" Relationship="TMS_CM_ANOnlineModel.FK_dbo_ATC_AbsenceRequests_dbo_ATC_Employees_StaffId" FromRole="ATC_AbsenceRequests" ToRole="ATC_Employees" />
+  </EntityType>
+  <Association Name="FK_ATC_AbsenceRequests_ATC_Events">
+    <End Type="TMS_CM_ANOnlineModel.ATC_Events" Role="ATC_Events" Multiplicity="1" />
+    <End Type="TMS_CM_ANOnlineModel.ATC_AbsenceRequests" Role="ATC_AbsenceRequests" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ATC_Events">
+        <PropertyRef Name="EventID" />
+      </Principal>
+      <Dependent Role="ATC_AbsenceRequests">
+        <PropertyRef Name="Type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_ATC_AbsenceRequests_dbo_ATC_Employees_Authoriser1_Id">
+    <End Type="TMS_CM_ANOnlineModel.ATC_Employees" Role="ATC_Employees" Multiplicity="1" />
+    <End Type="TMS_CM_ANOnlineModel.ATC_AbsenceRequests" Role="ATC_AbsenceRequests" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ATC_Employees">
+        <PropertyRef Name="StaffID" />
+      </Principal>
+      <Dependent Role="ATC_AbsenceRequests">
+        <PropertyRef Name="Authoriser1_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_ATC_AbsenceRequests_dbo_ATC_Employees_Authoriser2_Id">
+    <End Type="TMS_CM_ANOnlineModel.ATC_Employees" Role="ATC_Employees" Multiplicity="0..1" />
+    <End Type="TMS_CM_ANOnlineModel.ATC_AbsenceRequests" Role="ATC_AbsenceRequests" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ATC_Employees">
+        <PropertyRef Name="StaffID" />
+      </Principal>
+      <Dependent Role="ATC_AbsenceRequests">
+        <PropertyRef Name="Authoriser2_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_ATC_AbsenceRequests_dbo_ATC_Employees_StaffId">
+    <End Type="TMS_CM_ANOnlineModel.ATC_Employees" Role="ATC_Employees" Multiplicity="1" />
+    <End Type="TMS_CM_ANOnlineModel.ATC_AbsenceRequests" Role="ATC_AbsenceRequests" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ATC_Employees">
+        <PropertyRef Name="StaffID" />
+      </Principal>
+      <Dependent Role="ATC_AbsenceRequests">
+        <PropertyRef Name="StaffId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="ATC_EmailTemplate">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Type" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Subject" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="HR_ReceiveReport">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="Fullname" Type="String" MaxLength="71" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="HR_Employee">
+    <Key>
+      <PropertyRef Name="PersonID" />
+      <PropertyRef Name="FirstName" />
+      <PropertyRef Name="Gender" />
+      <PropertyRef Name="Country" />
+      <PropertyRef Name="JobTitle" />
+      <PropertyRef Name="Department" />
+    </Key>
+    <Property Name="PersonID" Type="Int32" Nullable="false" />
+    <Property Name="IDNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Fullname" Type="String" MaxLength="51" FixedLength="false" Unicode="false" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="lastname" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Gender" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="Country" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Birthday" Type="DateTime" Precision="3" />
+    <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="EmailAddress" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+    <Property Name="EmailAddress_Ex" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MobilePhone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ExtPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="JobTitle" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="Department" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="FirstNameLeader" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="LastnameLeader" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Hours" Type="Decimal" Precision="12" Scale="2" />
+    <Property Name="JoinDate" Type="DateTime" Precision="3" />
+    <Property Name="LeaveDate" Type="DateTime" Precision="3" />
+    <Property Name="fgIndirect" Type="Boolean" />
+    <Property Name="DepartmentID" Type="Int32" />
+    <Property Name="NationalityID" Type="Int32" />
+    <Property Name="CardNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CardDateOfIssued" Type="DateTime" Precision="3" />
+    <Property Name="CardPlaceOfIssue" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="CostingGroupName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="ATC_PersonalInfo">
+    <Key>
+      <PropertyRef Name="PersonID" />
+    </Key>
+    <Property Name="PersonID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="LastName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Gender" Type="Boolean" />
+    <Property Name="Birthday" Type="DateTime" Precision="3" />
+    <Property Name="MarialStatus" Type="Int32" Nullable="false" />
+    <Property Name="NationalityID" Type="Int32" />
+    <Property Name="PrivateEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="MobilePhone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CardNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CardDateOfIssued" Type="DateTime" Precision="3" />
+    <Property Name="CardPlaceOfIssue" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Passport" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PassportExpire" Type="DateTime" Precision="3" />
+    <Property Name="CurrentAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="EmergencyContact" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="TaxCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="InsuranceBookNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BankAccount1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BankAccount2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="HomeAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ContactVietnam" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="HomeCountry" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="UserType" Type="Byte" Nullable="false" />
+    <Property Name="CompanyID" Type="Int32" />
+    <Property Name="CountryID" Type="Int32" />
+    <Property Name="MiddleName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="IDNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Title" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="City" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="State" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="PostalCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Fax" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EmailAddress" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="EmailLabel" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="EmailAddress_Ex" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Website" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="fgDelete" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="ATC_Employees" Relationship="TMS_CM_ANOnlineModel.FK_ATC_Employees_ATC_PersonalInfo" FromRole="ATC_PersonalInfo" ToRole="ATC_Employees" />
+    <NavigationProperty Name="ATC_Users" Relationship="TMS_CM_ANOnlineModel.FK_ATC_Users_ATC_PersonalInfo" FromRole="ATC_PersonalInfo" ToRole="ATC_Users" />
+  </EntityType>
+  <Association Name="FK_ATC_Employees_ATC_PersonalInfo">
+    <End Type="TMS_CM_ANOnlineModel.ATC_PersonalInfo" Role="ATC_PersonalInfo" Multiplicity="1" />
+    <End Type="TMS_CM_ANOnlineModel.ATC_Employees" Role="ATC_Employees" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="ATC_PersonalInfo">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="ATC_Employees">
+        <PropertyRef Name="StaffID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ATC_Users_ATC_PersonalInfo">
+    <End Type="TMS_CM_ANOnlineModel.ATC_PersonalInfo" Role="ATC_PersonalInfo" Multiplicity="1" />
+    <End Type="TMS_CM_ANOnlineModel.ATC_Users" Role="ATC_Users" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="ATC_PersonalInfo">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="ATC_Users">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="ATC_Timesheet2017">
+    <Key>
+      <PropertyRef Name="TDate" />
+      <PropertyRef Name="StaffID" />
+      <PropertyRef Name="AssignmentID" />
+      <PropertyRef Name="EventID" />
+    </Key>
+    <Property Name="TDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="StaffID" Type="Int32" Nullable="false" />
+    <Property Name="AssignmentID" Type="Int32" Nullable="false" />
+    <Property Name="EventID" Type="Int32" Nullable="false" />
+    <Property Name="Hours" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="OverTime" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="OverRate" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="OTNight" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="OTNormal" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="ATC_Timesheet2018">
+    <Key>
+      <PropertyRef Name="TDate" />
+      <PropertyRef Name="StaffID" />
+      <PropertyRef Name="AssignmentID" />
+      <PropertyRef Name="EventID" />
+    </Key>
+    <Property Name="TDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="StaffID" Type="Int32" Nullable="false" />
+    <Property Name="AssignmentID" Type="Int32" Nullable="false" />
+    <Property Name="EventID" Type="Int32" Nullable="false" />
+    <Property Name="Hours" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="OverTime" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="OverRate" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="OTNight" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="OTNormal" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="ATC_Timesheet2019">
+    <Key>
+      <PropertyRef Name="TDate" />
+      <PropertyRef Name="StaffID" />
+      <PropertyRef Name="AssignmentID" />
+      <PropertyRef Name="EventID" />
+    </Key>
+    <Property Name="TDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="StaffID" Type="Int32" Nullable="false" />
+    <Property Name="AssignmentID" Type="Int32" Nullable="false" />
+    <Property Name="EventID" Type="Int32" Nullable="false" />
+    <Property Name="Hours" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="OverTime" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="OverRate" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="OTNight" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="OTNormal" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="ATC_Timesheet2020">
+    <Key>
+      <PropertyRef Name="TDate" />
+      <PropertyRef Name="StaffID" />
+      <PropertyRef Name="AssignmentID" />
+      <PropertyRef Name="EventID" />
+    </Key>
+    <Property Name="TDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="StaffID" Type="Int32" Nullable="false" />
+    <Property Name="AssignmentID" Type="Int32" Nullable="false" />
+    <Property Name="EventID" Type="Int32" Nullable="false" />
+    <Property Name="Hours" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="OverTime" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="OverRate" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="OTNight" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="OTNormal" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="ATC_Timesheet2021">
+    <Key>
+      <PropertyRef Name="TDate" />
+      <PropertyRef Name="StaffID" />
+      <PropertyRef Name="AssignmentID" />
+      <PropertyRef Name="EventID" />
+    </Key>
+    <Property Name="TDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="StaffID" Type="Int32" Nullable="false" />
+    <Property Name="AssignmentID" Type="Int32" Nullable="false" />
+    <Property Name="EventID" Type="Int32" Nullable="false" />
+    <Property Name="Hours" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="OverTime" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="OverRate" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="OTNight" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="OTNormal" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="ATC_Timesheet2023">
+    <Key>
+      <PropertyRef Name="TDate" />
+      <PropertyRef Name="StaffID" />
+      <PropertyRef Name="AssignmentID" />
+      <PropertyRef Name="EventID" />
+    </Key>
+    <Property Name="TDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="StaffID" Type="Int32" Nullable="false" />
+    <Property Name="AssignmentID" Type="Int32" Nullable="false" />
+    <Property Name="EventID" Type="Int32" Nullable="false" />
+    <Property Name="Hours" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="OverTime" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="OverRate" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="OTNight" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="OTNormal" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="ATC_ProjectTracking">
+    <Key>
+      <PropertyRef Name="ProjTrackerID" />
+    </Key>
+    <Property Name="ProjTrackerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProjectID" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="ProjStatus" Type="Int32" Nullable="false" />
+    <Property Name="ProposalValue" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="AwardedValue" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="DateTracking" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="StaffID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+  </EntityType>
+</Schema>

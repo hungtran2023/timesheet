@@ -1,0 +1,410 @@
+﻿
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+   //  Layout = "~/Views/Shared/_LayoutWithMenu.cshtml";
+    var contents = ViewBag.Content as IEnumerable<AIS.Data.Model.MessageContentModel>;
+}
+@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>*@
+
+@*<link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="stylesheet" />*@
+
+
+<head>
+    <style type="text/css" media="screen">
+        .containerOne {
+            columns: 3;
+            grid-auto-rows: auto;
+            /* margin-left: 15%;*/
+            margin-top: 10px;
+        }
+
+        .containerTwo {
+            columns: 3;
+            /*     margin-left: 15%;*/
+            margin-top: 10px;
+            grid-auto-rows: auto;
+        }
+
+        .containerThree {
+            columns: 3;
+            /*     margin-left: 15%;*/
+            margin-top: 10px;
+            grid-auto-rows: auto;
+        }
+
+        /*.containerThree {
+            columns: 3;*/
+        /*     margin-left: 15%;*/
+        /*margin-top: 10px;
+        }*/
+
+        [class^="main-"] {
+            background: #357ebd;
+            break-before: column;
+            color: white;
+            text-align: center;
+            font-size: 15pt;
+        }
+
+        .common {
+            /*background: ghostwhite;*/
+            height: 333px;
+            width: 100%;
+            /*  border: double #357ebd;*/
+            border-radius: 0;
+            text-align: center;
+            box-shadow: rgb(0 0 0 / 13%) 0px 5.6px 9.6px 0px, rgb(0 0 0 / 11%) 0px 0.3px 0.9px 0px;
+        }
+
+
+        h2 {
+            /* text-shadow: 2px 2px #FF0000;*/
+        }
+
+        element.style {
+        }
+
+        A:visited {
+            font-size: 8pt;
+            color: #003399;
+            font-family: arial;
+            text-decoration: underline;
+        }
+
+        .btn-custom {
+            background-color: #88a5ea;
+            color: #ffffff !important;
+            display: inline-block;
+            padding: 6px 12px;
+            margin-bottom: 0;
+            font-size: 14px;
+            font-weight: normal;
+            line-height: 1.428571429;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            cursor: pointer;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            -o-user-select: none;
+            user-select: none;
+            text-decoration: none !important;
+            border-color: #357ebd;
+            margin-top: 10px;
+            height: 30px;
+        }
+
+        .formattitle {
+            font-size: 28px;
+            margin-bottom: 8px;
+            color: black;
+        }
+
+        .icon-timesheet {
+            display: inline-block;
+            -webkit-font-smoothing: antialiased;
+            font-style: normal;
+            font-weight: normal;
+            speak: none;
+            font-family: FabricMDL2Icons-8;
+        }
+
+        .formaticon {
+            font-size: 3.75rem;
+            display: inline;
+            color: #3c3c3c;
+        }
+
+        .text-title {
+            font-size: 13px;
+            margin-bottom: 8px;
+            color: black;
+        }
+        .ui-dialog-titlebar-close {
+            visibility: hidden;
+        }
+        .ui-dialog-titlebar {
+            background: transparent;
+            border: none;
+        }
+        .ui-dialog-content
+        {
+            overflow:unset!important;
+
+        }
+        .ui-widget-header
+        {
+         /*   color:unset!important*/
+        }
+    </style>
+</head>
+<body>
+    <div class="containerOne">
+
+        <div class="common" id="timesheet">
+            <div class="formattitle">TimeSheet info</div>
+
+            <i class="formaticon icon-timesheet"><a href="/timesheet/tms/timesheet.asp"> <img src="~/Content/icon/icons8-timesheet-100.png" /></a></i>
+            <i>    <a class="AddTimeSheet"><img src="~/Content/icon/bookts.jpg" /> </a> </i>
+
+
+            <div id="DlgTimeSheet"></div>
+            @*@Ajax.ActionLink("Open popup", "BookingTimeSheet", new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "result", InsertionMode = InsertionMode.Replace, OnSuccess = "openPopup" })<br />*@
+            <ul class="text-title">
+                <P style="margin:20px 0 20px;"><b>Total Hours of Month:</b> @ViewBag.Total </P>
+                <P style="margin: 20px 0 20px;"><b>Total Hours Overtime of Month:</b> @ViewBag.TotalOT </P>
+            </ul>
+        </div>
+
+        <div class="common">
+            <div class="formattitle">Employees info</div>
+            <a href="/timesheet/management/staff/listofemployee.asp"> <img src="~/Content/icon/imployee_icon.png" /></a>
+            <ul class="text-title">
+                <P style="margin:20px 0 20px;"><b>Total Employees:</b> @ViewBag.TotalEmployes </P>
+
+            </ul>
+        </div>
+
+
+        <div class="common" id="timesheet">
+            <div class="formattitle">Holidays info</div>
+            <a href="/timesheet//management/workinghour/workinghours.asp"> <img src="~/Content/icon/holiday_100.jpg" /></a>
+
+        </div>
+
+    </div>
+    <div class="containerTwo">
+
+        <div class="common" id="viewLeave">
+            <div class="formattitle">View Leaves info</div>
+            <a href="/Timesheet/tms/staff_view_leave.asp"> <img src="~/Content/icon/viewleaves.png" /></a>
+            <p style="margin:20px 0 20px;">Current Rate: @ViewBag.CurrentRate  <b style="color:#ca0000">days/month</b></p>
+            <p style="margin: 20px 0 20px;"> Your annual leave balance: @Math.Round(ViewBag.Balance / 8, 2) days</p>
+
+            <!--<tr>
+                <td valign="top">
+                    <table width="60%" border="1" cellspacing="0" cellpadding="0" align="center" bordercolor="#003399">
+
+                        <tr>
+                            <td bgcolor="#8FA4D3">
+                                <table width="100%" border="1" cellspacing="1" cellpadding="1" align="center">
+                                    @if (ViewBag.display == "show")
+                                    {
+                                        <tr height="25">
+                                            <td bgcolor="#C2CCE7" class="blue" width="80%" style="text-align: left; font-family: arial, verdana">&nbsp&nbsp &nbsp<b>Leave brought forward from last year to @DateTime.Now.Year (hours) </b></td>
+                                            <td bgcolor="#E7EBF5" class="blue-normal" align="center" width="25%"><b> </b></td>
+
+                                        </tr>
+                                    }
+
+                                    <tr height="25">
+                                        <td bgcolor="#C2CCE7" class="blue" style="text-align: left; font-family: arial, verdana">&nbsp&nbsp &nbsp<b>Leave Due until 1/@DateTime.Now.Month/@DateTime.Now.Year (hours)</b></td>
+                                        <td bgcolor="#E7EBF5" class="blue-normal" align="center"><b>@ViewBag.LeaveDueUntil</b></td>
+
+                                    </tr>
+
+                                    <tr height="25">
+                                        <td bgcolor="#617DC0" class="white" align="right"><b>Total (hours) </b>&nbsp&nbsp &nbsp</td>
+                                        <td bgcolor="#FFF2F2" class="red" align="center"><b style="color: #ca0000">@ViewBag.LeaveDueUntil</b></td>
+
+                                    </tr>
+                                    <tr height="25">
+                                        <td bgcolor="#C2CCE7" class="blue" width="70%" style="text-align: left;font-family: arial, verdana">&nbsp&nbsp &nbsp<b>Annual leave in  (hours) </b></td>
+                                        <td bgcolor="#E7EBF5" class="blue-normal" align="center" width="30%"><b> @ViewBag.Annualleave</b></td>
+
+                                    </tr>
+                                    <tr height="25">
+                                        <td bgcolor="#C2CCE7" class="blue" width="70%" style="text-align: left; font-family: arial,verdana">&nbsp&nbsp &nbsp<b>Annual leave reserved  (hours) </b></td>
+
+                                        <td bgcolor="#E7EBF5" class="blue-normal" align="center" width="30%"><b> </b></td>
+                                    </tr>
+                                    <tr height="25">
+                                        <td bgcolor="#617DC0" class="white" align="right"><b>Balance  (hours) </b>&nbsp&nbsp &nbsp</td>
+                                        <td bgcolor="#FFF2F2" class="red" align="center"><b style="color: #ca0000"> @ViewBag.Balance</b></td>
+
+
+                                    </tr>
+                                    <tr height="25">
+                                        <td bgcolor="#C2CCE7" class="blue" align="right"><b> </b>&nbsp&nbsp &nbsp</td>
+                                        <td bgcolor="#FFF2F2" class="red" align="center"><b style="color: #ca0000"> @Math.Round(ViewBag.Balance / 8, 2)  days</b></td>
+
+
+                                    </tr>
+
+                                </table>
+                            </td>
+                        </tr>
+                        <tr></tr>
+
+                    </table>
+
+                </td>
+            </tr>
+            <tr>
+                <td valign="top" class="text-right">
+                    <a>@Html.ActionLink("Calendar", "OverviewOfRequestHistory", "OverviewOfRequestHistory", null, new { @class = "btn-custom" })</a>
+                    <a>@Html.ActionLink("Holidays Booking", "HolidayBooking", "HolidayBooking", null, new { @class = "btn-custom" })</a>-->
+            @*<a href="javascript:ANTracking()" class="btn-custom">Tracking</a>*@
+            <!--<p style="color: #003399;font-weight:bold;margin-left:120px">Current Rate: @ViewBag.CurrentRate  <b style="color:#ca0000">days/month</b></p>
+                    <p style="color: #003399; font-weight: bold; margin-left: 120px"> Your annual leave balance: @Math.Round(ViewBag.Balance / 8, 2) days</p>
+                </td>
+            </tr>-->
+
+
+        </div>
+
+        <div class="common">
+            <h4>
+                <div class="formattitle">News info</div>
+                <img src="~/Content/icon/news.jpg" />
+                @foreach (var content in contents)
+                {
+                    <br />
+                    <a href='@Url.Action("Detail", "MessageContent",new { id = content.id })'>@content.Title</a>
+                }
+
+
+            </h4>
+        </div>
+
+
+        <div class="common">
+            <div class="formattitle">Function 6</div>
+            <img src="~/Content/icon/holiday_100.jpg" />
+            <h2 class="text-title">Waitting function processing</h2>
+        </div>
+
+    </div>
+    <div class="containerThree">
+
+        <div class="common">
+            <div class="formattitle">Function 7</div>
+            <img src="~/Content/icon/holiday_100.jpg" />
+            <h2 class="text-title">Waitting function processing</h2>
+        </div>
+
+        <div class="common">
+
+            <div class="formattitle">Function 8</div>
+            <img src="~/Content/icon/holiday_100.jpg" />
+            <h2 class="text-title">Waitting function processing</h2>
+        </div>
+
+        <div class="common">
+            <div class="formattitle">Function 9</div>
+            <img src="~/Content/icon/holiday_100.jpg" />
+            <h2 class="text-title">Waitting function processing</h2>
+        </div>
+    </div>
+
+</body>
+
+<div class="modal fade" id="type" tabindex="-1" role="dialog" style="height:800px;">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content" style="width:557px;height:800px">
+            <div class="modal-header">
+                <h4 style="margin-left:10px;font-weight:normal">Booking Time Sheet</h4>
+            </div>
+
+            <div class="modal-body table-placeholder" style="margin-top:-28px!important;">
+                <h4 class="modal-title" id="defaultModalLabel">Booking Time Sheet @*<label id="lblAPK"></label>*@</h4>
+
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+
+<div id="result" style="display:none;"></div>
+
+@*<script src="https://code.jquery.com/jquery-3.6.0.js"></script>*@
+
+
+@*<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/start/jquery-ui.css">*@
+@*<script src="https://code.jquery.com/jquery-1.12.4.js"></script>*@
+@*<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>*@
+
+@*<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>*@
+
+
+
+@*<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/start/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>*@
+<script src="~/Scripts/ais/Archive/bootstrap.js"></script>
+
+<link href="~/Content/style/Table/tablestyle.css" rel="stylesheet" />
+<script src="~/Scripts/ais/Archive/jquery.dataTables.min.js"></script>
+<link href="~/Content/style/Table/jquery.dataTables.min.css" rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+@*<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/start/jquery-ui.css">*@
+
+<link href="~/Content/style/jquery-ui.css" rel="stylesheet" />
+
+@*<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css" />*@
+
+<script>
+
+
+    function ANTracking() {
+        window.document.frmtms.action = "CalBalanceByUser.asp";
+        window.document.frmtms.target = "_self";
+        window.document.frmtms.submit();
+    }
+
+       function GetModalPopupBooking() {
+
+        $.ajax({
+        type: "GET",
+        url: '@Url.Action("BookingTimeSheet", "DashBoard")',
+
+        dataType: "html",
+        success: function (response) {
+            $('.table-placeholder').html(response);
+            $('#type').modal('show');
+        },
+        error: function (response) {
+            alert("error");
+        }
+    });
+
+    }
+    function openPopup() {
+        debugger;
+        $("#result").dialog("open");
+    }
+    $(document).ready(function () {
+
+        $('.AddTimeSheet').on('click', function () {
+            debugger;
+            $("#DlgTimeSheet").dialog({
+                autoOpen: true,
+                position: { my: "center", at: "top+150", of: window },
+                width: 648,
+                resizable: false,
+                title: 'Log TimeSheet',
+                modal: true,
+                open: function () {
+                    $(this).load('@Url.Action("BookingTimeSheet", "DashBoard")');
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+
+
+            });
+       
+            return false;
+      });
+
+
+    });
+</script>
+

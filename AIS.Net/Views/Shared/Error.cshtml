@@ -1,0 +1,57 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+@{
+    Layout = "_Layout.cshtml";
+    ViewBag.Title = "Error";
+}
+
+<div class="error-container">
+    <div class="error-container__wrapper">
+        <div class="col-xs-12 col-md-7">
+            @if (ViewBag.Status == 404 || ViewBag.Status == 200)
+            {
+                <p>
+                    <b>@ViewBag.Status</b>. Error, unfortunately we couldn't display this page.
+                </p>
+                <p>
+                    The requested URL above was not found on this server. Please return to <a href="/">Atlas Information System</a> home page.
+                </p>
+            }
+
+            @if (ViewBag.Status == 500)
+            {
+                <p>
+                    <b>@ViewBag.Status</b>. Internal server error.
+                </p>
+                <p>
+                    There is a problem with the resource you are looking for, and it cannot be displayed.
+                </p>
+            }
+
+            @if (ViewBag.Status == 403)
+            {
+                <p>
+                    <b>@ViewBag.Status</b>. Forbidden: Access is denied.
+                </p>
+                <p>
+                    You do not have permission to view this directory or page using the credentials that you supplied.
+                </p>
+            }
+
+            @if (ViewBag.Status == "ErrorFile")
+            {
+                <p>
+                    <b>@ViewBag.DetailError</b>.
+                </p>
+                <p>
+
+                </p>
+            }
+
+            <b>@ViewBag.DetailError</b>.
+        </div>
+        <div class="col-xs-12 col-md-5">
+            <img class="img-responsive " src="AISNET/Content/images/error_img.jpg" />
+        </div>
+    </div>
+</div>
+
