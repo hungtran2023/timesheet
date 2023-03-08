@@ -1,0 +1,31 @@
+﻿.overview-request-history {
+  padding: 30px 0 50px 0;
+}
+.overview-request-history__info {
+  margin-top: 30px;
+}
+.overview-request-history__info .row {
+  margin-top: 5px;
+}
+.overview-request-history__info .table-responsive {
+  max-width: 500px;
+  margin: 30px auto;
+}
+.overview-request-history__calendar {
+  text-align: center;
+  margin: 40px auto 0;
+  width: 700px;
+}
+.overview-request-history__calendar--item {
+  display: inline-block;
+  width: 225px;
+  margin-left: 5px;
+}
+.overview-request-history__control {
+  margin-top: 20px;
+}
+.overview-request-history__control a {
+  cursor: pointer;
+  color: #003399;
+  font-size: 8pt;
+}

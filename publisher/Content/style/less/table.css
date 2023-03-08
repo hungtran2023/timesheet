@@ -1,0 +1,58 @@
+﻿table th {
+  background-color: #617DC0;
+  color: #ffffff;
+  text-align: center !important;
+  border: 1px solid #8FA4D3 !important;
+}
+table th.weekend-saturday,
+table th.weekend-sunday,
+table th.authorizing__full-name {
+  background-color: #617DC0;
+}
+table tr {
+  background-color: #E7EBF5;
+  color: #003399;
+  text-align: center;
+}
+table td {
+  padding: 5px !important;
+  border: 1px solid #8FA4D3 !important;
+}
+table td.text-left {
+  padding-left: 10px !important;
+}
+table .sortable.desc {
+  background-image: url(../../images/desc.gif) !important;
+}
+table .sortable.asc {
+  background-image: url(../../images/asc.gif) !important;
+}
+table .light-text-row {
+  background-color: #617DC0;
+  color: #ffffff;
+}
+table .light-number-row {
+  background-color: #FFF2F2;
+  color: #ca0000;
+}
+table .dark-row {
+  background-color: #C2CCE7;
+  color: #003399;
+  padding-left: 15px !important;
+}
+table label {
+  margin-bottom: 0;
+}
+.fixed-table-container tbody td .th-inner,
+.fixed-table-container thead th .th-inner {
+  height: 28px;
+  line-height: 26px;
+  padding: 0;
+}
+.fixed-table-container tbody tr:nth-child(2n+1) {
+  background-color: #FFF2F2;
+}
+.fixed-table-container tbody tr:hover {
+  cursor: pointer;
+  background-color: #ffe1e1;
+}

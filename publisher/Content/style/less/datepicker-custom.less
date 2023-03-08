@@ -1,0 +1,132 @@
+﻿@import "variables.less";
+
+.datepicker{
+    padding: 5px 15px;
+}
+
+.datepicker-dropdown {
+    margin-top: 0;
+    padding: 5px 10px;
+
+    table {
+        width: 100%;
+
+        tr {
+            background-color: transparent !important;
+        }
+
+        th {
+            background-color: transparent !important;
+            color: inherit;
+            border: none !important;
+
+            &.next:hover{
+                cursor: pointer;
+            }
+
+            &.prev:hover{
+                cursor: pointer;
+            }
+        }
+
+        td {
+            color: inherit;
+            border: none !important;
+            -webkit-border-radius: 0;
+            -moz-border-radius: 0;
+            border-radius: 0;
+
+            &.day:hover{
+                background-color:@days-off-bg-color !important;
+            }
+        }
+
+    }
+}
+
+.datepicker-inline {
+    margin-top: 0;
+    padding: 0;
+
+    table {
+        width: 100%;
+        border-collapse:separate;
+        border-spacing: 2px;
+        border: 1px solid @table-border-color;
+        padding: 0 3px;
+        pointer-events: none;
+
+        .datepicker-switch{
+            width: 100% !important;
+            background-color: @table-header-bg-color !important;
+            color: @white-color;
+            border-radius: 0 !important;
+        }
+
+        .prev, .next{
+            display: none;
+        }
+
+        .day.disabled{
+            color: @link-hover;
+        }
+
+        tr {
+            background-color: transparent !important;
+        }
+
+        th {
+            background-color: transparent !important;
+            color: inherit;
+            border: none !important;
+        }
+
+        td {
+            color: inherit;
+            border: none;
+            -webkit-border-radius: 0;
+            -moz-border-radius: 0;
+            border-radius: 0;
+            padding: 1px !important;
+            &.authorised {
+                background-color: @authorised-bg-color;
+
+                &.disabled {
+                    background-color: none;
+                }
+
+                &:hover {
+                    background-color: @taken-bg-color !important;
+                }
+            }
+
+             &.holiday {
+                background-color: @holiday-bg-color;
+
+                &.disabled {
+                    background-color: none;
+                }
+
+                &:hover {
+                    background-color:@taken-bg-color !important;
+                }
+            }
+
+            &.old, &.new{
+                border: none !important;
+                color: @disable-color !important;
+            }
+
+            &.day:hover{
+                background-color:@days-off-bg-color !important;
+            }
+        }
+    }
+}
+
+.datepicker-days, .datepicker-months, .datepicker-years {
+    margin-top: 0;
+    font-size: 12px;
+    font-family: arial, verdana;
+    text-decoration: none;
+}

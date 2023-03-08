@@ -1,0 +1,176 @@
+﻿@using AIS.Models;
+@model AbsenseRequest
+
+@{
+    ViewBag.Title = "HR Authorisation";
+    Layout = "~/Views/Shared/_LayoutWithMenu.cshtml";
+    //status = -1 select all records
+    var ListOfRequestUrl = Url.Content("~/HRAuthorisation/GetRequestList");
+    var RejectRequestUrl = Url.Content("~/HRAuthorisation/RejectRequest");
+    var ApproveRequestUrl = Url.Content("~/HRAuthorisation/ApproveRequest");
+}
+<div class="hide">
+    <input type="hidden" id="listOfRequestUrl" value="@ListOfRequestUrl" />
+    <input type="hidden" id="rejectRequestUrl" value="@RejectRequestUrl" />
+    <input type="hidden" id="approveRequestUrl" value="@ApproveRequestUrl" />
+    <input type="hidden" id="loginPageUrl" value="@ViewBag.LoginPageUrl" />
+</div>
+<div id="confirm-notificator" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Confirm</h4>
+            </div>
+            <div class="modal-body">
+                <p id="confirm-notificator__text" class="notify-message"></p>
+                <div class="form-group">
+                    <label>Note:</label>
+                    <textarea id="confirm-notificator__note" class="form-control"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="confirm-notificator__Ok" class="btn btn-primary" data-dismiss="modal">Ok</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="hr-authorisation">
+    <div class="form-inline text-center">
+        <div class="form-group">
+            <label class="control-label" for="Name">Name</label>
+            <input type="text" id="Name" name="Name" class="hr-authorisation__name-search form-control" />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="Department">Department</label>
+            <div class="hr-authorisation__department-select">@Html.DropDownList("Department", new SelectList(ViewBag.DepartmentList, "Value", "Text", 0), new { @class = "form-control input-sm" })</div>
+        </div>
+        <button id="search" class="btn btn-primary">Search</button>
+        <button id="show-all" class="btn btn-primary">Show All</button>
+    </div>
+    <h3 class="col-xs-12 title">Requests for HR Authorisation</h3>
+    <div class="hr-authorisation__filter text-center">
+        <label>Status</label>
+        <div class="hr-authorisation__status-select">@Html.DropDownList("Status", new SelectList(ViewBag.StatusList, "Value", "Text", 5), new { @class = "form-control input-sm" })</div>
+    </div>
+    <div id="Alert" class="alert alert-dismissable hide" role="alert">
+        <a href="#" class="close" aria-label="close" title="close">×</a>
+        <strong id="AlertMessageHeader"></strong>
+        <span id="AlertMessage"></span>
+    </div>
+    <div class="hr-authorisation__request-list">
+        <div class="table-responsive">
+            <table id="hr-request-list" data-pagination="true" data-url="@ListOfRequestUrl" data-cache="false" data-undefined-text="" data-page-size="@ViewBag.PageSize" data-unique-id="ID">
+                <thead>
+                    <tr>
+                        <th data-field="ID" class="hide">ID</th>
+                        <th data-field="StaffId" class="text-left"></th>
+                        <th data-field="FullName" class="text-left">Full Name</th>
+                        <th data-field="FirstDay" class="text-left">From</th>
+                        <th data-field="LastDay" class="text-left">To</th>
+                        <th data-field="Type" class="text-left">Type Of Absence</th>
+                        <th data-field="Status" class="text-left">Status</th>
+                        <th data-field="DepartmentId" class="hide"></th>
+                    </tr>
+                </thead>
+            </table>
+            <div class="request-list__pagination"> Page  <input type="text" class="request-list__pagination--select-page" id="select-page" value="" />  <a class="request-list__pagination--select-page-btn" id="select-page-btn">Go</a> <span class="request-list__pagination--page-data" id="page-data"> </span> <span class="request-list__pagination--action"> <a id="go-previous">Previous</a> / <a id="go-next">Next</a></span> </div>
+        </div>
+    </div>
+</div>
+<div class="hr-authorisation-editor">
+    <h3 class="col-xs-12 title">HR Authorisation</h3>
+    <div id="Alert" class="alert alert-dismissable hide" role="alert">
+        <a href="#" class="close" aria-label="close" title="close">×</a>
+        <strong id="AlertMessageHeader"></strong>
+        <span id="AlertMessage"></span>
+    </div>
+    <form id="authorisation-form" class="form-horizontal" method="post">
+        <div class="for-hidden hide">
+            @Html.HiddenFor(r => r.Id)
+        </div>
+        <div class="form-group">
+            @Html.Label("Full Name", new { @class = "col-xs-4 control-label" })
+            <div class="col-xs-8">
+                <p id="FullName" class="form-control-static">@ViewBag.FullNameOfUser</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-4 control-label">@Html.DisplayNameFor(r => r.AbsenceType)</label>
+            <div class="col-xs-8">
+                @Html.DropDownListFor(r => r.AbsenceType, new SelectList(ViewBag.AbsenceTypeList, "Value", "Text", 0), new { @class = "form-control input-sm" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-4 control-label">@Html.DisplayNameFor(r => r.StartDate)</label>
+            <div class="col-xs-8">
+                <div class="col-xs-6 no-padding-left">
+                    <div class="input-group date" id="StartDatePicker">
+                        @Html.TextBoxFor(r => r.StartDate, new { @class = "form-control datepicker", @placeholder = "DD/MM/YYYY", @type = "text", @disabled = "disabled" })
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-xs-6 no-padding">
+                    <label class="col-xs-3 control-label no-padding">@Html.DisplayNameFor(r => r.StartTime)</label>
+                    <div class="col-xs-9 no-padding">
+                        @Html.TextBoxFor(r => r.StartTime, new { @class = "form-control", @type = "text", @Value = "08:00", @disabled = "disabled" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-4 control-label">@Html.DisplayNameFor(r => r.EndDate)</label>
+            <div class="col-xs-8">
+                <div class="col-xs-6 no-padding-left">
+                    <div class="input-group date" id="EndDatePicker">
+                        @Html.TextBoxFor(r => r.EndDate, new { @class = "form-control datepicker", @placeholder = "DD/MM/YYYY", @type = "text", @disabled = "disabled" })
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-xs-6 no-padding">
+                    <label class="col-xs-3 control-label no-padding">@Html.DisplayNameFor(r => r.EndTime)</label>
+                    <div class="col-xs-9 no-padding">
+                        @Html.TextBoxFor(r => r.EndTime, new { @class = "form-control", @type = "text", @Value = "17:30", @disabled = "disabled" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-4 control-label">@Html.DisplayNameFor(r => r.FirstAuthoriserId)</label>
+            <div class="col-xs-8">
+                @Html.DropDownListFor(r => r.FirstAuthoriserId, new SelectList(ViewBag.GetAuthoriserList, "Value", "Text", ViewBag.DefaultAuthoriserID), new { @class = "form-control input-sm", @disabled = "disabled" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-4 control-label">@Html.DisplayNameFor(r => r.SecondAuthoriserId)</label>
+            <div class="col-xs-8">
+                @Html.DropDownListFor(r => r.SecondAuthoriserId, new SelectList(ViewBag.GetAuthoriserList, "Value", "Text", 0), new { @class = "form-control input-sm", @disabled = "disabled" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-4 control-label">Note</label>
+            <div class="col-xs-8">
+                @Html.TextAreaFor(r => r.Note, new { @class = "form-control", @rows = "4", @disabled = "disabled" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("HR Note", new { @class = "col-xs-4 control-label" })
+            <div class="col-xs-8">
+                @Html.TextArea("HrNote", new { @class = "form-control", @rows = "4" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-xs-12 text-right button-control">
+                <button  id="cancel-edit-request" class="btn btn-default">Cancel</button>
+                <button type="submit"  id="approve-request" class="btn btn-primary">Approve</button>
+                <button type="submit" id="reject-request" class="btn btn-primary">Reject</button>
+            </div>
+        </div>
+    </form>
+</div>
+@Scripts.Render("~/bundles/hr-authoriser")

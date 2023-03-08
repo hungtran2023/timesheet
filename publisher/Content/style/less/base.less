@@ -1,0 +1,142 @@
+﻿@import "variables.less";
+
+#spinner-loading{
+    display: none;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 1064;
+    background-color: @overlay-bg-color;
+    opacity: 0.5;
+    -moz-opacity: 0.5;
+    filter: alpha(opacity=5);
+}
+
+.page-spinner {
+    position: fixed;
+    top: 47%;
+    left: 48%;
+    font-size: 50px !important;
+    z-index: 1065;
+}
+
+body {
+    font-family: @main-font-family;
+    font-size: @main-font-size;
+    color: @main-color;
+}
+
+.ais-container {
+    width: 95%;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.title {
+    font-weight: bold;
+    font-size: @title-font-size;
+    color: @link-hover;
+    text-align: center;
+    margin: 0 0 5px;
+}
+
+.no-padding {
+    padding: 0;
+}
+
+.no-padding-right {
+    padding-right: 0;
+}
+
+.no-padding-left {
+    padding-left: 0;
+}
+
+.menu-dot {
+    margin-top: 12px;
+    font-size: 15pt;
+    display: inline-block;
+    line-height: 0;
+    float: left;
+}
+
+.form-control {
+    height: 32px;
+    font-size: 12px;
+}
+
+.input-group-addon {
+    padding: 4px 8px;
+    font-size: 18px;
+}
+
+.btn-primary {
+    background-color: @button-bg-color;
+}
+
+.text--red {
+    color: @link-hover;
+    font-size: 9pt;
+}
+
+.taken{
+    background-color: @authorised-bg-color;
+    color: @main-color;
+}
+
+.authorised{
+    background-color: @authorised-bg-color;
+    color: @main-color;
+}
+
+.in-progress{
+    background-color: @in-progress-bg-color;
+    color: @main-color;
+}
+
+.holiday{
+    background-color: @holiday-bg-color;
+    color: @main-color;
+}
+
+.weekend-sunday{
+    background-color:@table-body-bg-dark-color;
+    color: @weekend-color;
+}
+
+.weekend-saturday{
+    background-color: @saturday-bg-color;
+    color: @weekend-color;
+}
+
+#Alert{
+    max-width: 545px;
+    margin: 15px auto;
+}
+
+.button-control{
+    button{
+        margin-left: 10px;
+    }
+}
+
+.selected-menu {
+    text-decoration: none !important;
+    cursor: inherit !important;
+}
+
+.no-bold {
+    font-weight: normal !important;
+}
+
+.username-span {
+    color: #ca0000;
+    text-decoration:none !important;
+    font-weight:bold;
+    font-size:9pt;
+}
